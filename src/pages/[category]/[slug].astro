@@ -91,7 +91,9 @@ const FACEBOOK = 'https://www.facebook.com/torpenguin';
     </div>
 
     <div class="container-narrow">
-      <div class="art-cover" aria-hidden="true"></div>
+      {d.image
+        ? <img class="art-cover-img" src={d.image} alt={d.title} />
+        : <div class="art-cover" aria-hidden="true"></div>}
     </div>
 
     <div class="container-narrow">
@@ -203,6 +205,17 @@ const FACEBOOK = 'https://www.facebook.com/torpenguin';
     background: linear-gradient(135deg, var(--paper-mute) 0%, var(--accent-soft) 100%);
     margin: 28px 0;
   }
+  .art-cover-img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 12px;
+    margin: 28px 0;
+    display: block;
+  }
+  .prose :global(img) { max-width: 100%; height: auto; border-radius: 10px; margin: 24px 0; }
+  .prose :global(figure) { margin: 24px 0; }
+  .prose :global(h4) { font-family: var(--font-sans); font-size: 19px; font-weight: 700; color: var(--ink); margin: 28px 0 12px; }
 
   .prose { font-size: 19px; line-height: 1.9; color: var(--ink); }
   .prose :global(p) { margin-bottom: 24px; }
@@ -301,5 +314,5 @@ const FACEBOOK = 'https://www.facebook.com/torpenguin';
     text-decoration: none;
     transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
   }
-  .art-tag:hover { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .art-tag:hover { background: var(--accent); border-color: var(--accent-ink); color: var(--on-accent); }
 </style>

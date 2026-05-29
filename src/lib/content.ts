@@ -15,6 +15,7 @@ export interface PostMeta {
   readingTime: number;
   isSponsored: boolean;
   sponsorName?: string;
+  image?: string;
 }
 
 export interface Author {
@@ -58,6 +59,7 @@ export function toMeta(entry: PostEntry): PostMeta {
     readingTime: readingTime(entry),
     isSponsored: entry.data.isSponsored,
     sponsorName: entry.data.sponsorName,
+    image: entry.data.image,
   };
 }
 

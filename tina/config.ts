@@ -68,6 +68,7 @@ export default defineConfig({
           { type: 'datetime', name: 'updatedAt', label: 'อัปเดตล่าสุด' },
           { type: 'string', name: 'metaTitle', label: 'SEO Title (override)' },
           { type: 'string', name: 'metaDescription', label: 'SEO Description (override)', ui: { component: 'textarea' } },
+          { type: 'image', name: 'image', label: 'รูปหน้าปก' },
           { type: 'string', name: 'youtubeUrl', label: 'ลิงก์ YouTube (ฝังในบทความ)' },
           { type: 'boolean', name: 'isSponsored', label: 'เนื้อหาสนับสนุน' },
           { type: 'string', name: 'sponsorName', label: 'ชื่อผู้สนับสนุน' },

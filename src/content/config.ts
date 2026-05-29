@@ -24,6 +24,7 @@ const post = defineCollection({
     youtubeUrl: z.string().url().optional(),
     isSponsored: z.boolean().default(false),
     sponsorName: z.string().optional(),
+    image: z.string().optional(),
     sources: z
       .array(z.object({ label: z.string(), url: z.string() }))
       .default([]),
