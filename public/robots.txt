@@ -1,0 +1,38 @@
+# torpenguin.com — open to all crawlers, including AI.
+# We *want* this content surfaced in search and AI answers.
+
+User-agent: *
+Allow: /
+
+# Keep crawlers out of the CMS admin only.
+Disallow: /admin/
+
+# AI / LLM crawlers — explicitly welcome.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://torpenguin.com/sitemap-index.xml

@@ -68,6 +68,11 @@ const { Content } = entry ? await entry.render() : { Content: null };
     ? `${topic!.label} — Essays — Torpenguin`
     : `${essay!.title} — Torpenguin`}
   description={isTopic ? topic!.description : essay!.dek}
+  type={isTopic ? 'website' : 'article'}
+  publishedDate={!isTopic ? entry!.data.date.toISOString() : undefined}
+  author={!isTopic ? essay!.author : undefined}
+  section={!isTopic ? essay!.tag : undefined}
+  image={!isTopic && entry!.data.image ? entry!.data.image : undefined}
 >
   {isTopic ? (
     <>
