@@ -1,0 +1,109 @@
+---
+import type { Video } from '../lib/youtube';
+import { youtubeChannelUrl } from '../lib/youtube';
+
+interface Props {
+  videos: Video[];
+  title?: string;
+  subtitle?: string;
+  limit?: number;
+  showViewAll?: boolean;
+}
+const {
+  videos,
+  title = 'ดูบน YouTube',
+  subtitle = 'คลิปยาวเจาะลึกเรื่องธุรกิจอาหาร ดูเต็มๆได้ที่ช่องของพวกเรา',
+  limit,
+  showViewAll = true,
+} = Astro.props;
+
+const list = typeof limit === 'number' ? videos.slice(0, limit) : videos;
+---
+
+<section class="vsec">
+  <div class="container">
+    <div class="vsec-head">
+      <div>
+        <h2 class="vsec-title">{title}</h2>
+        <p class="vsec-sub">{subtitle}</p>
+      </div>
+      {showViewAll && (
+        <a href="/watch" class="vsec-more">ดูวิดีโอทั้งหมด →</a>
+      )}
+    </div>
+
+    {list.length === 0 ? (
+      <a href={youtubeChannelUrl} class="vsec-fallback" target="_blank" rel="noopener noreferrer">
+        ตามไปดูคลิปทั้งหมดได้ที่ช่อง YouTube ของพวกเรา ↗
+      </a>
+    ) : (
+      <div class="vsec-grid">
+        {list.map((v) => (
+          <a class="vcard" href={v.url} target="_blank" rel="noopener noreferrer">
+            <span class="vcard-thumb">
+              <img src={v.thumbnail} alt="" loading="lazy" width="480" height="360" />
+              <span class="vcard-play" aria-hidden="true">
+                <svg width="48" height="48" viewBox="0 0 68 48"><path d="M66.5 7.7a8 8 0 0 0-5.6-5.6C56 .8 34 .8 34 .8s-22 0-26.9 1.3A8 8 0 0 0 1.5 7.7 84 84 0 0 0 .2 24a84 84 0 0 0 1.3 16.3 8 8 0 0 0 5.6 5.6C12 47.2 34 47.2 34 47.2s22 0 26.9-1.3a8 8 0 0 0 5.6-5.6A84 84 0 0 0 67.8 24a84 84 0 0 0-1.3-16.3Z" fill="#f00"/><path d="M27 34.5 45.5 24 27 13.5Z" fill="#fff"/></svg>
+              </span>
+            </span>
+            <h3 class="vcard-title">{v.title}</h3>
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .vsec { padding: 40px 0; border-top: 1px solid var(--hairline); }
+  .vsec-head {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    gap: 16px; margin-bottom: 28px;
+  }
+  .vsec-title {
+    font-family: var(--font-sans);
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+  .vsec-sub { font-size: 14px; color: var(--ink-faint); margin-top: 6px; max-width: 560px; }
+  .vsec-more {
+    font-family: var(--font-sans); font-size: 14px; font-weight: 600;
+    color: var(--ink-soft); text-decoration: none; border-bottom: none; white-space: nowrap;
+  }
+  .vsec-more:hover { color: var(--accent); }
+
+  .vsec-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+  .vcard { text-decoration: none; border-bottom: none; color: inherit; display: block; }
+  .vcard-thumb {
+    display: block; position: relative;
+    aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden;
+    background: #000; margin-bottom: 12px;
+  }
+  .vcard-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .vcard-play {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    transition: transform 0.15s ease;
+  }
+  .vcard:hover .vcard-play { transform: scale(1.08); }
+  .vcard-title {
+    font-family: var(--font-sans);
+    font-size: 15px; font-weight: 600; line-height: 1.5;
+    color: var(--ink);
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    transition: color 0.15s ease;
+  }
+  .vcard:hover .vcard-title { color: var(--accent); }
+
+  .vsec-fallback {
+    display: block; padding: 28px; text-align: center;
+    background: var(--paper-soft); border-radius: 12px;
+    font-size: 16px; font-weight: 600; color: var(--accent);
+    text-decoration: none; border-bottom: none;
+  }
+
+  @media (max-width: 1024px) { .vsec-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .vsec-grid { grid-template-columns: 1fr; } }
+</style>

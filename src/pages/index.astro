@@ -2,8 +2,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostCard from '../components/PostCard.astro';
 import PostGrid from '../components/PostGrid.astro';
+import VideoSection from '../components/VideoSection.astro';
 import { categories } from '../data/categories';
-import { allPosts, latestPosts, postsByCategory } from '../data/posts';
+import { allPosts, postsByCategory } from '../data/posts';
+import { getLongVideos } from '../lib/youtube';
 
 const posts = allPosts();
 const feature = posts[0];
@@ -18,7 +20,7 @@ const homeSections = ['case-studies', 'trends', 'how-to', 'feasibility', 'interv
   }))
   .filter((s) => s.posts.length > 0);
 
-const YOUTUBE = 'https://www.youtube.com/@torpenguin';
+const videos = await getLongVideos();
 ---
 
 <BaseLayout
@@ -75,18 +77,8 @@ const YOUTUBE = 'https://www.youtube.com/@torpenguin';
     </section>
   ))}
 
-  {/* YOUTUBE STRIP */}
-  <section class="yt">
-    <div class="container">
-      <div class="yt-inner">
-        <div>
-          <h2 class="yt-title">ดูแบบเต็มๆ บน YouTube</h2>
-          <p class="yt-sub">เรื่องที่เล่าบนเว็บ หลายเรื่องมีคลิปเจาะลึกให้ดูต่อ ตามไปดูกันได้ที่ช่องของพวกเรา</p>
-        </div>
-        <a href={YOUTUBE} class="yt-btn" target="_blank" rel="noopener noreferrer">ไปที่ช่อง YouTube ↗</a>
-      </div>
-    </div>
-  </section>
+  {/* VIDEO SECTION — long-form videos pulled from the channel (Shorts removed) */}
+  <VideoSection videos={videos} limit={4} />
 </BaseLayout>
 
 <style>
@@ -151,36 +143,7 @@ const YOUTUBE = 'https://www.youtube.com/@torpenguin';
   }
   .block-more:hover { color: var(--accent); }
 
-  .yt { padding: 28px 0 8px; }
-  .yt-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 24px;
-    flex-wrap: wrap;
-    background: var(--ink);
-    border-radius: 14px;
-    padding: 36px 40px;
-  }
-  .yt-title { font-family: var(--font-sans); font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 8px; }
-  .yt-sub { font-size: 15px; color: #c9c9cf; max-width: 560px; }
-  .yt-btn {
-    font-family: var(--font-sans);
-    font-size: 15px;
-    font-weight: 600;
-    padding: 13px 22px;
-    background: var(--accent);
-    color: #fff;
-    border-radius: 8px;
-    text-decoration: none;
-    border-bottom: none;
-    white-space: nowrap;
-    transition: background 0.15s ease;
-  }
-  .yt-btn:hover { background: var(--accent-deep); }
-
   @media (max-width: 900px) {
     .hero-grid { grid-template-columns: 1fr; gap: 32px; }
-    .yt-inner { padding: 28px 24px; }
   }
 </style>

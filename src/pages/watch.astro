@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import VideoSection from '../components/VideoSection.astro';
+import { getLongVideos, youtubeChannelUrl } from '../lib/youtube';
+
+const videos = await getLongVideos();
+
+const crumbs = [
+  { name: 'หน้าแรก', href: '/' },
+  { name: 'วิดีโอ', href: '/watch' },
+];
+---
+
+<BaseLayout
+  title="วิดีโอ | TorPenguin"
+  description="รวมคลิปยาวเจาะลึกธุรกิจอาหารและร้านอาหารจากช่อง TorPenguin ดูเรื่องต้นทุน ทำเล การตลาด และเคสจริงของร้านอาหาร"
+  breadcrumbs={crumbs}
+>
+  <section class="watch-head">
+    <div class="container">
+      <Breadcrumb items={crumbs} />
+      <h1 class="watch-title">วิดีโอ</h1>
+      <p class="watch-desc">
+        คลิปยาวเจาะลึกเรื่องธุรกิจอาหารจากช่องของพวกเรา ดูเต็มๆได้บน YouTube
+        <a href={youtubeChannelUrl} target="_blank" rel="noopener noreferrer">ไปที่ช่อง ↗</a>
+      </p>
+    </div>
+  </section>
+
+  <VideoSection
+    videos={videos}
+    title="คลิปทั้งหมด"
+    subtitle="เรียงจากใหม่ไปเก่า ตัด Shorts ออก เหลือเฉพาะคลิปยาว"
+    showViewAll={false}
+  />
+</BaseLayout>
+
+<style>
+  .watch-head { padding: 28px 0 8px; }
+  .watch-title {
+    font-family: var(--font-sans);
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 18px 0 8px;
+  }
+  .watch-desc { font-size: 18px; line-height: 1.7; color: var(--ink-soft); max-width: 680px; }
+  .watch-desc a { color: var(--accent-deep); font-weight: 600; }
+</style>
