@@ -49,6 +49,8 @@ body {
   --font-sans: 'IBM Plex Sans Thai Looped', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-serif: 'IBM Plex Sans Thai Looped', 'Plus Jakarta Sans', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  /* Latin wordmark / logo */
+  --font-brand: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
