@@ -65,6 +65,10 @@ async function downloadImage(url, base) {
 
 function cleanHtml(html, title) {
   let h = html;
+  // WordPress turns emojis into <img class="emoji" .../> (from s.w.org). Turn
+  // them back into the actual character so they don't import as huge images.
+  h = h.replace(/<img[^>]*\bclass="emoji"[^>]*>/gi, (m) => m.match(/alt="([^"]*)"/)?.[1] || '');
+  h = h.replace(/<img[^>]*src="[^"]*(?:s\.w\.org|\/emoji\/)[^"]*"[^>]*>/gi, (m) => m.match(/alt="([^"]*)"/)?.[1] || '');
   // Strip noisy attributes (Elementor / pasted classes etc.)
   h = h.replace(/\s(class|style|id|dir|role|data-[\w-]+)="[^"]*"/gi, '');
   h = h.replace(/<(script|style)[\s\S]*?<\/\1>/gi, '');
@@ -114,6 +118,7 @@ async function run() {
     const imgUrls = [...body.matchAll(/<img[^>]+src="([^"]+)"/gi)].map((m) => m[1]);
     let n = 0;
     for (const url of [...new Set(imgUrls)]) {
+      if (/s\.w\.org|\/emoji\//.test(url)) continue; // skip emoji / decorative
       const local = await downloadImage(url, `${slug}-${++n}`);
       if (local) { body = body.split(url).join(local); imgCount++; }
     }

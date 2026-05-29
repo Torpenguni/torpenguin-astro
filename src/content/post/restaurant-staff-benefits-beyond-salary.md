@@ -95,7 +95,7 @@ image: "/imported/restaurant-staff-benefits-beyond-salary-cover.webp"
 <div>
 
 
-<p><strong><img decoding="async" title="8 สิ่งที่นายจ้างห้ามทำ ถ้าไม่อยากถูกปรับหรือจำคุก 8 สิ่งที่ลูกจ้างมีสิทธิฟ้องร้องได้! 1 / Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" draggable="false" src="/imported/restaurant-staff-benefits-beyond-salary-1.svg" alt="????" /> ติดตามข่าวสารธุรกิจร้านอาหาร<br />
+<p><strong>???? ติดตามข่าวสารธุรกิจร้านอาหาร<br />
 </strong><a href="https://www.facebook.com/TORPENGUIN/?locale=th_TH" target="_blank" rel="noopener">Facebook : Torpenguin</a><br />
 <a href="https://www.instagram.com/torpenguin/?hl=en" target="_blank" rel="noopener">Instargram : torpenguin</a><br />
 <a href="https://www.tiktok.com/@torpenguin" target="_blank" rel="noopener">TikTok : torpenguin</a><br />

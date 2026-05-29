@@ -74,7 +74,7 @@ image: "/imported/pasta-ama-6-restaurant-strategies-cover.jpg"
 
 <p>หวังว่าบทความที่นำมาฝากกันในวันนี้ จะเป็นประโยชน์สำหรับผู้ประกอบการและคนที่อยากเปิดร้านอาหารทุกท่านนะคะ ฝากติดตาม Torpenguin ในทุก ๆ ช่องทางด้วยนะคะ แล้วพบกันใหม่ในบทความหน้าค่ะ</p>
 
-<p><strong><img decoding="async" title="ทำเดลิเวอรี่ ต้องเตรียมตัวยังไง? 7 สิ่งที่เราต้องพิจารณาให้ดีก่อนเข้าร่วมแอปฯ เดลิเวอรี่ 1 / Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" draggable="false" src="/imported/pasta-ama-6-restaurant-strategies-1.svg" alt="????" /> ติดตามข่าวสารธุรกิจร้านอาหาร<br />
+<p><strong>???? ติดตามข่าวสารธุรกิจร้านอาหาร<br />
 </strong><a href="https://www.facebook.com/TORPENGUIN/?locale=th_TH" target="_blank" rel="noopener">Facebook : Torpenguin</a><br />
 <a href="https://www.instagram.com/torpenguin/?hl=en" target="_blank" rel="noopener">Instargram : torpenguin</a><br />
 <a href="https://www.tiktok.com/@torpenguin" target="_blank" rel="noopener">TikTok : torpenguin</a><br />
