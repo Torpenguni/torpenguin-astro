@@ -9,7 +9,8 @@
 #   2. Sweeps `color: var(--accent)` -> `var(--accent-ink)` across src
 #      (bright yellow as TEXT on white is unreadable; gold reads fine).
 #   3. Fixes the 3 buttons that put light text on a yellow fill -> dark text.
-#   4. Builds to verify.
+#   4. Colours article headings (h2/h3) with --accent-heading (dark yellow).
+#   5. Builds to verify.
 
 set -euo pipefail
 
@@ -18,7 +19,7 @@ if [ ! -f package.json ] || [ ! -f src/styles/global.css ]; then
   exit 1
 fi
 
-echo "==> 1/4  Rewriting colour variables in src/styles/global.css"
+echo "==> 1/5  Rewriting colour variables in src/styles/global.css"
 node - <<'NODE_EOF'
 const fs = require('fs');
 const file = 'src/styles/global.css';
@@ -41,6 +42,7 @@ const vars = {
   'accent-deep':     '#E6B800',
   'accent-soft':     '#FFE680',
   'accent-ink':      '#7A5E00',
+  'accent-heading':  '#D9920A',
   'on-accent':       '#0A0A0A',
   'signal-warning':  '#E6B800',
 };
@@ -51,23 +53,23 @@ for (const [name, val] of Object.entries(vars)) {
   if (re.test(css)) css = css.replace(re, `$1${val};`);
 }
 
-// --accent-ink / --on-accent may not exist on the original (orange) theme — insert them.
+// These may not exist on the original (orange) theme — insert them after --accent-soft.
 const ensure = (name, val) => {
   if (new RegExp(`--${name}\\s*:`).test(css)) return;
-  // Insert right after the --accent-soft declaration.
   css = css.replace(
     /(--accent-soft\s*:\s*[^;]+;\n)/,
     `$1  --${name}: ${val};\n`
   );
 };
 ensure('accent-ink', '#7A5E00');
+ensure('accent-heading', '#D9920A');
 ensure('on-accent', '#0A0A0A');
 
 fs.writeFileSync(file, css);
 console.log('   colour variables set');
 NODE_EOF
 
-echo "==> 2/4  Sweeping accent text colour -> --accent-ink across src/"
+echo "==> 2/5  Sweeping accent text colour -> --accent-ink across src/"
 # `background: var(--accent)` has no "color:" prefix, so fills stay bright yellow.
 # `|| true`: on a re-run there may be no matches left, and grep exits 1 under pipefail.
 grep -rl "color: var(--accent)" src --include="*.astro" --include="*.css" 2>/dev/null | while read -r f; do
@@ -75,7 +77,7 @@ grep -rl "color: var(--accent)" src --include="*.astro" --include="*.css" 2>/dev
 done || true
 echo "   done"
 
-echo "==> 3/4  Fixing light-text-on-yellow buttons -> dark text"
+echo "==> 3/5  Fixing light-text-on-yellow buttons -> dark text"
 node - <<'NODE_EOF'
 const fs = require('fs');
 const fixes = [
@@ -98,7 +100,23 @@ for (const [file, re, rep] of fixes) {
 }
 NODE_EOF
 
-echo "==> 4/4  Building to verify"
+echo "==> 4/5  Colouring article headings (h2/h3) -> --accent-heading"
+node - <<'NODE_EOF'
+const fs = require('fs');
+const file = 'src/pages/[category]/[slug].astro';
+if (!fs.existsSync(file)) { console.log('   skip (missing):', file); process.exit(0); }
+let s = fs.readFileSync(file, 'utf8');
+// Set the colour of the h2/h3 rules inside .prose, whatever it currently is.
+let changed = 0;
+for (const tag of ['h2', 'h3']) {
+  const re = new RegExp(`(\\.prose :global\\(${tag}\\)\\s*\\{[^}]*?color:\\s*)var\\(--[a-z-]+\\)`);
+  if (re.test(s)) { s = s.replace(re, '$1var(--accent-heading)'); changed++; }
+}
+fs.writeFileSync(file, s);
+console.log(changed ? `   set ${changed} heading rule(s)` : '   no .prose h2/h3 rules found (skipped)');
+NODE_EOF
+
+echo "==> 5/5  Building to verify"
 npm run build
 
 echo

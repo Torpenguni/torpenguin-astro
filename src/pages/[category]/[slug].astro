@@ -4,6 +4,7 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
 import PostGrid from '../../components/PostGrid.astro';
 import YouTubeEmbed from '../../components/YouTubeEmbed.astro';
 import { categoryBySlug } from '../../data/categories';
+import { howToTopicBySlug } from '../../data/howto';
 import {
   getAllEntries,
   getRelated,
@@ -28,6 +29,9 @@ const author = getAuthor(d.author);
 const related = await getRelated(entry, 4);
 const { Content } = await entry.render();
 const rt = readingTime(entry);
+
+// Nicer label for How-to sub-topic tags (cost → Cost); other tags shown as-is.
+const tagLabel = (t: string) => howToTopicBySlug(t)?.label ?? t;
 
 const published = d.publishedAt;
 const updated = d.updatedAt ?? null;
@@ -76,6 +80,14 @@ const FACEBOOK = 'https://www.facebook.com/torpenguin';
         <span>อ่าน {rt} นาที</span>
         {updated && <><span class="dot">·</span><span>อัปเดต {fmt(updated)}</span></>}
       </div>
+
+      {d.tags.length > 0 && (
+        <div class="art-tags">
+          {d.tags.map((t) => (
+            <a href={`/tag/${t}`} class="art-tag">{tagLabel(t)}</a>
+          ))}
+        </div>
+      )}
     </div>
 
     <div class="container-narrow">
@@ -198,14 +210,14 @@ const FACEBOOK = 'https://www.facebook.com/torpenguin';
     font-family: var(--font-sans);
     font-size: 26px;
     font-weight: 700;
-    color: var(--accent-ink);
+    color: var(--accent-heading);
     margin: 40px 0 16px;
   }
   .prose :global(h3) {
     font-family: var(--font-sans);
     font-size: 20px;
     font-weight: 700;
-    color: var(--accent-ink);
+    color: var(--accent-heading);
     margin: 32px 0 12px;
   }
   .prose :global(ul), .prose :global(ol) { margin: 0 0 24px 24px; }
@@ -267,11 +279,27 @@ const FACEBOOK = 'https://www.facebook.com/torpenguin';
     font-family: var(--font-sans);
     font-weight: 600;
     font-size: 15px;
-    color: var(--accent);
+    color: var(--accent-ink);
     text-decoration: none;
     border-bottom: none;
   }
 
   .related { margin-top: 56px; padding: 48px 0 16px; border-top: 1px solid var(--hairline); }
   .related-title { font-family: var(--font-sans); font-size: 24px; font-weight: 800; color: var(--ink); margin-bottom: 28px; }
+
+  /* Tag chips (filed under) — link to /tag archive pages for SEO + discovery */
+  .art-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .art-tag {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent-ink);
+    background: transparent;
+    border: 1.5px solid var(--accent-ink);
+    border-radius: 6px;
+    padding: 5px 12px;
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  .art-tag:hover { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
 </style>
