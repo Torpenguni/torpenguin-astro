@@ -3,6 +3,10 @@ title: "เมื่อชาใต้ขายได้มากกว่าแ
 category: case-studies
 tags: ["กรณีศึกษา"]
 excerpt: "เมื่อชาใต้ขายได้มากกว่าแค่รสชา []"
+keyPoints:
+  - "ชงดี (Chongdee) ทำรายได้แตะ 100 ล้านภายใน 2 ปี ด้วยการขายมากกว่ารสชาติ คือขาย Standard และ Emotional Asset"
+  - "วาง Visual Differentiation ด้วยชาสีธรรมชาติไม่แต่งสี สร้างภาพจำที่ต่างจากตลาดชาไทยสีส้มเข้ม"
+  - "วางราคาแบบ Premium Local เสียบช่องว่างระหว่างตลาด Mass กับ Luxury แล้วขยายต่างประเทศด้วยโมเดล Joint Venture"
 author: torpenguin
 publishedAt: 2026-02-21T10:00:31
 updatedAt: 2026-02-20T18:26:33

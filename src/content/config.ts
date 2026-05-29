@@ -15,6 +15,7 @@ const post = defineCollection({
     ]),
     tags: z.array(z.string()).default([]),
     excerpt: z.string(),
+    keyPoints: z.array(z.string()).default([]),
     metaTitle: z.string().optional(),
     metaDescription: z.string().optional(),
     author: z.string().default('torpenguin'),

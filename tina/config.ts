@@ -62,6 +62,7 @@ export default defineConfig({
             required: true,
             ui: { component: 'textarea' },
           },
+          { type: 'string', name: 'keyPoints', label: 'Key Points (สรุปต้นบทความ)', list: true, ui: { component: 'textarea' } },
           { type: 'string', name: 'tags', label: 'แท็ก', list: true, description: 'How-to ใช้ cost / marketing / team / systems / menu' },
           { type: 'string', name: 'author', label: 'ผู้เขียน', options: ['torpenguin', 'desk'] },
           { type: 'datetime', name: 'publishedAt', label: 'วันที่เผยแพร่', required: true },
