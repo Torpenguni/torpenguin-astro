@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import PostGrid from '../../components/PostGrid.astro';
 import { categories } from '../../data/categories';
-import { postsByCategory, howToCount } from '../../data/posts';
+import { getPostsByCategory, howToCount } from '../../lib/content';
 import { howToTopics } from '../../data/howto';
 
 export function getStaticPaths() {
@@ -14,12 +14,14 @@ export function getStaticPaths() {
 }
 
 const { category } = Astro.props;
-const posts = postsByCategory(category.slug);
+const posts = await getPostsByCategory(category.slug);
 
 // How-to gets a sub-nav of its topics (each links to a tag archive).
 const subNav =
   category.slug === 'how-to'
-    ? howToTopics.map((t) => ({ ...t, count: howToCount(t.slug) }))
+    ? await Promise.all(
+        howToTopics.map(async (t) => ({ ...t, count: await howToCount(t.slug) })),
+      )
     : [];
 
 const crumbs = [

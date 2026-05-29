@@ -4,65 +4,76 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
 import PostGrid from '../../components/PostGrid.astro';
 import YouTubeEmbed from '../../components/YouTubeEmbed.astro';
 import { categoryBySlug } from '../../data/categories';
-import { posts, authors, relatedPosts, type Post } from '../../data/posts';
+import {
+  getAllEntries,
+  getRelated,
+  getAuthor,
+  readingTime,
+  type PostEntry,
+} from '../../lib/content';
 
-export function getStaticPaths() {
-  return posts.map((p) => ({
-    params: { category: p.category, slug: p.slug },
-    props: { post: p },
+export async function getStaticPaths() {
+  const all = await getAllEntries();
+  return all.map((entry) => ({
+    params: { category: entry.data.category, slug: entry.slug },
+    props: { entry },
   }));
 }
 
-interface Props { post: Post }
-const { post } = Astro.props;
-const cat = categoryBySlug(post.category)!;
-const author = authors[post.author] ?? authors.torpenguin;
-const related = relatedPosts(post, 4);
+interface Props { entry: PostEntry }
+const { entry } = Astro.props;
+const d = entry.data;
+const cat = categoryBySlug(d.category)!;
+const author = getAuthor(d.author);
+const related = await getRelated(entry, 4);
+const { Content } = await entry.render();
+const rt = readingTime(entry);
 
-const published = new Date(post.publishedAt);
-const updated = post.updatedAt ? new Date(post.updatedAt) : null;
-const fmt = (d: Date) =>
-  d.toLocaleDateString('th-TH', { day: 'numeric', month: 'long', year: 'numeric' });
+const published = d.publishedAt;
+const updated = d.updatedAt ?? null;
+const fmt = (date: Date) =>
+  date.toLocaleDateString('th-TH', { day: 'numeric', month: 'long', year: 'numeric' });
 
 const crumbs = [
   { name: 'หน้าแรก', href: '/' },
   { name: cat.label, href: `/${cat.slug}` },
-  { name: post.title, href: `/${post.category}/${post.slug}` },
+  { name: d.title, href: `/${d.category}/${entry.slug}` },
 ];
 
-const YOUTUBE = 'https://www.youtube.com/@torpenguin';
+const YOUTUBE = 'https://www.youtube.com/torpenguin';
 const FACEBOOK = 'https://www.facebook.com/torpenguin';
 ---
 
 <BaseLayout
-  title={`${post.metaTitle ?? post.title} | TorPenguin`}
-  description={post.metaDescription ?? post.excerpt}
+  title={`${d.metaTitle ?? d.title} | TorPenguin`}
+  description={d.metaDescription ?? d.excerpt}
   type="article"
-  isNews={post.category === 'news'}
-  publishedDate={post.publishedAt}
-  modifiedDate={post.updatedAt}
+  isNews={d.category === 'news'}
+  publishedDate={published.toISOString()}
+  modifiedDate={updated?.toISOString()}
   author={author.name}
   section={cat.label}
   breadcrumbs={crumbs}
+  faq={d.faq}
 >
   <article class="article">
     <div class="container-narrow">
       <Breadcrumb items={crumbs} />
 
-      {post.isSponsored && (
-        <div class="sponsor-note">เนื้อหาร่วมกับ {post.sponsorName}</div>
+      {d.isSponsored && (
+        <div class="sponsor-note">เนื้อหาร่วมกับ {d.sponsorName}</div>
       )}
 
       <a href={`/${cat.slug}`} class="art-cat">{cat.label}</a>
-      <h1 class="art-h1">{post.title}</h1>
-      <p class="art-excerpt">{post.excerpt}</p>
+      <h1 class="art-h1">{d.title}</h1>
+      <p class="art-excerpt">{d.excerpt}</p>
 
       <div class="art-meta">
         <span>โดย {author.name}</span>
         <span class="dot">·</span>
         <span>{fmt(published)}</span>
         <span class="dot">·</span>
-        <span>อ่าน {post.readingTime} นาที</span>
+        <span>อ่าน {rt} นาที</span>
         {updated && <><span class="dot">·</span><span>อัปเดต {fmt(updated)}</span></>}
       </div>
     </div>
@@ -73,16 +84,16 @@ const FACEBOOK = 'https://www.facebook.com/torpenguin';
 
     <div class="container-narrow">
       <div class="prose">
-        {post.body.map((p) => <p>{p}</p>)}
+        <Content />
       </div>
 
-      {post.youtubeUrl && <div class="container-narrow"><YouTubeEmbed url={post.youtubeUrl} /></div>}
+      {d.youtubeUrl && <YouTubeEmbed url={d.youtubeUrl} />}
 
-      {post.faq && post.faq.length > 0 && (
+      {d.faq.length > 0 && (
         <section class="art-faq">
           <h2 class="art-h2">คำถามที่พบบ่อย</h2>
           <dl>
-            {post.faq.map((f) => (
+            {d.faq.map((f) => (
               <div class="faq-item">
                 <dt>{f.q}</dt>
                 <dd>{f.a}</dd>
@@ -92,17 +103,19 @@ const FACEBOOK = 'https://www.facebook.com/torpenguin';
         </section>
       )}
 
-      <section class="source-box">
-        <div class="source-title">แหล่งที่มา</div>
-        <ol>
-          {post.sources.map((s) => (
-            <li><a href={s.url} target="_blank" rel="noopener noreferrer">{s.label}</a></li>
-          ))}
-        </ol>
-      </section>
+      {d.sources.length > 0 && (
+        <section class="source-box">
+          <div class="source-title">แหล่งที่มา</div>
+          <ol>
+            {d.sources.map((s) => (
+              <li><a href={s.url} target="_blank" rel="noopener noreferrer">{s.label}</a></li>
+            ))}
+          </ol>
+        </section>
+      )}
 
       <section class="author-box">
-        <div class="author-name">{author.name}</div>
+        <a href={`/author/${author.slug}`} class="author-name">{author.name}</a>
         <p class="author-bio">{author.bio}</p>
       </section>
 
@@ -180,7 +193,30 @@ const FACEBOOK = 'https://www.facebook.com/torpenguin';
   }
 
   .prose { font-size: 19px; line-height: 1.9; color: var(--ink); }
-  .prose p { margin-bottom: 24px; }
+  .prose :global(p) { margin-bottom: 24px; }
+  .prose :global(h2) {
+    font-family: var(--font-sans);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--accent-ink);
+    margin: 40px 0 16px;
+  }
+  .prose :global(h3) {
+    font-family: var(--font-sans);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--accent-ink);
+    margin: 32px 0 12px;
+  }
+  .prose :global(ul), .prose :global(ol) { margin: 0 0 24px 24px; }
+  .prose :global(li) { margin-bottom: 8px; }
+  .prose :global(blockquote) {
+    border-left: 3px solid var(--accent);
+    padding: 4px 0 4px 20px;
+    margin: 28px 0;
+    color: var(--ink-soft);
+  }
+  .prose :global(a) { color: var(--accent-ink); text-decoration: underline; border-bottom: none; }
 
   .art-h2 {
     font-family: var(--font-sans);
@@ -214,8 +250,9 @@ const FACEBOOK = 'https://www.facebook.com/torpenguin';
   .source-box a:hover { color: var(--accent-ink); }
 
   .author-box { margin: 36px 0; padding-top: 24px; border-top: 1px solid var(--hairline); }
-  .author-name { font-family: var(--font-sans); font-weight: 700; font-size: 17px; color: var(--ink); margin-bottom: 6px; }
-  .author-bio { font-size: 15px; line-height: 1.8; color: var(--ink-soft); }
+  .author-name { font-family: var(--font-sans); font-weight: 700; font-size: 17px; color: var(--ink); text-decoration: none; border-bottom: none; }
+  .author-name:hover { color: var(--accent-ink); }
+  .author-bio { font-size: 15px; line-height: 1.8; color: var(--ink-soft); margin-top: 6px; }
 
   .follow {
     margin: 36px 0;
@@ -230,7 +267,7 @@ const FACEBOOK = 'https://www.facebook.com/torpenguin';
     font-family: var(--font-sans);
     font-weight: 600;
     font-size: 15px;
-    color: var(--accent-ink);
+    color: var(--accent);
     text-decoration: none;
     border-bottom: none;
   }

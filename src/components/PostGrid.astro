@@ -1,9 +1,9 @@
 ---
-import type { Post } from '../data/posts';
+import type { PostMeta } from '../lib/content';
 import PostCard from './PostCard.astro';
 
 interface Props {
-  posts: Post[];
+  posts: PostMeta[];
   /** Columns at desktop width. */
   cols?: 2 | 3 | 4;
 }

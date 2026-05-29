@@ -27,6 +27,8 @@ interface Props {
   section?: string;
   /** Breadcrumb trail — emits visible markup elsewhere; here it drives JSON-LD. */
   breadcrumbs?: Crumb[];
+  /** FAQ pairs — emits FAQPage JSON-LD (How-to / Feasibility). */
+  faq?: { q: string; a: string }[];
   /** Set true to keep this page out of search indexes. */
   noindex?: boolean;
 }
@@ -42,6 +44,7 @@ const {
   author = 'TorPenguin',
   section,
   breadcrumbs = [],
+  faq = [],
   noindex = false,
 } = Astro.props;
 
@@ -113,6 +116,18 @@ if (breadcrumbs.length > 0) {
       position: i + 1,
       name: c.name,
       item: new URL(c.item, SITE).href,
+    })),
+  });
+}
+
+if (faq.length > 0) {
+  jsonLd.push({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
     })),
   });
 }

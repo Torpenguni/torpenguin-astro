@@ -1,9 +1,9 @@
 ---
-import type { Post } from '../data/posts';
+import type { PostMeta } from '../lib/content';
 import { categoryBySlug } from '../data/categories';
 
 interface Props {
-  post: Post;
+  post: PostMeta;
   /** Larger lead card variant. */
   feature?: boolean;
 }

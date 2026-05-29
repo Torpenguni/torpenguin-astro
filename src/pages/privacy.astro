@@ -1,158 +1,66 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const crumbs = [
+  { name: 'หน้าแรก', href: '/' },
+  { name: 'ความเป็นส่วนตัว', href: '/privacy' },
+];
 
 const sections = [
   {
-    head: 'What we collect',
-    body: 'We collect only the data necessary to deliver our publication: email addresses for newsletter subscribers, anonymous analytics on which pages and articles are read, and any information you voluntarily provide when contacting us. We do not collect financial information; we do not run third-party advertising trackers.',
+    head: 'ข้อมูลที่เราเก็บ',
+    body: 'เราเก็บเท่าที่จำเป็นต่อการให้บริการเว็บ เช่น อีเมลของคนที่สมัครรับข่าวสาร และข้อมูลสถิติการใช้งานแบบไม่ระบุตัวตนว่าหน้าไหนถูกอ่านบ้าง เราไม่เก็บข้อมูลการเงิน และไม่ใช้ตัวติดตามโฆษณาจากภายนอก',
   },
   {
-    head: 'How we use it',
-    body: 'Subscriber email addresses are used solely to deliver the newsletter and operational communications about your subscription. Analytics are used in aggregate to understand which coverage areas resonate. Contact form data is used to respond to your inquiry.',
+    head: 'เราใช้ข้อมูลทำอะไร',
+    body: 'อีเมลใช้ส่งจดหมายข่าวและเรื่องที่เกี่ยวกับการสมัครเท่านั้น ข้อมูลสถิติใช้แบบรวมเพื่อเข้าใจว่าเนื้อหาแบบไหนมีประโยชน์กับทุกคน ข้อความที่ส่งมาหาเราใช้เพื่อตอบกลับเรื่องนั้นๆ',
   },
   {
-    head: 'What we never do',
-    body: 'We do not sell, rent, or share subscriber lists with third parties. We do not embed third-party advertising or behavioral retargeting pixels. We do not match identity across devices for advertising purposes.',
+    head: 'สิ่งที่เราไม่ทำ',
+    body: 'เราไม่ขาย ไม่ให้เช่า และไม่แชร์รายชื่อผู้รับข่าวสารกับใคร เราไม่ฝังโฆษณาหรือพิกเซลติดตามพฤติกรรมเพื่อยิงโฆษณา',
   },
   {
-    head: 'Cookies and storage',
-    body: 'We use a small number of first-party cookies for site functionality and a privacy-respecting analytics provider that does not set persistent identifiers. You can clear these at any time through your browser.',
+    head: 'คุกกี้',
+    body: 'เราใช้คุกกี้เท่าที่จำเป็นต่อการทำงานของเว็บ และใช้เครื่องมือวิเคราะห์ที่เคารพความเป็นส่วนตัว ทุกคนล้างคุกกี้ได้ตลอดเวลาผ่านเบราว์เซอร์',
   },
   {
-    head: 'Your rights',
-    body: 'You can unsubscribe from any communication with a single click in the email footer. You can request a copy of, or deletion of, any personal data we hold by emailing privacy@torpenguin.com. We respond within 30 days.',
-  },
-  {
-    head: 'Updates to this policy',
-    body: 'We will note material changes to this policy on this page with the effective date. Subscribers will receive notice via newsletter when changes affect data handling.',
+    head: 'สิทธิของทุกคน',
+    body: 'ยกเลิกรับข่าวสารได้ด้วยคลิกเดียวในอีเมล และขอดูหรือขอลบข้อมูลส่วนตัวที่เรามีได้ โดยส่งเมลมาที่ privacy@torpenguin.com เราจะดำเนินการให้ภายใน 30 วัน',
   },
 ];
 ---
 
 <BaseLayout
-  title="Privacy — Torpenguin"
-  description="How Torpenguin handles subscriber and reader data. Short version: minimally, transparently, and never for advertising."
+  title="ความเป็นส่วนตัว | TorPenguin"
+  description="TorPenguin เก็บและใช้ข้อมูลของผู้อ่านอย่างไร สรุปสั้นๆคือเท่าที่จำเป็น โปร่งใส และไม่เคยใช้เพื่อโฆษณา"
+  breadcrumbs={crumbs}
 >
-  <section class="legal-hero">
+  <section class="legal">
     <div class="container-narrow">
-      <div class="legal-eyebrow">Privacy Policy</div>
-      <h1 class="legal-title">Privacy.</h1>
-      <p class="legal-dek">
-        Short version: we collect the minimum necessary to deliver the publication.
-        We do not sell subscriber data. We do not run advertising trackers. The long version follows.
-      </p>
-      <div class="legal-meta">Effective: 01 May 2026</div>
-    </div>
-  </section>
-
-  <section class="legal-body">
-    <div class="container-narrow">
-      {
-        sections.map((s, i) => (
-          <article class="legal-section">
-            <div class="legal-num">{String(i + 1).padStart(2, '0')}</div>
-            <h2 class="legal-h">{s.head}</h2>
-            <p class="legal-p">{s.body}</p>
-          </article>
-        ))
-      }
-
-      <div class="legal-contact">
-        Questions about this policy?{' '}
-        <a href="mailto:privacy@torpenguin.com">privacy@torpenguin.com</a>
-      </div>
+      <Breadcrumb items={crumbs} />
+      <h1 class="legal-h1">ความเป็นส่วนตัว</h1>
+      <p class="legal-lead">สรุปสั้นๆ เราเก็บข้อมูลเท่าที่จำเป็น ไม่ขายข้อมูลผู้อ่าน และไม่มีตัวติดตามโฆษณา รายละเอียดอยู่ด้านล่าง</p>
+      {sections.map((s, i) => (
+        <article class="legal-sec">
+          <div class="legal-num">{String(i + 1).padStart(2, '0')}</div>
+          <h2 class="legal-head">{s.head}</h2>
+          <p class="legal-body">{s.body}</p>
+        </article>
+      ))}
+      <p class="legal-contact">มีคำถามเรื่องนี้ ส่งมาที่ <a href="mailto:privacy@torpenguin.com">privacy@torpenguin.com</a></p>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .legal-hero {
-    padding: 40px 0 28px;
-    border-bottom: 0.5px solid var(--hairline);
-  }
-
-  .legal-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent-ink);
-    margin-bottom: 16px;
-  }
-
-  .legal-title {
-    font-family: var(--font-sans);
-    font-size: clamp(28px, 3.5vw, 44px);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1;
-    color: var(--ink);
-    margin-bottom: 18px;
-  }
-
-  .legal-dek {
-    font-family: var(--font-serif);
-    font-size: clamp(17px, 1.8vw, 20px);
-    line-height: 1.55;
-    color: var(--ink-soft);
-    max-width: 620px;
-    margin-bottom: 16px;
-  }
-
-  .legal-meta {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-  }
-
-  .legal-body {
-    padding: 56px 0 80px;
-  }
-
-  .legal-section {
-    padding: 32px 0;
-    border-bottom: 0.5px solid var(--hairline);
-  }
-  .legal-section:first-child { padding-top: 0; }
-
-  .legal-num {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    color: var(--accent-ink);
-    margin-bottom: 14px;
-  }
-
-  .legal-h {
-    font-family: var(--font-sans);
-    font-size: clamp(22px, 2.4vw, 28px);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-    margin-bottom: 14px;
-  }
-
-  .legal-p {
-    font-family: var(--font-serif);
-    font-size: 17px;
-    line-height: 1.65;
-    color: var(--ink);
-  }
-
-  .legal-contact {
-    padding-top: 32px;
-    font-family: var(--font-serif);
-    font-size: 16px;
-    color: var(--ink-soft);
-  }
-  .legal-contact a {
-    color: var(--ink);
-    border-bottom-color: var(--ink-faint);
-  }
-  .legal-contact a:hover {
-    color: var(--accent-ink);
-    border-bottom-color: var(--accent-ink);
-  }
+  .legal { padding: 28px 0 80px; }
+  .legal-h1 { font-family: var(--font-sans); font-size: clamp(30px, 5vw, 44px); font-weight: 800; color: var(--ink); margin: 18px 0 16px; }
+  .legal-lead { font-size: 18px; line-height: 1.7; color: var(--ink-soft); max-width: 680px; margin-bottom: 32px; }
+  .legal-sec { padding: 28px 0; border-top: 1px solid var(--hairline); max-width: 680px; }
+  .legal-num { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; color: var(--accent-ink); margin-bottom: 10px; }
+  .legal-head { font-family: var(--font-sans); font-size: 22px; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+  .legal-body { font-size: 17px; line-height: 1.8; color: var(--ink-soft); }
+  .legal-contact { margin-top: 32px; font-size: 16px; color: var(--ink-soft); }
+  .legal-contact a { color: var(--accent-ink); }
 </style>

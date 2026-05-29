@@ -1,7 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 
-// Phase 1 uses mock data in src/data/posts.ts.
-// Phase 2 wires the `post` collection to TinaCMS (Section 4 of the build spec).
+// TorPenguin posts. Editable via TinaCMS (/admin) — schema mirrors tina/config.ts.
 const post = defineCollection({
   type: 'content',
   schema: z.object({
@@ -25,6 +24,12 @@ const post = defineCollection({
     youtubeUrl: z.string().url().optional(),
     isSponsored: z.boolean().default(false),
     sponsorName: z.string().optional(),
+    sources: z
+      .array(z.object({ label: z.string(), url: z.string() }))
+      .default([]),
+    faq: z
+      .array(z.object({ q: z.string(), a: z.string() }))
+      .default([]),
     draft: z.boolean().default(false),
   }),
 });

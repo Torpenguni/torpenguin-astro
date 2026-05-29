@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getAllPosts } from '../lib/content';
+import { categoryBySlug } from '../data/categories';
+
+// Lightweight client-side search over a build-time index.
+const index = (await getAllPosts()).map((p) => ({
+  title: p.title,
+  excerpt: p.excerpt,
+  url: `/${p.category}/${p.slug}`,
+  cat: categoryBySlug(p.category)?.label ?? p.category,
+  tags: p.tags,
+}));
+---
+
+<BaseLayout
+  title="ค้นหา | TorPenguin"
+  description="ค้นหาบทความธุรกิจอาหารและร้านอาหารบน TorPenguin"
+  noindex={true}
+>
+  <section class="search">
+    <div class="container-narrow">
+      <h1 class="search-h1">ค้นหา</h1>
+      <input
+        type="search"
+        id="q"
+        class="search-input"
+        placeholder="พิมพ์สิ่งที่อยากรู้ เช่น ต้นทุน ชาบู ทำเล"
+        aria-label="ค้นหา"
+        autocomplete="off"
+      />
+      <p class="search-count" id="count"></p>
+      <ul class="search-results" id="results"></ul>
+    </div>
+  </section>
+
+  <script type="application/json" id="search-index" set:html={JSON.stringify(index)} />
+
+  <script>
+    type Item = { title: string; excerpt: string; url: string; cat: string; tags: string[] };
+    const data: Item[] = JSON.parse(
+      document.getElementById('search-index')?.textContent || '[]',
+    );
+    const input = document.getElementById('q') as HTMLInputElement;
+    const results = document.getElementById('results')!;
+    const count = document.getElementById('count')!;
+
+    function esc(s: string) {
+      return s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]!));
+    }
+    function render(q: string) {
+      const term = q.trim().toLowerCase();
+      if (!term) { results.innerHTML = ''; count.textContent = ''; return; }
+      const hits = data.filter((d) =>
+        (d.title + ' ' + d.excerpt + ' ' + d.tags.join(' ')).toLowerCase().includes(term),
+      );
+      count.textContent = `พบ ${hits.length} เรื่อง`;
+      results.innerHTML = hits
+        .map(
+          (d) => `<li class="search-item">
+            <a href="${d.url}"><span class="search-cat">${esc(d.cat)}</span><span class="search-title">${esc(d.title)}</span></a>
+            <p class="search-excerpt">${esc(d.excerpt)}</p>
+          </li>`,
+        )
+        .join('');
+    }
+
+    const params = new URLSearchParams(location.search);
+    const initial = params.get('q') || '';
+    if (initial) { input.value = initial; render(initial); }
+    input.addEventListener('input', () => render(input.value));
+  </script>
+</BaseLayout>
+
+<style>
+  .search { padding: 32px 0 80px; }
+  .search-h1 { font-family: var(--font-sans); font-size: clamp(30px, 5vw, 44px); font-weight: 800; color: var(--ink); margin-bottom: 20px; }
+  .search-input {
+    width: 100%;
+    font-family: var(--font-sans);
+    font-size: 18px;
+    padding: 15px 18px;
+    border: 1px solid var(--hairline-strong);
+    border-radius: 10px;
+    background: var(--paper);
+    color: var(--ink);
+    outline: none;
+  }
+  .search-input:focus { border-color: var(--accent); }
+  .search-count { font-size: 14px; color: var(--ink-faint); margin: 16px 0; }
+  .search-results { list-style: none; margin: 0; padding: 0; }
+  .search-results :global(.search-item) { padding: 20px 0; border-bottom: 1px solid var(--hairline); }
+  .search-results :global(.search-item a) { display: flex; flex-direction: column; gap: 4px; text-decoration: none; border-bottom: none; }
+  .search-results :global(.search-cat) { font-family: var(--font-sans); font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--accent-ink); }
+  .search-results :global(.search-title) { font-family: var(--font-sans); font-size: 19px; font-weight: 700; color: var(--ink); }
+  .search-results :global(.search-item a:hover) .search-title { color: var(--accent-ink); }
+  .search-results :global(.search-excerpt) { font-size: 15px; line-height: 1.6; color: var(--ink-soft); margin-top: 4px; }
+</style>

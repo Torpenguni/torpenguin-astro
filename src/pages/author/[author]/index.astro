@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import PostGrid from '../../../components/PostGrid.astro';
+import { authors, getPostsByAuthor, type Author } from '../../../lib/content';
+
+export function getStaticPaths() {
+  return Object.values(authors).map((a) => ({
+    params: { author: a.slug },
+    props: { author: a },
+  }));
+}
+
+interface Props { author: Author }
+const { author } = Astro.props;
+const posts = await getPostsByAuthor(author.slug);
+
+const SITE = 'https://torpenguin.com';
+const crumbs = [
+  { name: 'หน้าแรก', href: '/' },
+  { name: author.name, href: `/author/${author.slug}` },
+];
+const personLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: author.name,
+  description: author.bio,
+  url: `${SITE}/author/${author.slug}`,
+};
+---
+
+<BaseLayout
+  title={`${author.name} | TorPenguin`}
+  description={author.bio}
+  breadcrumbs={crumbs}
+>
+  <section class="author-head">
+    <div class="container">
+      <Breadcrumb items={crumbs} />
+      <div class="author-eyebrow">ผู้เขียน</div>
+      <h1 class="author-title">{author.name}</h1>
+      <p class="author-bio">{author.bio}</p>
+    </div>
+  </section>
+
+  <section class="author-body">
+    <div class="container">
+      {posts.length === 0 ? (
+        <p class="author-empty">ยังไม่มีบทความจากผู้เขียนคนนี้</p>
+      ) : (
+        <PostGrid posts={posts} cols={3} />
+      )}
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(personLd)} />
+</BaseLayout>
+
+<style>
+  .author-head { padding: 28px 0 24px; border-bottom: 1px solid var(--hairline); }
+  .author-eyebrow {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--accent-ink); margin: 16px 0 8px;
+  }
+  .author-title { font-family: var(--font-sans); font-size: clamp(30px, 5vw, 44px); font-weight: 800; color: var(--ink); margin-bottom: 12px; }
+  .author-bio { font-size: 18px; line-height: 1.7; color: var(--ink-soft); max-width: 680px; }
+  .author-body { padding: 40px 0 64px; }
+  .author-empty { font-size: 17px; color: var(--ink-soft); padding: 24px 0; }
+</style>
