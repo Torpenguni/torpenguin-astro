@@ -61,24 +61,24 @@ const videos = await getLongVideos();
     </section>
   )}
 
-  {/* PER-CATEGORY BLOCKS */}
+  {/* PER-CATEGORY BLOCKS — video section sits right under Case Studies */}
   {homeSections.map((s) => (
-    <section class="block">
-      <div class="container">
-        <div class="block-head">
-          <div>
-            <h2 class="block-title">{s.cat.label}</h2>
-            <p class="block-intent">{s.cat.intent}</p>
+    <>
+      <section class="block">
+        <div class="container">
+          <div class="block-head">
+            <div>
+              <h2 class="block-title">{s.cat.label}</h2>
+              <p class="block-intent">{s.cat.intent}</p>
+            </div>
+            <a href={`/${s.cat.slug}`} class="block-more">ดูทั้งหมด →</a>
           </div>
-          <a href={`/${s.cat.slug}`} class="block-more">ดูทั้งหมด →</a>
+          <PostGrid posts={s.posts} cols={3} />
         </div>
-        <PostGrid posts={s.posts} cols={3} />
-      </div>
-    </section>
+      </section>
+      {s.cat.slug === 'case-studies' && <VideoSection videos={videos} limit={4} />}
+    </>
   ))}
-
-  {/* VIDEO SECTION — long-form videos pulled from the channel (Shorts removed) */}
-  <VideoSection videos={videos} limit={4} />
 </BaseLayout>
 
 <style>

@@ -21,29 +21,31 @@ body {
 }
 
 :root {
-  /* Surfaces — clean white / light grey editorial (brand: ส้ม + ดำ + ขาว) */
+  /* Surfaces — Stark White: pure white + neutral light greys (brand: ขาว + ดำ + เหลือง) */
   --paper: #FFFFFF;
   --paper-pure: #FFFFFF;
-  --paper-warm: #FAF7F2;
-  --paper-mute: #F4F4F3;
-  --paper-soft: #F7F7F6;
+  --paper-warm: #F7F7F6;
+  --paper-mute: #F1F1F0;
+  --paper-soft: #F6F6F5;
 
-  --ink: #111111;
-  --ink-soft: #3F3F46;
-  --ink-faint: #71717A;
-  --ink-mute: #A1A1AA;
+  --ink: #0A0A0A;
+  --ink-soft: #2E2E33;
+  --ink-faint: #6B6B72;
+  --ink-mute: #9A9AA2;
 
-  --hairline: #E7E7E4;
-  --hairline-strong: #D4D4D0;
+  --hairline: #EAEAEA;
+  --hairline-strong: #D6D6D6;
 
-  /* Brand orange — TorPenguin penguin tone (รอยืนยันโค้ดจริงจาก brand guide) */
-  --accent: #EE8A1E;
-  --accent-deep: #C66E0C;
-  --accent-soft: #FCEBD4;
+  /* Brand yellow — Stark White accent. Use --accent for fills/highlights,
+     --on-accent for text that sits on a yellow fill (yellow + white = unreadable). */
+  --accent: #EAB308;
+  --accent-deep: #CA8A04;
+  --accent-soft: #FEF3C7;
+  --on-accent: #0A0A0A;
 
   --signal-positive: #16A34A;
   --signal-negative: #DC2626;
-  --signal-warning: #EE8A1E;
+  --signal-warning: #EAB308;
 
   /* Thai-first type. IBM Plex Sans Thai Looped for body + UI. */
   --font-sans: 'IBM Plex Sans Thai Looped', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
@@ -158,7 +160,7 @@ a:hover {
 .btn-inverted:hover {
   background: var(--accent);
   border-color: var(--accent);
-  color: var(--paper);
+  color: var(--on-accent);
 }
 
 .card {
