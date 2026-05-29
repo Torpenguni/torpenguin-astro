@@ -3,27 +3,25 @@ const currentYear = new Date().getFullYear();
 
 const footerSections = [
   {
-    title: 'Editorial',
+    title: 'Writing',
     links: [
-      { label: 'Analysis', href: '/analysis' },
-      { label: 'Videos', href: '/videos' },
-      { label: 'Market Watch', href: '/market-watch' },
+      { label: 'Essays', href: '/essays' },
+      { label: 'Topics', href: '/topics' },
     ],
   },
   {
-    title: 'Company',
+    title: 'Site',
     links: [
       { label: 'About', href: '/about' },
-      { label: 'Penguin X', href: '/penguin-x' },
       { label: 'Contact', href: '/contact' },
     ],
   },
   {
-    title: 'Channels',
+    title: 'Elsewhere',
     links: [
-      { label: 'YouTube', href: 'https://youtube.com/@spoonasia', external: true },
-      { label: 'LinkedIn', href: 'https://linkedin.com/company/spoonasia', external: true },
-      { label: 'Newsletter', href: '/newsletter' },
+      { label: 'YouTube', href: 'https://youtube.com/@torpenguin', external: true },
+      { label: 'LinkedIn', href: 'https://linkedin.com/in/torpenguin', external: true },
+      { label: 'X', href: 'https://x.com/torpenguin', external: true },
     ],
   },
 ];
@@ -32,14 +30,14 @@ const footerSections = [
 <footer class="sa-footer">
   <div class="container">
 
-    <div class="sa-newsletter">
+    <div class="sa-newsletter" id="subscribe">
       <div class="sa-newsletter-left">
-        <div class="section-tag mb-2">The Dispatch</div>
+        <div class="section-tag mb-2">The Newsletter</div>
         <h2 class="sa-newsletter-head">
-          F&B intelligence on Asia, every Sunday.
+          New essays, straight to your inbox.
         </h2>
         <p class="sa-newsletter-sub">
-          Unit economics, neighborhood alpha, and the gaps in pitch decks. No fluff. Free.
+          Notes on building, operating, and scaling F&B — sent when there's something worth saying. No fluff. Free.
         </p>
       </div>
       <div class="sa-newsletter-right">
@@ -56,7 +54,7 @@ const footerSections = [
           </button>
         </form>
         <p class="sa-newsletter-note">
-          Read by operators across SG · JP · KR · UK · CN
+          Written from Bangkok by Torpenguin
         </p>
       </div>
     </div>
@@ -65,14 +63,14 @@ const footerSections = [
       <div class="sa-footer-brand">
         <div class="sa-logo">
           <span class="bracket">[</span>
-          <span class="logo-text">SpoonAsia</span>
+          <span class="logo-text">torpenguin</span>
           <span class="bracket">]</span>
         </div>
         <p class="sa-footer-tagline">
-          Decoding Thailand's F&B landscape for international investors, suppliers, and operators.
+          Builder of Penguin Eat Shabu. Notes on building, operating, and scaling F&B in Asia.
         </p>
         <div class="sa-footer-origin mono">
-          A Torpenguin publication · Bangkok
+          Bangkok, Thailand
         </div>
       </div>
 
@@ -101,7 +99,7 @@ const footerSections = [
 
     <div class="sa-footer-ribbon">
       <div class="sa-footer-ribbon-left">
-        © {currentYear} SpoonAsia · All rights reserved
+        © {currentYear} Torpenguin · All rights reserved
       </div>
       <div class="sa-footer-ribbon-right">
         <a href="/privacy" class="sa-footer-mini-link">Privacy</a>

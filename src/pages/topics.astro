@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { topics } from '../data/topics';
+
+const entries = await getCollection('essays', ({ data }) => !data.draft);
+const topicList = topics.map((t) => ({
+  ...t,
+  count: entries.filter((e) => e.data.topic === t.slug).length,
+}));
+---
+
+<BaseLayout
+  title="Topics — Torpenguin"
+  description="Browse essays by topic: building, operations, scaling, unit economics, and the wider F&B industry in Asia."
+>
+  <section class="tp-head">
+    <div class="container-narrow">
+      <div class="section-tag">▍ Topics</div>
+      <h1 class="tp-title">Topics</h1>
+      <p class="tp-dek">
+        <em>The handful of things I keep coming back to. Pick one to read everything I've written about it.</em>
+      </p>
+    </div>
+  </section>
+
+  <section class="tp-list-wrap">
+    <div class="container">
+      <ol class="tp-list">
+        {topicList.map((t, i) => (
+          <li class="tp-item">
+            <a href={t.count > 0 ? `/essays/${t.slug}` : '#subscribe'} class="tp-link">
+              <span class="tp-num">{String(i + 1).padStart(2, '0')}</span>
+              <span class="tp-body">
+                <span class="tp-label">
+                  {t.label}
+                  <span class="tp-count">{t.count} {t.count === 1 ? 'essay' : 'essays'}</span>
+                </span>
+                <span class="tp-desc">{t.description}</span>
+              </span>
+              <span class="tp-arrow">→</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .section-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .tp-head {
+    padding: 40px 0 24px;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .tp-title {
+    font-family: var(--font-sans);
+    font-size: clamp(28px, 3.8vw, 44px);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--ink);
+    margin-bottom: 22px;
+  }
+  .tp-dek {
+    font-family: var(--font-serif);
+    font-size: clamp(18px, 2vw, 22px);
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 620px;
+  }
+  .tp-dek em { font-style: italic; }
+
+  .tp-list-wrap {
+    padding: 32px 0 80px;
+  }
+  .tp-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .tp-item {
+    border-top: 0.5px solid var(--hairline);
+  }
+  .tp-item:last-child {
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .tp-link {
+    display: grid;
+    grid-template-columns: 48px 1fr auto;
+    gap: 24px;
+    align-items: baseline;
+    padding: 28px 0;
+    text-decoration: none;
+    border-bottom: none;
+    color: inherit;
+    transition: padding-left 0.15s ease;
+  }
+  .tp-link:hover {
+    padding-left: 8px;
+  }
+  .tp-num {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+  }
+  .tp-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .tp-label {
+    font-family: var(--font-sans);
+    font-size: clamp(22px, 2.6vw, 28px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    transition: color 0.15s ease;
+  }
+  .tp-link:hover .tp-label { color: var(--accent); }
+  .tp-count {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 400;
+  }
+  .tp-desc {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 620px;
+  }
+  .tp-arrow {
+    font-family: var(--font-mono);
+    color: var(--ink-mute);
+    transition: color 0.15s ease;
+  }
+  .tp-link:hover .tp-arrow { color: var(--accent); }
+
+  @media (max-width: 768px) {
+    .tp-link {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .tp-num { display: none; }
+    .tp-arrow { display: none; }
+  }
+</style>

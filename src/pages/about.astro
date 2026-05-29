@@ -1,961 +1,177 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const pageTitle = 'About SpoonAsia — F&B intelligence for foreign operators';
-const pageDescription = 'SpoonAsia decodes Thailand\'s F&B landscape for international investors, suppliers, and operators evaluating market entry.';
+const pageTitle = 'About — Torpenguin';
+const pageDescription = "Torpenguin built Penguin Eat Shabu (40+ outlets in Bangkok) and writes about building, operating, and scaling F&B in Asia.";
+
+const facts = [
+  { label: 'Built', value: 'Penguin Eat Shabu — 40+ outlets' },
+  { label: 'Based', value: 'Bangkok, Thailand' },
+  { label: 'Also runs', value: 'SpoonAsia — F&B intelligence' },
+  { label: 'Writes about', value: 'Building · Operations · Scaling' },
+];
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-
-  {/* ============================================ */}
-  {/* SECTION 1 — HERO / POSITIONING               */}
-  {/* ============================================ */}
   <section class="hero">
     <div class="container-narrow">
       <div class="section-tag">▍ About</div>
       <h1 class="hero-h1">
-        F&B intelligence for foreign <em>operators</em>
+        I build restaurants. <em>Then I write about it.</em>
       </h1>
       <p class="hero-dek">
-        SpoonAsia decodes Thailand's F&B landscape for international investors,
-        suppliers, and operators evaluating market entry. Not pitch decks. Not
-        broker copy. The numbers and context most market-entry reports leave out.
+        I'm Torpenguin. Over the last decade I built Penguin Eat Shabu from a
+        single shop into a 40+ outlet brand across Bangkok. This site is where
+        I write down what that actually took.
       </p>
     </div>
   </section>
 
-  {/* ============================================ */}
-  {/* SECTION 2 — WHO WE SERVE                     */}
-  {/* ============================================ */}
-  <section class="serve">
+  <section class="story">
     <div class="container-narrow">
-      <div class="section-tag">▍ Who we serve</div>
-      <h2 class="section-h2">Three audiences. One operating reality.</h2>
-      <p class="section-intro">
-        SpoonAsia is built for decision-makers who carry real capital risk
-        evaluating Thailand. If you're one of these three, you're in the
-        right place.
-      </p>
-
-      <div class="serve-grid">
-
-        <div class="serve-card">
-          <div class="serve-tag">Segment A</div>
-          <h3 class="serve-h3">Investor / Operator</h3>
-          <p class="serve-body">
-            F&B brands evaluating Thai market entry — own outlet, master
-            franchise, or JV. Headquartered in Singapore, Japan, Korea, China,
-            UK, or US.
-          </p>
-          <div class="serve-meta">
-            You read: <a href="/analysis">Analysis</a> · <a href="/videos">Videos</a>
+      <div class="facts">
+        {facts.map((f) => (
+          <div class="fact">
+            <div class="fact-label">{f.label}</div>
+            <div class="fact-value">{f.value}</div>
           </div>
-        </div>
-
-        <div class="serve-card">
-          <div class="serve-tag">Segment B</div>
-          <h3 class="serve-h3">Supplier / Manufacturer</h3>
-          <p class="serve-body">
-            Equipment, ingredients, technology, or packaging companies seeking
-            Thai distribution, partnership, or B2B customer base.
-          </p>
-          <div class="serve-meta">
-            You read: <a href="/market-watch">Market Watch</a> · <a href="/analysis">Analysis</a>
-          </div>
-        </div>
-
-        <div class="serve-card">
-          <div class="serve-tag">Segment C</div>
-          <h3 class="serve-h3">Strategic Investor</h3>
-          <p class="serve-body">
-            PE/VC funds and strategic investors validating SEA F&B deal flow.
-            Need ground-truth beyond the pitch deck and the broker introduction.
-          </p>
-          <div class="serve-meta">
-            You read: All sections
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  {/* ============================================ */}
-  {/* SECTION 3 — HOW WE READ MARKETS              */}
-  {/* ============================================ */}
-  <section class="frameworks">
-    <div class="container-narrow">
-      <div class="section-tag">▍ How we read markets</div>
-      <h2 class="section-h2">Two lenses we use to read every market.</h2>
-      <p class="section-intro">
-        Most market-entry analysis fails because it answers the wrong question.
-        These two frameworks force the right ones.
-      </p>
-
-      <div class="framework-grid">
-
-        <div class="framework-card">
-          <div class="framework-label">Program A</div>
-          <h3 class="framework-h3">Unit Economics</h3>
-          <p class="framework-body">
-            Strip away the branding. Look at the skeleton.
-          </p>
-          <ul class="framework-list">
-            <li>Rent burden vs revenue per seat</li>
-            <li>Dwell time vs table turns</li>
-            <li>Hidden costs vs pitch deck assumptions</li>
-            <li>Payback period at Thai throughput, not Singapore throughput</li>
-          </ul>
-        </div>
-
-        <div class="framework-card">
-          <div class="framework-label">Program B</div>
-          <h3 class="framework-h3">Neighborhood Alpha</h3>
-          <p class="framework-body">
-            Foot traffic isn't customer traffic. Location is a yield question.
-          </p>
-          <ul class="framework-list">
-            <li>Foot traffic vs intent traffic</li>
-            <li>Catchment economics and wealth flow</li>
-            <li>Where rent burden survives Thai behavior</li>
-            <li>Operator migration patterns</li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  {/* ============================================ */}
-  {/* SECTION 4 — BEHIND SPOONASIA                 */}
-  {/* ============================================ */}
-  <section class="founder">
-    <div class="container-narrow">
-      <div class="section-tag">▍ Behind SpoonAsia</div>
-
-      <div class="founder-grid">
-
-        <div class="founder-content">
-          <h2 class="founder-h2">
-            Built by an operator. <em>For operators.</em>
-          </h2>
-
-          <p class="founder-para">
-            SpoonAsia is built by <strong>Torpenguin</strong> — founder of
-            Penguin Eat Shabu, a 40+ outlet Thai F&B brand.
-          </p>
-
-          <p class="founder-para">
-            After 8 years operating across Bangkok's neighborhoods — opening,
-            closing, reformatting, repricing — patterns emerged that don't
-            appear in any market-entry report or broker deck.
-          </p>
-
-          <p class="founder-para">
-            SpoonAsia exists to make those patterns legible to international
-            operators who can't afford 18 months of in-market trial and error.
-          </p>
-
-          <p class="founder-para">
-            We're not consultants writing decks. We're operators who have
-            lived the P&L.
-          </p>
-
-          <div class="founder-signature">
-            — A Torpenguin publication
-          </div>
-        </div>
-
-        <div class="founder-photo">
-          <div class="photo-placeholder"></div>
-          <div class="photo-caption">
-            Torpenguin · Bangkok, 2026
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  {/* ============================================ */}
-  {/* SECTION 5 — WHAT'S INSIDE                    */}
-  {/* ============================================ */}
-  <section class="inside">
-    <div class="container">
-      <div class="container-narrow">
-        <div class="section-tag">▍ What's inside</div>
-        <h2 class="section-h2">Four ways to read SpoonAsia.</h2>
+        ))}
       </div>
 
-      <div class="inside-grid">
-
-        <a href="/analysis" class="inside-card">
-          <div class="inside-num">01</div>
-          <h3 class="inside-h3">Analysis →</h3>
-          <p class="inside-body">
-            Long-form reports. 3,000–4,000 words. Unit economics, neighborhood
-            deep dives, and decision frameworks for foreign operators.
-          </p>
-        </a>
-
-        <a href="/videos" class="inside-card">
-          <div class="inside-num">02</div>
-          <h3 class="inside-h3">Videos →</h3>
-          <p class="inside-body">
-            Episodes every Tuesday. 10–15 minute breakdowns of brands,
-            neighborhoods, and unit economics.
-          </p>
-        </a>
-
-        <a href="/market-watch" class="inside-card">
-          <div class="inside-num">03</div>
-          <h3 class="inside-h3">Market Watch →</h3>
-          <p class="inside-body">
-            Field notes and news. Faster than Analysis, shorter than a report.
-            Brand moves, neighborhood reads, and pattern observations.
-          </p>
-        </a>
-
-        <a href="/penguin-x" class="inside-card inside-card-dark">
-          <div class="inside-num inside-num-light">04</div>
-          <h3 class="inside-h3 inside-h3-light">Penguin X ↗</h3>
-          <p class="inside-body inside-body-light">
-            Advisory engagements. Ground-truth due diligence for international
-            operators evaluating Thai market entry.
-          </p>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  {/* ============================================ */}
-  {/* SECTION 6 — EDITORIAL STANDARDS              */}
-  {/* ============================================ */}
-  <section class="standards">
-    <div class="container-narrow">
-      <div class="section-tag">▍ Editorial standards</div>
-      <h2 class="section-h2">A note on data discipline.</h2>
-
-      <div class="standards-body">
+      <div class="prose">
         <p>
-          Thai F&B data is structurally thin compared to mature markets. DBD
-          filings lag 12–18 months. Brand-level economics are mostly private.
-          Industry reports are paywalled and sometimes shallow.
+          I didn't set out to run forty restaurants. I set out to run one good
+          one. The rest came from a decade of opening, closing, reformatting,
+          and repricing — learning the hard way which decisions compound and
+          which ones quietly sink you.
         </p>
-
         <p>
-          When verified data exists, we cite it — by source and date. When it
-          doesn't, we lead with patterns from operating experience and field
-          observation, and we say so explicitly.
+          Most of what I learned never appeared in any course, deck, or
+          industry report. The genuinely useful lessons were specific,
+          uncomfortable, and hard-won: how to read a lease against realistic
+          table turns, when to let a manager go, why the fifth outlet is harder
+          than the fortieth.
         </p>
-
         <p>
-          <strong>We don't fabricate precision.</strong> The audience deserves
-          better than that. If you've ever read a market-entry report that
-          felt suspiciously confident about numbers that couldn't possibly be
-          public — you'll understand why this matters.
+          Today I also run <a href="https://spoonasia.com" target="_blank" rel="noopener noreferrer">SpoonAsia</a>,
+          a publication decoding Thailand's F&B market for investors and
+          operators. <strong>This site is separate.</strong> It's just me, in
+          the first person, writing about the craft of building and running
+          these businesses.
         </p>
+        <p>
+          No fabricated precision. No newsletter funnel dressed up as wisdom.
+          Just notes from someone still in the arena — written when there's
+          something worth saying.
+        </p>
+      </div>
 
-        <p class="standards-coda">
-          Pattern recognition beats fabricated data. Every time.
-        </p>
+      <div class="about-cta">
+        <a href="/essays" class="btn">Read the essays</a>
+        <a href="#subscribe" class="btn btn-inverted">Subscribe</a>
       </div>
     </div>
   </section>
-
-  {/* ============================================ */}
-  {/* SECTION 7 — PENGUIN X CTA + NEWSLETTER       */}
-  {/* ============================================ */}
-  <section class="cta-penguin-x">
-    <div class="container-narrow">
-      <div class="penguin-x-block">
-        <div class="penguin-x-label">Penguin X — Advisory</div>
-        <h2 class="penguin-x-head">
-          Considering Thailand for your next outlet?
-        </h2>
-        <p class="penguin-x-sub">
-          Penguin X provides ground-truth due diligence for international F&B
-          operators evaluating Thai market entry. Unit economics, neighborhood
-          analysis, partner introductions.
-        </p>
-        <a href="/penguin-x" class="penguin-x-button">
-          Request a Briefing →
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="cta-newsletter">
-    <div class="container-narrow">
-      <div class="newsletter-block">
-        <div class="newsletter-label">▍ The Dispatch</div>
-        <h2 class="newsletter-h2">
-          F&B intelligence on Asia, every <em>Sunday</em>.
-        </h2>
-        <p class="newsletter-sub">
-          Read by operators across SG · JP · KR · UK · CN.
-        </p>
-        <form class="newsletter-form">
-          <input
-            type="email"
-            placeholder="your@email.com"
-            class="newsletter-input"
-            required
-          />
-          <button type="submit" class="newsletter-button">
-            Subscribe
-          </button>
-        </form>
-        <div class="newsletter-meta">
-          Free. Unsubscribe anytime.
-        </div>
-      </div>
-    </div>
-  </section>
-
 </BaseLayout>
 
 <style>
-  /* ============================================ */
-  /* SHARED                                       */
-  /* ============================================ */
   .section-tag {
     font-family: var(--font-mono);
-    font-size: 10px;
-    text-transform: uppercase;
+    font-size: 11px;
     letter-spacing: 0.15em;
-    color: var(--ink-soft);
-    margin-bottom: 24px;
-  }
-
-  .section-h2 {
-    font-family: var(--font-serif);
-    font-weight: 500;
-    font-size: 32px;
-    line-height: 1.25;
-    color: var(--ink);
-    margin: 0 0 16px;
-  }
-
-  .section-h2 em {
-    font-style: italic;
+    text-transform: uppercase;
     color: var(--accent);
+    margin-bottom: 16px;
   }
 
-  .section-intro {
-    font-family: var(--font-serif);
-    font-size: 18px;
-    line-height: 1.6;
-    color: var(--ink-soft);
-    margin: 0 0 40px;
-  }
-
-  /* ============================================ */
-  /* HERO                                         */
-  /* ============================================ */
   .hero {
     padding: 48px 0 32px;
     border-bottom: 1px solid var(--hairline);
   }
-
   .hero-h1 {
     font-family: var(--font-sans);
     font-weight: 500;
-    font-size: 48px;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    font-size: clamp(32px, 4.4vw, 48px);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
     color: var(--ink);
     margin: 0 0 24px;
   }
-
   .hero-h1 em {
     font-family: var(--font-serif);
     font-style: italic;
     font-weight: 400;
     color: var(--accent);
   }
-
   .hero-dek {
     font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 20px;
+    font-size: clamp(18px, 2vw, 21px);
     line-height: 1.55;
     color: var(--ink-soft);
     margin: 0;
     max-width: 640px;
   }
 
-  /* ============================================ */
-  /* WHO WE SERVE                                 */
-  /* ============================================ */
-  .serve {
-    padding: 64px 0;
-    border-bottom: 1px solid var(--hairline);
+  .story {
+    padding: 48px 0 80px;
   }
 
-  .serve-grid {
+  .facts {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-    margin-top: 32px;
-  }
-
-  .serve-card {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
     border-top: 1px solid var(--ink);
-    padding-top: 20px;
+    margin-bottom: 48px;
   }
-
-  .serve-tag {
+  .fact {
+    padding: 20px 24px 20px 0;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .fact-label {
     font-family: var(--font-mono);
     font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--accent);
-    margin-bottom: 12px;
-  }
-
-  .serve-h3 {
-    font-family: var(--font-serif);
-    font-weight: 500;
-    font-size: 22px;
-    line-height: 1.3;
-    color: var(--ink);
-    margin: 0 0 12px;
-  }
-
-  .serve-body {
-    font-family: var(--font-serif);
-    font-size: 15px;
-    line-height: 1.6;
-    color: var(--ink-soft);
-    margin: 0 0 16px;
-  }
-
-  .serve-meta {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--ink-faint);
-    padding-top: 16px;
-    border-top: 1px solid var(--hairline);
-  }
-
-  .serve-meta a {
-    color: var(--ink-soft);
-    text-decoration: none;
-    border-bottom: 1px solid var(--hairline);
-    transition: all 0.2s;
-  }
-
-  .serve-meta a:hover {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
-  }
-
-  /* ============================================ */
-  /* FRAMEWORKS                                   */
-  /* ============================================ */
-  .frameworks {
-    padding: 64px 0;
-    border-bottom: 1px solid var(--hairline);
-  }
-
-  .framework-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    margin-top: 32px;
-  }
-
-  .framework-card {
-    padding-top: 24px;
-    border-top: 2px solid var(--ink);
-  }
-
-  .framework-label {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: var(--accent);
-    margin-bottom: 16px;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 8px;
   }
-
-  .framework-h3 {
-    font-family: var(--font-serif);
-    font-weight: 500;
-    font-size: 26px;
-    line-height: 1.25;
+  .fact-value {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 600;
     color: var(--ink);
-    margin: 0 0 16px;
+    letter-spacing: -0.01em;
   }
 
-  .framework-body {
+  .prose {
+    max-width: 640px;
+  }
+  .prose p {
     font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 17px;
-    line-height: 1.55;
-    color: var(--ink-soft);
+    font-size: 18px;
+    line-height: 1.75;
+    color: var(--ink);
     margin: 0 0 24px;
   }
-
-  .framework-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .framework-list li {
-    font-family: var(--font-serif);
-    font-size: 15px;
-    line-height: 1.5;
-    color: var(--ink);
-    padding: 12px 0;
-    padding-left: 20px;
-    border-bottom: 1px solid var(--hairline);
-    position: relative;
-  }
-
-  .framework-list li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
+  .prose strong { font-weight: 600; }
+  .prose a {
     color: var(--accent);
-  }
-
-  .framework-list li:last-child {
+    text-decoration: underline;
+    text-decoration-thickness: 0.5px;
+    text-underline-offset: 2px;
     border-bottom: none;
   }
+  .prose a:hover { color: var(--accent-deep); }
 
-  /* ============================================ */
-  /* FOUNDER                                      */
-  /* ============================================ */
-  .founder {
-    padding: 64px 0;
-    background: var(--paper-warm);
-    border-bottom: 1px solid var(--hairline);
-  }
-
-  .founder-grid {
-    display: grid;
-    grid-template-columns: 1.6fr 1fr;
-    gap: 48px;
-    align-items: start;
-    margin-top: 24px;
-  }
-
-  .founder-h2 {
-    font-family: var(--font-sans);
-    font-weight: 500;
-    font-size: 32px;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    margin: 0 0 32px;
-  }
-
-  .founder-h2 em {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    color: var(--accent);
-  }
-
-  .founder-para {
-    font-family: var(--font-serif);
-    font-size: 17px;
-    line-height: 1.7;
-    color: var(--ink);
-    margin: 0 0 20px;
-  }
-
-  .founder-para strong {
-    font-weight: 600;
-  }
-
-  .founder-signature {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--ink-soft);
-    margin-top: 32px;
-    padding-top: 24px;
-    border-top: 1px solid var(--hairline);
-  }
-
-  .founder-photo {
-    position: sticky;
-    top: 32px;
-  }
-
-  .photo-placeholder {
-    aspect-ratio: 4 / 5;
-    background: linear-gradient(135deg, var(--hairline), #d4cfc2);
-    margin-bottom: 12px;
-  }
-
-  .photo-caption {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--ink-faint);
-  }
-
-  /* ============================================ */
-  /* INSIDE (Section Map)                         */
-  /* ============================================ */
-  .inside {
-    padding: 64px 0;
-    border-bottom: 1px solid var(--hairline);
-  }
-
-  .inside-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    margin-top: 40px;
-    border-top: 1px solid var(--hairline);
-    border-bottom: 1px solid var(--hairline);
-  }
-
-  .inside-card {
-    padding: 32px 24px;
-    text-decoration: none;
-    color: inherit;
-    border-right: 1px solid var(--hairline);
-    transition: background 0.2s;
-    display: block;
-  }
-
-  .inside-card:last-child {
-    border-right: none;
-  }
-
-  .inside-card:hover {
-    background: var(--paper-warm);
-  }
-
-  .inside-card-dark {
-    background: var(--ink);
-  }
-
-  .inside-card-dark:hover {
-    background: #2a2a2a;
-  }
-
-  .inside-num {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--accent);
-    margin-bottom: 16px;
-  }
-
-  .inside-num-light {
-    color: var(--accent);
-  }
-
-  .inside-h3 {
-    font-family: var(--font-serif);
-    font-weight: 500;
-    font-size: 20px;
-    color: var(--ink);
-    margin: 0 0 12px;
-    transition: color 0.2s;
-  }
-
-  .inside-card:hover .inside-h3 {
-    color: var(--accent);
-  }
-
-  .inside-h3-light {
-    color: var(--paper);
-  }
-
-  .inside-card-dark:hover .inside-h3-light {
-    color: var(--accent);
-  }
-
-  .inside-body {
-    font-family: var(--font-serif);
-    font-size: 14px;
-    line-height: 1.55;
-    color: var(--ink-soft);
-    margin: 0;
-  }
-
-  .inside-body-light {
-    color: #b8b5ac;
-  }
-
-  /* ============================================ */
-  /* STANDARDS                                    */
-  /* ============================================ */
-  .standards {
-    padding: 64px 0;
-    border-bottom: 1px solid var(--hairline);
-  }
-
-  .standards-body {
-    margin-top: 32px;
-    max-width: 640px;
-  }
-
-  .standards-body p {
-    font-family: var(--font-serif);
-    font-size: 17px;
-    line-height: 1.7;
-    color: var(--ink);
-    margin: 0 0 20px;
-  }
-
-  .standards-body p strong {
-    font-weight: 600;
-  }
-
-  .standards-coda {
-    font-style: italic;
-    color: var(--accent) !important;
-    padding-top: 20px;
-    border-top: 1px solid var(--hairline);
-    margin-top: 32px !important;
-  }
-
-  /* ============================================ */
-  /* PENGUIN X CTA                                */
-  /* ============================================ */
-  .cta-penguin-x {
-    padding: 40px 0 24px;
-  }
-
-  .penguin-x-block {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 48px 40px;
-  }
-
-  .penguin-x-label {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--accent);
-    margin-bottom: 16px;
-  }
-
-  .penguin-x-head {
-    font-family: var(--font-sans);
-    font-weight: 500;
-    font-size: 28px;
-    line-height: 1.25;
-    color: var(--paper);
-    margin: 0 0 16px;
-  }
-
-  .penguin-x-sub {
-    font-family: var(--font-serif);
-    font-size: 16px;
-    line-height: 1.6;
-    color: #b8b5ac;
-    margin: 0 0 28px;
-    max-width: 560px;
-  }
-
-  .penguin-x-button {
-    display: inline-block;
-    background: var(--paper);
-    color: var(--ink);
-    padding: 14px 24px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-
-  .penguin-x-button:hover {
-    background: var(--accent);
-    color: var(--paper);
-  }
-
-  /* ============================================ */
-  /* NEWSLETTER                                   */
-  /* ============================================ */
-  .cta-newsletter {
-    padding: 32px 0 80px;
-  }
-
-  .newsletter-block {
-    text-align: center;
-    padding: 48px 0;
-    border-top: 1px solid var(--hairline);
-    border-bottom: 1px solid var(--hairline);
-  }
-
-  .newsletter-label {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--ink-soft);
-    margin-bottom: 16px;
-  }
-
-  .newsletter-h2 {
-    font-family: var(--font-sans);
-    font-weight: 500;
-    font-size: 28px;
-    line-height: 1.25;
-    color: var(--ink);
-    margin: 0 0 12px;
-  }
-
-  .newsletter-h2 em {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    color: var(--accent);
-  }
-
-  .newsletter-sub {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--ink-faint);
-    margin: 0 0 32px;
-  }
-
-  .newsletter-form {
+  .about-cta {
     display: flex;
-    gap: 0;
-    max-width: 480px;
-    margin: 0 auto 16px;
+    gap: 12px;
+    margin-top: 40px;
+    flex-wrap: wrap;
   }
 
-  .newsletter-input {
-    flex: 1;
-    padding: 14px 16px;
-    border: 1px solid var(--ink);
-    background: var(--paper);
-    font-family: var(--font-serif);
-    font-size: 15px;
-    color: var(--ink);
-    outline: none;
-  }
-
-  .newsletter-input:focus {
-    border-color: var(--accent);
-  }
-
-  .newsletter-button {
-    padding: 14px 24px;
-    background: var(--ink);
-    color: var(--paper);
-    border: 1px solid var(--ink);
-    font-family: var(--font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .newsletter-button:hover {
-    background: var(--accent);
-    border-color: var(--accent);
-  }
-
-  .newsletter-meta {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--ink-faint);
-  }
-
-  /* ============================================ */
-  /* RESPONSIVE                                   */
-  /* ============================================ */
-  @media (max-width: 900px) {
-    .hero {
-      padding: 56px 0 48px;
-    }
-
-    .hero-h1 {
-      font-size: 36px;
-    }
-
-    .hero-dek {
-      font-size: 17px;
-    }
-
-    .serve,
-    .frameworks,
-    .founder,
-    .inside,
-    .standards {
-      padding: 48px 0;
-    }
-
-    .section-h2 {
-      font-size: 26px;
-    }
-
-    .serve-grid,
-    .framework-grid,
-    .founder-grid {
-      grid-template-columns: 1fr;
-      gap: 32px;
-    }
-
-    .inside-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .inside-card {
-      border-right: none;
-      border-bottom: 1px solid var(--hairline);
-    }
-
-    .inside-card:last-child {
-      border-bottom: none;
-    }
-
-    .founder-h2 {
-      font-size: 26px;
-    }
-
-    .founder-photo {
-      position: static;
-    }
-
-    .penguin-x-block {
-      padding: 32px 24px;
-    }
-
-    .penguin-x-head {
-      font-size: 22px;
-    }
-
-    .newsletter-h2 {
-      font-size: 22px;
-    }
-
-    .newsletter-form {
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .newsletter-input,
-    .newsletter-button {
-      width: 100%;
-    }
+  @media (max-width: 768px) {
+    .facts { grid-template-columns: 1fr; }
+    .fact { padding-right: 0; }
   }
 </style>

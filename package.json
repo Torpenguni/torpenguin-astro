@@ -1,5 +1,5 @@
 {
-  "name": "spoonasia",
+  "name": "torpenguin",
   "type": "module",
   "version": "0.1.0",
   "private": true,
@@ -12,8 +12,7 @@
     "dev:astro": "astro dev"
   },
   "dependencies": {
-    "astro": "^4.16.18",
-    "yahoo-finance2": "^3.14.0"
+    "astro": "^4.16.18"
   },
   "devDependencies": {
     "@tinacms/cli": "^2.3.1",

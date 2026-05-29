@@ -1,0 +1,448 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { topics, type Topic } from '../../data/topics';
+
+type EssayEntry = CollectionEntry<'essays'>;
+
+// Flatten a collection entry to the shape the template expects
+function flatten(e: EssayEntry) {
+  return {
+    slug: e.slug,
+    title: e.data.title,
+    dek: e.data.dek,
+    topic: e.data.topic,
+    tag: e.data.tag,
+    author: e.data.author,
+    date: e.data.date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+    readTime: e.data.readTime,
+  };
+}
+
+export async function getStaticPaths() {
+  const all = await getCollection('essays', ({ data }) => !data.draft);
+  const topicPaths = topics.map((t) => ({
+    params: { slug: t.slug },
+    props: { kind: 'topic' as const, topic: t, entry: null, allEntries: all },
+  }));
+  const essayPaths = all.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { kind: 'essay' as const, entry, topic: null, allEntries: all },
+  }));
+  return [...topicPaths, ...essayPaths];
+}
+
+type Props =
+  | { kind: 'essay'; entry: EssayEntry; topic: null; allEntries: EssayEntry[] }
+  | { kind: 'topic'; topic: Topic; entry: null; allEntries: EssayEntry[] };
+
+const props = Astro.props as Props;
+const isTopic = props.kind === 'topic';
+const allEntries = props.allEntries;
+
+const entry = props.kind === 'essay' ? props.entry : null;
+const essay = entry ? flatten(entry) : null;
+const topic = props.kind === 'topic' ? props.topic : null;
+
+const topicEssays = isTopic
+  ? allEntries
+      .filter((e) => e.data.topic === topic!.slug)
+      .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+      .map(flatten)
+  : [];
+
+const related = !isTopic
+  ? allEntries
+      .filter((e) => e.slug !== essay!.slug)
+      .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+      .slice(0, 2)
+      .map(flatten)
+  : [];
+
+// Render the markdown body for essays
+const { Content } = entry ? await entry.render() : { Content: null };
+---
+
+<BaseLayout
+  title={isTopic
+    ? `${topic!.label} — Essays — Torpenguin`
+    : `${essay!.title} — Torpenguin`}
+  description={isTopic ? topic!.description : essay!.dek}
+>
+  {isTopic ? (
+    <>
+      <section class="cat-hero">
+        <div class="container-narrow">
+          <div class="section-tag">▍ Topic</div>
+          <h1 class="cat-title">{topic!.label}</h1>
+          <p class="cat-dek">{topic!.description}</p>
+        </div>
+      </section>
+
+      <section class="cat-list">
+        <div class="container">
+          <div class="cat-list-head">
+            <h2 class="cat-list-title">
+              {topicEssays.length}{' '}
+              {topicEssays.length === 1 ? 'Essay' : 'Essays'}
+            </h2>
+            <a href="/essays" class="cat-list-more">All essays →</a>
+          </div>
+
+          {topicEssays.length === 0 ? (
+            <p class="cat-empty">
+              No essays here yet. <a href="#subscribe">Subscribe</a> and I'll send the next one.
+            </p>
+          ) : (
+            <div class="cat-grid">
+              {topicEssays.map((a) => (
+                <article class="cat-card">
+                  <div class="cat-card-image" aria-hidden="true"></div>
+                  <span class="cat-card-tag">{a.tag}</span>
+                  <h3 class="cat-card-headline">
+                    <a href={`/essays/${a.slug}`}>{a.title}</a>
+                  </h3>
+                  <p class="cat-card-dek">{a.dek}</p>
+                  <div class="cat-card-meta">
+                    {a.date} · {a.readTime}
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    </>
+  ) : (
+    <article>
+      <section class="art-head">
+        <div class="container-narrow">
+          <a href={`/essays/${essay!.topic}`} class="section-tag">▍ {essay!.tag}</a>
+          <h1 class="art-h1">{essay!.title}</h1>
+          <p class="art-dek">{essay!.dek}</p>
+          <div class="art-meta">
+            <span>By {essay!.author}</span>
+            <span class="sep">·</span>
+            <span>{essay!.date}</span>
+            <span class="sep">·</span>
+            <span>{essay!.readTime}</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="art-body">
+        <div class="container-narrow prose">
+          {Content && <Content />}
+        </div>
+      </section>
+
+      {related.length > 0 && (
+        <section class="art-related">
+          <div class="container-narrow">
+            <div class="section-tag">▍ More essays</div>
+            <ul class="related-list">
+              {related.map((r) => (
+                <li class="related-item">
+                  <a href={`/essays/${r.slug}`} class="related-link">
+                    <span class="related-tag">{r.tag}</span>
+                    <span class="related-title">{r.title}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+    </article>
+  )}
+</BaseLayout>
+
+<style>
+  .section-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  /* ========== HEADER ========== */
+  .art-head {
+    padding: 40px 0 24px;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+
+  .art-h1 {
+    font-family: var(--font-sans);
+    font-size: clamp(34px, 4.4vw, 48px);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+
+  .art-dek {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+    max-width: 620px;
+  }
+
+  .art-meta {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .art-meta .sep { color: var(--ink-mute); }
+
+  /* ========== STANDARD MARKDOWN ESSAY ========== */
+  .art-body {
+    padding: 24px 0 48px;
+  }
+  .prose {
+    padding: 32px 0 32px;
+  }
+  .prose :global(p) {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--ink);
+    margin-bottom: 22px;
+  }
+  .prose :global(h2) {
+    font-family: var(--font-sans);
+    font-size: clamp(24px, 2.6vw, 30px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--ink);
+    margin: 40px 0 16px;
+  }
+  .prose :global(h3) {
+    font-family: var(--font-sans);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin: 32px 0 12px;
+  }
+  .prose :global(ul),
+  .prose :global(ol) {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--ink);
+    margin: 0 0 22px 24px;
+  }
+  .prose :global(li) { margin-bottom: 8px; }
+  .prose :global(blockquote) {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--ink);
+    border-left: 3px solid var(--accent);
+    padding: 4px 0 4px 20px;
+    margin: 28px 0;
+  }
+  .prose :global(a) {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 0.5px;
+    text-underline-offset: 2px;
+    border-bottom: none;
+  }
+  .prose :global(a:hover) { color: var(--accent-deep); }
+  .prose :global(img) {
+    max-width: 100%;
+    height: auto;
+    margin: 32px 0;
+    display: block;
+  }
+  .prose :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background: var(--paper-mute);
+    padding: 2px 6px;
+    border-radius: 2px;
+  }
+
+  /* ========== RELATED ========== */
+  .art-related {
+    padding: 32px 0 64px;
+    border-top: 0.5px solid var(--hairline);
+  }
+  .related-list {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0;
+  }
+  .related-item {
+    border-top: 0.5px solid var(--hairline);
+    padding: 18px 0;
+  }
+  .related-item:first-child { border-top: none; }
+  .related-link {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-decoration: none;
+    border-bottom: none;
+    color: inherit;
+  }
+  .related-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .related-title {
+    font-family: var(--font-serif);
+    font-size: 19px;
+    line-height: 1.3;
+    color: var(--ink);
+    transition: color 0.15s ease;
+  }
+  .related-link:hover .related-title { color: var(--accent); }
+
+  /* ========== TOPIC LANDING ========== */
+  .cat-hero {
+    padding: 40px 0 24px;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .cat-title {
+    font-family: var(--font-sans);
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.02;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+  .cat-dek {
+    font-family: var(--font-serif);
+    font-size: clamp(17px, 1.8vw, 20px);
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 640px;
+  }
+
+  .cat-list {
+    padding: 48px 0 64px;
+  }
+  .cat-list-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-top: 2px solid var(--ink);
+    padding-top: 16px;
+    margin-bottom: 32px;
+  }
+  .cat-list-title {
+    font-family: var(--font-sans);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .cat-list-more {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-bottom: none;
+  }
+  .cat-list-more:hover { color: var(--accent); }
+
+  .cat-empty {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    color: var(--ink-soft);
+    padding: 32px 0;
+  }
+  .cat-empty a {
+    color: var(--ink);
+    border-bottom: 0.5px solid var(--ink-faint);
+    text-decoration: none;
+  }
+  .cat-empty a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px 28px;
+  }
+  .cat-card { display: flex; flex-direction: column; }
+  .cat-card-image {
+    width: 100%;
+    aspect-ratio: 16/10;
+    background: linear-gradient(135deg, var(--hairline), var(--paper-warm));
+    margin-bottom: 14px;
+  }
+  .cat-card-tag {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .cat-card-headline {
+    font-family: var(--font-sans);
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    margin-bottom: 8px;
+  }
+  .cat-card-headline a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: none;
+    transition: color 0.15s ease;
+  }
+  .cat-card-headline a:hover { color: var(--accent); }
+  .cat-card-dek {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .cat-card-meta {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-top: auto;
+  }
+
+  @media (max-width: 1024px) {
+    .cat-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 900px) {
+    .art-head { padding: 48px 0 28px; }
+    .prose :global(p) { font-size: 17px; }
+  }
+  @media (max-width: 768px) {
+    .cat-grid { grid-template-columns: 1fr; }
+  }
+</style>

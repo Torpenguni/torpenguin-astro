@@ -1,255 +1,156 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { topics } from '../data/topics';
 
-const videoEntries = await getCollection('videos', ({ data }) => !data.draft);
-videoEntries.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-const videos = videoEntries.slice(0, 3).map((v) => ({
-  number: v.data.episode,
-  title: v.data.title,
-  duration: v.data.duration,
-  views: v.data.views,
-  slug: v.slug,
+const entries = await getCollection('essays', ({ data }) => !data.draft);
+entries.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const essays = entries.map((e) => ({
+  slug: e.slug,
+  title: e.data.title,
+  dek: e.data.dek,
+  topic: e.data.topic,
+  tag: e.data.tag,
+  author: e.data.author,
+  date: e.data.date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+  readTime: e.data.readTime,
 }));
 
-const featuredTout = {
-  tag: 'Unit Economics',
-  headline: "Why foreign coffee chains keep failing in Thailand",
-  dek: "Three international chains entered in 2023. Two are closing outlets in 2025. The difference wasn't the coffee — it was the rent escalator, the staff turnover, and the math no broker shows you.",
-  author: 'SpoonAsia Desk',
-  date: '13 May 2026',
-  readTime: '12 min read',
-  slug: 'why-foreign-coffee-chains-fail-thailand',
-};
+const featured = essays[0];
+const sidebar = essays.slice(1, 4);
+const more = essays.slice(4);
 
-const fascinatingReads = [
-  { tag: 'Neighborhood', headline: "Why Ari became Bangkok's most underrated F&B zone", slug: 'ari-bangkok-fb-zone' },
-  { tag: 'Market Entry', headline: "The hidden costs no Thai broker will tell you about", slug: 'hidden-costs-thai-market-entry' },
-  { tag: 'Operator', headline: "Penguin Eat Shabu: anatomy of a 40-outlet rollout", slug: 'penguin-eat-shabu-rollout' },
-];
-
-const quickLinks = [
-  'Thai REIT yields are bottoming — and F&B operators should care',
-  'Why Japanese chains are quietly winning Bangkok malls',
-  'The shrinking margin on bubble tea, in one chart',
-  'Sukhumvit 31 is the new 49. Here\'s why',
-  '7-Eleven\'s F&B push reshapes supplier dynamics',
-];
-
-const floodArticles = [
-  {
-    tag: 'Markets',
-    headline: 'Bangkok mall F&B vacancy hits 7-year high as anchor tenants exit',
-    dek: 'EmQuartier, ICONSIAM, and Central Embassy all report double-digit F&B turnover.',
-    date: '13 May 2026',
-    slug: 'bangkok-mall-fb-vacancy',
-  },
-  {
-    tag: 'Operators',
-    headline: 'After Inflation: how three Bangkok chains rewrote their menus to survive',
-    dek: 'A close read of menu engineering, portion calibration, and price-tier strategy.',
-    date: '12 May 2026',
-    slug: 'menu-engineering-bangkok',
-  },
-  {
-    tag: 'Suppliers',
-    headline: 'The hidden duopoly behind Thailand\'s coffee bean trade',
-    dek: 'Two importers control 78% of specialty bean flow into Bangkok cafés.',
-    date: '11 May 2026',
-    slug: 'coffee-duopoly-thailand',
-  },
-  {
-    tag: 'Investment',
-    headline: 'Why Singaporean family offices keep funding Thai F&B — even when it loses money',
-    dek: 'Lifestyle capital, brand portfolios, and the ASEAN halo trade.',
-    date: '10 May 2026',
-    slug: 'singapore-family-office-thai-fb',
-  },
-  {
-    tag: 'Neighborhood',
-    headline: 'Phra Khanong is quietly becoming Bangkok\'s next F&B frontier',
-    dek: 'Three signals: rents up 18%, BTS upgrades, and Gen Z creator clusters.',
-    date: '09 May 2026',
-    slug: 'phra-khanong-frontier',
-  },
-  {
-    tag: 'Operators',
-    headline: 'Thai cloud kitchens are pivoting hard — and most won\'t survive',
-    dek: 'GrabFood data shows the order curve flattening for the first time since 2019.',
-    date: '08 May 2026',
-    slug: 'thai-cloud-kitchens-pivot',
-  },
-];
-
-const popularStories = [
-  'Why every Japanese ramen chain in Bangkok looks the same now',
-  'The unit economics of a 60-seat Sukhumvit izakaya',
-  'How CentralWorld broke its own F&B floor plan',
-  'A field guide to Thai partner contracts (and the clauses that ruin foreigners)',
-  'The case for buying — not opening — your first Thai F&B outlet',
-];
-
-const greatRead = {
-  tag: 'Long Read',
-  headline: 'Bangkok rent is not a number — it is a story about who the city is becoming',
-  dek: 'A five-month investigation into how landlords price retail F&B space across nine Bangkok neighborhoods. What we found rewrites the standard market-entry playbook.',
-  author: 'SpoonAsia Editorial',
-  date: '07 May 2026',
-  readTime: '24 min read',
-  slug: 'bangkok-rent-story',
-};
-
+const topicList = topics.map((t) => ({
+  ...t,
+  count: entries.filter((e) => e.data.topic === t.slug).length,
+}));
 ---
 
 <BaseLayout
-  title="SpoonAsia — F&B Investment Intelligence for Asia"
-  description="Decoding Thailand's F&B landscape for international investors, suppliers, and operators. Unit economics, neighborhood alpha, and the gaps in pitch decks."
+  title="Torpenguin — Notes on building F&B in Asia"
+  description="Essays on building, operating, and scaling food & beverage businesses — by Torpenguin, founder of Penguin Eat Shabu (40+ outlets, Bangkok)."
 >
-
-  <section class="top-grid">
+  <!-- INTRO BAND -->
+  <section class="intro">
     <div class="container">
-      <div class="top-grid-inner">
-
-        <article class="featured-tout">
-          <a href={`/analysis/${featuredTout.slug}`} class="featured-image-link">
-            <div class="featured-image" aria-hidden="true">
-              <span class="featured-pill">{featuredTout.tag}</span>
-            </div>
-          </a>
-          <div class="featured-content">
-            <h2 class="featured-headline">
-              <a href={`/analysis/${featuredTout.slug}`}>{featuredTout.headline}</a>
-            </h2>
-            <p class="featured-dek">{featuredTout.dek}</p>
-            <div class="featured-byline">
-              <span>{featuredTout.readTime}</span>
-            </div>
-          </div>
-        </article>
-
-        <aside class="fascinating-reads">
-          <ul class="fascinating-list">
-            {fascinatingReads.map(item => (
-              <li class="fascinating-item">
-                <a href={`/analysis/${item.slug}`} class="fascinating-link">
-                  <div class="fascinating-text">
-                    <span class="fascinating-tag">{item.tag}</span>
-                    <span class="fascinating-headline">{item.headline}</span>
-                  </div>
-                  <div class="fascinating-thumb" aria-hidden="true"></div>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </aside>
-
-      </div>
-
-      <aside class="quick-links">
-        <h3 class="sidebar-title">Quick Links</h3>
-        <ul class="quick-list">
-          {quickLinks.map(link => (
-            <li class="quick-item">
-              <a href="#">{link}</a>
-            </li>
-          ))}
-        </ul>
-      </aside>
+      <p class="intro-text">
+        I'm <strong>Torpenguin</strong>. I built <strong>Penguin Eat Shabu</strong> — 40+ outlets
+        across Bangkok — and I write here about what building, operating, and scaling
+        food &amp; beverage actually takes.
+      </p>
     </div>
   </section>
 
-  <section class="flood-zone">
-    <div class="container">
-      <div class="section-head">
-        <h2 class="section-title">Today's Coverage</h2>
-        <a href="/analysis" class="section-more">All Coverage →</a>
-      </div>
-
-      <div class="flood-grid">
-        {floodArticles.map(article => (
-          <article class="flood-card">
-            <div class="flood-image" aria-hidden="true"></div>
-            <a href={`/analysis/${article.tag.toLowerCase()}`} class="tag-link">{article.tag}</a>
-            <h3 class="flood-headline">
-              <a href={`/analysis/${article.slug}`}>{article.headline}</a>
-            </h3>
-            <p class="flood-dek">{article.dek}</p>
-            <div class="flood-meta">{article.date}</div>
+  {featured && (
+    <section class="top-grid">
+      <div class="container">
+        <div class="top-grid-inner">
+          <article class="featured-tout">
+            <a href={`/essays/${featured.slug}`} class="featured-image-link">
+              <div class="featured-image" aria-hidden="true">
+                <span class="featured-pill">{featured.tag}</span>
+              </div>
+            </a>
+            <div class="featured-content">
+              <h2 class="featured-headline">
+                <a href={`/essays/${featured.slug}`}>{featured.title}</a>
+              </h2>
+              <p class="featured-dek">{featured.dek}</p>
+              <div class="featured-byline">
+                <span>{featured.date}</span>
+                <span class="byline-sep">·</span>
+                <span>{featured.readTime}</span>
+              </div>
+            </div>
           </article>
-        ))}
-      </div>
-    </div>
-  </section>
 
-  <section class="most-popular">
-    <div class="container">
-      <div class="section-head">
-        <h2 class="section-title">Most Popular</h2>
-      </div>
-
-      <ol class="popular-list">
-        {popularStories.map((story, i) => (
-          <li class="popular-item">
-            <span class="popular-num">{String(i + 1).padStart(2, '0')}</span>
-            <a href="#" class="popular-headline">{story}</a>
-          </li>
-        ))}
-      </ol>
-    </div>
-  </section>
-
-  <section class="great-reads">
-    <div class="container">
-      <div class="section-head">
-        <h2 class="section-title">Great Reads</h2>
-      </div>
-
-      <article class="great-read-card">
-        <div class="great-image" aria-hidden="true"></div>
-        <div class="great-content">
-          <a href="#" class="tag-link long-read">{greatRead.tag}</a>
-          <h3 class="great-headline">
-            <a href={`/analysis/${greatRead.slug}`}>{greatRead.headline}</a>
-          </h3>
-          <p class="great-dek">{greatRead.dek}</p>
-          <div class="great-byline">
-            <span class="byline-author">{greatRead.author}</span>
-            <span class="byline-sep">·</span>
-            <span>{greatRead.date}</span>
-            <span class="byline-sep">·</span>
-            <span>{greatRead.readTime}</span>
-          </div>
+          <aside class="fascinating-reads">
+            <h3 class="sidebar-title">More essays</h3>
+            <ul class="fascinating-list">
+              {sidebar.map((item) => (
+                <li class="fascinating-item">
+                  <a href={`/essays/${item.slug}`} class="fascinating-link">
+                    <span class="fascinating-tag">{item.tag}</span>
+                    <span class="fascinating-headline">{item.title}</span>
+                    <span class="fascinating-meta">{item.date} · {item.readTime}</span>
+                  </a>
+                </li>
+              ))}
+              {sidebar.length === 0 && (
+                <li class="fascinating-item">
+                  <span class="fascinating-meta">More essays coming soon.</span>
+                </li>
+              )}
+            </ul>
+            <a href="/essays" class="sidebar-more">All essays →</a>
+          </aside>
         </div>
-      </article>
-    </div>
-  </section>
+      </div>
+    </section>
+  )}
 
-  <section class="videos-section">
+  {more.length > 0 && (
+    <section class="flood-zone">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">More writing</h2>
+          <a href="/essays" class="section-more">All essays →</a>
+        </div>
+        <div class="flood-grid">
+          {more.map((a) => (
+            <article class="flood-card">
+              <div class="flood-image" aria-hidden="true"></div>
+              <a href={`/essays/${a.topic}`} class="tag-link">{a.tag}</a>
+              <h3 class="flood-headline">
+                <a href={`/essays/${a.slug}`}>{a.title}</a>
+              </h3>
+              <p class="flood-dek">{a.dek}</p>
+              <div class="flood-meta">{a.date}</div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- TOPICS -->
+  <section class="topics-zone">
     <div class="container">
       <div class="section-head">
-        <h2 class="section-title">Videos</h2>
-        <a href="/videos" class="section-more">All Episodes →</a>
+        <h2 class="section-title">Browse by topic</h2>
+        <a href="/topics" class="section-more">All topics →</a>
       </div>
-
-      <div class="videos-grid">
-        {videos.map(video => (
-          <a href={`/videos/${video.slug}`} class="video-card">
-            <div class="video-thumb">
-              <div class="video-play">▶</div>
-              <div class="video-duration">{video.duration}</div>
-            </div>
-            <div class="video-num">EP. {video.number}</div>
-            <h3 class="video-headline">{video.title}</h3>
-            <div class="video-meta">{video.views} views</div>
+      <div class="topics-grid">
+        {topicList.map((t) => (
+          <a href={t.count > 0 ? `/essays/${t.slug}` : '#subscribe'} class="topic-card">
+            <div class="topic-card-label">{t.label}</div>
+            <p class="topic-card-desc">{t.description}</p>
+            <div class="topic-card-count">{t.count} {t.count === 1 ? 'essay' : 'essays'} →</div>
           </a>
         ))}
       </div>
     </div>
   </section>
-
 </BaseLayout>
 
 <style>
+  /* INTRO */
+  .intro {
+    padding: 36px 0 28px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .intro-text {
+    font-family: var(--font-serif);
+    font-size: clamp(20px, 2.4vw, 26px);
+    line-height: 1.5;
+    color: var(--ink);
+    max-width: 880px;
+  }
+  .intro-text strong {
+    font-weight: 600;
+  }
+
   .tag-link {
     display: inline-block;
     font-family: var(--font-sans);
@@ -264,7 +165,6 @@ const greatRead = {
     transition: color 0.15s ease;
   }
   .tag-link:hover { color: var(--accent-deep); }
-  .tag-link.long-read { color: var(--ink); }
 
   .section-head {
     display: flex;
@@ -274,7 +174,6 @@ const greatRead = {
     padding-top: 16px;
     margin-bottom: 28px;
   }
-
   .section-title {
     font-family: var(--font-sans);
     font-size: clamp(28px, 3vw, 36px);
@@ -283,7 +182,6 @@ const greatRead = {
     color: var(--ink);
     line-height: 1;
   }
-
   .section-more {
     font-family: var(--font-sans);
     font-size: 13px;
@@ -295,24 +193,17 @@ const greatRead = {
   }
   .section-more:hover { color: var(--accent); }
 
+  /* TOP GRID */
   .top-grid {
-    padding: 24px 0 48px;
+    padding: 32px 0 48px;
     border-bottom: 1px solid var(--hairline);
   }
-
-  /* BI-style: 2-col hero (big image left, sidebar right) */
   .top-grid-inner {
     display: grid;
     grid-template-columns: 1.55fr 1fr;
-    gap: 40px;
-    margin-bottom: 40px;
+    gap: 48px;
   }
-
-  .featured-tout {
-    display: flex;
-    flex-direction: column;
-  }
-
+  .featured-tout { display: flex; flex-direction: column; }
   .featured-image-link {
     display: block;
     text-decoration: none;
@@ -321,7 +212,6 @@ const greatRead = {
     transition: opacity 0.15s ease;
   }
   .featured-image-link:hover { opacity: 0.92; }
-
   .featured-image {
     position: relative;
     width: 100%;
@@ -329,7 +219,6 @@ const greatRead = {
     background: linear-gradient(135deg, var(--paper-mute) 0%, var(--paper-warm) 100%);
     overflow: hidden;
   }
-
   .featured-pill {
     position: absolute;
     top: 16px;
@@ -345,7 +234,6 @@ const greatRead = {
     padding: 6px 10px;
     border-radius: 2px;
   }
-
   .featured-headline {
     font-family: var(--font-sans);
     font-size: clamp(28px, 3.4vw, 44px);
@@ -362,7 +250,6 @@ const greatRead = {
     transition: color 0.15s ease;
   }
   .featured-headline a:hover { color: var(--accent); }
-
   .featured-dek {
     font-family: var(--font-serif);
     font-size: 17px;
@@ -371,9 +258,7 @@ const greatRead = {
     margin-bottom: 14px;
     max-width: 620px;
   }
-
-  .featured-byline,
-  .great-byline {
+  .featured-byline {
     display: flex;
     gap: 8px;
     font-family: var(--font-sans);
@@ -381,7 +266,6 @@ const greatRead = {
     color: var(--ink-faint);
     font-weight: 500;
   }
-  .byline-author { color: var(--ink); font-weight: 600; }
   .byline-sep { color: var(--ink-mute); }
 
   .sidebar-title {
@@ -393,37 +277,23 @@ const greatRead = {
     color: var(--ink);
     border-bottom: 2px solid var(--ink);
     padding-bottom: 10px;
-    margin-bottom: 16px;
+    margin-bottom: 4px;
   }
-
-  .fascinating-list,
-  .quick-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  /* BI-style sidebar cards: text + thumbnail w/ hairline divider */
   .fascinating-reads { display: flex; flex-direction: column; }
-
+  .fascinating-list { list-style: none; padding: 0; margin: 0; }
   .fascinating-item {
     border-bottom: 1px solid var(--hairline);
     padding: 18px 0;
   }
-  .fascinating-item:first-child { padding-top: 0; }
-  .fascinating-item:last-child { border-bottom: none; }
   .fascinating-link {
-    display: grid;
-    grid-template-columns: 1fr 140px;
-    gap: 16px;
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
     text-decoration: none;
     border-bottom: none;
     color: inherit;
   }
-  .fascinating-text { display: flex; flex-direction: column; gap: 6px; }
   .fascinating-tag {
-    display: block;
     font-family: var(--font-sans);
     font-size: 10px;
     font-weight: 700;
@@ -441,68 +311,40 @@ const greatRead = {
     transition: color 0.15s ease;
   }
   .fascinating-link:hover .fascinating-headline { color: var(--accent); }
-
-  .fascinating-thumb {
-    width: 140px;
-    aspect-ratio: 3/2;
-    background: linear-gradient(135deg, var(--paper-mute) 0%, var(--paper-warm) 100%);
-    flex-shrink: 0;
+  .fascinating-meta {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--ink-faint);
   }
-
-  /* Quick Links — sits below the 2-col hero, full width 4-col grid */
-  .quick-links {
-    border-top: 1px solid var(--hairline);
-    padding-top: 20px;
-  }
-  .quick-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0 24px;
-  }
-  .quick-item {
-    padding: 12px 0;
-    border-top: 1px solid var(--hairline);
-  }
-  .quick-item a {
+  .sidebar-more {
     font-family: var(--font-sans);
     font-size: 13px;
     font-weight: 600;
-    color: var(--ink);
+    color: var(--ink-soft);
     text-decoration: none;
     border-bottom: none;
-    line-height: 1.3;
-    letter-spacing: -0.005em;
+    padding-top: 16px;
     transition: color 0.15s ease;
-    display: block;
   }
-  .quick-item a:hover { color: var(--accent); }
+  .sidebar-more:hover { color: var(--accent); }
 
+  /* FLOOD */
   .flood-zone {
     padding: 48px 0;
     border-bottom: 1px solid var(--hairline);
   }
-
   .flood-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 32px 28px;
   }
-
-  .flood-card {
-    display: flex;
-    flex-direction: column;
-  }
-
+  .flood-card { display: flex; flex-direction: column; }
   .flood-image {
     width: 100%;
     aspect-ratio: 16/10;
     background: linear-gradient(135deg, var(--paper-mute) 0%, var(--paper-warm) 100%);
     margin-bottom: 14px;
   }
-
   .flood-headline {
     font-family: var(--font-sans);
     font-size: 19px;
@@ -519,7 +361,6 @@ const greatRead = {
     transition: color 0.15s ease;
   }
   .flood-headline a:hover { color: var(--accent); }
-
   .flood-dek {
     font-family: var(--font-serif);
     font-size: 14px;
@@ -527,7 +368,6 @@ const greatRead = {
     color: var(--ink-soft);
     margin-bottom: 10px;
   }
-
   .flood-meta {
     font-family: var(--font-sans);
     font-size: 11px;
@@ -537,218 +377,62 @@ const greatRead = {
     margin-top: auto;
   }
 
-  .most-popular {
-    padding: 48px 0;
-    border-bottom: 1px solid var(--hairline);
-  }
-
-  .popular-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0 32px;
-  }
-
-  .popular-item {
-    display: flex;
-    gap: 18px;
-    align-items: flex-start;
-    border-bottom: 1px solid var(--hairline);
-    padding: 18px 0;
-  }
-
-  .popular-num {
-    font-family: var(--font-sans);
-    font-size: 28px;
-    font-weight: 800;
-    color: var(--accent);
-    line-height: 1;
-    letter-spacing: -0.02em;
-    flex-shrink: 0;
-    min-width: 36px;
-  }
-
-  .popular-headline {
-    font-family: var(--font-sans);
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 1.3;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    text-decoration: none;
-    border-bottom: none;
-    transition: color 0.15s ease;
-  }
-  .popular-headline:hover { color: var(--accent); }
-
-  .great-reads {
-    padding: 48px 0;
-    border-bottom: 1px solid var(--hairline);
-  }
-
-  .great-read-card {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 40px;
-    align-items: center;
-  }
-
-  .great-image {
-    width: 100%;
-    aspect-ratio: 4/3;
-    background: linear-gradient(135deg, var(--ink) 0%, #2A2825 100%);
-  }
-
-  .great-headline {
-    font-family: var(--font-serif);
-    font-size: clamp(28px, 3.2vw, 42px);
-    font-weight: 500;
-    line-height: 1.15;
-    letter-spacing: -0.015em;
-    color: var(--ink);
-    margin: 4px 0 16px;
-  }
-  .great-headline a {
-    color: inherit;
-    text-decoration: none;
-    border-bottom: none;
-    transition: color 0.15s ease;
-  }
-  .great-headline a:hover { color: var(--accent); }
-
-  .great-dek {
-    font-family: var(--font-serif);
-    font-size: 17px;
-    line-height: 1.55;
-    color: var(--ink-soft);
-    margin-bottom: 18px;
-  }
-
-  .videos-section {
+  /* TOPICS */
+  .topics-zone {
     padding: 48px 0 64px;
-    background: var(--paper-mute);
-    border-bottom: 1px solid var(--hairline);
   }
-
-  .videos-grid {
+  .topics-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
+    gap: 0;
+    border-top: 1px solid var(--hairline);
+    border-left: 1px solid var(--hairline);
   }
-
-  .video-card {
-    display: block;
+  .topic-card {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
     text-decoration: none;
-    border-bottom: none;
+    border-bottom: 1px solid var(--hairline);
+    border-right: 1px solid var(--hairline);
     color: inherit;
+    transition: background 0.15s ease;
   }
-
-  .video-thumb {
-    width: 100%;
-    aspect-ratio: 16/9;
-    background: linear-gradient(135deg, var(--ink) 0%, #2A2825 100%);
-    position: relative;
-    margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .video-play {
-    width: 56px;
-    height: 56px;
-    background: var(--paper);
-    color: var(--ink);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    padding-left: 4px;
-    transition: transform 0.15s ease;
-  }
-  .video-card:hover .video-play { transform: scale(1.1); }
-
-  .video-duration {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--paper);
-    background: rgba(0, 0, 0, 0.7);
-    padding: 3px 7px;
-    border-radius: 2px;
-  }
-
-  .video-num {
+  .topic-card:hover { background: var(--paper-warm); }
+  .topic-card-label {
     font-family: var(--font-sans);
-    font-size: 11px;
+    font-size: 18px;
     font-weight: 700;
-    color: var(--accent);
-    letter-spacing: 0.08em;
-    margin-bottom: 6px;
-  }
-
-  .video-headline {
-    font-family: var(--font-sans);
-    font-size: 17px;
-    font-weight: 700;
-    line-height: 1.25;
     letter-spacing: -0.015em;
     color: var(--ink);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     transition: color 0.15s ease;
   }
-  .video-card:hover .video-headline { color: var(--accent); }
-
-  .video-meta {
-    font-family: var(--font-sans);
-    font-size: 12px;
-    font-weight: 500;
+  .topic-card:hover .topic-card-label { color: var(--accent); }
+  .topic-card-desc {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+    flex: 1;
+  }
+  .topic-card-count {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     color: var(--ink-faint);
   }
 
   @media (max-width: 1024px) {
-    .flood-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .quick-list { grid-template-columns: repeat(2, 1fr); }
+    .flood-grid { grid-template-columns: repeat(2, 1fr); }
+    .topics-grid { grid-template-columns: repeat(2, 1fr); }
   }
-
   @media (max-width: 768px) {
-    .top-grid-inner {
-      grid-template-columns: 1fr;
-      gap: 36px;
-      margin-bottom: 32px;
-    }
+    .top-grid-inner { grid-template-columns: 1fr; gap: 36px; }
     .featured-headline { font-size: 28px; }
-    .featured-dek { font-size: 16px; }
-    .fascinating-link { grid-template-columns: 1fr 110px; gap: 12px; }
-    .fascinating-thumb { width: 110px; }
-    .quick-list { grid-template-columns: 1fr; }
-
-    .flood-grid {
-      grid-template-columns: 1fr;
-      gap: 32px;
-    }
-
-    .popular-list {
-      grid-template-columns: 1fr;
-    }
-    .popular-num { font-size: 22px; }
-    .popular-headline { font-size: 15px; }
-
-    .great-read-card {
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-    .great-headline { font-size: 26px; }
-
-    .videos-grid {
-      grid-template-columns: 1fr;
-    }
+    .flood-grid { grid-template-columns: 1fr; gap: 32px; }
+    .topics-grid { grid-template-columns: 1fr; }
   }
 </style>

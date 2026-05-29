@@ -1,73 +1,68 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { categories } from '../../data/content';
+import { topics } from '../../data/topics';
 
-const entries = await getCollection('articles', ({ data }) => !data.draft);
+const entries = await getCollection('essays', ({ data }) => !data.draft);
 // Newest first
 entries.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-const articles = entries.map((e) => ({
+const essays = entries.map((e) => ({
   slug: e.slug,
   title: e.data.title,
   dek: e.data.dek,
-  category: e.data.category,
+  topic: e.data.topic,
   tag: e.data.tag,
   author: e.data.author,
   date: e.data.date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
   readTime: e.data.readTime,
 }));
 
-const featured = articles[0];
-const rest = articles.slice(1);
+const featured = essays[0];
+const rest = essays.slice(1);
 
-const categoryCounts = categories.map((c) => ({
-  ...c,
-  count: articles.filter((a) => a.category === c.slug).length,
+const topicCounts = topics.map((t) => ({
+  ...t,
+  count: essays.filter((a) => a.topic === t.slug).length,
 }));
 
-const allCount = articles.length;
-const activeCategory = 'all';
-const showPagination = articles.length > 12;
+const allCount = essays.length;
+const showPagination = essays.length > 12;
 ---
 
 <BaseLayout
-  title="Analysis — SpoonAsia"
-  description="Long-form F&B investment analysis for the Thailand market. Unit economics, neighborhood alpha, market entry, and supplier intel — 3,000–4,000 word reports."
+  title="Essays — Torpenguin"
+  description="Long-form essays on building, operating, and scaling F&B businesses in Asia — from the founder of Penguin Eat Shabu."
 >
   <section class="decoded-head">
     <div class="container-narrow">
-      <div class="section-tag">▍ Analysis</div>
-      <h1 class="decoded-title">Long-form F&B analysis</h1>
+      <div class="section-tag">▍ Essays</div>
+      <h1 class="decoded-title">Essays</h1>
       <p class="decoded-dek">
         <em>
-          Each report runs 3,000–4,000 words with unit economics, neighborhood
-          analysis, and decision frameworks for foreign operators evaluating Thailand.
+          First-person notes on building, operating, and scaling F&B —
+          what a decade and forty-odd outlets actually taught me.
         </em>
       </p>
     </div>
   </section>
 
-  <nav class="cat-filter" aria-label="Categories">
+  <nav class="cat-filter" aria-label="Topics">
     <div class="container">
       <div class="cat-filter-inner">
-        <a
-          href="/analysis"
-          class={activeCategory === 'all' ? 'cat-chip active' : 'cat-chip'}
-        >
+        <a href="/essays" class="cat-chip active">
           All <span class="cat-count">({allCount})</span>
         </a>
         {
-          categoryCounts.map((c) => {
-            const cls =
-              c.count === 0 ? 'cat-chip disabled' : 'cat-chip';
-            return c.count === 0 ? (
+          topicCounts.map((t) => {
+            const cls = t.count === 0 ? 'cat-chip disabled' : 'cat-chip';
+            return t.count === 0 ? (
               <span class={cls}>
-                {c.label} <span class="cat-count">({c.count})</span>
+                {t.label} <span class="cat-count">({t.count})</span>
               </span>
             ) : (
-              <a href={`/analysis/${c.slug}`} class={cls}>
-                {c.label} <span class="cat-count">({c.count})</span>
+              <a href={`/essays/${t.slug}`} class={cls}>
+                {t.label} <span class="cat-count">({t.count})</span>
               </a>
             );
           })
@@ -76,45 +71,47 @@ const showPagination = articles.length > 12;
     </div>
   </nav>
 
-  <section class="featured-wrap">
-    <div class="container">
-      <article class="featured">
-        <div class="featured-image" aria-hidden="true"></div>
-        <div class="featured-body">
-          <a href={`/analysis/${featured.category}`} class="tag">
-            {featured.tag}
-          </a>
-          <h2 class="featured-h">
-            <a href={`/analysis/${featured.slug}`}>{featured.title}</a>
-          </h2>
-          <p class="featured-dek">{featured.dek}</p>
-          <div class="meta">
-            <span>{featured.date}</span>
-            <span class="meta-sep">·</span>
-            <span>{featured.readTime}</span>
-            <span class="meta-sep">·</span>
-            <span>By {featured.author}</span>
+  {featured && (
+    <section class="featured-wrap">
+      <div class="container">
+        <article class="featured">
+          <div class="featured-image" aria-hidden="true"></div>
+          <div class="featured-body">
+            <a href={`/essays/${featured.topic}`} class="tag">
+              {featured.tag}
+            </a>
+            <h2 class="featured-h">
+              <a href={`/essays/${featured.slug}`}>{featured.title}</a>
+            </h2>
+            <p class="featured-dek">{featured.dek}</p>
+            <div class="meta">
+              <span>{featured.date}</span>
+              <span class="meta-sep">·</span>
+              <span>{featured.readTime}</span>
+              <span class="meta-sep">·</span>
+              <span>By {featured.author}</span>
+            </div>
           </div>
-        </div>
-      </article>
-    </div>
-  </section>
+        </article>
+      </div>
+    </section>
+  )}
 
   <section class="grid-wrap">
     <div class="container">
       <div class="grid-head">
-        <div class="section-tag">▍ All reports</div>
+        <div class="section-tag">▍ All essays</div>
       </div>
 
       <div class="grid">
         {
           rest.map((a) => (
             <article class="card">
-              <a href={`/analysis/${a.category}`} class="tag">
+              <a href={`/essays/${a.topic}`} class="tag">
                 {a.tag}
               </a>
               <h3 class="card-h">
-                <a href={`/analysis/${a.slug}`}>{a.title}</a>
+                <a href={`/essays/${a.slug}`}>{a.title}</a>
               </h3>
               <p class="card-dek-text">{a.dek}</p>
               <div class="meta">
@@ -176,7 +173,7 @@ const showPagination = articles.length > 12;
     font-style: italic;
   }
 
-  /* ========== CATEGORY FILTER ========== */
+  /* ========== TOPIC FILTER ========== */
   .cat-filter {
     border-top: 0.5px solid var(--hairline);
     border-bottom: 0.5px solid var(--hairline);
@@ -322,13 +319,11 @@ const showPagination = articles.length > 12;
     padding: 28px 0;
     border-top: 0.5px solid var(--hairline);
   }
-  /* Hide hairline on first row to avoid double border w/ grid-head */
   .card:nth-child(1),
   .card:nth-child(2) {
     border-top: none;
     padding-top: 8px;
   }
-  /* Add divider between columns */
   .card:nth-child(odd) {
     padding-right: 32px;
     border-right: 0.5px solid var(--hairline);

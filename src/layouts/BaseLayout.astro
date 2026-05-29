@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css';
-import Ribbon from '../components/Ribbon.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 
@@ -23,7 +22,7 @@ const { title, description } = Astro.props;
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="SpoonAsia" />
+  <meta property="og:site_name" content="Torpenguin" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,7 +31,6 @@ const { title, description } = Astro.props;
   <link rel="icon" type="image/svg+xml" href="/logo.svg" />
 </head>
 <body>
-  <Ribbon />
   <Nav />
   <slot />
   <Footer />
