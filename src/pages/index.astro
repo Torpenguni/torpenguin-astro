@@ -1,438 +1,186 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
-import { topics } from '../data/topics';
+import PostCard from '../components/PostCard.astro';
+import PostGrid from '../components/PostGrid.astro';
+import { categories } from '../data/categories';
+import { allPosts, latestPosts, postsByCategory } from '../data/posts';
 
-const entries = await getCollection('essays', ({ data }) => !data.draft);
-entries.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const posts = allPosts();
+const feature = posts[0];
+const sideList = posts.slice(1, 5);
+const news = postsByCategory('news').slice(0, 4);
 
-const essays = entries.map((e) => ({
-  slug: e.slug,
-  title: e.data.title,
-  dek: e.data.dek,
-  topic: e.data.topic,
-  tag: e.data.tag,
-  author: e.data.author,
-  date: e.data.date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
-  readTime: e.data.readTime,
-}));
+// Home section blocks: one row per evergreen pillar that has content.
+const homeSections = ['case-studies', 'trends', 'how-to', 'feasibility', 'interviews']
+  .map((slug) => ({
+    cat: categories.find((c) => c.slug === slug)!,
+    posts: postsByCategory(slug).slice(0, 3),
+  }))
+  .filter((s) => s.posts.length > 0);
 
-const featured = essays[0];
-const sidebar = essays.slice(1, 4);
-const more = essays.slice(4);
-
-const topicList = topics.map((t) => ({
-  ...t,
-  count: entries.filter((e) => e.data.topic === t.slug).length,
-}));
+const YOUTUBE = 'https://www.youtube.com/@torpenguin';
 ---
 
 <BaseLayout
-  title="Torpenguin — Notes on building F&B in Asia"
-  description="Essays on building, operating, and scaling food & beverage businesses — by Torpenguin, founder of Penguin Eat Shabu (40+ outlets, Bangkok)."
+  title="TorPenguin | สื่อธุรกิจอาหารและร้านอาหาร"
+  description="เจาะลึกธุรกิจอาหารและร้านอาหาร ข่าว ถอดบทเรียน เทรนด์ วิธีเปิดร้าน และวิเคราะห์ความคุ้มก่อนลงทุน จากคนที่ลงมือทำจริง"
 >
-  <!-- INTRO BAND -->
-  <section class="intro">
+  {/* HERO */}
+  <section class="hero">
     <div class="container">
-      <p class="intro-text">
-        I'm <strong>Torpenguin</strong>. I built <strong>Penguin Eat Shabu</strong> — 40+ outlets
-        across Bangkok — and I write here about what building, operating, and scaling
-        food &amp; beverage actually takes.
-      </p>
+      <div class="hero-grid">
+        <div class="hero-feature">
+          <PostCard post={feature} feature={true} />
+        </div>
+        <aside class="hero-side">
+          <div class="side-title">อ่านล่าสุด</div>
+          <ul class="side-list">
+            {sideList.map((p) => (
+              <li>
+                <a href={`/${p.category}/${p.slug}`}>{p.title}</a>
+              </li>
+            ))}
+          </ul>
+        </aside>
+      </div>
     </div>
   </section>
 
-  {featured && (
-    <section class="top-grid">
+  {/* NEWS STRIP */}
+  {news.length > 0 && (
+    <section class="block">
       <div class="container">
-        <div class="top-grid-inner">
-          <article class="featured-tout">
-            <a href={`/essays/${featured.slug}`} class="featured-image-link">
-              <div class="featured-image" aria-hidden="true">
-                <span class="featured-pill">{featured.tag}</span>
-              </div>
-            </a>
-            <div class="featured-content">
-              <h2 class="featured-headline">
-                <a href={`/essays/${featured.slug}`}>{featured.title}</a>
-              </h2>
-              <p class="featured-dek">{featured.dek}</p>
-              <div class="featured-byline">
-                <span>{featured.date}</span>
-                <span class="byline-sep">·</span>
-                <span>{featured.readTime}</span>
-              </div>
-            </div>
-          </article>
-
-          <aside class="fascinating-reads">
-            <h3 class="sidebar-title">More essays</h3>
-            <ul class="fascinating-list">
-              {sidebar.map((item) => (
-                <li class="fascinating-item">
-                  <a href={`/essays/${item.slug}`} class="fascinating-link">
-                    <span class="fascinating-tag">{item.tag}</span>
-                    <span class="fascinating-headline">{item.title}</span>
-                    <span class="fascinating-meta">{item.date} · {item.readTime}</span>
-                  </a>
-                </li>
-              ))}
-              {sidebar.length === 0 && (
-                <li class="fascinating-item">
-                  <span class="fascinating-meta">More essays coming soon.</span>
-                </li>
-              )}
-            </ul>
-            <a href="/essays" class="sidebar-more">All essays →</a>
-          </aside>
+        <div class="block-head">
+          <h2 class="block-title">News</h2>
+          <a href="/news" class="block-more">ดูทั้งหมด →</a>
         </div>
+        <PostGrid posts={news} cols={4} />
       </div>
     </section>
   )}
 
-  {more.length > 0 && (
-    <section class="flood-zone">
+  {/* PER-CATEGORY BLOCKS */}
+  {homeSections.map((s) => (
+    <section class="block">
       <div class="container">
-        <div class="section-head">
-          <h2 class="section-title">More writing</h2>
-          <a href="/essays" class="section-more">All essays →</a>
+        <div class="block-head">
+          <div>
+            <h2 class="block-title">{s.cat.label}</h2>
+            <p class="block-intent">{s.cat.intent}</p>
+          </div>
+          <a href={`/${s.cat.slug}`} class="block-more">ดูทั้งหมด →</a>
         </div>
-        <div class="flood-grid">
-          {more.map((a) => (
-            <article class="flood-card">
-              <div class="flood-image" aria-hidden="true"></div>
-              <a href={`/essays/${a.topic}`} class="tag-link">{a.tag}</a>
-              <h3 class="flood-headline">
-                <a href={`/essays/${a.slug}`}>{a.title}</a>
-              </h3>
-              <p class="flood-dek">{a.dek}</p>
-              <div class="flood-meta">{a.date}</div>
-            </article>
-          ))}
-        </div>
+        <PostGrid posts={s.posts} cols={3} />
       </div>
     </section>
-  )}
+  ))}
 
-  <!-- TOPICS -->
-  <section class="topics-zone">
+  {/* YOUTUBE STRIP */}
+  <section class="yt">
     <div class="container">
-      <div class="section-head">
-        <h2 class="section-title">Browse by topic</h2>
-        <a href="/topics" class="section-more">All topics →</a>
-      </div>
-      <div class="topics-grid">
-        {topicList.map((t) => (
-          <a href={t.count > 0 ? `/essays/${t.slug}` : '#subscribe'} class="topic-card">
-            <div class="topic-card-label">{t.label}</div>
-            <p class="topic-card-desc">{t.description}</p>
-            <div class="topic-card-count">{t.count} {t.count === 1 ? 'essay' : 'essays'} →</div>
-          </a>
-        ))}
+      <div class="yt-inner">
+        <div>
+          <h2 class="yt-title">ดูแบบเต็มๆ บน YouTube</h2>
+          <p class="yt-sub">เรื่องที่เล่าบนเว็บ หลายเรื่องมีคลิปเจาะลึกให้ดูต่อ ตามไปดูกันได้ที่ช่องของพวกเรา</p>
+        </div>
+        <a href={YOUTUBE} class="yt-btn" target="_blank" rel="noopener noreferrer">ไปที่ช่อง YouTube ↗</a>
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  /* INTRO */
-  .intro {
-    padding: 36px 0 28px;
-    border-bottom: 1px solid var(--hairline);
-  }
-  .intro-text {
-    font-family: var(--font-serif);
-    font-size: clamp(20px, 2.4vw, 26px);
-    line-height: 1.5;
-    color: var(--ink);
-    max-width: 880px;
-  }
-  .intro-text strong {
-    font-weight: 600;
-  }
-
-  .tag-link {
-    display: inline-block;
-    font-family: var(--font-sans);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--accent);
-    text-decoration: none;
-    border-bottom: none;
-    margin-bottom: 8px;
-    transition: color 0.15s ease;
-  }
-  .tag-link:hover { color: var(--accent-deep); }
-
-  .section-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    border-top: 2px solid var(--ink);
-    padding-top: 16px;
-    margin-bottom: 28px;
-  }
-  .section-title {
-    font-family: var(--font-sans);
-    font-size: clamp(28px, 3vw, 36px);
-    font-weight: 800;
-    letter-spacing: -0.025em;
-    color: var(--ink);
-    line-height: 1;
-  }
-  .section-more {
-    font-family: var(--font-sans);
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--ink-soft);
-    text-decoration: none;
-    border-bottom: none;
-    transition: color 0.15s ease;
-  }
-  .section-more:hover { color: var(--accent); }
-
-  /* TOP GRID */
-  .top-grid {
-    padding: 32px 0 48px;
-    border-bottom: 1px solid var(--hairline);
-  }
-  .top-grid-inner {
+  .hero { padding: 40px 0 24px; }
+  .hero-grid {
     display: grid;
-    grid-template-columns: 1.55fr 1fr;
+    grid-template-columns: 1.7fr 1fr;
     gap: 48px;
+    align-items: start;
   }
-  .featured-tout { display: flex; flex-direction: column; }
-  .featured-image-link {
-    display: block;
-    text-decoration: none;
-    border-bottom: none;
-    margin-bottom: 18px;
-    transition: opacity 0.15s ease;
-  }
-  .featured-image-link:hover { opacity: 0.92; }
-  .featured-image {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 4/3;
-    background: linear-gradient(135deg, var(--paper-mute) 0%, var(--paper-warm) 100%);
-    overflow: hidden;
-  }
-  .featured-pill {
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    display: inline-block;
-    background: var(--accent);
-    color: var(--paper);
+  .side-title {
     font-family: var(--font-sans);
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 6px 10px;
-    border-radius: 2px;
-  }
-  .featured-headline {
-    font-family: var(--font-sans);
-    font-size: clamp(28px, 3.4vw, 44px);
-    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    color: var(--ink);
-    margin: 0 0 14px;
-  }
-  .featured-headline a {
-    color: inherit;
-    text-decoration: none;
-    border-bottom: none;
-    transition: color 0.15s ease;
-  }
-  .featured-headline a:hover { color: var(--accent); }
-  .featured-dek {
-    font-family: var(--font-serif);
-    font-size: 17px;
-    line-height: 1.5;
-    color: var(--ink-soft);
-    margin-bottom: 14px;
-    max-width: 620px;
-  }
-  .featured-byline {
-    display: flex;
-    gap: 8px;
-    font-family: var(--font-sans);
-    font-size: 12px;
-    color: var(--ink-faint);
-    font-weight: 500;
-  }
-  .byline-sep { color: var(--ink-mute); }
-
-  .sidebar-title {
-    font-family: var(--font-sans);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.02em;
     text-transform: uppercase;
     color: var(--ink);
     border-bottom: 2px solid var(--ink);
     padding-bottom: 10px;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
   }
-  .fascinating-reads { display: flex; flex-direction: column; }
-  .fascinating-list { list-style: none; padding: 0; margin: 0; }
-  .fascinating-item {
-    border-bottom: 1px solid var(--hairline);
-    padding: 18px 0;
-  }
-  .fascinating-link {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    text-decoration: none;
-    border-bottom: none;
-    color: inherit;
-  }
-  .fascinating-tag {
-    font-family: var(--font-sans);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--accent);
-  }
-  .fascinating-headline {
+  .side-list { list-style: none; margin: 0; padding: 0; }
+  .side-list li { border-bottom: 1px solid var(--hairline); padding: 16px 0; }
+  .side-list li:last-child { border-bottom: none; }
+  .side-list a {
     font-family: var(--font-sans);
     font-size: 16px;
-    font-weight: 700;
-    line-height: 1.25;
+    font-weight: 600;
+    line-height: 1.5;
     color: var(--ink);
-    letter-spacing: -0.01em;
+    text-decoration: none;
+    border-bottom: none;
     transition: color 0.15s ease;
   }
-  .fascinating-link:hover .fascinating-headline { color: var(--accent); }
-  .fascinating-meta {
-    font-family: var(--font-sans);
-    font-size: 11px;
-    color: var(--ink-faint);
+  .side-list a:hover { color: var(--accent); }
+
+  .block { padding: 40px 0; border-top: 1px solid var(--hairline); }
+  .block-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    margin-bottom: 28px;
   }
-  .sidebar-more {
+  .block-title {
     font-family: var(--font-sans);
-    font-size: 13px;
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+  .block-intent { font-size: 14px; color: var(--ink-faint); margin-top: 4px; }
+  .block-more {
+    font-family: var(--font-sans);
+    font-size: 14px;
     font-weight: 600;
     color: var(--ink-soft);
     text-decoration: none;
     border-bottom: none;
-    padding-top: 16px;
-    transition: color 0.15s ease;
+    white-space: nowrap;
   }
-  .sidebar-more:hover { color: var(--accent); }
+  .block-more:hover { color: var(--accent); }
 
-  /* FLOOD */
-  .flood-zone {
-    padding: 48px 0;
-    border-bottom: 1px solid var(--hairline);
+  .yt { padding: 28px 0 8px; }
+  .yt-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    background: var(--ink);
+    border-radius: 14px;
+    padding: 36px 40px;
   }
-  .flood-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px 28px;
-  }
-  .flood-card { display: flex; flex-direction: column; }
-  .flood-image {
-    width: 100%;
-    aspect-ratio: 16/10;
-    background: linear-gradient(135deg, var(--paper-mute) 0%, var(--paper-warm) 100%);
-    margin-bottom: 14px;
-  }
-  .flood-headline {
+  .yt-title { font-family: var(--font-sans); font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .yt-sub { font-size: 15px; color: #c9c9cf; max-width: 560px; }
+  .yt-btn {
     font-family: var(--font-sans);
-    font-size: 19px;
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -0.015em;
-    color: var(--ink);
-    margin: 4px 0 8px;
-  }
-  .flood-headline a {
-    color: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 13px 22px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 8px;
     text-decoration: none;
     border-bottom: none;
-    transition: color 0.15s ease;
-  }
-  .flood-headline a:hover { color: var(--accent); }
-  .flood-dek {
-    font-family: var(--font-serif);
-    font-size: 14px;
-    line-height: 1.5;
-    color: var(--ink-soft);
-    margin-bottom: 10px;
-  }
-  .flood-meta {
-    font-family: var(--font-sans);
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--ink-faint);
-    letter-spacing: 0.02em;
-    margin-top: auto;
-  }
-
-  /* TOPICS */
-  .topics-zone {
-    padding: 48px 0 64px;
-  }
-  .topics-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-    border-top: 1px solid var(--hairline);
-    border-left: 1px solid var(--hairline);
-  }
-  .topic-card {
-    display: flex;
-    flex-direction: column;
-    padding: 24px;
-    text-decoration: none;
-    border-bottom: 1px solid var(--hairline);
-    border-right: 1px solid var(--hairline);
-    color: inherit;
+    white-space: nowrap;
     transition: background 0.15s ease;
   }
-  .topic-card:hover { background: var(--paper-warm); }
-  .topic-card-label {
-    font-family: var(--font-sans);
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: -0.015em;
-    color: var(--ink);
-    margin-bottom: 10px;
-    transition: color 0.15s ease;
-  }
-  .topic-card:hover .topic-card-label { color: var(--accent); }
-  .topic-card-desc {
-    font-family: var(--font-serif);
-    font-size: 14px;
-    line-height: 1.5;
-    color: var(--ink-soft);
-    margin-bottom: 16px;
-    flex: 1;
-  }
-  .topic-card-count {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-  }
+  .yt-btn:hover { background: var(--accent-deep); }
 
-  @media (max-width: 1024px) {
-    .flood-grid { grid-template-columns: repeat(2, 1fr); }
-    .topics-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 768px) {
-    .top-grid-inner { grid-template-columns: 1fr; gap: 36px; }
-    .featured-headline { font-size: 28px; }
-    .flood-grid { grid-template-columns: 1fr; gap: 32px; }
-    .topics-grid { grid-template-columns: 1fr; }
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+    .yt-inner { padding: 28px 24px; }
   }
 </style>

@@ -7,16 +7,18 @@ const branch =
   process.env.HEAD ||
   'main';
 
+// Phase 1: minimal `post` collection so Tina stays consistent with the Astro
+// content config. Phase 2 fleshes out the full Section-4 schema (tags, author,
+// sources, faq, sponsored, related, portable-text body, etc.).
 export default defineConfig({
   branch,
-  clientId: process.env.TINA_PUBLIC_CLIENT_ID || '',  // get from app.tina.io
-  token: process.env.TINA_TOKEN || '',                // get from app.tina.io
+  clientId: process.env.TINA_PUBLIC_CLIENT_ID || '',
+  token: process.env.TINA_TOKEN || '',
 
   build: {
     outputFolder: 'admin',
     publicFolder: 'public',
   },
-
   media: {
     tina: {
       mediaRoot: 'images',
@@ -26,94 +28,45 @@ export default defineConfig({
 
   schema: {
     collections: [
-      // ============================================================
-      // ESSAYS — long-form writing by Torpenguin
-      // ============================================================
       {
-        name: 'essay',
-        label: 'Essays',
-        path: 'src/content/essays',
+        name: 'post',
+        label: 'Posts',
+        path: 'src/content/post',
         format: 'md',
         ui: {
           filename: {
-            // Auto-generate from title → kebab-case slug
             slugify: (values) =>
               (values?.title || 'untitled')
                 .toLowerCase()
-                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/[^a-z0-9ก-๙]+/g, '-')
                 .replace(/^-|-$/g, ''),
           },
         },
         fields: [
+          { type: 'string', name: 'title', label: 'หัวข้อ', isTitle: true, required: true },
           {
             type: 'string',
-            name: 'title',
-            label: 'Title',
-            isTitle: true,
-            required: true,
-          },
-          {
-            type: 'string',
-            name: 'dek',
-            label: 'Dek / Subhead',
-            required: true,
-            ui: { component: 'textarea' },
-          },
-          {
-            type: 'string',
-            name: 'topic',
-            label: 'Topic',
+            name: 'category',
+            label: 'หมวด',
             required: true,
             options: [
-              { value: 'building',       label: 'Building' },
-              { value: 'operations',     label: 'Operations' },
-              { value: 'scaling',        label: 'Scaling' },
-              { value: 'unit-economics', label: 'Unit Economics' },
-              { value: 'f-and-b',        label: 'F&B Industry' },
+              { value: 'news', label: 'News' },
+              { value: 'case-studies', label: 'Case Studies' },
+              { value: 'trends', label: 'Trends' },
+              { value: 'interviews', label: 'Interviews' },
+              { value: 'how-to', label: 'How-to' },
+              { value: 'feasibility', label: 'Feasibility' },
             ],
           },
-          {
-            type: 'string',
-            name: 'tag',
-            label: 'Tag (display label)',
-            required: true,
-            description: 'Short label shown above the headline, e.g. "Scaling"',
-          },
-          {
-            type: 'string',
-            name: 'author',
-            label: 'Author',
-            required: true,
-          },
-          {
-            type: 'datetime',
-            name: 'date',
-            label: 'Publish date',
-            required: true,
-          },
-          {
-            type: 'string',
-            name: 'readTime',
-            label: 'Read time',
-            required: true,
-            description: 'e.g. "8 min read"',
-          },
-          {
-            type: 'image',
-            name: 'image',
-            label: 'Hero image',
-          },
-          {
-            type: 'boolean',
-            name: 'draft',
-            label: 'Draft (hide from site)',
-          },
-          {
-            type: 'rich-text',
-            name: 'body',
-            label: 'Body',
-            isBody: true,
-          },
+          { type: 'string', name: 'excerpt', label: 'เกริ่น / Meta description', required: true, ui: { component: 'textarea' } },
+          { type: 'string', name: 'tags', label: 'แท็ก', list: true },
+          { type: 'datetime', name: 'publishedAt', label: 'วันที่เผยแพร่', required: true },
+          { type: 'datetime', name: 'updatedAt', label: 'อัปเดตล่าสุด' },
+          { type: 'string', name: 'youtubeUrl', label: 'ลิงก์ YouTube (ถ้ามี)' },
+          { type: 'boolean', name: 'isSponsored', label: 'เนื้อหาสนับสนุน' },
+          { type: 'string', name: 'sponsorName', label: 'ชื่อผู้สนับสนุน' },
+          { type: 'boolean', name: 'draft', label: 'ฉบับร่าง (ซ่อนจากเว็บ)' },
+          { type: 'rich-text', name: 'body', label: 'เนื้อหา', isBody: true },
         ],
       },
     ],

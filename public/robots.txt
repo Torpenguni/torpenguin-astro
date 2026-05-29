@@ -1,11 +1,11 @@
-# torpenguin.com — open to all crawlers, including AI.
-# We *want* this content surfaced in search and AI answers.
+# TorPenguin — open to all crawlers, including AI.
+# We want this content surfaced in search and AI answers.
 
 User-agent: *
 Allow: /
-
-# Keep crawlers out of the CMS admin only.
+Disallow: /search
 Disallow: /admin/
+Disallow: /studio/
 
 # AI / LLM crawlers — explicitly welcome.
 User-agent: GPTBot

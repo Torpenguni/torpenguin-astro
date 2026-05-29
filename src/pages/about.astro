@@ -1,177 +1,49 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
 
-const pageTitle = 'About — Torpenguin';
-const pageDescription = "Torpenguin built Penguin Eat Shabu (40+ outlets in Bangkok) and writes about building, operating, and scaling F&B in Asia.";
-
-const facts = [
-  { label: 'Built', value: 'Penguin Eat Shabu — 40+ outlets' },
-  { label: 'Based', value: 'Bangkok, Thailand' },
-  { label: 'Also runs', value: 'SpoonAsia — F&B intelligence' },
-  { label: 'Writes about', value: 'Building · Operations · Scaling' },
+const crumbs = [
+  { name: 'หน้าแรก', href: '/' },
+  { name: 'เกี่ยวกับเรา', href: '/about' },
 ];
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription}>
-  <section class="hero">
+<BaseLayout
+  title="เกี่ยวกับเรา | TorPenguin"
+  description="TorPenguin คือสื่อธุรกิจอาหารและร้านอาหารที่เล่าเรื่องเจาะลึกจากคนที่ลงมือทำจริง เราอยากให้ทุกคนที่ทำร้านตัดสินใจได้ดีขึ้น"
+  breadcrumbs={crumbs}
+>
+  <section class="page">
     <div class="container-narrow">
-      <div class="section-tag">▍ About</div>
-      <h1 class="hero-h1">
-        I build restaurants. <em>Then I write about it.</em>
-      </h1>
-      <p class="hero-dek">
-        I'm Torpenguin. Over the last decade I built Penguin Eat Shabu from a
-        single shop into a 40+ outlet brand across Bangkok. This site is where
-        I write down what that actually took.
-      </p>
-    </div>
-  </section>
-
-  <section class="story">
-    <div class="container-narrow">
-      <div class="facts">
-        {facts.map((f) => (
-          <div class="fact">
-            <div class="fact-label">{f.label}</div>
-            <div class="fact-value">{f.value}</div>
-          </div>
-        ))}
-      </div>
+      <Breadcrumb items={crumbs} />
+      <h1 class="page-h1">เราเล่าเรื่องธุรกิจอาหารแบบที่อยากอ่านเอง</h1>
 
       <div class="prose">
-        <p>
-          I didn't set out to run forty restaurants. I set out to run one good
-          one. The rest came from a decade of opening, closing, reformatting,
-          and repricing — learning the hard way which decisions compound and
-          which ones quietly sink you.
-        </p>
-        <p>
-          Most of what I learned never appeared in any course, deck, or
-          industry report. The genuinely useful lessons were specific,
-          uncomfortable, and hard-won: how to read a lease against realistic
-          table turns, when to let a manager go, why the fifth outlet is harder
-          than the fortieth.
-        </p>
-        <p>
-          Today I also run <a href="https://spoonasia.com" target="_blank" rel="noopener noreferrer">SpoonAsia</a>,
-          a publication decoding Thailand's F&B market for investors and
-          operators. <strong>This site is separate.</strong> It's just me, in
-          the first person, writing about the craft of building and running
-          these businesses.
-        </p>
-        <p>
-          No fabricated precision. No newsletter funnel dressed up as wisdom.
-          Just notes from someone still in the arena — written when there's
-          something worth saying.
-        </p>
-      </div>
+        <p>TorPenguin คือสื่อเรื่องธุรกิจอาหารและร้านอาหาร เราโตมาจากการทำคอนเทนต์บน YouTube และ Facebook ที่มีคนติดตามรวมกันมากกว่า 1.5 ล้านคน เว็บนี้คือบ้านอีกหลังของพวกเรา ที่ตั้งใจเก็บความรู้ให้ค้นเจอง่ายและอ่านได้ยาวๆ</p>
 
-      <div class="about-cta">
-        <a href="/essays" class="btn">Read the essays</a>
-        <a href="#subscribe" class="btn btn-inverted">Subscribe</a>
+        <p>สิ่งที่เราสนใจไม่ใช่ข่าวผิวเผิน แต่เป็นเบื้องหลังการตัดสินใจ ทำไมร้านนี้โต ทำไมร้านนั้นไปไม่รอด เปิดร้านแบบนี้ใช้เงินเท่าไหร่ และคุ้มจริงไหม เราอยากให้ทุกคนที่กำลังจะเปิดร้านหรือทำร้านอยู่แล้ว ตัดสินใจได้ดีขึ้นจากข้อมูลจริง</p>
+
+        <h2>เราทำงานยังไง</h2>
+        <p>เราเล่าจากของจริง คุยกับเจ้าของร้านตัวจริง และอ้างอิงแหล่งที่มาทุกครั้งที่ทำได้ ถ้าเรื่องไหนเป็นการประเมิน เราจะบอกตรงๆว่าเป็นการประเมิน เราไม่ขายฝัน และไม่ทำให้ตัวเลขดูแน่นอนเกินกว่าที่มันเป็น</p>
+
+        <h2>หมวดที่เราเล่า</h2>
+        <p>เราจัดเรื่องเป็นหกหมวดตามสิ่งที่ทุกคนอยากรู้ ตั้งแต่ News ข่าวสด, Case Studies ถอดบทเรียน, Trends ทิศทางตลาด, Interviews คุยกับคนตัวจริง, How-to วิธีลงมือทำ ไปจนถึง Feasibility วิเคราะห์ความคุ้มก่อนลงทุน</p>
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .section-tag {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 16px;
-  }
-
-  .hero {
-    padding: 48px 0 32px;
-    border-bottom: 1px solid var(--hairline);
-  }
-  .hero-h1 {
+  .page { padding: 28px 0 72px; }
+  .page-h1 {
     font-family: var(--font-sans);
-    font-weight: 500;
-    font-size: clamp(32px, 4.4vw, 48px);
-    line-height: 1.08;
-    letter-spacing: -0.025em;
+    font-size: clamp(30px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.3;
     color: var(--ink);
-    margin: 0 0 24px;
+    margin: 18px 0 28px;
   }
-  .hero-h1 em {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    color: var(--accent);
-  }
-  .hero-dek {
-    font-family: var(--font-serif);
-    font-size: clamp(18px, 2vw, 21px);
-    line-height: 1.55;
-    color: var(--ink-soft);
-    margin: 0;
-    max-width: 640px;
-  }
-
-  .story {
-    padding: 48px 0 80px;
-  }
-
-  .facts {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0;
-    border-top: 1px solid var(--ink);
-    margin-bottom: 48px;
-  }
-  .fact {
-    padding: 20px 24px 20px 0;
-    border-bottom: 0.5px solid var(--hairline);
-  }
-  .fact-label {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    margin-bottom: 8px;
-  }
-  .fact-value {
-    font-family: var(--font-sans);
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--ink);
-    letter-spacing: -0.01em;
-  }
-
-  .prose {
-    max-width: 640px;
-  }
-  .prose p {
-    font-family: var(--font-serif);
-    font-size: 18px;
-    line-height: 1.75;
-    color: var(--ink);
-    margin: 0 0 24px;
-  }
-  .prose strong { font-weight: 600; }
-  .prose a {
-    color: var(--accent);
-    text-decoration: underline;
-    text-decoration-thickness: 0.5px;
-    text-underline-offset: 2px;
-    border-bottom: none;
-  }
-  .prose a:hover { color: var(--accent-deep); }
-
-  .about-cta {
-    display: flex;
-    gap: 12px;
-    margin-top: 40px;
-    flex-wrap: wrap;
-  }
-
-  @media (max-width: 768px) {
-    .facts { grid-template-columns: 1fr; }
-    .fact { padding-right: 0; }
-  }
+  .prose { font-size: 19px; line-height: 1.9; color: var(--ink); max-width: 720px; }
+  .prose p { margin-bottom: 22px; }
+  .prose h2 { font-family: var(--font-sans); font-size: 26px; font-weight: 700; margin: 36px 0 14px; color: var(--ink); }
 </style>

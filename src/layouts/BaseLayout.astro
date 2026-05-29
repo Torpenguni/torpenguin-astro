@@ -3,19 +3,30 @@ import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 
+interface Crumb {
+  name: string;
+  item: string; // absolute or site-relative URL
+}
+
 interface Props {
   title: string;
   description: string;
   /** Page type — drives og:type and JSON-LD shape. */
   type?: 'website' | 'article';
+  /** News articles get NewsArticle instead of Article. */
+  isNews?: boolean;
   /** Social-share image path (absolute or site-relative). Falls back to the site default. */
   image?: string;
   /** ISO date — only used for articles. */
   publishedDate?: string;
+  /** ISO date — last modified. */
+  modifiedDate?: string;
   /** Author name — only used for articles. */
   author?: string;
-  /** Section/tag — only used for articles. */
+  /** Section/category label — only used for articles. */
   section?: string;
+  /** Breadcrumb trail — emits visible markup elsewhere; here it drives JSON-LD. */
+  breadcrumbs?: Crumb[];
   /** Set true to keep this page out of search indexes. */
   noindex?: boolean;
 }
@@ -24,59 +35,91 @@ const {
   title,
   description,
   type = 'website',
+  isNews = false,
   image = '/og-default.png',
   publishedDate,
-  author = 'Torpenguin',
+  modifiedDate,
+  author = 'TorPenguin',
   section,
+  breadcrumbs = [],
   noindex = false,
 } = Astro.props;
 
 const SITE = 'https://torpenguin.com';
-// Canonical URL for the current page, normalised against the configured site.
 const canonical = new URL(Astro.url.pathname, Astro.site ?? SITE).href;
 const imageUrl = new URL(image, Astro.site ?? SITE).href;
 
-// Author identity reused across JSON-LD blocks.
-const person = {
-  '@type': 'Person',
-  name: 'Torpenguin',
+// Social channels are the main audience — surface them as sameAs everywhere.
+const SAME_AS = [
+  'https://www.youtube.com/@torpenguin',
+  'https://www.facebook.com/torpenguin',
+];
+
+const organization = {
+  '@type': 'Organization',
+  name: 'TorPenguin',
   url: SITE,
-  description:
-    'Founder of Penguin Eat Shabu (40+ outlets, Bangkok). Writes about building, operating, and scaling F&B businesses in Asia.',
+  logo: new URL('/penguin.png', SITE).href,
+  sameAs: SAME_AS,
 };
 
-// Structured data: a WebSite node on every page, plus a BlogPosting on articles.
+// JSON-LD: Organization + WebSite (with SearchAction) on every page.
 const jsonLd: Record<string, unknown>[] = [
+  { '@context': 'https://schema.org', ...organization },
   {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Torpenguin',
+    name: 'TorPenguin',
     url: SITE,
+    inLanguage: 'th-TH',
     description:
-      'Essays on building, operating, and scaling food & beverage businesses in Asia.',
-    author: person,
+      'สื่อธุรกิจอาหารและร้านอาหาร เจาะลึกเรื่องที่คนทำร้านต้องรู้',
+    publisher: { '@type': 'Organization', name: 'TorPenguin', url: SITE },
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${SITE}/search?q={search_term_string}`,
+      },
+      'query-input': 'required name=search_term_string',
+    },
   },
 ];
 
 if (type === 'article') {
   jsonLd.push({
     '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: title.replace(/ — Torpenguin$/, ''),
+    '@type': isNews ? 'NewsArticle' : 'Article',
+    headline: title.replace(/ \| TorPenguin$/, ''),
     description,
     url: canonical,
     mainEntityOfPage: canonical,
     image: imageUrl,
-    author: { '@type': 'Person', name: author, url: SITE },
-    publisher: person,
+    inLanguage: 'th-TH',
+    author: { '@type': 'Person', name: author },
+    publisher: organization,
     ...(publishedDate ? { datePublished: publishedDate } : {}),
+    ...(modifiedDate ? { dateModified: modifiedDate } : {}),
     ...(section ? { articleSection: section } : {}),
+  });
+}
+
+if (breadcrumbs.length > 0) {
+  jsonLd.push({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map((c, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: c.name,
+      item: new URL(c.item, SITE).href,
+    })),
   });
 }
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -86,18 +129,21 @@ if (type === 'article') {
     ? <meta name="robots" content="noindex, nofollow" />
     : <meta name="robots" content="index, follow, max-image-preview:large" />}
   <link rel="canonical" href={canonical} />
-  <meta name="theme-color" content="#faf6ef" />
+  <meta name="theme-color" content="#ffffff" />
 
   {/* Open Graph */}
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:type" content={type} />
   <meta property="og:url" content={canonical} />
-  <meta property="og:site_name" content="Torpenguin" />
+  <meta property="og:site_name" content="TorPenguin" />
   <meta property="og:image" content={imageUrl} />
-  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale" content="th_TH" />
   {type === 'article' && publishedDate && (
     <meta property="article:published_time" content={publishedDate} />
+  )}
+  {type === 'article' && modifiedDate && (
+    <meta property="article:modified_time" content={modifiedDate} />
   )}
   {type === 'article' && <meta property="article:author" content={author} />}
   {type === 'article' && section && (
@@ -112,7 +158,7 @@ if (type === 'article') {
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="icon" type="image/png" href="/penguin.png" />
 

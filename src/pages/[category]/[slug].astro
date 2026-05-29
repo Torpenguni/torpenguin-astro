@@ -1,0 +1,240 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import PostGrid from '../../components/PostGrid.astro';
+import YouTubeEmbed from '../../components/YouTubeEmbed.astro';
+import { categoryBySlug } from '../../data/categories';
+import { posts, authors, relatedPosts, type Post } from '../../data/posts';
+
+export function getStaticPaths() {
+  return posts.map((p) => ({
+    params: { category: p.category, slug: p.slug },
+    props: { post: p },
+  }));
+}
+
+interface Props { post: Post }
+const { post } = Astro.props;
+const cat = categoryBySlug(post.category)!;
+const author = authors[post.author] ?? authors.torpenguin;
+const related = relatedPosts(post, 4);
+
+const published = new Date(post.publishedAt);
+const updated = post.updatedAt ? new Date(post.updatedAt) : null;
+const fmt = (d: Date) =>
+  d.toLocaleDateString('th-TH', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const crumbs = [
+  { name: 'หน้าแรก', href: '/' },
+  { name: cat.label, href: `/${cat.slug}` },
+  { name: post.title, href: `/${post.category}/${post.slug}` },
+];
+
+const YOUTUBE = 'https://www.youtube.com/@torpenguin';
+const FACEBOOK = 'https://www.facebook.com/torpenguin';
+---
+
+<BaseLayout
+  title={`${post.metaTitle ?? post.title} | TorPenguin`}
+  description={post.metaDescription ?? post.excerpt}
+  type="article"
+  isNews={post.category === 'news'}
+  publishedDate={post.publishedAt}
+  modifiedDate={post.updatedAt}
+  author={author.name}
+  section={cat.label}
+  breadcrumbs={crumbs}
+>
+  <article class="article">
+    <div class="container-narrow">
+      <Breadcrumb items={crumbs} />
+
+      {post.isSponsored && (
+        <div class="sponsor-note">เนื้อหาร่วมกับ {post.sponsorName}</div>
+      )}
+
+      <a href={`/${cat.slug}`} class="art-cat">{cat.label}</a>
+      <h1 class="art-h1">{post.title}</h1>
+      <p class="art-excerpt">{post.excerpt}</p>
+
+      <div class="art-meta">
+        <span>โดย {author.name}</span>
+        <span class="dot">·</span>
+        <span>{fmt(published)}</span>
+        <span class="dot">·</span>
+        <span>อ่าน {post.readingTime} นาที</span>
+        {updated && <><span class="dot">·</span><span>อัปเดต {fmt(updated)}</span></>}
+      </div>
+    </div>
+
+    <div class="container-narrow">
+      <div class="art-cover" aria-hidden="true"></div>
+    </div>
+
+    <div class="container-narrow">
+      <div class="prose">
+        {post.body.map((p) => <p>{p}</p>)}
+      </div>
+
+      {post.youtubeUrl && <div class="container-narrow"><YouTubeEmbed url={post.youtubeUrl} /></div>}
+
+      {post.faq && post.faq.length > 0 && (
+        <section class="art-faq">
+          <h2 class="art-h2">คำถามที่พบบ่อย</h2>
+          <dl>
+            {post.faq.map((f) => (
+              <div class="faq-item">
+                <dt>{f.q}</dt>
+                <dd>{f.a}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      )}
+
+      <section class="source-box">
+        <div class="source-title">แหล่งที่มา</div>
+        <ol>
+          {post.sources.map((s) => (
+            <li><a href={s.url} target="_blank" rel="noopener noreferrer">{s.label}</a></li>
+          ))}
+        </ol>
+      </section>
+
+      <section class="author-box">
+        <div class="author-name">{author.name}</div>
+        <p class="author-bio">{author.bio}</p>
+      </section>
+
+      <section class="follow">
+        <p>ถ้าเรื่องนี้มีประโยชน์ ตามอ่านและดูเรื่องอื่นของพวกเราต่อได้</p>
+        <div class="follow-links">
+          <a href={YOUTUBE} target="_blank" rel="noopener noreferrer">YouTube ↗</a>
+          <a href={FACEBOOK} target="_blank" rel="noopener noreferrer">Facebook ↗</a>
+        </div>
+      </section>
+    </div>
+
+    {related.length > 0 && (
+      <section class="related">
+        <div class="container">
+          <h2 class="related-title">บทความที่เกี่ยวข้อง</h2>
+          <PostGrid posts={related} cols={4} />
+        </div>
+      </section>
+    )}
+  </article>
+</BaseLayout>
+
+<style>
+  .article { padding-top: 24px; }
+  .sponsor-note {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+    background: var(--accent-soft);
+    padding: 6px 12px;
+    border-radius: 6px;
+    margin: 14px 0 4px;
+  }
+  .art-cat {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: none;
+    margin: 14px 0 10px;
+  }
+  .art-h1 {
+    font-family: var(--font-sans);
+    font-size: clamp(30px, 5vw, 46px);
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  .art-excerpt { font-size: 20px; line-height: 1.7; color: var(--ink-soft); margin-bottom: 20px; }
+  .art-meta {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--ink-faint);
+    display: flex; flex-wrap: wrap; gap: 8px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .art-meta .dot { color: var(--ink-mute); }
+
+  .art-cover {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--paper-mute) 0%, var(--accent-soft) 100%);
+    margin: 28px 0;
+  }
+
+  .prose { font-size: 19px; line-height: 1.9; color: var(--ink); }
+  .prose p { margin-bottom: 24px; }
+
+  .art-h2 {
+    font-family: var(--font-sans);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 40px 0 16px;
+  }
+  .art-faq dl { margin: 0; }
+  .faq-item { padding: 18px 0; border-bottom: 1px solid var(--hairline); }
+  .faq-item dt { font-weight: 700; font-size: 18px; color: var(--ink); margin-bottom: 8px; }
+  .faq-item dd { margin: 0; font-size: 16px; line-height: 1.8; color: var(--ink-soft); }
+
+  .source-box {
+    margin: 40px 0;
+    padding: 22px 24px;
+    background: var(--paper-soft);
+    border-radius: 12px;
+  }
+  .source-title {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 12px;
+  }
+  .source-box ol { margin: 0; padding-left: 20px; }
+  .source-box li { font-size: 14px; line-height: 1.7; color: var(--ink-soft); margin-bottom: 6px; }
+  .source-box a { color: var(--ink-soft); }
+  .source-box a:hover { color: var(--accent); }
+
+  .author-box { margin: 36px 0; padding-top: 24px; border-top: 1px solid var(--hairline); }
+  .author-name { font-family: var(--font-sans); font-weight: 700; font-size: 17px; color: var(--ink); margin-bottom: 6px; }
+  .author-bio { font-size: 15px; line-height: 1.8; color: var(--ink-soft); }
+
+  .follow {
+    margin: 36px 0;
+    padding: 24px;
+    background: var(--ink);
+    border-radius: 12px;
+    color: #fff;
+  }
+  .follow p { font-size: 16px; margin-bottom: 14px; }
+  .follow-links { display: flex; gap: 16px; }
+  .follow-links a {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  .related { margin-top: 56px; padding: 48px 0 16px; border-top: 1px solid var(--hairline); }
+  .related-title { font-family: var(--font-sans); font-size: 24px; font-weight: 800; color: var(--ink); margin-bottom: 28px; }
+</style>

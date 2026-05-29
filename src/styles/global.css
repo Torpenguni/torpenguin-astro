@@ -1,4 +1,4 @@
-/* torpenguin.com — Editorial design system */
+/* TorPenguin media — Thai F&B editorial design system */
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -12,38 +12,42 @@ html {
 }
 
 body {
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans);
   background: var(--paper);
   color: var(--ink);
-  line-height: 1.5;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 :root {
-  --paper: #FAF7F5;
+  /* Surfaces — clean white / light grey editorial (brand: ส้ม + ดำ + ขาว) */
+  --paper: #FFFFFF;
   --paper-pure: #FFFFFF;
-  --paper-warm: #F5F2EA;
-  --paper-mute: #F0EDE8;
+  --paper-warm: #FAF7F2;
+  --paper-mute: #F4F4F3;
+  --paper-soft: #F7F7F6;
 
-  --ink: #0A0A0A;
-  --ink-soft: #4A4A4A;
+  --ink: #111111;
+  --ink-soft: #3F3F46;
   --ink-faint: #71717A;
-  --ink-mute: #A3A3A3;
+  --ink-mute: #A1A1AA;
 
-  --hairline: #E5E5E5;
-  --hairline-strong: #C9C7BF;
+  --hairline: #E7E7E4;
+  --hairline-strong: #D4D4D0;
 
-  --accent: #B85A2A;
-  --accent-deep: #8A3D17;
-  --accent-soft: #F5E8DF;
+  /* Brand orange — TorPenguin penguin tone (รอยืนยันโค้ดจริงจาก brand guide) */
+  --accent: #EE8A1E;
+  --accent-deep: #C66E0C;
+  --accent-soft: #FCEBD4;
 
   --signal-positive: #16A34A;
   --signal-negative: #DC2626;
-  --signal-warning: #B85A2A;
+  --signal-warning: #EE8A1E;
 
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --font-serif: 'Source Serif 4', Georgia, serif;
+  /* Thai-first type. IBM Plex Sans Thai Looped for body + UI. */
+  --font-sans: 'IBM Plex Sans Thai Looped', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-serif: 'IBM Plex Sans Thai Looped', 'Plus Jakarta Sans', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
 }
 

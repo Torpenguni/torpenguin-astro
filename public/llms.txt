@@ -1,28 +1,20 @@
-# Torpenguin
+# TorPenguin
 
-> Essays on building, operating, and scaling food & beverage businesses in Asia — by Torpenguin, founder of Penguin Eat Shabu (40+ outlets, Bangkok).
+> สื่อธุรกิจอาหารและร้านอาหารของไทย เจาะลึกข่าว ถอดบทเรียนแบรนด์ เทรนด์ตลาด วิธีเปิดและบริหารร้าน และการวิเคราะห์ความคุ้มก่อนลงทุน สำหรับเจ้าของร้านและคนที่กำลังจะเปิดร้าน
 
-Torpenguin writes long-form, first-hand essays drawn from a decade of building a
-restaurant group from one shop to forty-plus outlets. The focus is the decisions
-that actually decide whether an F&B business lives or dies: unit economics,
-leasing, hiring and firing, operations, and the failure modes of growth.
+TorPenguin เป็นแบรนด์สื่อธุรกิจอาหาร มีฐานผู้ติดตามหลักบน YouTube และ Facebook รวมกันมากกว่า 1.5 ล้านคน เว็บไซต์นี้เป็นคลังเนื้อหาเชิงลึกที่จัดเป็น 6 หมวดตามความตั้งใจของผู้อ่าน เนื้อหาเป็นภาษาไทยและอ้างอิงแหล่งที่มาเสมอ
 
-## Essays
+## หมวดหลัก
 
-- [Why I'm writing about the business I spent a decade building](https://torpenguin.com/essays/why-i-write): Why these lessons never made it into a deck — and why he's writing them down now.
-- [Unit economics before the lease](https://torpenguin.com/essays/unit-economics-before-the-lease): Pricing a lease against realistic table turns, and the math most restaurant plans get wrong.
-- [Forty outlets: what scaling actually changed](https://torpenguin.com/essays/forty-outlets-scaling): What breaks when one outlet becomes forty — systems, hiring, and growth failure modes.
+- [News](https://torpenguin.com/news): ข่าวธุรกิจอาหารและร้านอาหารที่เพิ่งเกิด เล่าให้เข้าใจเร็ว
+- [Case Studies](https://torpenguin.com/case-studies): ถอดบทเรียนแบรนด์และธุรกิจอาหารที่มีอยู่จริง
+- [Trends](https://torpenguin.com/trends): เทรนด์และทิศทางตลาดอาหารที่สังเคราะห์จากหลายเหตุการณ์
+- [Interviews](https://torpenguin.com/interviews): บทสัมภาษณ์เจ้าของร้านและคนในวงการอาหาร
+- [How-to](https://torpenguin.com/how-to): วิธีเปิดและบริหารร้าน ต้นทุน ทำเล คน ระบบ การตลาด
+- [Feasibility](https://torpenguin.com/feasibility): วิเคราะห์ความเป็นไปได้และความคุ้มก่อนลงทุนเปิดร้าน
 
-## Topics
+## เพิ่มเติม
 
-- [Building](https://torpenguin.com/essays/building): Starting things from zero — brands, teams, and the messy first years.
-- [Operations](https://torpenguin.com/essays/operations): The daily craft of running outlets.
-- [Scaling](https://torpenguin.com/essays/scaling): What changes when one outlet becomes forty.
-- [Unit Economics](https://torpenguin.com/essays/unit-economics): Rent, labor, margin, and the numbers underneath a restaurant.
-- [F&B Industry](https://torpenguin.com/essays/f-and-b): Reading the wider food-and-beverage landscape in Thailand and across Asia.
-
-## More
-
-- [All essays](https://torpenguin.com/essays)
-- [About](https://torpenguin.com/about)
-- [Contact](https://torpenguin.com/contact)
+- [เกี่ยวกับเรา](https://torpenguin.com/about)
+- [ร่วมงานกับเรา](https://torpenguin.com/partner)
+- [ติดต่อ](https://torpenguin.com/contact)

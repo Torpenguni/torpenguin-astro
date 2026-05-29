@@ -1,230 +1,62 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
 
-const contacts = [
-  { label: 'Say hello', value: 'hello@torpenguin.com', note: 'Notes on the writing, questions, or just to introduce yourself.' },
-  { label: 'Speaking', value: 'speaking@torpenguin.com', note: 'Talks, panels, podcasts, and interviews.' },
-  { label: 'Advisory', value: 'work@torpenguin.com', note: 'Operator advisory and F&B engagements.' },
+const crumbs = [
+  { name: 'หน้าแรก', href: '/' },
+  { name: 'ติดต่อ', href: '/contact' },
 ];
 
-const channels = [
-  { label: 'YouTube', href: 'https://youtube.com/@torpenguin', note: 'Walk-throughs and video notes.' },
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/torpenguin', note: 'Where I post most often.' },
-  { label: 'X (Twitter)', href: 'https://x.com/torpenguin', note: 'Shorter thoughts, in real time.' },
+const items = [
+  { label: 'เรื่องทั่วไป', value: 'hello@torpenguin.com', note: 'ทักทาย เสนอเรื่องที่อยากให้เราเล่า หรือมีอะไรอยากบอก' },
+  { label: 'ร่วมงาน / โฆษณา', value: 'partner@torpenguin.com', note: 'Sponsored content และแคมเปญร่วมกับแบรนด์' },
+  { label: 'แจ้งข้อมูลผิดพลาด', value: 'editor@torpenguin.com', note: 'เจอข้อมูลที่คลาดเคลื่อน บอกเราได้เลย เราแก้และบันทึกการแก้ไว้เสมอ' },
 ];
+
+const YOUTUBE = 'https://www.youtube.com/@torpenguin';
+const FACEBOOK = 'https://www.facebook.com/torpenguin';
 ---
 
 <BaseLayout
-  title="Contact — Torpenguin"
-  description="How to reach Torpenguin — for notes on the writing, speaking, and advisory."
+  title="ติดต่อ | TorPenguin"
+  description="ช่องทางติดต่อทีม TorPenguin ทั้งเรื่องทั่วไป ร่วมงานกับแบรนด์ และแจ้งข้อมูลผิดพลาด"
+  breadcrumbs={crumbs}
 >
-  <section class="ct-hero">
+  <section class="page">
     <div class="container-narrow">
-      <div class="ct-eyebrow">Contact</div>
-      <h1 class="ct-title">Get in touch.</h1>
-      <p class="ct-dek">
-        I read every message and answer most within a few days.
-        Anything shared in confidence stays that way.
-      </p>
-    </div>
-  </section>
+      <Breadcrumb items={crumbs} />
+      <h1 class="page-h1">ติดต่อเรา</h1>
+      <p class="lead">เราอ่านทุกข้อความ และพยายามตอบกลับให้เร็วที่สุด</p>
 
-  <section class="ct-list">
-    <div class="container-narrow">
-      <div class="ct-section-head">
-        <h2 class="section-h">Email</h2>
-      </div>
-
-      <ul class="ct-items">
-        {
-          contacts.map((c) => (
-            <li class="ct-item">
-              <div class="ct-label">{c.label}</div>
-              <a href={`mailto:${c.value}`} class="ct-value">
-                {c.value}
-              </a>
-              <p class="ct-note">{c.note}</p>
-            </li>
-          ))
-        }
+      <ul class="contact-list">
+        {items.map((c) => (
+          <li>
+            <div class="c-label">{c.label}</div>
+            <a class="c-value" href={`mailto:${c.value}`}>{c.value}</a>
+            <p class="c-note">{c.note}</p>
+          </li>
+        ))}
       </ul>
-    </div>
-  </section>
 
-  <section class="ct-channels">
-    <div class="container-narrow">
-      <div class="ct-section-head">
-        <h2 class="section-h">Channels</h2>
-      </div>
-
-      <ul class="ct-items">
-        {
-          channels.map((c) => (
-            <li class="ct-item">
-              <div class="ct-label">{c.label}</div>
-              <a
-                href={c.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="ct-value"
-              >
-                {c.href.replace(/^https?:\/\//, '')} ↗
-              </a>
-              <p class="ct-note">{c.note}</p>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section>
-
-  <section class="ct-office">
-    <div class="container-narrow">
-      <div class="ct-section-head">
-        <h2 class="section-h">Where we are</h2>
-      </div>
-      <div class="ct-office-body">
-        <p class="ct-office-line">Torpenguin</p>
-        <p class="ct-office-line">Bangkok, Thailand</p>
-        <p class="ct-office-line ct-office-faint">
-          No public office address. For anything formal, email <a href="mailto:hello@torpenguin.com">hello@torpenguin.com</a>.
-        </p>
+      <div class="social-row">
+        <span>ตามเราได้ที่</span>
+        <a href={YOUTUBE} target="_blank" rel="noopener noreferrer">YouTube ↗</a>
+        <a href={FACEBOOK} target="_blank" rel="noopener noreferrer">Facebook ↗</a>
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .ct-hero {
-    padding: 40px 0 28px;
-    border-bottom: 0.5px solid var(--hairline);
-  }
-
-  .ct-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 16px;
-  }
-
-  .ct-title {
-    font-family: var(--font-sans);
-    font-size: clamp(28px, 3.5vw, 44px);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1;
-    color: var(--ink);
-    margin-bottom: 20px;
-  }
-
-  .ct-dek {
-    font-family: var(--font-serif);
-    font-size: clamp(17px, 1.8vw, 20px);
-    line-height: 1.55;
-    color: var(--ink-soft);
-    max-width: 580px;
-  }
-
-  .ct-list,
-  .ct-channels,
-  .ct-office {
-    padding: 48px 0;
-    border-bottom: 0.5px solid var(--hairline);
-  }
-  .ct-office { padding-bottom: 80px; }
-
-  .ct-section-head {
-    border-top: 2px solid var(--ink);
-    padding-top: 16px;
-    margin-bottom: 28px;
-  }
-
-  .section-h {
-    font-family: var(--font-sans);
-    font-size: clamp(24px, 3vw, 30px);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-  }
-
-  .ct-items {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .ct-item {
-    padding: 20px 0;
-    border-bottom: 0.5px solid var(--hairline);
-    display: grid;
-    grid-template-columns: 160px 1fr;
-    gap: 24px;
-    align-items: baseline;
-  }
-  .ct-item:last-child { border-bottom: none; }
-
-  .ct-label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-  }
-
-  .ct-value {
-    font-family: var(--font-sans);
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--ink);
-    text-decoration: none;
-    border-bottom: 0.5px solid var(--ink-faint);
-    transition: color 0.15s ease, border-color 0.15s ease;
-    word-break: break-all;
-  }
-  .ct-value:hover {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
-  }
-
-  .ct-note {
-    grid-column: 2;
-    margin-top: 6px;
-    font-family: var(--font-serif);
-    font-size: 14px;
-    line-height: 1.55;
-    color: var(--ink-faint);
-  }
-
-  .ct-office-body {
-    padding-top: 8px;
-  }
-
-  .ct-office-line {
-    font-family: var(--font-serif);
-    font-size: 17px;
-    line-height: 1.6;
-    color: var(--ink);
-  }
-  .ct-office-faint {
-    color: var(--ink-soft);
-    margin-top: 12px;
-  }
-  .ct-office-faint a {
-    color: var(--ink);
-    border-bottom-color: var(--ink-faint);
-  }
-  .ct-office-faint a:hover {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
-  }
-
-  @media (max-width: 768px) {
-    .ct-item {
-      grid-template-columns: 1fr;
-      gap: 6px;
-    }
-    .ct-note { grid-column: 1; }
-  }
+  .page { padding: 28px 0 72px; }
+  .page-h1 { font-family: var(--font-sans); font-size: clamp(30px, 5vw, 44px); font-weight: 800; color: var(--ink); margin: 18px 0 8px; }
+  .lead { font-size: 18px; color: var(--ink-soft); margin-bottom: 36px; }
+  .contact-list { list-style: none; margin: 0; padding: 0; }
+  .contact-list li { padding: 22px 0; border-bottom: 1px solid var(--hairline); }
+  .c-label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px; }
+  .c-value { font-family: var(--font-sans); font-size: 20px; font-weight: 700; color: var(--ink); text-decoration: none; border-bottom: none; }
+  .c-value:hover { color: var(--accent); }
+  .c-note { font-size: 15px; line-height: 1.7; color: var(--ink-soft); margin-top: 6px; }
+  .social-row { display: flex; align-items: center; gap: 16px; margin-top: 32px; font-size: 15px; color: var(--ink-soft); }
+  .social-row a { font-weight: 600; color: var(--accent); text-decoration: none; border-bottom: none; }
 </style>

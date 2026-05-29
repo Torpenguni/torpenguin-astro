@@ -1,0 +1,32 @@
+---
+import type { Post } from '../data/posts';
+import PostCard from './PostCard.astro';
+
+interface Props {
+  posts: Post[];
+  /** Columns at desktop width. */
+  cols?: 2 | 3 | 4;
+}
+const { posts, cols = 3 } = Astro.props;
+---
+
+<div class={`post-grid cols-${cols}`}>
+  {posts.map((p) => <PostCard post={p} />)}
+</div>
+
+<style>
+  .post-grid {
+    display: grid;
+    gap: 36px 28px;
+  }
+  .cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+  @media (max-width: 1024px) {
+    .cols-3, .cols-4 { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .post-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+</style>

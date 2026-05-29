@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import PostGrid from '../../components/PostGrid.astro';
+import { categories } from '../../data/categories';
+import { postsByCategory } from '../../data/posts';
+
+export function getStaticPaths() {
+  return categories.map((c) => ({
+    params: { category: c.slug },
+    props: { category: c },
+  }));
+}
+
+const { category } = Astro.props;
+const posts = postsByCategory(category.slug);
+
+const crumbs = [
+  { name: 'หน้าแรก', href: '/' },
+  { name: category.label, href: `/${category.slug}` },
+];
+---
+
+<BaseLayout
+  title={`${category.label} | TorPenguin`}
+  description={category.description}
+  breadcrumbs={crumbs}
+>
+  <section class="pillar-head">
+    <div class="container">
+      <Breadcrumb items={crumbs} />
+      <h1 class="pillar-title">{category.label}</h1>
+      <p class="pillar-intent">{category.intent}</p>
+      <p class="pillar-desc">{category.description}</p>
+    </div>
+  </section>
+
+  <section class="pillar-body">
+    <div class="container">
+      {posts.length === 0 ? (
+        <p class="pillar-empty">หมวดนี้กำลังจะมีเรื่องเร็วๆนี้ ระหว่างนี้ตามอ่านหมวดอื่นของพวกเราไปก่อนได้</p>
+      ) : (
+        <PostGrid posts={posts} cols={3} />
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .pillar-head { padding: 28px 0 32px; border-bottom: 1px solid var(--hairline); }
+  .pillar-title {
+    font-family: var(--font-sans);
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 18px 0 8px;
+    line-height: 1.1;
+  }
+  .pillar-intent {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .pillar-desc {
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--ink-soft);
+    max-width: 720px;
+  }
+  .pillar-body { padding: 40px 0 64px; }
+  .pillar-empty { font-size: 17px; color: var(--ink-soft); padding: 24px 0; }
+</style>

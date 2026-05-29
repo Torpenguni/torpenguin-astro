@@ -1,0 +1,66 @@
+---
+// Lazy YouTube facade: shows a thumbnail + play button, loads the iframe only
+// on click so it never hurts LCP.
+interface Props {
+  url: string;
+  title?: string;
+}
+const { url, title = 'ดูคลิปบน YouTube' } = Astro.props;
+
+function youTubeId(u: string): string | null {
+  const m = u.match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{11})/);
+  return m ? m[1] : null;
+}
+const id = youTubeId(url);
+const thumb = id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : '';
+---
+
+{id && (
+  <div class="yt-facade" data-yt-id={id}>
+    <button class="yt-facade-btn" type="button" aria-label={title}>
+      <img src={thumb} alt="" loading="lazy" width="1280" height="720" />
+      <span class="yt-play" aria-hidden="true">
+        <svg width="68" height="48" viewBox="0 0 68 48"><path d="M66.5 7.7a8 8 0 0 0-5.6-5.6C56 .8 34 .8 34 .8s-22 0-26.9 1.3A8 8 0 0 0 1.5 7.7 84 84 0 0 0 .2 24a84 84 0 0 0 1.3 16.3 8 8 0 0 0 5.6 5.6C12 47.2 34 47.2 34 47.2s22 0 26.9-1.3a8 8 0 0 0 5.6-5.6A84 84 0 0 0 67.8 24a84 84 0 0 0-1.3-16.3Z" fill="#f00"/><path d="M27 34.5 45.5 24 27 13.5Z" fill="#fff"/></svg>
+      </span>
+    </button>
+  </div>
+)}
+
+<script>
+  document.querySelectorAll('.yt-facade').forEach((el) => {
+    el.querySelector('.yt-facade-btn')?.addEventListener('click', () => {
+      const id = el.getAttribute('data-yt-id');
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1`;
+      iframe.title = 'YouTube';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+      iframe.loading = 'lazy';
+      el.replaceChildren(iframe);
+    });
+  });
+</script>
+
+<style>
+  .yt-facade {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #000;
+    margin: 28px 0;
+  }
+  .yt-facade :global(iframe) { width: 100%; height: 100%; border: 0; display: block; }
+  .yt-facade-btn {
+    width: 100%; height: 100%;
+    padding: 0; border: 0; cursor: pointer; background: none;
+    display: block; position: relative;
+  }
+  .yt-facade-btn img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .yt-play {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.15s ease;
+  }
+  .yt-facade-btn:hover .yt-play { transform: scale(1.06); }
+</style>

@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const crumbs = [
+  { name: 'หน้าแรก', href: '/' },
+  { name: 'ร่วมงานกับเรา', href: '/partner' },
+];
+
+const offerings = [
+  { t: 'Sponsored Content', d: 'เล่าเรื่องแบรนด์ของทุกคนในแบบที่คนอ่านได้ประโยชน์จริง โปร่งใส มีป้ายบอกชัดเจน' },
+  { t: 'วิดีโอร่วมกับช่อง', d: 'ต่อยอดเรื่องบนเว็บไปเป็นคลิปบน YouTube และ Facebook ที่มีฐานคนดูใหญ่' },
+  { t: 'แคมเปญตามโจทย์', d: 'ออกแบบคอนเทนต์ตามเป้าหมายของแบรนด์ ตั้งแต่สร้างการรับรู้ไปจนถึงปิดการขาย' },
+];
+---
+
+<BaseLayout
+  title="ร่วมงานกับเรา | TorPenguin"
+  description="ทำ Sponsored Content และแคมเปญคอนเทนต์ธุรกิจอาหารร่วมกับ TorPenguin เข้าถึงเจ้าของร้านและคนในวงการอาหารตัวจริง"
+  breadcrumbs={crumbs}
+>
+  <section class="page">
+    <div class="container-narrow">
+      <Breadcrumb items={crumbs} />
+      <h1 class="page-h1">อยากเล่าเรื่องแบรนด์ของทุกคนให้ถึงคนทำร้านจริง</h1>
+      <p class="lead">เราเข้าถึงเจ้าของร้านอาหารและคนในวงการตัวจริงทั้งบนเว็บ YouTube และ Facebook ถ้าแบรนด์ของทุกคนอยากสื่อสารกับกลุ่มนี้ มาคุยกัน</p>
+
+      <div class="grid">
+        {offerings.map((o) => (
+          <div class="card">
+            <h3>{o.t}</h3>
+            <p>{o.d}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="cta">
+        <h2>คุยกับทีมของเรา</h2>
+        <p>ส่งรายละเอียดแบรนด์และสิ่งที่อยากทำมาที่ <a href="mailto:partner@torpenguin.com">partner@torpenguin.com</a> เดี๋ยวเราติดต่อกลับไป</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page { padding: 28px 0 72px; }
+  .page-h1 {
+    font-family: var(--font-sans);
+    font-size: clamp(28px, 4.5vw, 42px);
+    font-weight: 800;
+    line-height: 1.35;
+    color: var(--ink);
+    margin: 18px 0 16px;
+  }
+  .lead { font-size: 19px; line-height: 1.8; color: var(--ink-soft); max-width: 700px; margin-bottom: 40px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 48px; }
+  .card { padding: 24px; background: var(--paper-soft); border-radius: 12px; }
+  .card h3 { font-family: var(--font-sans); font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+  .card p { font-size: 15px; line-height: 1.7; color: var(--ink-soft); }
+  .cta { padding: 32px; background: var(--accent-soft); border-radius: 14px; }
+  .cta h2 { font-family: var(--font-sans); font-size: 24px; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+  .cta p { font-size: 17px; line-height: 1.8; color: var(--ink-soft); }
+  .cta a { color: var(--accent-deep); font-weight: 600; }
+  @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+</style>

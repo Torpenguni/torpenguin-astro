@@ -1,0 +1,105 @@
+---
+import type { Post } from '../data/posts';
+import { categoryBySlug } from '../data/categories';
+
+interface Props {
+  post: Post;
+  /** Larger lead card variant. */
+  feature?: boolean;
+}
+const { post, feature = false } = Astro.props;
+const cat = categoryBySlug(post.category);
+const href = `/${post.category}/${post.slug}`;
+const dateLabel = new Date(post.publishedAt).toLocaleDateString('th-TH', {
+  day: 'numeric', month: 'short', year: 'numeric',
+});
+---
+
+<article class={`card ${feature ? 'card-feature' : ''}`}>
+  <a href={href} class="card-cover" aria-hidden="true" tabindex="-1">
+    <span class="card-cover-fill"></span>
+    {post.isSponsored && <span class="card-sponsor">Sponsored</span>}
+  </a>
+  <div class="card-body">
+    <a href={`/${post.category}`} class="card-cat">{cat?.label ?? post.category}</a>
+    <h3 class="card-title"><a href={href}>{post.title}</a></h3>
+    {feature && <p class="card-excerpt">{post.excerpt}</p>}
+    <div class="card-meta">
+      <span>{dateLabel}</span>
+      <span class="dot">·</span>
+      <span>อ่าน {post.readingTime} นาที</span>
+    </div>
+  </div>
+</article>
+
+<style>
+  .card { display: flex; flex-direction: column; }
+  .card-cover {
+    display: block;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 14px;
+    border-bottom: none;
+  }
+  .card-cover-fill {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--paper-mute) 0%, var(--accent-soft) 100%);
+  }
+  .card-sponsor {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--ink);
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+  .card-cat {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: none;
+  }
+  .card-cat:hover { color: var(--accent-deep); }
+  .card-title {
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+    margin: 8px 0;
+  }
+  .card-title a { color: inherit; text-decoration: none; border-bottom: none; transition: color 0.15s ease; }
+  .card-title a:hover { color: var(--accent); }
+  .card-excerpt {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .card-meta {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--ink-faint);
+    display: flex;
+    gap: 8px;
+    margin-top: auto;
+  }
+  .card-meta .dot { color: var(--ink-mute); }
+
+  .card-feature .card-cover { aspect-ratio: 16 / 9; }
+  .card-feature .card-title { font-size: clamp(24px, 3vw, 34px); line-height: 1.3; }
+</style>

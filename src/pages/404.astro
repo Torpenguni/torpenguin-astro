@@ -1,134 +1,43 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { categories } from '../data/categories';
 ---
 
 <BaseLayout
-  title="404 — Torpenguin"
-  description="The page you're looking for doesn't exist."
+  title="ไม่พบหน้านี้ | TorPenguin"
+  description="ไม่พบหน้าที่ทุกคนกำลังหา"
+  noindex={true}
 >
   <section class="nf">
     <div class="container-narrow">
-      <div class="section-tag">▍ Error 404</div>
-      <h1 class="nf-h1">
-        This page doesn't exist <em>yet</em>
-      </h1>
-      <p class="nf-dek">
-        <em>
-          The page you're looking for isn't here.
-          Maybe it's an essay I haven't written.
-        </em>
-      </p>
+      <div class="nf-code">404</div>
+      <h1 class="nf-h1">ไม่เจอหน้านี้</h1>
+      <p class="nf-dek">หน้าที่ทุกคนกำลังหาอาจถูกย้ายหรือไม่มีอยู่แล้ว ลองกลับไปหน้าแรกหรือเลือกหมวดที่สนใจ</p>
 
-      <div class="nf-links">
-        <a href="/" class="nf-primary">Return to homepage →</a>
-        <div class="nf-secondary-row">
-          <a href="/essays" class="nf-secondary">Essays</a>
-          <span class="sep">·</span>
-          <a href="/topics" class="nf-secondary">Topics</a>
-          <span class="sep">·</span>
-          <a href="/about" class="nf-secondary">About</a>
-          <span class="sep">·</span>
-          <a href="/contact" class="nf-secondary">Contact</a>
-        </div>
+      <a href="/" class="nf-home">กลับหน้าแรก →</a>
+
+      <div class="nf-cats">
+        {categories.map((c) => (
+          <a href={`/${c.slug}`}>{c.label}</a>
+        ))}
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .section-tag {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 20px;
+  .nf { padding: 96px 0 120px; text-align: center; }
+  .nf-code { font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 16px; }
+  .nf-h1 { font-family: var(--font-sans); font-size: clamp(32px, 5vw, 48px); font-weight: 800; color: var(--ink); margin-bottom: 16px; }
+  .nf-dek { font-size: 18px; line-height: 1.7; color: var(--ink-soft); max-width: 520px; margin: 0 auto 32px; }
+  .nf-home {
+    display: inline-block;
+    font-family: var(--font-sans); font-weight: 600; font-size: 15px;
+    padding: 13px 24px; background: var(--accent); color: #fff;
+    border-radius: 8px; text-decoration: none; border-bottom: none;
   }
-
-  .nf {
-    padding: 120px 0 144px;
-    text-align: center;
-  }
-  .nf .section-tag {
-    text-align: center;
-  }
-
-  .nf-h1 {
-    font-family: var(--font-sans);
-    font-size: clamp(30px, 4vw, 48px);
-    font-weight: 500;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    color: var(--ink);
-    margin: 0 auto 24px;
-    max-width: 680px;
-  }
-  .nf-h1 em {
-    font-family: var(--font-serif);
-    font-style: italic;
-    color: var(--accent);
-    font-weight: 500;
-  }
-
-  .nf-dek {
-    font-family: var(--font-serif);
-    font-size: clamp(18px, 2vw, 22px);
-    line-height: 1.5;
-    color: var(--ink-soft);
-    margin: 0 auto 40px;
-    max-width: 520px;
-  }
-  .nf-dek em { font-style: italic; }
-
-  .nf-links {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-  }
-
-  .nf-primary {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 14px 24px;
-    background: var(--ink);
-    color: var(--paper);
-    text-decoration: none;
-    border-bottom: none;
-    transition: background 0.15s ease;
-  }
-  .nf-primary:hover {
-    background: var(--accent);
-    color: var(--paper);
-  }
-
-  .nf-secondary-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .nf-secondary {
-    color: var(--ink-soft);
-    text-decoration: none;
-    border-bottom: none;
-    transition: color 0.15s ease;
-  }
-  .nf-secondary:hover {
-    color: var(--accent);
-  }
-  .sep {
-    color: var(--ink-mute);
-  }
-
-  @media (max-width: 900px) {
-    .nf { padding: 72px 0 96px; }
-  }
+  .nf-home:hover { background: var(--accent-deep); }
+  .nf-cats { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: center; margin-top: 32px; }
+  .nf-cats a { font-size: 14px; color: var(--ink-soft); text-decoration: none; border-bottom: none; }
+  .nf-cats a:hover { color: var(--accent); }
 </style>
