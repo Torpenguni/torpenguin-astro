@@ -1,0 +1,158 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const sections = [
+  {
+    head: 'What we collect',
+    body: 'We collect only the data necessary to deliver our publication: email addresses for newsletter subscribers, anonymous analytics on which pages and articles are read, and any information you voluntarily provide when contacting us. We do not collect financial information; we do not run third-party advertising trackers.',
+  },
+  {
+    head: 'How we use it',
+    body: 'Subscriber email addresses are used solely to deliver The Dispatch newsletter and operational communications about your subscription. Analytics are used in aggregate to understand which coverage areas resonate. Contact form data is used to respond to your inquiry.',
+  },
+  {
+    head: 'What we never do',
+    body: 'We do not sell, rent, or share subscriber lists with third parties. We do not embed third-party advertising or behavioral retargeting pixels. We do not match identity across devices for advertising purposes.',
+  },
+  {
+    head: 'Cookies and storage',
+    body: 'We use a small number of first-party cookies for site functionality and a privacy-respecting analytics provider that does not set persistent identifiers. You can clear these at any time through your browser.',
+  },
+  {
+    head: 'Your rights',
+    body: 'You can unsubscribe from any communication with a single click in the email footer. You can request a copy of, or deletion of, any personal data we hold by emailing privacy@spoonasia.com. We respond within 30 days.',
+  },
+  {
+    head: 'Updates to this policy',
+    body: 'We will note material changes to this policy on this page with the effective date. Subscribers will receive notice via newsletter when changes affect data handling.',
+  },
+];
+---
+
+<BaseLayout
+  title="Privacy — SpoonAsia"
+  description="How SpoonAsia handles subscriber and reader data. Short version: minimally, transparently, and never for advertising."
+>
+  <section class="legal-hero">
+    <div class="container-narrow">
+      <div class="legal-eyebrow">Privacy Policy</div>
+      <h1 class="legal-title">Privacy.</h1>
+      <p class="legal-dek">
+        Short version: we collect the minimum necessary to deliver the publication.
+        We do not sell subscriber data. We do not run advertising trackers. The long version follows.
+      </p>
+      <div class="legal-meta">Effective: 01 May 2026</div>
+    </div>
+  </section>
+
+  <section class="legal-body">
+    <div class="container-narrow">
+      {
+        sections.map((s, i) => (
+          <article class="legal-section">
+            <div class="legal-num">{String(i + 1).padStart(2, '0')}</div>
+            <h2 class="legal-h">{s.head}</h2>
+            <p class="legal-p">{s.body}</p>
+          </article>
+        ))
+      }
+
+      <div class="legal-contact">
+        Questions about this policy?{' '}
+        <a href="mailto:privacy@spoonasia.com">privacy@spoonasia.com</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal-hero {
+    padding: 40px 0 28px;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+
+  .legal-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .legal-title {
+    font-family: var(--font-sans);
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+
+  .legal-dek {
+    font-family: var(--font-serif);
+    font-size: clamp(17px, 1.8vw, 20px);
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 620px;
+    margin-bottom: 16px;
+  }
+
+  .legal-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .legal-body {
+    padding: 56px 0 80px;
+  }
+
+  .legal-section {
+    padding: 32px 0;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .legal-section:first-child { padding-top: 0; }
+
+  .legal-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  .legal-h {
+    font-family: var(--font-sans);
+    font-size: clamp(22px, 2.4vw, 28px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+
+  .legal-p {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink);
+  }
+
+  .legal-contact {
+    padding-top: 32px;
+    font-family: var(--font-serif);
+    font-size: 16px;
+    color: var(--ink-soft);
+  }
+  .legal-contact a {
+    color: var(--ink);
+    border-bottom-color: var(--ink-faint);
+  }
+  .legal-contact a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+</style>

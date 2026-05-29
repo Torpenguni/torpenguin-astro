@@ -1,0 +1,159 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const zones = [
+  { tag: 'Premium CBD', name: 'Sukhumvit — Asoke / Thonglor / Ekkamai', note: 'Rent runs $78–95/sqm. Premium-mall saturation. Foreign-chain flagship belt. Margin compression risk: high.' },
+  { tag: 'Creator Corridor', name: 'Ari', note: 'BTS Ari corridor. Independent-favored, low-rise zoning, creator-class footprint. Rent $42/sqm — rising fast.' },
+  { tag: 'Frontier', name: 'Phra Khanong', note: 'Emerging F&B zone. Rents up 18% YoY. BTS upgrade Q4 2024. Window-of-entry open through 2026.' },
+  { tag: 'Heritage', name: 'Charoenkrung / Talad Noi', note: 'Heritage-led, slow burn. Premium-independent only. Mall-tier formats don\'t survive here.' },
+  { tag: 'Local-tier', name: 'Ratchada / Huai Khwang', note: 'Underwritten by night-market footfall. Resilient unit economics, lower ceiling.' },
+  { tag: 'Mall-tier', name: 'EmQuartier / ICONSIAM / Central Embassy', note: 'Premium mall F&B vacancy at 7-year high. Effective rent down 15–22% vs 2024. Leverage window open.' },
+];
+---
+
+<BaseLayout
+  title="Locations — SpoonAsia"
+  description="Bangkok F&B neighborhood intelligence. Rent curves, foot traffic, intent traffic, and the structural reads on where operators win or lose."
+>
+  <section class="ph-head">
+    <div class="container-narrow">
+      <div class="section-tag">▍ Locations</div>
+      <h1 class="ph-h1">Bangkok F&B by neighborhood.</h1>
+      <p class="ph-dek">
+        <em>
+          Rent curves, foot traffic versus intent traffic, operator migration
+          patterns. The structural read on every Bangkok zone that matters
+          for F&B siting.
+        </em>
+      </p>
+    </div>
+  </section>
+
+  <section class="ph-body">
+    <div class="container-narrow">
+      <div class="ph-notice">
+        <div class="ph-label">In Production</div>
+        <p class="ph-text">
+          Locations launches Q3 2026 with monthly neighborhood reports.
+          Subscribe to <a href="/newsletter">The Dispatch</a> for the first six zones.
+        </p>
+      </div>
+
+      <div class="loc-list">
+        {zones.map((z) => (
+          <article class="loc-item">
+            <div class="loc-tag">{z.tag}</div>
+            <h3 class="loc-name">{z.name}</h3>
+            <p class="loc-note">{z.note}</p>
+          </article>
+        ))}
+      </div>
+
+      <p class="ph-redirect">
+        Meanwhile, browse the <a href="/analysis/neighborhood-alpha">Neighborhood Alpha</a> category in Analysis →
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .section-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+  .ph-head {
+    padding: 40px 0 24px;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .ph-h1 {
+    font-family: var(--font-sans);
+    font-size: clamp(26px, 3.5vw, 40px);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .ph-dek {
+    font-family: var(--font-serif);
+    font-size: clamp(17px, 1.8vw, 20px);
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 640px;
+  }
+  .ph-dek em { font-style: italic; }
+  .ph-body { padding: 48px 0 80px; }
+
+  .ph-notice {
+    background: var(--paper-warm);
+    border-left: 2px solid var(--accent);
+    padding: 22px 26px;
+    margin-bottom: 40px;
+  }
+  .ph-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .ph-text {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .ph-text a, .ph-redirect a {
+    color: var(--ink);
+    border-bottom: 0.5px solid var(--ink-faint);
+    text-decoration: none;
+  }
+  .ph-text a:hover, .ph-redirect a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  .loc-list { display: grid; gap: 0; }
+  .loc-item {
+    padding: 24px 0;
+    border-top: 0.5px solid var(--hairline);
+  }
+  .loc-item:last-child {
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .loc-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .loc-name {
+    font-family: var(--font-serif);
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .loc-note {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  .ph-redirect {
+    margin-top: 36px;
+    font-family: var(--font-serif);
+    font-size: 16px;
+    color: var(--ink-soft);
+  }
+</style>

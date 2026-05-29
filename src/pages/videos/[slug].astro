@@ -1,0 +1,592 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+type VideoEntry = CollectionEntry<'videos'>;
+type ArticleEntry = CollectionEntry<'articles'>;
+
+export async function getStaticPaths() {
+  const all = await getCollection('videos', ({ data }) => !data.draft);
+  const allArticles = await getCollection('articles', ({ data }) => !data.draft);
+  return all.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry, allVideos: all, allArticles },
+  }));
+}
+
+interface Props {
+  entry: VideoEntry;
+  allVideos: VideoEntry[];
+  allArticles: ArticleEntry[];
+}
+
+const { entry, allVideos, allArticles } = Astro.props as Props;
+
+const video = {
+  slug: entry.slug,
+  episode: entry.data.episode,
+  title: entry.data.title,
+  description: entry.data.description,
+  duration: entry.data.duration,
+  views: entry.data.views,
+  date: entry.data.date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+  youtubeId: entry.data.youtubeId,
+};
+
+const isFlagship = video.slug === 'bangkok-rent-prices-brand-out';
+
+// Flagship-only data
+const learnBullets = [
+  'How rent burden compounds with Thai dwell-time patterns',
+  'Why $95/sqm Sukhumvit costs you 22 margin points',
+  'The three questions to ask before any Bangkok lease',
+  'Which neighborhoods actually support coffee unit economics',
+];
+
+const numbersTable = [
+  { label: 'Sukhumvit (BTS Asok) rent', value: '$95/sqm', burden: '34%', impact: '−22 pts', danger: true },
+  { label: 'Thonglor rent', value: '$78/sqm', burden: '28%', impact: '−18 pts', danger: true },
+  { label: 'Silom CBD rent', value: '$110/sqm', burden: '41%', impact: '−27 pts', danger: true },
+  { label: 'Ari (residential) rent', value: '$42/sqm', burden: '15%', impact: '−6 pts', danger: false },
+  { label: 'Avg Thai dwell time', value: '90 min', burden: '—', impact: '1.2× turns', danger: false },
+  { label: 'Revenue per seat vs deck', value: '−65%', burden: '—', impact: '—', danger: true },
+];
+
+const transcript = [
+  { ts: '00:00', text: "Welcome back. Today we're going to talk about why three foreign coffee chains entered Thailand in 2023 and why two of them are closing outlets in 2025. The difference isn't the coffee — it's a single line in their pitch deck." },
+  { ts: '00:42', text: "Let's start with the math nobody wants to look at: rent burden as a percentage of revenue. In Singapore, healthy F&B operates at 12–18% rent burden. In Bangkok premium retail, the same square meter pulls you into 28–40%. Same brand, different math." },
+  { ts: '01:35', text: "Walk down Sukhumvit at 9 AM and you see foot traffic — thousands of people moving past the storefront. The mistake is assuming foot traffic equals customer traffic. In Bangkok, it doesn't. Productivity-mode workers don't convert at the same rate as in Singapore or Tokyo." },
+  { ts: '02:48', text: "Now walk down Ari at 2 PM. Lower foot traffic, much higher intent. The people walking are walking to the cafés. This is the part the pitch deck can't show you because it doesn't fit on a slide." },
+  { ts: '04:12', text: "Let's run the model on three real Bangkok lease comps from CBRE's Q1 2026 report. Sukhumvit Asok: $95 USD per square meter. Thonglor: $78. Silom CBD: $110. Ari: $42. Now overlay realistic Thai revenue per seat at 1.2× table turn, not 4×." },
+  { ts: '06:30', text: "The chain that opened in Ari? They observed for nine months before signing. The chains that opened in Sukhumvit and Silom signed within 90 days of board approval. Time in market is the cheapest due diligence you can buy and most foreign operators skip it entirely." },
+  { ts: '08:55', text: "Three questions to ask before any Bangkok lease. One: what's your dwell-time-adjusted revenue per seat? Two: what's your rent burden at 1.2× table turn? Three: are you optimizing for foot traffic or intent traffic?" },
+  { ts: '11:20', text: "If you're evaluating Thailand and the answer to any of these makes you uncomfortable, don't sign. The successful entrants we've tracked all said no to multiple Sukhumvit leases before saying yes to a B-tier location that actually worked." },
+  { ts: '13:00', text: "That's the episode. If you found this useful, the full Analysis report goes deeper into the rent-burden math and the operator interviews. Link in description. Subscribe to The Dispatch for the supporting analysis. See you next Tuesday." },
+];
+
+const entityTags = [
+  'Sukhumvit',
+  'Thonglor',
+  'Ari',
+  'CBRE Thailand',
+  'Unit economics',
+  'Rent burden',
+];
+
+const otherEpisodes = allVideos
+  .filter((v) => v.slug !== video.slug)
+  .map((v) => ({
+    slug: v.slug,
+    episode: v.data.episode,
+    title: v.data.title,
+  }));
+
+const relatedReads = allArticles
+  .filter((a) => ['unit-economics', 'neighborhood-alpha'].includes(a.data.category))
+  .slice(0, 2)
+  .map((a) => ({
+    slug: a.slug,
+    title: a.data.title,
+    tag: a.data.tag,
+  }));
+---
+
+<BaseLayout
+  title={`EP. ${video.episode} — ${video.title} — SpoonAsia Watch`}
+  description={video.description}
+>
+  {isFlagship ? (
+    <>
+      <!-- HEADER -->
+      <section class="ep-head">
+        <div class="container-narrow">
+          <div class="section-tag">▍ EP. {video.episode} · Watch</div>
+          <h1 class="ep-h1">{video.title}</h1>
+          <div class="ep-meta">
+            <span>{video.date}</span>
+            <span class="sep">·</span>
+            <span>{video.views} views</span>
+            <span class="sep">·</span>
+            <span>{video.duration}</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIDEO EMBED -->
+      <section class="ep-embed-wrap">
+        <div class="container">
+          <div class="ep-embed">
+            <iframe
+              src={`https://www.youtube.com/embed/${video.youtubeId}`}
+              title={video.title}
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHAT YOU'LL LEARN -->
+      <section class="ep-learn-wrap">
+        <div class="container-narrow">
+          <aside class="learn">
+            <div class="learn-label">What you'll learn</div>
+            <ul class="learn-list">
+              {learnBullets.map((b) => (
+                <li class="learn-item">
+                  <span class="learn-arrow">→</span>
+                  <span class="learn-text">{b}</span>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <!-- NUMBERS COVERED -->
+      <section class="ep-numbers">
+        <div class="container-narrow">
+          <div class="section-tag">▍ Numbers covered</div>
+          <div class="table-wrap">
+            <div class="table-head-bar">
+              <span class="tab-num">Tab. 01 — Key data from EP. {video.episode}</span>
+              <span class="tab-src">Source: CBRE Thailand · Operator interviews</span>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th class="cell-th">Metric</th>
+                  <th class="cell-th cell-num">Value</th>
+                  <th class="cell-th cell-num">Rent burden</th>
+                  <th class="cell-th cell-num">Margin impact</th>
+                </tr>
+              </thead>
+              <tbody>
+                {numbersTable.map((r) => (
+                  <tr>
+                    <td class="cell-td">{r.label}</td>
+                    <td class="cell-td cell-num">{r.value}</td>
+                    <td class="cell-td cell-num">{r.burden}</td>
+                    <td class={r.danger ? 'cell-td cell-num cell-danger' : 'cell-td cell-num'}>
+                      {r.impact}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRANSCRIPT -->
+      <section class="ep-transcript">
+        <div class="container-narrow">
+          <details class="transcript">
+            <summary class="transcript-summary">Read full transcript</summary>
+            <div class="transcript-body">
+              {transcript.map((t) => (
+                <div class="ts-row">
+                  <div class="ts-time">[{t.ts}]</div>
+                  <p class="ts-text">{t.text}</p>
+                </div>
+              ))}
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- ENTITY TAGS -->
+      <section class="ep-entities">
+        <div class="container-narrow">
+          <div class="section-tag">▍ Discussed in this episode</div>
+          <div class="pill-row">
+            {entityTags.map((t) => (
+              <span class="pill">{t}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- RELATED -->
+      <section class="ep-related">
+        <div class="container-narrow">
+          <div class="section-tag">▍ Related reading</div>
+          <div class="rel-grid">
+            {relatedReads.map((a) => (
+              <article class="rel-card">
+                <div class="rel-tag">{a.tag}</div>
+                <h3 class="rel-h">
+                  <a href={`/analysis/${a.slug}`}>{a.title}</a>
+                </h3>
+              </article>
+            ))}
+            {otherEpisodes.slice(0, 1).map((v) => (
+              <article class="rel-card">
+                <div class="rel-tag">EP. {v.episode} · Watch</div>
+                <h3 class="rel-h">
+                  <a href={`/videos/${v.slug}`}>{v.title}</a>
+                </h3>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  ) : (
+    <!-- PLACEHOLDER FOR OTHER EPISODES -->
+    <section class="ep-placeholder">
+      <div class="container-narrow">
+        <div class="section-tag">▍ EP. {video.episode} · Watch</div>
+        <h1 class="ep-h1">{video.title}</h1>
+        <div class="ep-meta">
+          <span>{video.date}</span>
+          <span class="sep">·</span>
+          <span>{video.views} views</span>
+          <span class="sep">·</span>
+          <span>{video.duration}</span>
+        </div>
+
+        <div class="ep-embed-placeholder" aria-hidden="true">
+          <div class="play-btn">▶</div>
+        </div>
+
+        <div class="ph-notice">
+          <div class="ph-label">In Production</div>
+          <p class="ph-text">
+            Full episode page in progress. Watch on <a href="https://youtube.com/@spoonasia" target="_blank" rel="noopener">YouTube</a>,
+            subscribe to <a href="/newsletter">The Dispatch</a>, or return to <a href="/videos">all episodes</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .section-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+
+  /* ========== HEADER ========== */
+  .ep-head {
+    padding: 40px 0 24px;
+  }
+  .ep-h1 {
+    font-family: var(--font-sans);
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 22px;
+    max-width: 880px;
+  }
+  .ep-meta {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .ep-meta .sep { color: var(--ink-mute); }
+
+  /* ========== EMBED ========== */
+  .ep-embed-wrap {
+    padding: 16px 0 36px;
+  }
+  .ep-embed {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: var(--ink);
+  }
+  .ep-embed iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  /* ========== LEARN BOX ========== */
+  .ep-learn-wrap {
+    padding: 16px 0 32px;
+  }
+  .learn {
+    background: var(--paper-warm);
+    border-left: 2px solid var(--accent);
+    padding: 22px 26px;
+  }
+  .learn-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .learn-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .learn-item {
+    display: flex;
+    gap: 10px;
+    padding: 6px 0;
+  }
+  .learn-arrow {
+    flex-shrink: 0;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-weight: 500;
+  }
+  .learn-text {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+
+  /* ========== DATA TABLE ========== */
+  .ep-numbers {
+    padding: 32px 0;
+  }
+  .table-wrap {
+    margin-top: 4px;
+    border-top: 0.5px solid var(--ink);
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .table-head-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .tab-num { color: var(--ink); }
+  .tab-src { color: var(--ink-soft); }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .cell-th {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 500;
+    text-align: left;
+    padding: 14px 12px 14px 0;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .cell-num {
+    text-align: right;
+    padding-right: 0;
+  }
+  .cell-td {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    color: var(--ink);
+    padding: 14px 12px 14px 0;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .cell-td.cell-num {
+    font-family: var(--font-mono);
+    font-size: 13px;
+  }
+  .cell-danger { color: var(--accent) !important; }
+  tbody tr:last-child .cell-td { border-bottom: none; }
+
+  /* ========== TRANSCRIPT ========== */
+  .ep-transcript {
+    padding: 24px 0;
+  }
+  .transcript {
+    border-top: 0.5px solid var(--hairline);
+    border-bottom: 0.5px solid var(--hairline);
+    padding: 0;
+  }
+  .transcript-summary {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink);
+    padding: 18px 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .transcript-summary::-webkit-details-marker { display: none; }
+  .transcript-summary::after {
+    content: '+';
+    color: var(--accent);
+    font-size: 16px;
+  }
+  .transcript[open] .transcript-summary::after { content: '−'; }
+  .transcript-summary:hover { color: var(--accent); }
+
+  .transcript-body {
+    padding: 0 0 24px;
+  }
+  .ts-row {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 16px;
+    padding: 10px 0;
+    align-items: baseline;
+  }
+  .ts-time {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+  }
+  .ts-text {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink);
+  }
+
+  /* ========== ENTITY PILLS ========== */
+  .ep-entities {
+    padding: 32px 0;
+  }
+  .pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .pill {
+    display: inline-block;
+    padding: 6px 12px;
+    border: 0.5px solid var(--hairline-strong);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  /* ========== RELATED ========== */
+  .ep-related {
+    padding: 32px 0 64px;
+  }
+  .rel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .rel-card {
+    border-top: 0.5px solid var(--hairline);
+    padding-top: 16px;
+  }
+  .rel-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .rel-h {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--ink);
+    margin: 0;
+  }
+  .rel-h a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: none;
+    transition: color 0.15s ease;
+  }
+  .rel-h a:hover { color: var(--accent); }
+
+  /* ========== PLACEHOLDER ========== */
+  .ep-placeholder {
+    padding: 64px 0 96px;
+  }
+  .ep-embed-placeholder {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, var(--ink) 0%, #2A2825 100%);
+    margin: 32px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ep-embed-placeholder .play-btn {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--paper);
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    padding-left: 5px;
+  }
+  .ph-notice {
+    margin-top: 24px;
+    background: var(--paper-warm);
+    border-left: 2px solid var(--accent);
+    padding: 22px 26px;
+  }
+  .ph-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .ph-text {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .ph-text a {
+    color: var(--ink);
+    border-bottom: 0.5px solid var(--ink-faint);
+    text-decoration: none;
+  }
+  .ph-text a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 900px) {
+    .ep-head { padding: 48px 0 24px; }
+    .rel-grid { grid-template-columns: 1fr; }
+    .data-table { font-size: 13px; }
+    .cell-th, .cell-td { padding: 10px 8px 10px 0; }
+    .ts-row { grid-template-columns: 52px 1fr; gap: 10px; }
+    .ts-text { font-size: 14px; }
+  }
+</style>

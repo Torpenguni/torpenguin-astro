@@ -1,0 +1,1258 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { categories, type Category } from '../../data/content';
+
+type ArticleEntry = CollectionEntry<'articles'>;
+
+// Flatten a collection entry to the shape the template expects
+function flatten(e: ArticleEntry) {
+  return {
+    slug: e.slug,
+    title: e.data.title,
+    dek: e.data.dek,
+    category: e.data.category,
+    tag: e.data.tag,
+    author: e.data.author,
+    date: e.data.date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+    readTime: e.data.readTime,
+  };
+}
+
+export async function getStaticPaths() {
+  const all = await getCollection('articles', ({ data }) => !data.draft);
+  const categoryPaths = categories.map((c) => ({
+    params: { slug: c.slug },
+    props: { kind: 'category' as const, category: c, entry: null, allEntries: all },
+  }));
+  const articlePaths = all.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { kind: 'article' as const, entry, category: null, allEntries: all },
+  }));
+  return [...categoryPaths, ...articlePaths];
+}
+
+type Props =
+  | { kind: 'article'; entry: ArticleEntry; category: null; allEntries: ArticleEntry[] }
+  | { kind: 'category'; category: Category; entry: null; allEntries: ArticleEntry[] };
+
+const props = Astro.props as Props;
+const isCategory = props.kind === 'category';
+const allEntries = props.allEntries;
+
+const entry = props.kind === 'article' ? props.entry : null;
+const article = entry ? flatten(entry) : null;
+const category = props.kind === 'category' ? props.category : null;
+
+const categoryArticles = isCategory
+  ? allEntries.filter((e) => e.data.category === category!.slug).map(flatten)
+  : [];
+
+const isFlagship =
+  !isCategory && article!.slug === 'why-foreign-coffee-chains-fail-thailand';
+
+const related = !isCategory
+  ? allEntries
+      .filter((e) => e.slug !== article!.slug && e.data.category !== article!.category)
+      .slice(0, 2)
+      .map(flatten)
+  : [];
+
+// For non-flagship articles, render the markdown body
+const { Content } = entry && !isFlagship ? await entry.render() : { Content: null };
+
+// Flagship-only data
+const tldrBullets = [
+  "Most foreign chains misread Thai consumer behavior as Western convenience-seeking when it's actually social ritual.",
+  'Premium-location rent compresses margin by 18–25% versus the original market.',
+  'Successful entrants observed for 6–12 months. Failed ones opened within 90 days.',
+  "The decision frame isn't 'Does our brand travel?' It's 'Does our unit economics survive 35% rent burden?'",
+];
+
+const numberCallouts = [
+  { value: '90 min', label: 'Avg dwell time vs 35 min benchmark' },
+  { value: '1.2×', label: 'Table turns vs 4× projection' },
+  { value: '−65%', label: 'Revenue per seat vs pitch deck' },
+];
+
+const rentTable = [
+  { loc: 'Sukhumvit (BTS Asok)', rent: '$95', burden: '34%', impact: '−22 pts', danger: true },
+  { loc: 'Thonglor', rent: '$78', burden: '28%', impact: '−18 pts', danger: true },
+  { loc: 'Silom CBD', rent: '$110', burden: '41%', impact: '−27 pts', danger: true },
+  { loc: 'Ari (residential)', rent: '$42', burden: '15%', impact: '−6 pts', danger: false },
+];
+
+const numberedPrompts = [
+  {
+    q: "What's your dwell-time-adjusted revenue per seat?",
+    a: "Not your menu price. Not your projected covers. The actual revenue your seat will generate per hour given Thai behavior.",
+  },
+  {
+    q: "What's your rent burden at 1.2× table turn?",
+    a: "Run the model at half the throughput you'd expect in Singapore or Tokyo. If margins don't survive that, your concept is fragile.",
+  },
+  {
+    q: 'Are you optimizing for foot traffic or intent traffic?',
+    a: 'Sukhumvit has the foot traffic. Ari has the intent. These are very different inventory.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Are there foreign coffee chains succeeding in Thailand?',
+    a: 'Yes. The patterns share three traits: residential or secondary CBD locations, multi-revenue-stream menus (food + beverage, not coffee-only), and entry through Thai operating partners rather than pure franchise.',
+  },
+  {
+    q: "What's a healthy rent burden for café concepts in Bangkok?",
+    a: 'Below 20% of revenue for sustainable margins. Most foreign-entered locations operate at 28–40%, which is why margin compression happens before any operational issues appear.',
+  },
+  {
+    q: 'How long should foreign operators spend in-market before opening?',
+    a: 'The expanding chain spent nine months operating a single test location before scaling. The closing chains opened multi-outlet within 90 days of signing leases.',
+  },
+];
+
+const sources = [
+  'CBRE Thailand — Q1 2026 Bangkok Retail Rental Report (March 2026)',
+  'Krungsri Research — Thailand Coffee Industry Outlook 2026 (February 2026)',
+  'Author interviews with 3 foreign coffee chain operators in Thailand (April–May 2026)',
+  'Walking observation across 12 Bangkok neighborhoods (January–May 2026)',
+];
+---
+
+<BaseLayout
+  title={isCategory
+    ? `${category!.label} — SpoonAsia Analysis`
+    : `${article!.title} — SpoonAsia Analysis`}
+  description={isCategory ? category!.description : article!.dek}
+>
+  {isCategory ? (
+    <>
+      <section class="cat-hero">
+        <div class="container-narrow">
+          <div class="section-tag">▍ Analysis</div>
+          <h1 class="cat-title">{category!.label}</h1>
+          <p class="cat-dek">{category!.description}</p>
+        </div>
+      </section>
+
+      <section class="cat-list">
+        <div class="container">
+          <div class="cat-list-head">
+            <h2 class="cat-list-title">
+              {categoryArticles.length}{' '}
+              {categoryArticles.length === 1 ? 'Report' : 'Reports'}
+            </h2>
+            <a href="/analysis" class="cat-list-more">All Analysis →</a>
+          </div>
+
+          {categoryArticles.length === 0 ? (
+            <p class="cat-empty">
+              No reports yet in this category. <a href="/newsletter">Subscribe to The Dispatch</a> for updates.
+            </p>
+          ) : (
+            <div class="cat-grid">
+              {categoryArticles.map((a) => (
+                <article class="cat-card">
+                  <div class="cat-card-image" aria-hidden="true"></div>
+                  <a href={`/analysis/${a.category}`} class="cat-card-tag">
+                    {a.tag}
+                  </a>
+                  <h3 class="cat-card-headline">
+                    <a href={`/analysis/${a.slug}`}>{a.title}</a>
+                  </h3>
+                  <p class="cat-card-dek">{a.dek}</p>
+                  <div class="cat-card-meta">
+                    {a.date} · {a.readTime}
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    </>
+  ) : isFlagship ? (
+    <>
+      <!-- ARTICLE HEADER -->
+      <section class="art-head">
+        <div class="container-narrow">
+          <div class="section-tag">▍ F&B Investment Intelligence</div>
+          <h1 class="art-h1">
+            Why foreign coffee chains keep failing in <em>Thailand</em>
+          </h1>
+          <p class="art-dek">
+            Three international chains entered in 2023. Two are closing outlets in 2025.
+            The difference wasn't the coffee.
+          </p>
+          <div class="art-meta">
+            <span>By Torpenguin</span>
+            <span class="sep">·</span>
+            <span>13 May 2026</span>
+            <span class="sep">·</span>
+            <span>12 min read</span>
+            <span class="sep">·</span>
+            <span>Updated 2 days ago</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- HERO IMAGE -->
+      <figure class="art-figure">
+        <div class="container-narrow">
+          <div class="fig-image" aria-hidden="true"></div>
+          <figcaption class="fig-cap">
+            <span class="fig-num">FIG. 01</span>
+            <span class="fig-text">— Sukhumvit Road, 09:00. Foot traffic doesn't equal customer traffic.</span>
+          </figcaption>
+        </div>
+      </figure>
+
+      <!-- TLDR / KEY TAKEAWAYS -->
+      <section class="art-tldr-wrap">
+        <div class="container-narrow">
+          <aside class="tldr">
+            <div class="tldr-label">Key Takeaways</div>
+            <ul class="tldr-list">
+              {tldrBullets.map((b) => (
+                <li class="tldr-item">
+                  <span class="tldr-arrow">→</span>
+                  <span class="tldr-text">{b}</span>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <!-- BODY -->
+      <section class="art-body">
+        <div class="container-narrow">
+          <p class="body-p drop">
+            Three foreign coffee chains entered Thailand in 2023. By Q4 2025, two are quietly closing outlets across Bangkok. One is expanding into Chiang Mai and Phuket. The brands had similar capital, similar coffee, and similar marketing budgets.
+          </p>
+
+          <p class="body-p">
+            The difference wasn't the coffee. It was a single line in their pitch deck that nobody questioned hard enough: <em>"Thailand's growing middle class is adopting Western café culture."</em>
+          </p>
+
+          <p class="body-p">
+            That sentence is technically true and strategically misleading. Let me explain why.
+          </p>
+
+          <h2 class="body-h2">What do Thai consumers actually buy when they buy coffee?</h2>
+
+          <p class="body-p">
+            In Singapore, a $6 latte is a productivity tool. In Bangkok, a $6 latte is a 90-minute social anchor. Same drink, completely different unit economics for the operator.
+          </p>
+
+          <blockquote class="pull">
+            <p class="pull-text">
+              The pitch deck shows revenue per cup. The P&L shows revenue per square meter per hour. These are not the same business.
+            </p>
+            <cite class="pull-cite">— Operational reality, foreign chain CFO</cite>
+          </blockquote>
+
+          <p class="body-p">
+            If your model assumes 4-cup table turnover, and the actual behavior is 1.2-cup table turnover with a 90-minute average dwell time, your effective revenue per seat collapses by 65% — before anyone has done anything wrong operationally.
+          </p>
+
+          <div class="callouts">
+            {numberCallouts.map((c) => (
+              <div class="callout">
+                <div class="co-value">{c.value}</div>
+                <div class="co-label">{c.label}</div>
+              </div>
+            ))}
+          </div>
+
+          <p class="body-p">
+            This isn't a Thai cultural failure. It's a forecasting failure. The brands modeled Thailand against Singapore data because the consultancy that wrote the deck modeled Thailand against Singapore data.
+          </p>
+
+          <h2 class="body-h2">How does rent compound the problem?</h2>
+
+          <p class="body-p">
+            Here's where it gets uncomfortable. The premium locations these chains chose — Sukhumvit, Thonglor, Silom — carry rent loads that look reasonable on a per-square-meter basis but become catastrophic when combined with the actual revenue model:
+          </p>
+
+          <div class="table-wrap">
+            <div class="table-head-bar">
+              <span class="tab-num">Tab. 01 — Rent burden by location, 2025</span>
+              <span class="tab-src">Source: CBRE Thailand</span>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th class="cell-th">Location</th>
+                  <th class="cell-th cell-num">Rent (USD/sqm)</th>
+                  <th class="cell-th cell-num">Rent burden</th>
+                  <th class="cell-th cell-num">Margin impact</th>
+                </tr>
+              </thead>
+              <tbody>
+                {rentTable.map((r) => (
+                  <tr>
+                    <td class="cell-td">{r.loc}</td>
+                    <td class="cell-td cell-num">{r.rent}</td>
+                    <td class="cell-td cell-num">{r.burden}</td>
+                    <td class={r.danger ? 'cell-td cell-num cell-danger' : 'cell-td cell-num'}>
+                      {r.impact}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <p class="body-p">
+            The chain that's expanding in 2026? They opened in Ari. Their rent burden is 15%. Their unit economics actually work.
+          </p>
+
+          <figure class="art-figure-inline">
+            <div class="fig-image" aria-hidden="true"></div>
+            <figcaption class="fig-cap">
+              <span class="fig-num">FIG. 02</span>
+              <span class="fig-text">— Ari neighborhood, 14:00. Residential foot traffic = customer traffic.</span>
+            </figcaption>
+          </figure>
+
+          <p class="body-p">
+            This is the part that doesn't fit on a slide: location strategy in Thailand is not a "where do our customers shop" question. It's a "where can our rent burden survive Thai dwell-time patterns" question.
+          </p>
+
+          <h2 class="body-h2">What should foreign operators do differently?</h2>
+
+          <p class="body-p">
+            If you're evaluating Thailand for a coffee or café concept, the three questions to verify before signing any lease:
+          </p>
+
+          <ol class="prompts">
+            {numberedPrompts.map((p, i) => (
+              <li class="prompt">
+                <span class="prompt-num">{String(i + 1).padStart(2, '0')}</span>
+                <div class="prompt-body">
+                  <strong class="prompt-q">{p.q}</strong>
+                  <p class="prompt-a">{p.a}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+
+          <blockquote class="pull">
+            <p class="pull-text">
+              Strip away the branding and look at the skeleton. Does this business actually work at Thai dwell-time?
+            </p>
+            <cite class="pull-cite">— Decision frame for any market entry</cite>
+          </blockquote>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="art-faq">
+        <div class="container-narrow">
+          <div class="section-tag">▍ Common questions</div>
+          <dl class="faq-list">
+            {faqs.map((f) => (
+              <div class="faq-item">
+                <dt class="faq-q">{f.q}</dt>
+                <dd class="faq-a">{f.a}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      <!-- SOURCES -->
+      <section class="art-sources">
+        <div class="container-narrow">
+          <div class="section-tag">▍ Sources cited</div>
+          <ol class="src-list">
+            {sources.map((s, i) => (
+              <li class="src-item">
+                <span class="src-num">{String(i + 1).padStart(2, '0')}</span>
+                <span class="src-text">{s}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <!-- AUTHOR BIO -->
+      <section class="art-author">
+        <div class="container-narrow">
+          <div class="author">
+            <div class="author-photo" aria-hidden="true"></div>
+            <div class="author-body">
+              <div class="author-name">Torpenguin</div>
+              <div class="author-creds">Founder · SpoonAsia · 8 years Thai F&B operations</div>
+              <p class="author-bio">
+                Built Penguin Eat Shabu (40+ outlets, Bangkok). Now decodes Thailand's F&B landscape for international investors. Writes on unit economics, neighborhood alpha, and the gap between pitch decks and operational reality.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PENGUIN X CTA -->
+      <section class="art-cta-wrap">
+        <div class="container-narrow">
+          <aside class="px-cta">
+            <div class="px-label">Penguin X — Advisory</div>
+            <h3 class="px-head">Considering Thailand for your next outlet?</h3>
+            <p class="px-sub">
+              Penguin X provides ground-truth due diligence for international F&B
+              operators evaluating Thai market entry. Unit economics, neighborhood
+              analysis, partner introductions.
+            </p>
+            <a href="/penguin-x" class="px-btn">Request a Briefing →</a>
+          </aside>
+        </div>
+      </section>
+
+      <!-- RELATED -->
+      <section class="art-related">
+        <div class="container-narrow">
+          <div class="section-tag">▍ Related Analysis</div>
+          <div class="rel-grid">
+            {related.map((r) => (
+              <article class="rel-card">
+                <div class="rel-tag">{r.tag}</div>
+                <h3 class="rel-h">
+                  <a href={`/analysis/${r.slug}`}>{r.title}</a>
+                </h3>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  ) : (
+    <!-- STANDARD ARTICLE — markdown-driven via Content Collection -->
+    <article>
+      <section class="art-head">
+        <div class="container-narrow">
+          <a href={`/analysis/${article!.category}`} class="section-tag">▍ {article!.tag}</a>
+          <h1 class="art-h1">{article!.title}</h1>
+          <p class="art-dek">{article!.dek}</p>
+          <div class="art-meta">
+            <span>By {article!.author}</span>
+            <span class="sep">·</span>
+            <span>{article!.date}</span>
+            <span class="sep">·</span>
+            <span>{article!.readTime}</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="art-body">
+        <div class="container-narrow prose">
+          {Content && <Content />}
+        </div>
+      </section>
+
+      {related.length > 0 && (
+        <section class="art-related">
+          <div class="container-narrow">
+            <div class="section-tag">▍ Related</div>
+            <ul class="related-list">
+              {related.map((r) => (
+                <li class="related-item">
+                  <a href={`/analysis/${r.slug}`} class="related-link">
+                    <span class="related-tag">{r.tag}</span>
+                    <span class="related-title">{r.title}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+    </article>
+  )}
+</BaseLayout>
+
+<style>
+  .section-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+
+  /* ========== HEADER ========== */
+  .art-head {
+    padding: 40px 0 24px;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+
+  .art-h1 {
+    font-family: var(--font-sans);
+    font-size: clamp(34px, 4.4vw, 48px);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .art-h1 em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .art-dek {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+    max-width: 620px;
+  }
+
+  .art-meta {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .art-meta .sep { color: var(--ink-mute); }
+
+  /* ========== FIGURE ========== */
+  .art-figure {
+    padding: 36px 0;
+  }
+  .art-figure-inline {
+    margin: 36px 0;
+  }
+
+  .fig-image {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, var(--hairline), var(--paper-warm));
+  }
+
+  .fig-cap {
+    margin-top: 10px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .fig-num { color: var(--accent); }
+  .fig-text { color: var(--ink-faint); }
+
+  /* ========== TLDR ========== */
+  .art-tldr-wrap {
+    padding: 12px 0 28px;
+  }
+
+  .tldr {
+    background: var(--paper-warm);
+    border-left: 2px solid var(--accent);
+    padding: 22px 26px;
+  }
+
+  .tldr-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  .tldr-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .tldr-item {
+    display: flex;
+    gap: 10px;
+    padding: 6px 0;
+  }
+
+  .tldr-arrow {
+    flex-shrink: 0;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-weight: 500;
+  }
+
+  .tldr-text {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+
+  /* ========== BODY ========== */
+  .art-body {
+    padding: 24px 0 48px;
+  }
+
+  .body-p {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    line-height: 1.75;
+    color: var(--ink);
+    margin-bottom: 26px;
+  }
+  .body-p em {
+    font-style: italic;
+  }
+
+  .body-p.drop::first-letter {
+    font-family: var(--font-sans);
+    font-size: 64px;
+    line-height: 0.95;
+    float: left;
+    font-weight: 500;
+    margin: 4px 10px 0 0;
+    color: var(--accent);
+  }
+
+  .body-h2 {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin: 48px 0 20px;
+  }
+
+  /* ========== PULL QUOTE ========== */
+  .pull {
+    border-left: 2px solid var(--accent);
+    padding: 12px 0 12px 24px;
+    margin: 36px 0;
+  }
+  .pull-text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 24px;
+    line-height: 1.35;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  .pull-cite {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-style: normal;
+  }
+
+  /* ========== NUMBER CALLOUTS ========== */
+  .callouts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    border-top: 0.5px solid var(--ink);
+    border-bottom: 0.5px solid var(--hairline);
+    padding: 24px 0;
+    margin: 36px 0;
+  }
+  .callout {
+    text-align: left;
+  }
+  .co-value {
+    font-family: var(--font-mono);
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+    line-height: 1;
+  }
+  .co-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+
+  /* ========== DATA TABLE ========== */
+  .table-wrap {
+    margin: 36px 0;
+    border-top: 0.5px solid var(--ink);
+    border-bottom: 0.5px solid var(--hairline);
+  }
+
+  .table-head-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .tab-num { color: var(--ink); }
+  .tab-src { color: var(--ink-soft); }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .cell-th {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 500;
+    text-align: left;
+    padding: 14px 12px 14px 0;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .cell-num {
+    text-align: right;
+    padding-right: 0;
+  }
+  .cell-td {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    color: var(--ink);
+    padding: 14px 12px 14px 0;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .cell-td.cell-num {
+    font-family: var(--font-mono);
+    font-size: 13px;
+  }
+  .cell-danger {
+    color: var(--accent) !important;
+  }
+  tbody tr:last-child .cell-td {
+    border-bottom: none;
+  }
+
+  /* ========== PROMPTS ========== */
+  .prompts {
+    list-style: none;
+    padding: 0;
+    margin: 28px 0;
+  }
+  .prompt {
+    display: flex;
+    gap: 18px;
+    padding: 18px 0;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .prompt:last-child { border-bottom: none; }
+  .prompt-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    flex-shrink: 0;
+    min-width: 28px;
+    padding-top: 4px;
+  }
+  .prompt-q {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .prompt-a {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  /* ========== FAQ ========== */
+  .art-faq {
+    padding: 40px 0;
+    border-top: 0.5px solid var(--hairline);
+  }
+  .faq-list {
+    margin: 0;
+  }
+  .faq-item {
+    padding: 20px 0;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-q {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .faq-a {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ========== SOURCES ========== */
+  .art-sources {
+    padding: 40px 0;
+    border-top: 0.5px solid var(--hairline);
+  }
+  .src-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .src-item {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .src-num {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    flex-shrink: 0;
+    min-width: 28px;
+  }
+  .src-text {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+
+  /* ========== AUTHOR ========== */
+  .art-author {
+    padding: 36px 0;
+    border-top: 0.5px solid var(--hairline);
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .author {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+  }
+  .author-photo {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--hairline), var(--paper-warm));
+  }
+  .author-name {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .author-creds {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 10px;
+  }
+  .author-bio {
+    font-family: var(--font-serif);
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  /* ========== PENGUIN X CTA ========== */
+  .art-cta-wrap {
+    padding: 32px 0 24px;
+  }
+  .px-cta {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 40px 32px;
+    margin: 0;
+  }
+  .px-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .px-head {
+    font-family: var(--font-sans);
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    color: var(--paper);
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+  .px-sub {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 1.6;
+    color: #B8B5AC;
+    margin-bottom: 22px;
+    max-width: 540px;
+  }
+  .px-btn {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 12px 22px;
+    background: var(--paper);
+    color: var(--ink);
+    text-decoration: none;
+    border: none;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .px-btn:hover {
+    background: var(--accent);
+    color: var(--paper);
+  }
+
+  /* ========== RELATED ========== */
+  .art-related {
+    padding: 40px 0 64px;
+  }
+  .rel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .rel-card {
+    border-top: 0.5px solid var(--hairline);
+    padding-top: 16px;
+  }
+  .rel-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .rel-h {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--ink);
+    margin: 0;
+  }
+  .rel-h a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: none;
+    transition: color 0.15s ease;
+  }
+  .rel-h a:hover { color: var(--accent); }
+
+  /* ========== PLACEHOLDER ========== */
+  .art-placeholder {
+    padding: 72px 0 96px;
+  }
+  .ph-notice {
+    margin-top: 36px;
+    background: var(--paper-warm);
+    border-left: 2px solid var(--accent);
+    padding: 22px 26px;
+  }
+  .ph-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .ph-text {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .ph-text a {
+    color: var(--ink);
+    border-bottom: 0.5px solid var(--ink-faint);
+    text-decoration: none;
+  }
+  .ph-text a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* ========== CATEGORY ========== */
+  .cat-hero {
+    padding: 40px 0 24px;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .cat-title {
+    font-family: var(--font-sans);
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.02;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+  .cat-dek {
+    font-family: var(--font-serif);
+    font-size: clamp(17px, 1.8vw, 20px);
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 640px;
+  }
+
+  .cat-list {
+    padding: 48px 0 64px;
+  }
+  .cat-list-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-top: 2px solid var(--ink);
+    padding-top: 16px;
+    margin-bottom: 32px;
+  }
+  .cat-list-title {
+    font-family: var(--font-sans);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .cat-list-more {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-bottom: none;
+  }
+  .cat-list-more:hover { color: var(--accent); }
+
+  .cat-empty {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    color: var(--ink-soft);
+    padding: 32px 0;
+  }
+  .cat-empty a {
+    color: var(--ink);
+    border-bottom: 0.5px solid var(--ink-faint);
+    text-decoration: none;
+  }
+  .cat-empty a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px 28px;
+  }
+  .cat-card { display: flex; flex-direction: column; }
+  .cat-card-image {
+    width: 100%;
+    aspect-ratio: 16/10;
+    background: linear-gradient(135deg, var(--hairline), var(--paper-warm));
+    margin-bottom: 14px;
+  }
+  .cat-card-tag {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: none;
+    margin-bottom: 8px;
+  }
+  .cat-card-headline {
+    font-family: var(--font-sans);
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    margin-bottom: 8px;
+  }
+  .cat-card-headline a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: none;
+    transition: color 0.15s ease;
+  }
+  .cat-card-headline a:hover { color: var(--accent); }
+  .cat-card-dek {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .cat-card-meta {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-top: auto;
+  }
+
+  @media (max-width: 1024px) {
+    .cat-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .cat-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ========== STANDARD MARKDOWN ARTICLE ========== */
+  .prose {
+    padding: 32px 0 64px;
+  }
+  .prose :global(p) {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--ink);
+    margin-bottom: 22px;
+  }
+  .prose :global(h2) {
+    font-family: var(--font-sans);
+    font-size: clamp(24px, 2.6vw, 30px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--ink);
+    margin: 40px 0 16px;
+  }
+  .prose :global(h3) {
+    font-family: var(--font-sans);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin: 32px 0 12px;
+  }
+  .prose :global(ul),
+  .prose :global(ol) {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--ink);
+    margin: 0 0 22px 24px;
+  }
+  .prose :global(li) { margin-bottom: 8px; }
+  .prose :global(blockquote) {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--ink);
+    border-left: 3px solid var(--accent);
+    padding: 4px 0 4px 20px;
+    margin: 28px 0;
+  }
+  .prose :global(a) {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 0.5px;
+    text-underline-offset: 2px;
+    border-bottom: none;
+  }
+  .prose :global(a:hover) { color: var(--accent-deep); }
+  .prose :global(img) {
+    max-width: 100%;
+    height: auto;
+    margin: 32px 0;
+    display: block;
+  }
+  .prose :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background: var(--paper-mute);
+    padding: 2px 6px;
+    border-radius: 2px;
+  }
+
+  /* ========== RELATED ========== */
+  .art-related {
+    padding: 32px 0 64px;
+    border-top: 0.5px solid var(--hairline);
+  }
+  .related-list {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0;
+  }
+  .related-item {
+    border-top: 0.5px solid var(--hairline);
+    padding: 18px 0;
+  }
+  .related-item:first-child { border-top: none; }
+  .related-link {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-decoration: none;
+    border-bottom: none;
+    color: inherit;
+  }
+  .related-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .related-title {
+    font-family: var(--font-serif);
+    font-size: 19px;
+    line-height: 1.3;
+    color: var(--ink);
+    transition: color 0.15s ease;
+  }
+  .related-link:hover .related-title { color: var(--accent); }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 900px) {
+    .art-head { padding: 48px 0 28px; }
+    .body-p { font-size: 17px; }
+    .body-h2 { font-size: 24px; }
+    .pull-text { font-size: 20px; }
+    .callouts {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      padding: 20px 0;
+    }
+    .co-value { font-size: 26px; }
+    .rel-grid { grid-template-columns: 1fr; }
+
+    .data-table { font-size: 13px; }
+    .cell-th, .cell-td { padding: 10px 8px 10px 0; }
+
+    .px-cta { padding: 28px 22px; }
+    .px-head { font-size: 20px; }
+  }
+</style>

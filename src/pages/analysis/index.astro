@@ -1,0 +1,416 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { categories } from '../../data/content';
+
+const entries = await getCollection('articles', ({ data }) => !data.draft);
+// Newest first
+entries.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const articles = entries.map((e) => ({
+  slug: e.slug,
+  title: e.data.title,
+  dek: e.data.dek,
+  category: e.data.category,
+  tag: e.data.tag,
+  author: e.data.author,
+  date: e.data.date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+  readTime: e.data.readTime,
+}));
+
+const featured = articles[0];
+const rest = articles.slice(1);
+
+const categoryCounts = categories.map((c) => ({
+  ...c,
+  count: articles.filter((a) => a.category === c.slug).length,
+}));
+
+const allCount = articles.length;
+const activeCategory = 'all';
+const showPagination = articles.length > 12;
+---
+
+<BaseLayout
+  title="Analysis — SpoonAsia"
+  description="Long-form F&B investment analysis for the Thailand market. Unit economics, neighborhood alpha, market entry, and supplier intel — 3,000–4,000 word reports."
+>
+  <section class="decoded-head">
+    <div class="container-narrow">
+      <div class="section-tag">▍ Analysis</div>
+      <h1 class="decoded-title">Long-form F&B analysis</h1>
+      <p class="decoded-dek">
+        <em>
+          Each report runs 3,000–4,000 words with unit economics, neighborhood
+          analysis, and decision frameworks for foreign operators evaluating Thailand.
+        </em>
+      </p>
+    </div>
+  </section>
+
+  <nav class="cat-filter" aria-label="Categories">
+    <div class="container">
+      <div class="cat-filter-inner">
+        <a
+          href="/analysis"
+          class={activeCategory === 'all' ? 'cat-chip active' : 'cat-chip'}
+        >
+          All <span class="cat-count">({allCount})</span>
+        </a>
+        {
+          categoryCounts.map((c) => {
+            const cls =
+              c.count === 0 ? 'cat-chip disabled' : 'cat-chip';
+            return c.count === 0 ? (
+              <span class={cls}>
+                {c.label} <span class="cat-count">({c.count})</span>
+              </span>
+            ) : (
+              <a href={`/analysis/${c.slug}`} class={cls}>
+                {c.label} <span class="cat-count">({c.count})</span>
+              </a>
+            );
+          })
+        }
+      </div>
+    </div>
+  </nav>
+
+  <section class="featured-wrap">
+    <div class="container">
+      <article class="featured">
+        <div class="featured-image" aria-hidden="true"></div>
+        <div class="featured-body">
+          <a href={`/analysis/${featured.category}`} class="tag">
+            {featured.tag}
+          </a>
+          <h2 class="featured-h">
+            <a href={`/analysis/${featured.slug}`}>{featured.title}</a>
+          </h2>
+          <p class="featured-dek">{featured.dek}</p>
+          <div class="meta">
+            <span>{featured.date}</span>
+            <span class="meta-sep">·</span>
+            <span>{featured.readTime}</span>
+            <span class="meta-sep">·</span>
+            <span>By {featured.author}</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="grid-wrap">
+    <div class="container">
+      <div class="grid-head">
+        <div class="section-tag">▍ All reports</div>
+      </div>
+
+      <div class="grid">
+        {
+          rest.map((a) => (
+            <article class="card">
+              <a href={`/analysis/${a.category}`} class="tag">
+                {a.tag}
+              </a>
+              <h3 class="card-h">
+                <a href={`/analysis/${a.slug}`}>{a.title}</a>
+              </h3>
+              <p class="card-dek-text">{a.dek}</p>
+              <div class="meta">
+                <span>{a.date}</span>
+                <span class="meta-sep">·</span>
+                <span>{a.readTime}</span>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      {
+        showPagination && (
+          <nav class="pagination" aria-label="Pagination">
+            <span class="pag-link disabled">← Previous</span>
+            <span class="pag-pos">1 / 1</span>
+            <span class="pag-link disabled">Next →</span>
+          </nav>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .section-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  /* ========== HEAD ========== */
+  .decoded-head {
+    padding: 40px 0 24px;
+  }
+
+  .decoded-title {
+    font-family: var(--font-sans);
+    font-size: clamp(28px, 3.8vw, 44px);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--ink);
+    margin-bottom: 22px;
+  }
+
+  .decoded-dek {
+    font-family: var(--font-serif);
+    font-size: clamp(18px, 2vw, 22px);
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 620px;
+  }
+  .decoded-dek em {
+    font-style: italic;
+  }
+
+  /* ========== CATEGORY FILTER ========== */
+  .cat-filter {
+    border-top: 0.5px solid var(--hairline);
+    border-bottom: 0.5px solid var(--hairline);
+    background: var(--paper);
+  }
+
+  .cat-filter-inner {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .cat-filter-inner::-webkit-scrollbar { display: none; }
+
+  .cat-chip {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding: 14px 16px;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .cat-chip:first-child { padding-left: 0; }
+  .cat-chip:hover {
+    color: var(--ink);
+  }
+  .cat-chip.active {
+    color: var(--ink);
+    border-bottom-color: var(--accent);
+  }
+  .cat-chip.disabled {
+    color: var(--ink-mute);
+    cursor: default;
+    pointer-events: none;
+  }
+  .cat-count {
+    color: var(--ink-faint);
+    margin-left: 2px;
+  }
+  .cat-chip.active .cat-count { color: var(--accent); }
+
+  /* ========== FEATURED ========== */
+  .featured-wrap {
+    padding: 48px 0;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+
+  .featured {
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .featured-image {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, var(--hairline), var(--paper-warm));
+    order: 2;
+  }
+
+  .featured-body {
+    order: 1;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: none;
+    margin-bottom: 14px;
+  }
+  .tag:hover { color: var(--accent-deep); }
+
+  .featured-h {
+    font-family: var(--font-serif);
+    font-size: clamp(28px, 3.4vw, 40px);
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  .featured-h a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: none;
+    transition: color 0.15s ease;
+  }
+  .featured-h a:hover { color: var(--accent); }
+
+  .featured-dek {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin-bottom: 22px;
+  }
+
+  .meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .meta-sep {
+    color: var(--ink-mute);
+  }
+
+  /* ========== GRID ========== */
+  .grid-wrap {
+    padding: 48px 0 80px;
+  }
+
+  .grid-head {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 0.5px solid var(--ink);
+  }
+  .grid-head .section-tag {
+    margin-bottom: 0;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .card {
+    padding: 28px 0;
+    border-top: 0.5px solid var(--hairline);
+  }
+  /* Hide hairline on first row to avoid double border w/ grid-head */
+  .card:nth-child(1),
+  .card:nth-child(2) {
+    border-top: none;
+    padding-top: 8px;
+  }
+  /* Add divider between columns */
+  .card:nth-child(odd) {
+    padding-right: 32px;
+    border-right: 0.5px solid var(--hairline);
+  }
+  .card:nth-child(even) {
+    padding-left: 32px;
+  }
+
+  .card-h {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.22;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 4px 0 10px;
+  }
+  .card-h a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: none;
+    transition: color 0.15s ease;
+  }
+  .card-h a:hover { color: var(--accent); }
+
+  .card-dek-text {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+  }
+
+  /* ========== PAGINATION ========== */
+  .pagination {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 0.5px solid var(--hairline);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .pag-link {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: none;
+  }
+  .pag-link.disabled {
+    color: var(--ink-mute);
+    cursor: default;
+  }
+  .pag-pos {
+    color: var(--ink-soft);
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 900px) {
+    .decoded-head { padding: 48px 0 32px; }
+    .featured {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .featured-image { order: 1; aspect-ratio: 16/10; }
+    .featured-body { order: 2; }
+
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    .card:nth-child(odd),
+    .card:nth-child(even) {
+      padding-left: 0;
+      padding-right: 0;
+      border-right: none;
+    }
+    .card:nth-child(1) { border-top: none; padding-top: 8px; }
+    .card:nth-child(2) {
+      border-top: 0.5px solid var(--hairline);
+      padding-top: 28px;
+    }
+  }
+</style>

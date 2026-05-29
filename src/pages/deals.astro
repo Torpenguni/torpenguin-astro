@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const watchlist = [
+  { tag: 'Acquisition', headline: 'Minor International eyes regional shabu category', note: 'Quiet diligence on at least two operators. Q3 2026 close target rumored.' },
+  { tag: 'Fundraise', headline: 'Bangkok specialty coffee chain in Series B talks', note: '$8–12M round. Singapore family office and a Japanese strategic on the cap table.' },
+  { tag: 'Exit', headline: 'PE-backed bubble tea brand testing strategic buyers', note: 'Eight-year hold. Returns capped by post-2024 margin compression.' },
+  { tag: 'Joint Venture', headline: 'Japanese udon chain × Thai mall operator', note: 'Master franchise structure under construction. Three flagship slots.' },
+];
+---
+
+<BaseLayout
+  title="M&A & Deals — SpoonAsia"
+  description="Thai F&B deal flow: acquisitions, fundraises, exits, joint ventures, and the structural shifts behind them."
+>
+  <section class="ph-head">
+    <div class="container-narrow">
+      <div class="section-tag">▍ M&A & Deals</div>
+      <h1 class="ph-h1">Where Thai F&B capital is moving.</h1>
+      <p class="ph-dek">
+        Acquisitions, fundraises, exits, joint ventures. We track the deals
+        that reshape the operator landscape — and the structural reasons
+        behind each one. No press-release rehashing.
+      </p>
+    </div>
+  </section>
+
+  <section class="ph-body">
+    <div class="container-narrow">
+      <div class="ph-notice">
+        <div class="ph-label">In Production</div>
+        <p class="ph-text">
+          Deal coverage launches Q3 2026. Below is what's on our watchlist.
+          For deal alerts when published, subscribe to <a href="/newsletter">The Dispatch</a>.
+        </p>
+      </div>
+
+      <div class="watchlist">
+        {watchlist.map((w) => (
+          <article class="wl-item">
+            <div class="wl-tag">{w.tag}</div>
+            <h3 class="wl-h">{w.headline}</h3>
+            <p class="wl-note">{w.note}</p>
+          </article>
+        ))}
+      </div>
+
+      <p class="ph-redirect">
+        Meanwhile, read our existing coverage in <a href="/analysis">Analysis</a> →
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .section-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+  .ph-head {
+    padding: 40px 0 24px;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .ph-h1 {
+    font-family: var(--font-sans);
+    font-size: clamp(26px, 3.5vw, 40px);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .ph-dek {
+    font-family: var(--font-serif);
+    font-size: clamp(17px, 1.8vw, 20px);
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 640px;
+  }
+  .ph-body { padding: 48px 0 80px; }
+
+  .ph-notice {
+    background: var(--paper-warm);
+    border-left: 2px solid var(--accent);
+    padding: 22px 26px;
+    margin-bottom: 40px;
+  }
+  .ph-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .ph-text {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .ph-text a {
+    color: var(--ink);
+    border-bottom: 0.5px solid var(--ink-faint);
+    text-decoration: none;
+  }
+  .ph-text a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  .watchlist { display: grid; gap: 0; }
+  .wl-item {
+    padding: 24px 0;
+    border-top: 0.5px solid var(--hairline);
+  }
+  .wl-item:last-child {
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .wl-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .wl-h {
+    font-family: var(--font-serif);
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .wl-note {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  .ph-redirect {
+    margin-top: 36px;
+    font-family: var(--font-serif);
+    font-size: 16px;
+    color: var(--ink-soft);
+  }
+  .ph-redirect a {
+    color: var(--ink);
+    border-bottom: 0.5px solid var(--ink-faint);
+    text-decoration: none;
+  }
+  .ph-redirect a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+</style>

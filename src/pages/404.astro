@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="404 — SpoonAsia"
+  description="The page you're looking for doesn't exist."
+>
+  <section class="nf">
+    <div class="container-narrow">
+      <div class="section-tag">▍ Error 404</div>
+      <h1 class="nf-h1">
+        This dispatch doesn't exist <em>yet</em>
+      </h1>
+      <p class="nf-dek">
+        <em>
+          The page you're looking for isn't here.
+          Perhaps it's in a future issue.
+        </em>
+      </p>
+
+      <div class="nf-links">
+        <a href="/" class="nf-primary">Return to homepage →</a>
+        <div class="nf-secondary-row">
+          <a href="/analysis" class="nf-secondary">Analysis</a>
+          <span class="sep">·</span>
+          <a href="/videos" class="nf-secondary">Videos</a>
+          <span class="sep">·</span>
+          <a href="/market-watch" class="nf-secondary">Market Watch</a>
+          <span class="sep">·</span>
+          <a href="/newsletter" class="nf-secondary">Newsletter</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .section-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .nf {
+    padding: 120px 0 144px;
+    text-align: center;
+  }
+  .nf .section-tag {
+    text-align: center;
+  }
+
+  .nf-h1 {
+    font-family: var(--font-sans);
+    font-size: clamp(30px, 4vw, 48px);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin: 0 auto 24px;
+    max-width: 680px;
+  }
+  .nf-h1 em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .nf-dek {
+    font-family: var(--font-serif);
+    font-size: clamp(18px, 2vw, 22px);
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin: 0 auto 40px;
+    max-width: 520px;
+  }
+  .nf-dek em { font-style: italic; }
+
+  .nf-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .nf-primary {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 14px 24px;
+    background: var(--ink);
+    color: var(--paper);
+    text-decoration: none;
+    border-bottom: none;
+    transition: background 0.15s ease;
+  }
+  .nf-primary:hover {
+    background: var(--accent);
+    color: var(--paper);
+  }
+
+  .nf-secondary-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .nf-secondary {
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-bottom: none;
+    transition: color 0.15s ease;
+  }
+  .nf-secondary:hover {
+    color: var(--accent);
+  }
+  .sep {
+    color: var(--ink-mute);
+  }
+
+  @media (max-width: 900px) {
+    .nf { padding: 72px 0 96px; }
+  }
+</style>

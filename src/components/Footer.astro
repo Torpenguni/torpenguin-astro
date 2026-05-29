@@ -1,0 +1,337 @@
+---
+const currentYear = new Date().getFullYear();
+
+const footerSections = [
+  {
+    title: 'Editorial',
+    links: [
+      { label: 'Analysis', href: '/analysis' },
+      { label: 'Videos', href: '/videos' },
+      { label: 'Market Watch', href: '/market-watch' },
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
+      { label: 'About', href: '/about' },
+      { label: 'Penguin X', href: '/penguin-x' },
+      { label: 'Contact', href: '/contact' },
+    ],
+  },
+  {
+    title: 'Channels',
+    links: [
+      { label: 'YouTube', href: 'https://youtube.com/@spoonasia', external: true },
+      { label: 'LinkedIn', href: 'https://linkedin.com/company/spoonasia', external: true },
+      { label: 'Newsletter', href: '/newsletter' },
+    ],
+  },
+];
+---
+
+<footer class="sa-footer">
+  <div class="container">
+
+    <div class="sa-newsletter">
+      <div class="sa-newsletter-left">
+        <div class="section-tag mb-2">The Dispatch</div>
+        <h2 class="sa-newsletter-head">
+          F&B intelligence on Asia, every Sunday.
+        </h2>
+        <p class="sa-newsletter-sub">
+          Unit economics, neighborhood alpha, and the gaps in pitch decks. No fluff. Free.
+        </p>
+      </div>
+      <div class="sa-newsletter-right">
+        <form class="sa-newsletter-form" onsubmit="event.preventDefault()">
+          <input
+            type="email"
+            placeholder="your@email.com"
+            class="sa-newsletter-input"
+            aria-label="Email address"
+            required
+          />
+          <button type="submit" class="btn btn-inverted">
+            Subscribe →
+          </button>
+        </form>
+        <p class="sa-newsletter-note">
+          Read by operators across SG · JP · KR · UK · CN
+        </p>
+      </div>
+    </div>
+
+    <div class="sa-footer-main">
+      <div class="sa-footer-brand">
+        <div class="sa-logo">
+          <span class="bracket">[</span>
+          <span class="logo-text">SpoonAsia</span>
+          <span class="bracket">]</span>
+        </div>
+        <p class="sa-footer-tagline">
+          Decoding Thailand's F&B landscape for international investors, suppliers, and operators.
+        </p>
+        <div class="sa-footer-origin mono">
+          A Torpenguin publication · Bangkok
+        </div>
+      </div>
+
+      <div class="sa-footer-links">
+        {footerSections.map(section => (
+          <div class="sa-footer-col">
+            <div class="sa-footer-col-title">{section.title}</div>
+            <ul class="sa-footer-col-list">
+              {section.links.map(link => (
+                <li>
+                  <a
+                    href={link.href}
+                    target={link.external ? '_blank' : undefined}
+                    rel={link.external ? 'noopener noreferrer' : undefined}
+                    class="sa-footer-link"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="sa-footer-ribbon">
+      <div class="sa-footer-ribbon-left">
+        © {currentYear} SpoonAsia · All rights reserved
+      </div>
+      <div class="sa-footer-ribbon-right">
+        <a href="/privacy" class="sa-footer-mini-link">Privacy</a>
+        <span class="sep">·</span>
+        <a href="/terms" class="sa-footer-mini-link">Terms</a>
+        <span class="sep">·</span>
+        <a href="/colophon" class="sa-footer-mini-link">Colophon</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+  .sa-footer {
+    background: var(--paper);
+    border-top: 0.5px solid var(--ink);
+    margin-top: 96px;
+  }
+
+  .sa-newsletter {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    padding: 72px 0;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+
+  .sa-newsletter-head {
+    font-family: var(--font-sans);
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+
+  .sa-newsletter-sub {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 440px;
+  }
+
+  .sa-newsletter-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .sa-newsletter-form {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .sa-newsletter-input {
+    flex: 1;
+    font-family: var(--font-serif);
+    font-size: 15px;
+    padding: 12px 16px;
+    border: 0.5px solid var(--hairline-strong);
+    background: var(--paper);
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s ease;
+  }
+
+  .sa-newsletter-input:focus {
+    border-color: var(--ink);
+  }
+
+  .sa-newsletter-input::placeholder {
+    color: var(--ink-faint);
+  }
+
+  .sa-newsletter-note {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+  }
+
+  .sa-footer-main {
+    display: grid;
+    grid-template-columns: 1.4fr 2fr;
+    gap: 64px;
+    padding: 64px 0;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+
+  .sa-footer-brand .sa-logo {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.15em;
+    color: var(--ink);
+    text-transform: uppercase;
+    display: inline-flex;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .sa-footer-brand .bracket {
+    color: var(--ink-mute);
+  }
+
+  .sa-footer-tagline {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 360px;
+    margin-bottom: 20px;
+  }
+
+  .sa-footer-origin {
+    font-size: 10px;
+    color: var(--ink-faint);
+  }
+
+  .sa-footer-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .sa-footer-col-title {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+
+  .sa-footer-col-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .sa-footer-col-list li {
+    margin-bottom: 10px;
+  }
+
+  .sa-footer-link {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: none;
+    transition: color 0.15s ease;
+  }
+
+  .sa-footer-link:hover {
+    color: var(--accent);
+  }
+
+  .sa-footer-ribbon {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+  }
+
+  .sa-footer-ribbon-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .sa-footer-mini-link {
+    color: var(--ink-faint);
+    text-decoration: none;
+    border-bottom: none;
+    transition: color 0.15s ease;
+  }
+
+  .sa-footer-mini-link:hover {
+    color: var(--ink);
+  }
+
+  .sep {
+    color: var(--hairline-strong);
+  }
+
+  @media (max-width: 768px) {
+    .sa-footer {
+      margin-top: 64px;
+    }
+
+    .sa-newsletter {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      padding: 48px 0;
+    }
+
+    .sa-newsletter-head {
+      font-size: 24px;
+    }
+
+    .sa-newsletter-form {
+      flex-direction: column;
+    }
+
+    .sa-footer-main {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 48px 0;
+    }
+
+    .sa-footer-links {
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .sa-footer-ribbon {
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+    }
+  }
+</style>

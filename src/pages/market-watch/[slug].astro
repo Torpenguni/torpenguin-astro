@@ -1,0 +1,261 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+type MWEntry = CollectionEntry<'market-watch'>;
+
+export async function getStaticPaths() {
+  const all = await getCollection('market-watch', ({ data }) => !data.draft);
+  return all.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry, allEntries: all },
+  }));
+}
+
+interface Props {
+  entry: MWEntry;
+  allEntries: MWEntry[];
+}
+
+const { entry, allEntries } = Astro.props as Props;
+const { Content } = await entry.render();
+
+const story = {
+  slug: entry.slug,
+  headline: entry.data.headline,
+  dek: entry.data.dek,
+  tag: entry.data.tag,
+  date: entry.data.date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+};
+
+const related = allEntries
+  .filter((e) => e.slug !== entry.slug)
+  .slice(0, 2)
+  .map((e) => ({
+    slug: e.slug,
+    headline: e.data.headline,
+    tag: e.data.tag,
+    date: e.data.date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+  }));
+---
+
+<BaseLayout
+  title={`${story.headline} — SpoonAsia Market Watch`}
+  description={story.dek}
+>
+  <section class="st-head">
+    <div class="container-narrow">
+      <div class="section-tag">▍ {story.tag}</div>
+      <h1 class="st-h1">{story.headline}</h1>
+      <p class="st-dek">
+        <em>{story.dek}</em>
+      </p>
+      <div class="st-meta">
+        <span>By Torpenguin</span>
+        <span class="sep">·</span>
+        <span>{story.date}</span>
+        <span class="sep">·</span>
+        <span>Market Watch</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="st-body">
+    <div class="container-narrow prose">
+      <Content />
+    </div>
+  </section>
+
+  <section class="st-author">
+    <div class="container-narrow">
+      <div class="author">
+        <div class="author-photo" aria-hidden="true"></div>
+        <div class="author-body">
+          <div class="author-name">Torpenguin</div>
+          <div class="author-creds">Founder · SpoonAsia · 8 years Thai F&B operations</div>
+          <p class="author-bio">
+            Built Penguin Eat Shabu (40+ outlets, Bangkok). Now decodes Thailand's F&B landscape for international investors. Writes on unit economics, neighborhood alpha, and the gap between pitch decks and operational reality.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {related.length > 0 && (
+    <section class="st-related">
+      <div class="container-narrow">
+        <div class="section-tag">▍ More Market Watch</div>
+        <ul class="rel-list">
+          {related.map((r) => (
+            <li class="rel-item">
+              <a href={`/market-watch/${r.slug}`} class="rel-link">
+                <div class="rel-tag">{r.tag}</div>
+                <h3 class="rel-h">{r.headline}</h3>
+                <div class="rel-meta">{r.date}</div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .section-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+
+  .st-head {
+    padding: 40px 0 24px;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+
+  .st-h1 {
+    font-family: var(--font-sans);
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+
+  .st-dek {
+    font-family: var(--font-serif);
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-bottom: 22px;
+    max-width: 620px;
+  }
+  .st-dek em { font-style: italic; }
+
+  .st-meta {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .st-meta .sep { color: var(--ink-mute); }
+
+  .st-body {
+    padding: 40px 0;
+  }
+
+  .prose :global(p) {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    line-height: 1.75;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+  .prose :global(a) {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 0.5px solid var(--accent);
+    transition: color 0.15s ease;
+  }
+  .prose :global(a:hover) {
+    color: var(--accent);
+  }
+
+  .st-author {
+    padding: 32px 0;
+    border-top: 0.5px solid var(--hairline);
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .author {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+  }
+  .author-photo {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--hairline), var(--paper-warm));
+  }
+  .author-name {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .author-creds {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 10px;
+  }
+  .author-bio {
+    font-family: var(--font-serif);
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  .st-related {
+    padding: 40px 0 64px;
+  }
+  .rel-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .rel-item {
+    border-top: 0.5px solid var(--hairline);
+  }
+  .rel-item:last-child {
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .rel-link {
+    display: block;
+    padding: 20px 0;
+    text-decoration: none;
+    border-bottom: none;
+    color: inherit;
+  }
+  .rel-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .rel-h {
+    font-family: var(--font-serif);
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1.25;
+    color: var(--ink);
+    margin: 0 0 8px;
+    transition: color 0.15s ease;
+  }
+  .rel-link:hover .rel-h { color: var(--accent); }
+  .rel-meta {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  @media (max-width: 900px) {
+    .prose :global(p) { font-size: 17px; }
+  }
+</style>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" width="600" height="200">
+  <title>SpoonAsia — Primary Lockup (Dark)</title>
+  <desc>Primary horizontal lockup for dark backgrounds. Brackets in Orange Light #E07A47, wordmark in Paper #FAFAF7.</desc>
+
+  <!-- Background (transparent — apply on dark surface) -->
+
+  <!-- Left bracket -->
+  <path d="M 150 72 L 137 72 L 137 128 L 150 128"
+        fill="none" stroke="#E07A47" stroke-width="3" stroke-linecap="square"/>
+
+  <!-- Wordmark -->
+  <text x="300" y="114" text-anchor="middle"
+        font-family="Inter, -apple-system, 'Helvetica Neue', sans-serif"
+        font-size="42" font-weight="500" fill="#FAFAF7" letter-spacing="-0.018em">SpoonAsia</text>
+
+  <!-- Right bracket -->
+  <path d="M 450 72 L 463 72 L 463 128 L 450 128"
+        fill="none" stroke="#E07A47" stroke-width="3" stroke-linecap="square"/>
+
+  <!-- Tagline rule (left) -->
+  <line x1="160" y1="155" x2="240" y2="155" stroke="#FAFAF7" stroke-width="0.5"/>
+
+  <!-- Tagline -->
+  <text x="300" y="160" text-anchor="middle"
+        font-family="Inter, -apple-system, 'Helvetica Neue', sans-serif"
+        font-size="11" fill="#FAFAF7" letter-spacing="0.32em">DECODING THAI F&amp;B</text>
+
+  <!-- Tagline rule (right) -->
+  <line x1="360" y1="155" x2="440" y2="155" stroke="#FAFAF7" stroke-width="0.5"/>
+</svg>

@@ -1,0 +1,262 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const stack = [
+  { label: 'Framework', value: 'Astro 4.x' },
+  { label: 'Hosting', value: 'Railway' },
+  { label: 'Sans serif', value: 'Plus Jakarta Sans' },
+  { label: 'Serif', value: 'Source Serif 4' },
+  { label: 'Monospace', value: 'JetBrains Mono' },
+  { label: 'Accent', value: 'Terracotta · #B85A2A' },
+  { label: 'Paper', value: 'Warm cream · #FAF7F5' },
+  { label: 'Repository', value: 'github.com/Torpenguni/spoonasia-astro' },
+];
+
+const principles = [
+  {
+    head: 'Editorial independence.',
+    body: 'No sponsored coverage. No paid placements. No advertorial. If we cannot verify a claim, we do not publish it.',
+  },
+  {
+    head: 'Sources first.',
+    body: 'We work from operator interviews, primary documents, and on-the-ground reporting. Press releases are inputs, not outputs.',
+  },
+  {
+    head: 'Numbers with context.',
+    body: 'Every figure carries a source and a caveat. Estimates are labeled estimates. Models are labeled models.',
+  },
+  {
+    head: 'Slow when it matters.',
+    body: 'We hold a story until we are confident. We correct in public when we get something wrong.',
+  },
+];
+---
+
+<BaseLayout
+  title="Colophon — SpoonAsia"
+  description="How SpoonAsia is built — the editorial principles, the design system, and the technology stack."
+>
+  <section class="col-hero">
+    <div class="container-narrow">
+      <div class="col-eyebrow">Colophon</div>
+      <h1 class="col-title">How this is built.</h1>
+      <p class="col-dek">
+        SpoonAsia is published from Bangkok by Torpenguin.
+        The site is editorial-first, statically rendered, and built around four principles
+        that govern everything we publish.
+      </p>
+    </div>
+  </section>
+
+  <section class="col-principles">
+    <div class="container-narrow">
+      <div class="col-section-head">
+        <h2 class="section-h">Editorial principles</h2>
+      </div>
+
+      <ol class="prin-list">
+        {
+          principles.map((p, i) => (
+            <li class="prin-item">
+              <span class="prin-num">{String(i + 1).padStart(2, '0')}</span>
+              <div class="prin-body">
+                <div class="prin-head">{p.head}</div>
+                <p class="prin-text">{p.body}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="col-stack">
+    <div class="container-narrow">
+      <div class="col-section-head">
+        <h2 class="section-h">Stack & design</h2>
+      </div>
+
+      <dl class="stack-list">
+        {
+          stack.map((s) => (
+            <div class="stack-row">
+              <dt class="stack-label">{s.label}</dt>
+              <dd class="stack-value">{s.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <section class="col-credit">
+    <div class="container-narrow">
+      <p class="credit-line">
+        A Torpenguin publication. Bangkok, Thailand.
+      </p>
+      <p class="credit-line credit-faint">
+        Editorial questions: <a href="mailto:editorial@spoonasia.com">editorial@spoonasia.com</a><br />
+        Engineering & design: <a href="mailto:hello@spoonasia.com">hello@spoonasia.com</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .col-hero {
+    padding: 40px 0 28px;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+
+  .col-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .col-title {
+    font-family: var(--font-sans);
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+
+  .col-dek {
+    font-family: var(--font-serif);
+    font-size: clamp(17px, 1.8vw, 20px);
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 620px;
+  }
+
+  .col-principles,
+  .col-stack {
+    padding: 56px 0;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+
+  .col-section-head {
+    border-top: 2px solid var(--ink);
+    padding-top: 16px;
+    margin-bottom: 32px;
+  }
+
+  .section-h {
+    font-family: var(--font-sans);
+    font-size: clamp(24px, 3vw, 30px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  .prin-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .prin-item {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    padding: 24px 0;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .prin-item:last-child { border-bottom: none; }
+
+  .prin-num {
+    font-family: var(--font-sans);
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    flex-shrink: 0;
+    min-width: 44px;
+    line-height: 1;
+  }
+
+  .prin-head {
+    font-family: var(--font-sans);
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .prin-text {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  .stack-list {
+    margin: 0;
+  }
+
+  .stack-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 24px;
+    padding: 16px 0;
+    border-bottom: 0.5px solid var(--hairline);
+    align-items: baseline;
+  }
+  .stack-row:last-child { border-bottom: none; }
+
+  .stack-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .stack-value {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .col-credit {
+    padding: 48px 0 80px;
+  }
+
+  .credit-line {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+  .credit-faint {
+    color: var(--ink-soft);
+    margin-top: 12px;
+    font-size: 15px;
+  }
+  .credit-faint a {
+    color: var(--ink);
+    border-bottom-color: var(--ink-faint);
+  }
+  .credit-faint a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  @media (max-width: 768px) {
+    .stack-row {
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+    .prin-item { gap: 14px; }
+    .prin-num { font-size: 22px; min-width: 32px; }
+  }
+</style>

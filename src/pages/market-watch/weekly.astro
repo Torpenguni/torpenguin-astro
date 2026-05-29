@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="The Weekly — SpoonAsia"
+  description="Sunday wrap-up of the week's Thai F&B signal — closures, openings, rent moves, deal flow."
+>
+  <section class="ph-head">
+    <div class="container-narrow">
+      <div class="section-tag">▍ The Weekly</div>
+      <h1 class="ph-h1">The Weekly</h1>
+      <p class="ph-dek"><em>Sunday wrap-up of the week's Thai F&B signal — closures, openings, rent moves, deal flow.</em></p>
+    </div>
+  </section>
+
+  <section class="ph-body">
+    <div class="container-narrow">
+      <div class="ph-notice">
+        <div class="ph-label">In Production</div>
+        <p class="ph-text">
+          The Weekly launches alongside The Dispatch newsletter in Q3 2026. Subscribe to <a href="/newsletter">The Dispatch</a> to get alerted when this category launches.
+        </p>
+      </div>
+
+      <p class="ph-redirect">
+        Meanwhile, browse <a href="/market-watch">All Market Watch</a> →
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .section-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+  .ph-head {
+    padding: 40px 0 24px;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .ph-h1 {
+    font-family: var(--font-sans);
+    font-size: clamp(26px, 3.5vw, 40px);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .ph-dek {
+    font-family: var(--font-serif);
+    font-size: clamp(17px, 1.8vw, 20px);
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 640px;
+  }
+  .ph-dek em { font-style: italic; }
+  .ph-body { padding: 48px 0 80px; }
+
+  .ph-notice {
+    background: var(--paper-warm);
+    border-left: 2px solid var(--accent);
+    padding: 22px 26px;
+    margin-bottom: 40px;
+  }
+  .ph-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .ph-text {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .ph-text a, .ph-redirect a {
+    color: var(--ink);
+    border-bottom: 0.5px solid var(--ink-faint);
+    text-decoration: none;
+  }
+  .ph-text a:hover, .ph-redirect a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .ph-redirect {
+    margin-top: 36px;
+    font-family: var(--font-serif);
+    font-size: 16px;
+    color: var(--ink-soft);
+  }
+</style>

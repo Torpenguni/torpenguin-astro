@@ -1,0 +1,162 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const sections = [
+  {
+    head: 'Use of the publication',
+    body: 'SpoonAsia is published for informational and analytical purposes. Content may be read, shared with attribution, and quoted in good-faith commentary. Wholesale reproduction, including republication on other websites or distribution as part of a paid service, requires prior written permission.',
+  },
+  {
+    head: 'Not investment advice',
+    body: 'SpoonAsia covers F&B markets, operators, and capital flows. Nothing on this site, in our newsletter, or in our video output constitutes investment, legal, tax, or business advice. Readers should perform independent due diligence and consult qualified professionals before acting on any information.',
+  },
+  {
+    head: 'Accuracy and sourcing',
+    body: 'We pursue accuracy in good faith. Some figures are estimates, attributed sources, or reconstructions from operator interviews. Where data is sourced or estimated, we note it. Errors will be corrected and noted publicly.',
+  },
+  {
+    head: 'Confidentiality of sources',
+    body: 'We do not disclose source identities without explicit consent. Off-the-record communications remain off the record indefinitely.',
+  },
+  {
+    head: 'Conflicts and disclosures',
+    body: 'SpoonAsia is editorially independent. We do not accept sponsored coverage, paid placements, or "advertorial" arrangements. Where any contributor holds an economic interest in an operator under coverage, the interest is disclosed in the article footer.',
+  },
+  {
+    head: 'Limitations of liability',
+    body: 'SpoonAsia and its publishers are not liable for any direct, indirect, incidental, or consequential damages arising from use of the site or its content. The site is provided on an "as is" basis without warranty of any kind.',
+  },
+  {
+    head: 'Governing law',
+    body: 'These terms are governed by the laws of Thailand. Disputes will be resolved in Thai courts unless otherwise required by mandatory provisions of law.',
+  },
+];
+---
+
+<BaseLayout
+  title="Terms — SpoonAsia"
+  description="Terms of use for SpoonAsia. Short version: read freely, share with attribution, do not republish wholesale without permission, and treat nothing here as advice."
+>
+  <section class="legal-hero">
+    <div class="container-narrow">
+      <div class="legal-eyebrow">Terms of Use</div>
+      <h1 class="legal-title">Terms.</h1>
+      <p class="legal-dek">
+        Read freely. Share with attribution. Do not republish wholesale without permission.
+        Treat nothing here as financial, legal, or business advice. The long version follows.
+      </p>
+      <div class="legal-meta">Effective: 01 May 2026</div>
+    </div>
+  </section>
+
+  <section class="legal-body">
+    <div class="container-narrow">
+      {
+        sections.map((s, i) => (
+          <article class="legal-section">
+            <div class="legal-num">{String(i + 1).padStart(2, '0')}</div>
+            <h2 class="legal-h">{s.head}</h2>
+            <p class="legal-p">{s.body}</p>
+          </article>
+        ))
+      }
+
+      <div class="legal-contact">
+        Questions?{' '}
+        <a href="mailto:legal@spoonasia.com">legal@spoonasia.com</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal-hero {
+    padding: 40px 0 28px;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+
+  .legal-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .legal-title {
+    font-family: var(--font-sans);
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+
+  .legal-dek {
+    font-family: var(--font-serif);
+    font-size: clamp(17px, 1.8vw, 20px);
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 620px;
+    margin-bottom: 16px;
+  }
+
+  .legal-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .legal-body {
+    padding: 56px 0 80px;
+  }
+
+  .legal-section {
+    padding: 32px 0;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .legal-section:first-child { padding-top: 0; }
+
+  .legal-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  .legal-h {
+    font-family: var(--font-sans);
+    font-size: clamp(22px, 2.4vw, 28px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+
+  .legal-p {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink);
+  }
+
+  .legal-contact {
+    padding-top: 32px;
+    font-family: var(--font-serif);
+    font-size: 16px;
+    color: var(--ink-soft);
+  }
+  .legal-contact a {
+    color: var(--ink);
+    border-bottom-color: var(--ink-faint);
+  }
+  .legal-contact a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+</style>

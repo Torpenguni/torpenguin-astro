@@ -1,0 +1,157 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const coming = [
+  { tag: 'Importers', name: 'The Thai specialty coffee duopoly', note: 'Two firms control 78% of single-origin bean flow. Volume share, origin breakdown, exclusive estate relationships.' },
+  { tag: 'Distribution', name: 'Cold-chain operators serving Bangkok F&B', note: 'Who moves dairy, seafood, frozen proteins. Reliability scores by zone, capacity constraints, pricing transparency.' },
+  { tag: 'Packaging', name: 'Sustainable F&B packaging — supply vs hype', note: 'PLA, sugarcane bagasse, mushroom mycelium — which are actually shipping at scale to Thai operators.' },
+  { tag: 'Equipment', name: 'Kitchen equipment imports — Japan vs Italy vs Thai-made', note: 'Lead times, service network coverage, total cost of ownership across the three main supplier origins.' },
+  { tag: 'Ingredients', name: 'Specialty wagyu and premium beef flow into Bangkok', note: 'Australian, Japanese, US import volumes. Mark-up structure from import point to restaurant kitchen.' },
+];
+---
+
+<BaseLayout
+  title="Supplier Intel — SpoonAsia"
+  description="The hidden supply chains feeding Thailand's F&B economy — importers, distributors, equipment vendors, and the duopolies hiding in plain sight."
+>
+  <section class="ph-head">
+    <div class="container-narrow">
+      <div class="section-tag">▍ Supplier Intel</div>
+      <h1 class="ph-h1">The supply chains behind Thai F&B.</h1>
+      <p class="ph-dek">
+        <em>
+          Importers, distributors, equipment vendors, and the structural
+          dynamics that move the menu before headline prices catch up.
+        </em>
+      </p>
+    </div>
+  </section>
+
+  <section class="ph-body">
+    <div class="container-narrow">
+      <div class="ph-notice">
+        <div class="ph-label">In Production</div>
+        <p class="ph-text">
+          Supplier Intel launches Q3 2026. Pipeline below.
+          Subscribe to <a href="/newsletter">The Dispatch</a> for supplier briefs as they publish.
+        </p>
+      </div>
+
+      <div class="si-list">
+        {coming.map((c) => (
+          <article class="si-item">
+            <div class="si-tag">{c.tag}</div>
+            <h3 class="si-name">{c.name}</h3>
+            <p class="si-note">{c.note}</p>
+          </article>
+        ))}
+      </div>
+
+      <p class="ph-redirect">
+        Meanwhile, browse <a href="/analysis">all Analysis</a> →
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .section-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+  .ph-head {
+    padding: 40px 0 24px;
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .ph-h1 {
+    font-family: var(--font-sans);
+    font-size: clamp(26px, 3.5vw, 40px);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .ph-dek {
+    font-family: var(--font-serif);
+    font-size: clamp(17px, 1.8vw, 20px);
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 640px;
+  }
+  .ph-dek em { font-style: italic; }
+  .ph-body { padding: 48px 0 80px; }
+
+  .ph-notice {
+    background: var(--paper-warm);
+    border-left: 2px solid var(--accent);
+    padding: 22px 26px;
+    margin-bottom: 40px;
+  }
+  .ph-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .ph-text {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .ph-text a, .ph-redirect a {
+    color: var(--ink);
+    border-bottom: 0.5px solid var(--ink-faint);
+    text-decoration: none;
+  }
+  .ph-text a:hover, .ph-redirect a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  .si-list { display: grid; gap: 0; }
+  .si-item {
+    padding: 24px 0;
+    border-top: 0.5px solid var(--hairline);
+  }
+  .si-item:last-child {
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .si-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .si-name {
+    font-family: var(--font-serif);
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .si-note {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  .ph-redirect {
+    margin-top: 36px;
+    font-family: var(--font-serif);
+    font-size: 16px;
+    color: var(--ink-soft);
+  }
+</style>
