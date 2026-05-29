@@ -3,7 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import PostGrid from '../../components/PostGrid.astro';
 import { categories } from '../../data/categories';
-import { postsByCategory } from '../../data/posts';
+import { postsByCategory, howToCount } from '../../data/posts';
+import { howToTopics } from '../../data/howto';
 
 export function getStaticPaths() {
   return categories.map((c) => ({
@@ -14,6 +15,12 @@ export function getStaticPaths() {
 
 const { category } = Astro.props;
 const posts = postsByCategory(category.slug);
+
+// How-to gets a sub-nav of its topics (each links to a tag archive).
+const subNav =
+  category.slug === 'how-to'
+    ? howToTopics.map((t) => ({ ...t, count: howToCount(t.slug) }))
+    : [];
 
 const crumbs = [
   { name: 'หน้าแรก', href: '/' },
@@ -32,6 +39,22 @@ const crumbs = [
       <h1 class="pillar-title">{category.label}</h1>
       <p class="pillar-intent">{category.intent}</p>
       <p class="pillar-desc">{category.description}</p>
+
+      {subNav.length > 0 && (
+        <nav class="subnav" aria-label="หัวข้อย่อย How-to">
+          {subNav.map((t) =>
+            t.count > 0 ? (
+              <a href={`/tag/${t.slug}`} class="subnav-chip">
+                {t.label}<span class="subnav-th">{t.th}</span>
+              </a>
+            ) : (
+              <span class="subnav-chip is-disabled">
+                {t.label}<span class="subnav-th">{t.th}</span>
+              </span>
+            ),
+          )}
+        </nav>
+      )}
     </div>
   </section>
 
@@ -62,7 +85,7 @@ const crumbs = [
     font-size: 13px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--accent-ink);
     margin-bottom: 16px;
   }
   .pillar-desc {
@@ -73,4 +96,40 @@ const crumbs = [
   }
   .pillar-body { padding: 40px 0 64px; }
   .pillar-empty { font-size: 17px; color: var(--ink-soft); padding: 24px 0; }
+  .subnav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+  }
+  .subnav-chip {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 9px 16px;
+    border: 1px solid var(--hairline-strong);
+    border-radius: 999px;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--hairline-strong);
+    transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+  }
+  .subnav-chip:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+  .subnav-chip .subnav-th {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink-faint);
+  }
+  .subnav-chip.is-disabled {
+    color: var(--ink-mute);
+    border-color: var(--hairline);
+    cursor: default;
+  }
+  .subnav-chip.is-disabled .subnav-th { color: var(--ink-mute); }
 </style>

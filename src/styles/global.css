@@ -21,31 +21,34 @@ body {
 }
 
 :root {
-  /* Surfaces — Stark White: pure white + neutral light greys (brand: ขาว + ดำ + เหลือง) */
+  /* Surfaces — Yellow Pop: white base with warm yellow-tinted surfaces (brand: ขาว + ดำ + เหลือง) */
   --paper: #FFFFFF;
   --paper-pure: #FFFFFF;
-  --paper-warm: #F7F7F6;
-  --paper-mute: #F1F1F0;
-  --paper-soft: #F6F6F5;
+  --paper-warm: #FFFBEA;
+  --paper-mute: #FFF7D1;
+  --paper-soft: #FFFBEA;
 
   --ink: #0A0A0A;
   --ink-soft: #2E2E33;
   --ink-faint: #6B6B72;
   --ink-mute: #9A9AA2;
 
-  --hairline: #EAEAEA;
-  --hairline-strong: #D6D6D6;
+  --hairline: #F1E7B0;
+  --hairline-strong: #E3D078;
 
-  /* Brand yellow — Stark White accent. Use --accent for fills/highlights,
-     --on-accent for text that sits on a yellow fill (yellow + white = unreadable). */
-  --accent: #EAB308;
-  --accent-deep: #CA8A04;
-  --accent-soft: #FEF3C7;
+  /* Brand yellow — Yellow Pop accent.
+     --accent      bright yellow for FILLS / highlights / underlines
+     --on-accent   dark text that sits ON a yellow fill (yellow + white = unreadable)
+     --accent-ink  dark gold for accent used as TEXT on white (bright yellow text vanishes) */
+  --accent: #FFD400;
+  --accent-deep: #E6B800;
+  --accent-soft: #FFE680;
+  --accent-ink: #7A5E00;
   --on-accent: #0A0A0A;
 
   --signal-positive: #16A34A;
   --signal-negative: #DC2626;
-  --signal-warning: #EAB308;
+  --signal-warning: #E6B800;
 
   /* Thai-first type. IBM Plex Sans Thai Looped for body + UI. */
   --font-sans: 'IBM Plex Sans Thai Looped', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
@@ -75,8 +78,8 @@ a {
 }
 
 a:hover {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
+  color: var(--accent-ink);
+  border-bottom-color: var(--accent-ink);
 }
 
 .mono {
@@ -96,7 +99,7 @@ a:hover {
 }
 
 .section-tag.accent {
-  color: var(--accent);
+  color: var(--accent-ink);
 }
 
 .container {
@@ -129,7 +132,7 @@ a:hover {
 }
 
 .ribbon-inner .accent {
-  color: var(--accent);
+  color: var(--accent-ink);
 }
 
 .btn {
@@ -159,7 +162,7 @@ a:hover {
 
 .btn-inverted:hover {
   background: var(--accent);
-  border-color: var(--accent);
+  border-color: var(--accent-ink);
   color: var(--on-accent);
 }
 
@@ -173,7 +176,7 @@ a:hover {
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.15em;
-  color: var(--accent);
+  color: var(--accent-ink);
   text-transform: uppercase;
   margin-bottom: 12px;
 }

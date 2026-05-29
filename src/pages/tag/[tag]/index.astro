@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import PostGrid from '../../../components/PostGrid.astro';
+import { allTags, postsByTag } from '../../../data/posts';
+import { howToTopics, howToTopicBySlug } from '../../../data/howto';
+
+export function getStaticPaths() {
+  // Union of every tag used on a post and the How-to sub-topics (so the
+  // sub-nav never points at a missing page, even before content exists).
+  const tags = new Set<string>([
+    ...allTags(),
+    ...howToTopics.map((t) => t.slug),
+  ]);
+  return [...tags].map((tag) => ({ params: { tag }, props: { tag } }));
+}
+
+interface Props { tag: string }
+const { tag } = Astro.props;
+const sub = howToTopicBySlug(tag);
+const posts = postsByTag(tag);
+
+// Thin tag pages should not be indexed (spec: < 3 posts → noindex, follow).
+const noindex = posts.length < 3;
+
+const heading = sub ? sub.th : tag;
+const crumbs = [
+  { name: 'หน้าแรก', href: '/' },
+  { name: 'แท็ก', href: '/tag' },
+  { name: heading, href: `/tag/${tag}` },
+];
+---
+
+<BaseLayout
+  title={`${heading} | TorPenguin`}
+  description={`รวมเรื่อง${heading}สำหรับคนทำร้านอาหาร จาก TorPenguin`}
+  breadcrumbs={crumbs}
+  noindex={noindex}
+>
+  <section class="tag-head">
+    <div class="container">
+      <Breadcrumb items={crumbs} />
+      <div class="tag-eyebrow">{sub ? `How-to · ${sub.label}` : 'แท็ก'}</div>
+      <h1 class="tag-title">{heading}</h1>
+    </div>
+  </section>
+
+  <section class="tag-body">
+    <div class="container">
+      {posts.length === 0 ? (
+        <p class="tag-empty">เรื่องหมวดนี้กำลังจะมาเร็วๆนี้ ระหว่างนี้ตามอ่านเรื่องอื่นของพวกเราไปก่อนได้</p>
+      ) : (
+        <PostGrid posts={posts} cols={3} />
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .tag-head { padding: 28px 0 24px; border-bottom: 1px solid var(--hairline); }
+  .tag-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    margin: 16px 0 8px;
+  }
+  .tag-title {
+    font-family: var(--font-sans);
+    font-size: clamp(30px, 5vw, 44px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .tag-body { padding: 40px 0 64px; }
+  .tag-empty { font-size: 17px; color: var(--ink-soft); padding: 24px 0; }
+</style>

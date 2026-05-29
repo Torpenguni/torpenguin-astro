@@ -73,7 +73,7 @@ const list = typeof limit === 'number' ? videos.slice(0, limit) : videos;
     font-family: var(--font-sans); font-size: 14px; font-weight: 600;
     color: var(--ink-soft); text-decoration: none; border-bottom: none; white-space: nowrap;
   }
-  .vsec-more:hover { color: var(--accent); }
+  .vsec-more:hover { color: var(--accent-ink); }
 
   .vsec-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
   .vcard { text-decoration: none; border-bottom: none; color: inherit; display: block; }
@@ -95,12 +95,12 @@ const list = typeof limit === 'number' ? videos.slice(0, limit) : videos;
     display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
     transition: color 0.15s ease;
   }
-  .vcard:hover .vcard-title { color: var(--accent); }
+  .vcard:hover .vcard-title { color: var(--accent-ink); }
 
   .vsec-fallback {
     display: block; padding: 28px; text-align: center;
     background: var(--paper-soft); border-radius: 12px;
-    font-size: 16px; font-weight: 600; color: var(--accent);
+    font-size: 16px; font-weight: 600; color: var(--accent-ink);
     text-decoration: none; border-bottom: none;
   }
 

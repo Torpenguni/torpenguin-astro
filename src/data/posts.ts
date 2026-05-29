@@ -119,7 +119,7 @@ export const posts: Post[] = [
     title: 'คุมต้นทุนวัตถุดิบร้านอาหารให้ไม่เกิน 35% ทำยังไง',
     slug: 'food-cost-control',
     category: 'how-to',
-    tags: ['ต้นทุนอาหาร', 'บริหารร้าน', 'กำไร'],
+    tags: ['cost', 'menu', 'ต้นทุนอาหาร', 'บริหารร้าน', 'กำไร'],
     excerpt:
       'ต้นทุนวัตถุดิบกินกำไรร้านอาหารมากที่สุด เรารวมวิธีคุม food cost ให้อยู่ในกรอบที่ร้านอยู่รอด ตั้งแต่ตั้งสูตร คุมสต๊อก ไปจนถึงออกแบบเมนู',
     author: 'torpenguin',
@@ -141,7 +141,7 @@ export const posts: Post[] = [
     title: 'ทำเลแบบไหนที่ร้านอาหารเปิดแล้วรอด',
     slug: 'location-that-works',
     category: 'how-to',
-    tags: ['ทำเล', 'เปิดร้าน', 'ค่าเช่า'],
+    tags: ['cost', 'ทำเล', 'เปิดร้าน', 'ค่าเช่า'],
     excerpt:
       'ทำเลดีไม่ได้แปลว่าคนเดินเยอะ เราแยกให้เห็นว่าคนเดินผ่านกับคนที่ตั้งใจมาซื้อต่างกันยังไง และทำเลแบบไหนที่ค่าเช่ายังคุ้มกับยอดขาย',
     author: 'torpenguin',
@@ -214,7 +214,7 @@ export const posts: Post[] = [
     title: 'ระบบ POS ตัวไหนเหมาะกับร้านอาหารขนาดเล็ก',
     slug: 'pos-for-small-restaurant',
     category: 'how-to',
-    tags: ['POS', 'ระบบร้าน', 'เทคโนโลยี'],
+    tags: ['systems', 'POS', 'ระบบร้าน', 'เทคโนโลยี'],
     excerpt:
       'ระบบ POS ที่ดีช่วยให้ทุกคนเห็นยอดและต้นทุนแบบเรียลไทม์ เรารวมสิ่งที่ควรดูก่อนเลือก และฟีเจอร์ที่จำเป็นจริงสำหรับร้านเล็ก',
     author: 'torpenguin',
@@ -246,6 +246,17 @@ export const postBySlug = (category: string, slug: string): Post | undefined =>
   posts.find((p) => p.category === category && p.slug === slug);
 
 export const latestPosts = (n: number): Post[] => allPosts().slice(0, n);
+
+export const postsByTag = (tag: string): Post[] =>
+  allPosts().filter((p) => p.tags.includes(tag));
+
+export const allTags = (): string[] => [
+  ...new Set(posts.flatMap((p) => p.tags)),
+];
+
+// How many How-to posts carry a given tag (for the How-to sub-nav counts).
+export const howToCount = (tag: string): number =>
+  postsByCategory('how-to').filter((p) => p.tags.includes(tag)).length;
 
 // Related: same category first, then shared tags; never the post itself.
 export const relatedPosts = (post: Post, n = 4): Post[] => {
