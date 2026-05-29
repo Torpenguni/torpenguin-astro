@@ -26,7 +26,8 @@ const today = new Date().toLocaleDateString('en-US', {
 
       <div class="masthead-center">
         <a href="/" class="masthead-logo" aria-label="Torpenguin home">
-          <span class="logo-bold">tor</span><span class="logo-light">penguin</span><span class="logo-dot" aria-hidden="true"></span>
+          <img src="/penguin.png" class="logo-mark" alt="" aria-hidden="true" width="44" height="44" />
+          <span class="logo-word">torpenguin</span>
         </a>
         <span class="masthead-tagline">Notes on building F&amp;B in Asia</span>
       </div>
@@ -94,17 +95,28 @@ const today = new Date().toLocaleDateString('en-US', {
   }
 
   .masthead-logo {
-    font-family: var(--font-sans);
-    font-size: 42px;
-    letter-spacing: -0.03em;
     color: var(--ink);
     text-decoration: none;
     border-bottom: none;
     line-height: 1;
     display: inline-flex;
-    align-items: baseline;
-    gap: 0;
+    align-items: center;
+    gap: 10px;
     transition: color 0.15s ease;
+  }
+  .logo-mark {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: block;
+    flex-shrink: 0;
+  }
+  .logo-word {
+    font-family: var(--font-sans);
+    font-weight: 800;
+    font-size: 38px;
+    letter-spacing: -0.03em;
+    color: var(--ink);
   }
 
   .masthead-tagline {
@@ -114,19 +126,7 @@ const today = new Date().toLocaleDateString('en-US', {
     text-transform: uppercase;
     color: var(--ink-faint);
   }
-  .logo-bold { font-weight: 800; }
-  .logo-light { font-weight: 400; }
-  .logo-dot {
-    display: inline-block;
-    width: 0.18em;
-    height: 0.18em;
-    background: var(--accent);
-    margin-left: 0.04em;
-    align-self: flex-end;
-    margin-bottom: 0.04em;
-  }
-  .masthead-logo:hover { color: var(--accent); }
-  .masthead-logo:hover .logo-dot { background: var(--accent-deep); }
+  .masthead-logo:hover .logo-word { color: var(--accent); }
 
   .masthead-right {
     display: flex;
@@ -198,7 +198,8 @@ const today = new Date().toLocaleDateString('en-US', {
     }
     .hamburger { display: flex; }
     .masthead-left { display: none; }
-    .masthead-logo { font-size: 28px; }
+    .logo-word { font-size: 24px; }
+    .logo-mark { width: 32px; height: 32px; }
     .masthead-tagline { display: none; }
     .subscribe-btn { font-size: 12px; padding: 7px 14px; }
     .primary-nav-link { font-size: 13px; padding: 12px 12px; }
