@@ -6,7 +6,7 @@ excerpt: "Loss Leader Strategy ‘ยอมเสียเ"
 author: torpenguin
 publishedAt: 2025-01-06T10:00:46
 updatedAt: 2025-06-18T12:00:26
-image: "/imported/loss-leader-cover.png"
+image: "/imported/img-0e937410d01988eb.png"
 ---
 
 <p><strong>Loss Leader Strategy ‘ยอมเสียเพื่อให้ได้มากกว่าเดิม’ กลยุทธ์ราคาที่ทุนจีนมักใช้เมื่อเข้ามาตีตลาด</strong></p>

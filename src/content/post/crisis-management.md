@@ -6,7 +6,7 @@ excerpt: "Crisis Management แผนบริหารจัด"
 author: torpenguin
 publishedAt: 2024-09-25T14:16:40
 updatedAt: 2025-06-18T12:01:02
-image: "/imported/crisis-management-cover.png"
+image: "/imported/img-1d2a428f07775d43.png"
 ---
 
 <p><strong>Crisis Management แผนบริหารจัดการวิกฤต สิ่งที่ทุกธุรกิจควรมี</strong></p>

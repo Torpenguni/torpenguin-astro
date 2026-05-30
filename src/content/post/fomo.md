@@ -6,7 +6,7 @@ excerpt: "FOMO กลยุทธ์เพิ่มยอดขายด้ว�
 author: torpenguin
 publishedAt: 2024-09-30T10:00:49
 updatedAt: 2025-06-18T12:00:31
-image: "/imported/fomo-cover.png"
+image: "/imported/img-dd7e84c9fc481231.png"
 ---
 
 <p><strong>FOMO กลยุทธ์เพิ่มยอดขายด้วยจิตวิทยาที่เล่นกับความกลัวของลูกค้า กับ 5 เทคนิคที่เอาไปปรับใช้ได้</strong></p>

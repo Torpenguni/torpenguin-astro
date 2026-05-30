@@ -6,7 +6,7 @@ excerpt: "สายป่านสั้น งบน้อย อย่าแ�
 author: torpenguin
 publishedAt: 2025-11-17T12:17:51
 updatedAt: 2025-11-17T12:17:51
-image: "/imported/how-to-make-your-restaurant-attractive-cover.jpg"
+image: "/imported/img-15c9892418a8aadd.jpg"
 ---
 
 <p>ในยุคที่ร้านอาหารเต็มเมืองและโปรโมชั่นเต็มฟีด<br />การถามว่า <strong>“จะลดเท่าไหร่ดีถึงจะมีลูกค้า?”</strong><br />อาจเป็นคำถามที่กำลังพาเจ้าของร้านเข้าสู่ทางตัน</p>

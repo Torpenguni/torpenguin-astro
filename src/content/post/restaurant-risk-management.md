@@ -6,7 +6,7 @@ excerpt: "บริหารความเสี่ยงร้านอาห�
 author: torpenguin
 publishedAt: 2025-12-07T10:00:54
 updatedAt: 2025-12-04T13:00:51
-image: "/imported/restaurant-risk-management-cover.webp"
+image: "/imported/img-4d8e87a151f26fe7.webp"
 ---
 
 <h4>บริหารความเสี่ยงร้านอาหาร ไม่ใช่ตัวเลือก แต่คือ “เกราะป้องกันธุรกิจ” ที่เจ้าของร้านต้องมี</h4>

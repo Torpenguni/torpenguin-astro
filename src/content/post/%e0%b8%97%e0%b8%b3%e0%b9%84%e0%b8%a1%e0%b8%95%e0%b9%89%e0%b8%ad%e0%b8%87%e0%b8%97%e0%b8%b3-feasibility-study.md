@@ -6,7 +6,7 @@ excerpt: "ทำไมต้องทำ Feasibility Study ก"
 author: torpenguin
 publishedAt: 2025-02-26T10:00:08
 updatedAt: 2026-01-22T13:29:27
-image: "/imported/%e0%b8%97%e0%b8%b3%e0%b9%84%e0%b8%a1%e0%b8%95%e0%b9%89%e0%b8%ad%e0%b8%87%e0%b8%97%e0%b8%b3-feasibility-study-cover.png"
+image: "/imported/img-0cfff44dce27965f.png"
 ---
 
 <h5></h5>

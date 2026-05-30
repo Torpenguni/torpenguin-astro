@@ -6,7 +6,7 @@ excerpt: "‘ไม่จำเป็นต้องยึดติดแค่�
 author: torpenguin
 publishedAt: 2023-10-28T11:12:03
 updatedAt: 2023-10-28T11:12:03
-image: "/imported/go-wholesale-%e0%b9%80%e0%b8%9b%e0%b8%b4%e0%b8%94%e0%b9%81%e0%b8%a5%e0%b9%89%e0%b8%a7-cover.jpg"
+image: "/imported/img-8c4b458008e32f95.jpg"
 ---
 
 <p>‘ไม่จำเป็นต้องยึดติดแค่รายเดียว’ ค้าส่งแรกจากเครือเซ็นทรัลกรุ๊ป ‘Go Wholesale’ สาขาแรกเปิดแล้ว ก่อนสิ้นปีมาแน่ 3 สาขา เชียงใหม่-ชลบุรี-พัทยา</p>

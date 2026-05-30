@@ -6,7 +6,7 @@ excerpt: "ภาษีป้าย ล่าสุด สรุปทุกอ�
 author: torpenguin
 publishedAt: 2025-08-27T10:00:29
 updatedAt: 2025-08-21T20:06:09
-image: "/imported/signboard-tax-update-2025-cover.webp"
+image: "/imported/img-e3a2e2b712a32811.webp"
 ---
 
 <p>ป้ายแบบไหนที่ต้องเสียภาษี?</p>

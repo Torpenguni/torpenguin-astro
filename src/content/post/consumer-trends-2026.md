@@ -6,7 +6,7 @@ excerpt: "เทรนด์ผู้บริโภค 2026 เปลี่ย�
 author: torpenguin
 publishedAt: 2025-11-25T12:36:06
 updatedAt: 2025-11-25T12:36:06
-image: "/imported/consumer-trends-2026-cover.webp"
+image: "/imported/img-125db905b5a130bc.webp"
 ---
 
 <p>สิบปีก่อนกับวันนี้ ลองถามตัวเองว่า เรายังกินอาหารร้านเดิมอยู่หรือไม่ ยังซื้อเสื้อผ้าแบบเดิม ยังไปเที่ยวที่เดิมหรือไม่</p>

@@ -6,7 +6,7 @@ excerpt: "บทเรียน Warren Buffett ที่คนทำ"
 author: torpenguin
 publishedAt: 2024-01-23T14:18:05
 updatedAt: 2025-06-18T12:01:10
-image: "/imported/%e0%b8%9a%e0%b8%97%e0%b9%80%e0%b8%a3%e0%b8%b5%e0%b8%a2%e0%b8%99-warren-buffett-cover.jpg"
+image: "/imported/img-4551a3cea61480b3.jpg"
 ---
 
 <p>บทเรียน Warren Buffett ที่คนทำธุรกิจควรอ่าน</p>

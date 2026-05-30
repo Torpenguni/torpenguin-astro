@@ -6,7 +6,7 @@ excerpt: "’Oh My Godmother’ Patisserie &"
 author: torpenguin
 publishedAt: 2023-10-18T14:41:37
 updatedAt: 2023-10-18T14:41:37
-image: "/imported/oh-my-godmother-cover.jpg"
+image: "/imported/img-36b0e4c85423e23d.jpg"
 ---
 
 <p>’Oh My Godmother’ Patisserie &amp; Restaurant ลูกสาวลูกครึ่งเกาหลี อิตาเลี่ยน ฝรั่งเศส คนใหม่ในเครือ iberry Group ของพี่ปลา &#8211; อัจฉรา บุรารักษ์ ตัวแม่ตัวคลอดบุตรแห่งวงการสร้างแบรนด์ร้านอาหาร เตรียมเปิดให้บริการ 1 ธันวาคมนี้ ที่ The Emsphere ถนนสุขุมวิท และในเร็ว ๆ นี้ ที่ Marché Thonglor</p>

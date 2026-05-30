@@ -6,7 +6,7 @@ excerpt: "ทำไมธุรกิจถึงไม่ขายดีตล�
 author: torpenguin
 publishedAt: 2025-12-01T19:08:26
 updatedAt: 2025-12-01T19:08:26
-image: "/imported/business-cycle-strategy-cover.webp"
+image: "/imported/img-db291368128da7fb.webp"
 ---
 
 <h5></h5>

@@ -6,7 +6,7 @@ excerpt: "ChatGPT สำหรับร้านอาหาร ปั้น C"
 author: torpenguin
 publishedAt: 2025-05-10T10:00:26
 updatedAt: 2025-12-16T13:00:33
-image: "/imported/chatgpt-for-restaurant-buzz-cover.png"
+image: "/imported/img-a8ffd6626180118d.png"
 ---
 
 <h4><strong>ChatGPT สำหรับร้านอาหาร ปั้น ChatGPT ยังไงให้ “พูดเป็น” สื่อสารตรงใจลูกค้า กับ 5 เทคนิคสำหรับคนทำร้านอาหาร</strong><!-- notionvc: cde5aebd-1099-4b11-b107-b585744b1e6d --></h4>

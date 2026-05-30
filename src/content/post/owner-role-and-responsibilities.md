@@ -6,7 +6,7 @@ excerpt: "วางหน้าที่ให้ลูกน้องแล้�
 author: torpenguin
 publishedAt: 2026-01-16T10:00:18
 updatedAt: 2026-01-13T17:44:29
-image: "/imported/owner-role-and-responsibilities-cover.webp"
+image: "/imported/img-ed38804e7e51e0f2.webp"
 ---
 
 <h4>วางหน้าที่ให้ลูกน้องแล้ว อย่าลืมกำหนดหน้าที่เจ้าของร้านให้ตัวเองด้วย</h4>

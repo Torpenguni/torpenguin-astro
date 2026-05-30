@@ -6,7 +6,7 @@ excerpt: "ร้านจะอยู่นานได้ ต้องมี Va
 author: torpenguin
 publishedAt: 2023-12-24T13:00:59
 updatedAt: 2025-06-18T12:01:11
-image: "/imported/value-proposition-cover.jpg"
+image: "/imported/img-3d0d868eee493796.jpg"
 ---
 
 <p><span><strong>ร้านจะอยู่นานได้ ต้องมี Value Proposition</strong></span></p>

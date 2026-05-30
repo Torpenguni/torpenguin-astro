@@ -6,7 +6,7 @@ excerpt: "Karun ชาไทยพรีเมียม สู่ธุรกิ
 author: torpenguin
 publishedAt: 2025-09-21T10:00:26
 updatedAt: 2025-09-16T18:24:58
-image: "/imported/karun-avery-wong-cover.webp"
+image: "/imported/img-7be138626eecc659.webp"
 ---
 
 <p>ชาไทยแก้วละ 100 บาทที่ไม่ได้ขายแค่ชา แต่ขาย &#8220;คุณค่า&#8221; ที่ลูกค้ารู้สึกได้</p>

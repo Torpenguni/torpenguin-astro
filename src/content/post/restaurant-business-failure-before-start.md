@@ -6,7 +6,7 @@ excerpt: "ถ้า เปิดร้านอาหารแล้วเจ๊
 author: torpenguin
 publishedAt: 2025-12-24T10:00:10
 updatedAt: 2025-12-22T19:33:53
-image: "/imported/restaurant-business-failure-before-start-cover.webp"
+image: "/imported/img-03ad2a0e53b44c39.webp"
 ---
 
 <h4>ถ้า เปิดร้านอาหารแล้วเจ๊ง คุณพร้อมมั้ย? <span>คำถามที่ต้องถามตัวเองก่อนเริ่มทำธุรกิจร้านอาหาร</span></h4>

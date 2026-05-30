@@ -6,7 +6,7 @@ excerpt: "SOP ทางรอดของธุรกิจร้านอาห
 author: torpenguin
 publishedAt: 2025-05-13T14:51:15
 updatedAt: 2025-05-13T14:51:15
-image: "/imported/sop-cover.png"
+image: "/imported/img-fbd9faf2610d1c35.png"
 ---
 
 <p><strong>SOP ทางรอดของธุรกิจร้านอาหาร บทเรียนจากร้านอาหารระดับโลก Minor Food</strong><!-- notionvc: 3cb08bd6-bd8d-4e5e-853e-1c868c03c866 --></p>

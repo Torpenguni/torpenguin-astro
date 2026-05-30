@@ -6,7 +6,7 @@ excerpt: "Makro Horeca Academy ร่วมมือ T"
 author: torpenguin
 publishedAt: 2024-03-20T14:21:08
 updatedAt: 2024-03-20T14:29:10
-image: "/imported/makro-horeca-academy-cover.jpg"
+image: "/imported/img-279f3c74b2165505.jpg"
 ---
 
 <p><b>Makro Horeca Academy ร่วมมือ Torpenguin ยกระดับผู้ประกอบการ ‘ชาบู-สุกี้-หม่าล่า’ ในไทย จัดงาน HOTPOT WAR CHALLENGE &#8211; ปรับตัวยังไงในยุคหม่าล่าครองเมือง และเพิ่มมูลค่าวัตถุดิบยังไงให้ลูกค้ายอมจ่าย</b></p>

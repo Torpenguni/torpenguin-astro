@@ -6,7 +6,7 @@ excerpt: "Sustainability ร้านอาหาร ไม่ใช"
 author: torpenguin
 publishedAt: 2025-07-31T10:00:17
 updatedAt: 2025-08-25T14:28:05
-image: "/imported/sustainability-esg-restaurant-cover.png"
+image: "/imported/img-7ef2d9fe2c018214.png"
 ---
 
 <h2><em><strong>Sustainability ร้านอาหาร ไม่ใช่เทรนด์ แต่คืออนาคตที่ทุกธุรกิจต้องมี</strong></em><!-- notionvc: 04a5bd0f-b7fc-46fc-ad40-bccf3034575b --></h2>

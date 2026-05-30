@@ -6,7 +6,7 @@ excerpt: "Butterbear กับการต่อยอดความสำเ"
 author: torpenguin
 publishedAt: 2024-07-12T10:00:35
 updatedAt: 2025-06-18T12:01:04
-image: "/imported/butterbear-cover.jpg"
+image: "/imported/img-4e3b4d05291d4cd9.jpg"
 ---
 
 <p>Butterbear กับการต่อยอดความสำเร็จจาก &#8220;น้องหมีเนย&#8221; และกลยุทธ์ Mascot Marketing ประตูบานใหม่ในการโกยเอนเกจเมนบนโลกออนไลน์</p>

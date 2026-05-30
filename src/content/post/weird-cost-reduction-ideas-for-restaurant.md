@@ -6,7 +6,7 @@ excerpt: "5 ไอเดียลดต้นทุนร้านอาหา�
 author: torpenguin
 publishedAt: 2026-02-10T14:37:41
 updatedAt: 2026-02-10T14:37:41
-image: "/imported/weird-cost-reduction-ideas-for-restaurant-cover.webp"
+image: "/imported/img-073c9077dce9d470.webp"
 ---
 
 <div>

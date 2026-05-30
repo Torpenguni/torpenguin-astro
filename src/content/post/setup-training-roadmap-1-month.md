@@ -6,7 +6,7 @@ excerpt: "วาง Training Roadmap ร้านอาหาร"
 author: torpenguin
 publishedAt: 2025-08-12T10:00:57
 updatedAt: 2025-08-25T15:27:35
-image: "/imported/setup-training-roadmap-1-month-cover.png"
+image: "/imported/img-de3c2eb8be94776c.png"
 ---
 
 <p>ถ้าไม่มีแผนชัด พนักงานก็ไม่รู้ว่าตัวเองจะโตไปทางไหน การมี Roadmap ฝึกงานจะช่วยทั้งทีม และช่วยเราคัดคนด้วย</p>

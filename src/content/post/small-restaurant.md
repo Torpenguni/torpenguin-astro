@@ -6,7 +6,7 @@ excerpt: "ยิ่งเล็ก คอนเซปต์ยิ่งต้อ
 author: torpenguin
 publishedAt: 2025-09-30T10:00:24
 updatedAt: 2025-09-29T21:27:03
-image: "/imported/small-restaurant-cover.png"
+image: "/imported/img-936010beca322fc7.png"
 ---
 
 <h4>ยิ่งเล็ก คอนเซปต์ยิ่งต้องชัด ทางรอดของ<strong>ร้านอาหารเล็ก ๆ</strong>ในยุคนี้</h4>

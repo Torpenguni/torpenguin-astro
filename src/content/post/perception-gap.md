@@ -6,7 +6,7 @@ excerpt: "Perception Gap สิ่งที่ทำร้ายแบ"
 author: torpenguin
 publishedAt: 2025-05-23T10:00:45
 updatedAt: 2025-06-18T12:00:20
-image: "/imported/perception-gap-cover.png"
+image: "/imported/img-277f8ffbcdad552d.png"
 ---
 
 <p><strong>Perception Gap สิ่งที่ทำร้ายแบรนด์ของเราโดยไม่รู้ตัว</strong></p>

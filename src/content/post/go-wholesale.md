@@ -6,7 +6,7 @@ excerpt: "เซนทรัลลงสนามค้าส่ง เดิน
 author: torpenguin
 publishedAt: 2023-09-16T11:48:56
 updatedAt: 2023-09-18T14:32:44
-image: "/imported/go-wholesale-cover.jpg"
+image: "/imported/img-a726da0d5ca22052.jpg"
 ---
 
 <p>เซนทรัลลงสนามค้าส่ง เดินหน้าส่ง ‘GO Wholesale’ ตั้งเป้า 50 สาขา ภายใน 5 ปี ประเดิม 4 สาขาภายในปีนี้ (กทม. เชียงใหม่ พัทยา นิคมอมตนคร)</p>

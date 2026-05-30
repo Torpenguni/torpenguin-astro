@@ -6,7 +6,7 @@ excerpt: "5 วิธีลดต้นทุนร้านอาหารท�
 author: torpenguin
 publishedAt: 2026-03-24T18:57:53
 updatedAt: 2026-03-30T14:33:32
-image: "/imported/5-wrong-ways-to-reduce-restaurant-costs-cover.jpg"
+image: "/imported/img-e67d0fdffe4093d3.jpg"
 ---
 
 <h4>5 วิธีลดต้นทุนร้านอาหารที่ไม่ได้ช่วยให้ร้านประหยัดขึ้นเลย (กำลังทำแบบนี้อยู่รึเปล่า มาเช็กกัน)</h4>

@@ -6,7 +6,7 @@ excerpt: "เฮียฮ้อ GIFT Hospitality เข้าซ"
 author: torpenguin
 publishedAt: 2024-03-13T15:01:00
 updatedAt: 2024-03-13T15:01:00
-image: "/imported/%e0%b9%80%e0%b8%ae%e0%b8%b5%e0%b8%a2%e0%b8%ae%e0%b9%89%e0%b8%ad-gift-hospitality-cover.jpg"
+image: "/imported/img-f40cc07c9f1a8fda.jpg"
 ---
 
 <p>เฮียฮ้อ GIFT Hospitality เข้าซื้อสินทรัพย์ธุรกิจ Food &amp; Beverage 6 แบรนด์ มูลค่า 235 ลบ.</p>

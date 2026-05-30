@@ -6,7 +6,7 @@ excerpt: "Powerpuff Three New Year Party"
 author: torpenguin
 publishedAt: 2024-12-12T15:53:40
 updatedAt: 2024-12-12T17:32:33
-image: "/imported/powerpuff-three-new-year-party-cover.png"
+image: "/imported/img-b6426a66d65e9298.png"
 ---
 
 <p><strong>Powerpuff Three New Year Party งานรวมตัวของ 3 เพจ แห่งวงการคนทำร้านอาหาร ปาร์ตี้คนทำร้านอาหารส่งท้ายปี 2567</strong></p>
@@ -38,7 +38,7 @@ Map : <a href="https://maps.app.goo.gl/nBPY94kdkFeuNuUW9" target="_blank" rel="n
 </div>
 </div>
 </div>
-<p><img loading="lazy" decoding="async" src="/imported/powerpuff-three-new-year-party-1.jpg" alt="Powerpuff Three New Year Party" width="640" height="640" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/powerpuff-three-new-year-party-1.jpg 1024w, https://torpenguin.com/wp-content/uploads/2024/12/469646092_1129533061865660_7881024664555685678_n-300x300.jpg 300w, https://torpenguin.com/wp-content/uploads/2024/12/469646092_1129533061865660_7881024664555685678_n-150x150.jpg 150w, https://torpenguin.com/wp-content/uploads/2024/12/469646092_1129533061865660_7881024664555685678_n-768x768.jpg 768w, https://torpenguin.com/wp-content/uploads/2024/12/469646092_1129533061865660_7881024664555685678_n-420x420.jpg 420w, https://torpenguin.com/wp-content/uploads/2024/12/469646092_1129533061865660_7881024664555685678_n-640x640.jpg 640w, https://torpenguin.com/wp-content/uploads/2024/12/469646092_1129533061865660_7881024664555685678_n-681x681.jpg 681w, https://torpenguin.com/wp-content/uploads/2024/12/469646092_1129533061865660_7881024664555685678_n.jpg 1080w" sizes="(max-width: 640px) 100vw, 640px" /></p>
+<p><img loading="lazy" decoding="async" src="/imported/img-c5c5a3241951e25f.jpg" alt="Powerpuff Three New Year Party" width="640" height="640" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/img-c5c5a3241951e25f.jpg 1024w, https://torpenguin.com/wp-content/uploads/2024/12/469646092_1129533061865660_7881024664555685678_n-300x300.jpg 300w, https://torpenguin.com/wp-content/uploads/2024/12/469646092_1129533061865660_7881024664555685678_n-150x150.jpg 150w, https://torpenguin.com/wp-content/uploads/2024/12/469646092_1129533061865660_7881024664555685678_n-768x768.jpg 768w, https://torpenguin.com/wp-content/uploads/2024/12/469646092_1129533061865660_7881024664555685678_n-420x420.jpg 420w, https://torpenguin.com/wp-content/uploads/2024/12/469646092_1129533061865660_7881024664555685678_n-640x640.jpg 640w, https://torpenguin.com/wp-content/uploads/2024/12/469646092_1129533061865660_7881024664555685678_n-681x681.jpg 681w, https://torpenguin.com/wp-content/uploads/2024/12/469646092_1129533061865660_7881024664555685678_n.jpg 1080w" sizes="(max-width: 640px) 100vw, 640px" /></p>
 
 <div>
 <div>

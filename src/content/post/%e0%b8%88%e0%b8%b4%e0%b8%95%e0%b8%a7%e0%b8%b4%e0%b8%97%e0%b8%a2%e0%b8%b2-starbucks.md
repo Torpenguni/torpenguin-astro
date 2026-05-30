@@ -6,7 +6,7 @@ excerpt: "จิตวิทยา Starbucks ทำไมถึงเลือ"
 author: torpenguin
 publishedAt: 2025-01-01T10:00:18
 updatedAt: 2025-06-18T12:00:26
-image: "/imported/%e0%b8%88%e0%b8%b4%e0%b8%95%e0%b8%a7%e0%b8%b4%e0%b8%97%e0%b8%a2%e0%b8%b2-starbucks-cover.png"
+image: "/imported/img-faf9b52d74c33467.png"
 ---
 
 <p><strong>จิตวิทยา Starbucks ทำไมถึงเลือกใช้โต๊ะทรงกลมในร้าน?</strong></p>

@@ -6,7 +6,7 @@ excerpt: "DAMN Talk & Party ปาร์ตี้ร"
 author: torpenguin
 publishedAt: 2025-01-14T13:35:17
 updatedAt: 2025-01-14T13:36:13
-image: "/imported/damn-talk-party-cover.jpg"
+image: "/imported/img-ce4ae67eb570177d.jpg"
 ---
 
 <p><strong>DAMN Talk &amp; Party ปาร์ตี้รวมตัวผู้ประกอบการธุรกิจร้านอาหารกลางคืนโดยเฉพาะ พบกัน 27 ม.ค. 2568 นี้</strong></p>
@@ -25,7 +25,7 @@ Map : <a href="https://maps.app.goo.gl/nBPY94kdkFeuNuUW9" target="_blank" rel="n
 
 <p>หากชำระเงินเรียบร้อยแล้ว ขออนุญาตสงวนสิทธิ์การคืนเงิน หรือเปลี่ยนแปลงข้อมูลทุกกรณี กรุณาตรวจสอบข้อมูลอย่างถี่ถ้วน ก่อนทำการชำระเงิน</p>
 
-<p><img loading="lazy" decoding="async" src="/imported/damn-talk-party-1.jpg" alt="DAMN Talk &amp; Party" width="640" height="640" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/damn-talk-party-1.jpg 1024w, https://torpenguin.com/wp-content/uploads/2025/01/472884292_1151192056366427_3625511717156169274_n-300x300.jpg 300w, https://torpenguin.com/wp-content/uploads/2025/01/472884292_1151192056366427_3625511717156169274_n-150x150.jpg 150w, https://torpenguin.com/wp-content/uploads/2025/01/472884292_1151192056366427_3625511717156169274_n-768x768.jpg 768w, https://torpenguin.com/wp-content/uploads/2025/01/472884292_1151192056366427_3625511717156169274_n-1536x1536.jpg 1536w, https://torpenguin.com/wp-content/uploads/2025/01/472884292_1151192056366427_3625511717156169274_n-420x420.jpg 420w, https://torpenguin.com/wp-content/uploads/2025/01/472884292_1151192056366427_3625511717156169274_n-640x640.jpg 640w, https://torpenguin.com/wp-content/uploads/2025/01/472884292_1151192056366427_3625511717156169274_n-681x681.jpg 681w, https://torpenguin.com/wp-content/uploads/2025/01/472884292_1151192056366427_3625511717156169274_n.jpg 1080w" sizes="(max-width: 640px) 100vw, 640px" /></p>
+<p><img loading="lazy" decoding="async" src="/imported/img-1ccb60d4df74bda3.jpg" alt="DAMN Talk &amp; Party" width="640" height="640" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/img-1ccb60d4df74bda3.jpg 1024w, https://torpenguin.com/wp-content/uploads/2025/01/472884292_1151192056366427_3625511717156169274_n-300x300.jpg 300w, https://torpenguin.com/wp-content/uploads/2025/01/472884292_1151192056366427_3625511717156169274_n-150x150.jpg 150w, https://torpenguin.com/wp-content/uploads/2025/01/472884292_1151192056366427_3625511717156169274_n-768x768.jpg 768w, https://torpenguin.com/wp-content/uploads/2025/01/472884292_1151192056366427_3625511717156169274_n-1536x1536.jpg 1536w, https://torpenguin.com/wp-content/uploads/2025/01/472884292_1151192056366427_3625511717156169274_n-420x420.jpg 420w, https://torpenguin.com/wp-content/uploads/2025/01/472884292_1151192056366427_3625511717156169274_n-640x640.jpg 640w, https://torpenguin.com/wp-content/uploads/2025/01/472884292_1151192056366427_3625511717156169274_n-681x681.jpg 681w, https://torpenguin.com/wp-content/uploads/2025/01/472884292_1151192056366427_3625511717156169274_n.jpg 1080w" sizes="(max-width: 640px) 100vw, 640px" /></p>
 <p><strong>???? ติดตามข่าวสารธุรกิจร้านอาหาร<br />
 </strong><a href="https://www.facebook.com/TORPENGUIN/?locale=th_TH" target="_blank" rel="noopener">Facebook : Torpenguin</a><br />
 <a href="https://www.instagram.com/torpenguin/?hl=en" target="_blank" rel="noopener">Instargram : torpenguin</a><br />

@@ -6,7 +6,7 @@ excerpt: "กลยุทธ์การเงิน Starbucks: เมื่"
 author: torpenguin
 publishedAt: 2026-02-18T10:00:54
 updatedAt: 2026-02-17T16:25:24
-image: "/imported/starbucks-banking-model-cash-flow-strategy-cover.webp"
+image: "/imported/img-dc2f08e1e8056885.webp"
 ---
 
 <h4>กลยุทธ์การเงิน Starbucks: เมื่อธุรกิจไม่ได้โตเพราะกำไรจากเครื่องดื่ม แต่เพราะทำตัวเป็น ‘ธนาคาร’</h4>

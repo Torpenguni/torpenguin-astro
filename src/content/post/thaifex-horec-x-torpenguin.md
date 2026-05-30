@@ -6,7 +6,7 @@ excerpt: "THAIFEX – HOREC X Torpen"
 author: torpenguin
 publishedAt: 2025-02-15T10:00:53
 updatedAt: 2025-02-14T19:17:41
-image: "/imported/thaifex-horec-x-torpenguin-cover.jpg"
+image: "/imported/img-b08afdfc9b0b4a1c.jpg"
 ---
 
 <p>THAIFEX &#8211; HOREC X Torpenguin 5 – 7 มีนาคม 2025⁣ มา THAIFEX &#8211; HOREC ปีนี้ เจอกับต่อเพนกวินด้วยนะค้าาาา</p>

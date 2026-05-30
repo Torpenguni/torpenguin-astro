@@ -6,7 +6,7 @@ excerpt: "‘FLAVOR’ ปรัชญาแห่งรสชาติ สร�
 author: torpenguin
 publishedAt: 2025-10-18T10:00:11
 updatedAt: 2025-10-17T14:28:33
-image: "/imported/white-story-flavor-cover.png"
+image: "/imported/img-fef71646bdd4a152.png"
 ---
 
 <h4>‘FLAVOR’ ปรัชญาแห่งรสชาติ สร้าง White Story ให้โต 600 ล้านในปี 2024<!-- notionvc: b67d2caf-c125-44bb-ac90-491c0f658de8 --></h4>

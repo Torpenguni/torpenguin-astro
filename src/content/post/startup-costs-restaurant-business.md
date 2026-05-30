@@ -6,7 +6,7 @@ excerpt: "รู้จักเงินทุนร้านตั้งต้�
 author: torpenguin
 publishedAt: 2026-01-30T10:00:08
 updatedAt: 2026-02-04T16:08:44
-image: "/imported/startup-costs-restaurant-business-cover.webp"
+image: "/imported/img-218a0a3d8eac9209.webp"
 ---
 
 <h2></h2>

@@ -6,7 +6,7 @@ excerpt: "เรียนรู้จากเชนใหญ่ 4 เสาห�
 author: torpenguin
 publishedAt: 2025-09-26T15:11:10
 updatedAt: 2025-09-26T15:11:10
-image: "/imported/4-core-chain-restaurant-cover.png"
+image: "/imported/img-7202cfadf317f154.png"
 ---
 
 <p>การ <strong>ขยายสาขาร้านอาหารแบบเชน</strong> ไม่ใช่แค่เรื่องของการมีเงินทุนหรือรสชาติอาหารที่อร่อยเท่านั้น แต่คือการสร้างระบบ การจัดการ และการวางรากฐานให้ธุรกิจสามารถเติบโตได้อย่างยั่งยืน</p>

@@ -6,7 +6,7 @@ excerpt: "Cute Marketing กลยุทธ์การตลาดท []"
 author: torpenguin
 publishedAt: 2024-10-21T12:38:16
 updatedAt: 2025-06-18T12:00:30
-image: "/imported/cute-marketing-cover.png"
+image: "/imported/img-1b8119ac1399ca5b.png"
 ---
 
 <p><strong>Cute Marketing กลยุทธ์การตลาดที่จู่โจมหัวใจลูกค้าด้วย ‘ความน่ารัก’</strong></p>

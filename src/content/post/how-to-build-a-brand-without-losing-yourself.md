@@ -6,7 +6,7 @@ excerpt: "ทำแบรนด์ไม่ให้เสียตัวตน�
 author: torpenguin
 publishedAt: 2025-12-08T10:00:46
 updatedAt: 2025-12-09T10:11:42
-image: "/imported/how-to-build-a-brand-without-losing-yourself-cover.webp"
+image: "/imported/img-29cda61775c5dd6d.webp"
 ---
 
 <h4>ทำแบรนด์ไม่ให้เสียตัวตนกลางทาง ในยุคที่ตลาดบีบให้เราต้องทำสิ่งที่ไม่ใช่เรา</h4>

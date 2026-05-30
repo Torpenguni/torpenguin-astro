@@ -6,7 +6,7 @@ excerpt: "โปรโมชั่นร้านอาหาร การลด
 author: torpenguin
 publishedAt: 2025-11-09T10:00:25
 updatedAt: 2025-11-06T18:41:45
-image: "/imported/restaurant-promotion-pricing-trap-cover.webp"
+image: "/imported/img-36e2327b55ee1d99.webp"
 ---
 
 <h5><strong>โปรโมชันลดราคา กับดักเจ้าของร้านที่คิดว่าขายดีคือกำไร</strong></h5>

@@ -6,7 +6,7 @@ excerpt: "เซ็นทรัลเวิลด์ กลายเป็นห
 author: torpenguin
 publishedAt: 2023-05-30T04:10:01
 updatedAt: 2023-05-30T07:17:34
-image: "/imported/%e0%b8%8a%e0%b8%b5%e0%b8%aa%e0%b9%80%e0%b8%84%e0%b9%89%e0%b8%81-%e0%b9%80%e0%b8%9b%e0%b8%b4%e0%b8%94-the-cheesecake-factory-cover.jpg"
+image: "/imported/img-eb00a8677a9285f6.jpg"
 ---
 
 <div>

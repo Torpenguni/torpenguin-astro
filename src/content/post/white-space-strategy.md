@@ -6,7 +6,7 @@ excerpt: "White Space Strategy ช่องว่างท"
 author: torpenguin
 publishedAt: 2025-10-06T10:00:15
 updatedAt: 2025-10-17T16:13:52
-image: "/imported/white-space-strategy-cover.png"
+image: "/imported/img-19305416a892650f.png"
 ---
 
 <h5></h5>

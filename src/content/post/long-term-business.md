@@ -6,7 +6,7 @@ excerpt: "ทำธุรกิจให้อยู่ยาว หลังจ
 author: torpenguin
 publishedAt: 2024-05-22T10:00:12
 updatedAt: 2025-10-01T13:56:07
-image: "/imported/long-term-business-cover.jpg"
+image: "/imported/img-20e3fc5d0fe1a03f.jpg"
 ---
 
 <p>นอกจากเรื่องของ Value, Branding, Quality, Experience ที่ธุรกิจต้องทำให้ได้แล้วในวันนี้ แต่ต่อไปในยุคของ Gen Z ครองโลก การเป็นที่รักของชาว Gen Z จะทำให้คุณอยู่รอดในอนาคต</p>

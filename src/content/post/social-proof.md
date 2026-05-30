@@ -6,7 +6,7 @@ excerpt: "Social Proof หลักการ Marketing []"
 author: torpenguin
 publishedAt: 2024-11-11T10:00:00
 updatedAt: 2025-06-18T12:00:29
-image: "/imported/social-proof-cover.png"
+image: "/imported/img-46c57e89ce621eab.png"
 ---
 
 <p><strong>Social Proof หลักการ Marketing ที่ทำให้ร้านอาหารของเรามีความน่าเชื่อถือมากยิ่งขึ้น </strong><!-- notionvc: e80cbe34-d549-4ec5-95ae-0ee6b3f0ce2f --></p>

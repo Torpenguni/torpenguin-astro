@@ -6,7 +6,7 @@ excerpt: "Working Capital ร้านอาหาร เงิน"
 author: torpenguin
 publishedAt: 2026-02-06T10:00:25
 updatedAt: 2026-02-05T15:46:06
-image: "/imported/working-capital-restaurant-startup-costs-cover.webp"
+image: "/imported/img-679bf6988b00021e.webp"
 ---
 
 <p>ร้านอาหารจำนวนมากไม่ได้ล้มเหลวในวันเปิดร้าน<br />แต่ค่อย ๆ หมดแรง และไปต่อไม่ไหวในช่วง <strong>3–6 เดือนแรก</strong></p>

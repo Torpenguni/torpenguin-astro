@@ -6,7 +6,7 @@ excerpt: "ร้านกาแฟอยากเพิ่มรายได้�
 author: torpenguin
 publishedAt: 2025-11-10T10:00:46
 updatedAt: 2025-11-07T14:15:59
-image: "/imported/cafe-increase-revenue-by-selling-dessert-cover.webp"
+image: "/imported/img-b6d6324d1484f97b.webp"
 ---
 
 <p>เมื่อ<a href="https://torpenguin.com/why-coffee-shops-fail/">ร้านกาแฟ</a>เริ่มอยู่ตัว หลายคนมักมองหาวิธีเพิ่มรายได้ต่อหัวของลูกค้า หนึ่งในวิธีที่ได้ผลที่สุดคือ “เพิ่มเมนูของหวานหรือขนมเบเกอรี่” เพื่อให้ลูกค้าอยู่นานขึ้น และมียอดใช้จ่ายเฉลี่ยที่สูงขึ้น</p>

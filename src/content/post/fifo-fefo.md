@@ -6,7 +6,7 @@ excerpt: "FIFO FEFO ทั้ง 2 อย่างนี้ต่างก"
 author: torpenguin
 publishedAt: 2025-03-25T17:31:43
 updatedAt: 2025-06-18T12:00:22
-image: "/imported/fifo-fefo-cover.png"
+image: "/imported/img-4171c330ab5e6185.png"
 ---
 
 <p><strong>FIFO FEFO ทั้ง 2 อย่างนี้ต่างกันยังไง? เลือกใช้งานยังไง?</strong></p>

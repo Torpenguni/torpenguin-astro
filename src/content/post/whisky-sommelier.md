@@ -6,7 +6,7 @@ excerpt: "ผูกไทจิบวิสกี้ คลาสซี่แบ
 author: torpenguin
 publishedAt: 2025-03-01T10:00:06
 updatedAt: 2025-02-28T18:07:28
-image: "/imported/whisky-sommelier-cover.png"
+image: "/imported/img-7616aebc60576fb5.png"
 ---
 
 <p><strong>ผูกไทจิบวิสกี้ คลาสซี่แบบเจมส์บอนด์ กับตั้ม อานนท์ Whisky Sommelier อายุน้อยที่สุดในเอเชีย</strong></p>
@@ -108,7 +108,7 @@ image: "/imported/whisky-sommelier-cover.png"
 ลงทะเบียนได้เลยที่ ???? <a href="https://bit.ly/DamnExpo2025" target="_blank" rel="noopener">https://bit.ly/DamnExpo2025</a></p>
 
 <p>มาร่วมสร้าง Community และพลิกโฉมวงการ ‘ธุรกิจร้านอาหารกลางคืน’ ไปด้วยกัน</p>
-<p><img fetchpriority="high" decoding="async" src="/imported/whisky-sommelier-1.jpg" alt="งาน DAMN EXPO 2025" width="640" height="800" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/whisky-sommelier-1.jpg 819w, https://torpenguin.com/wp-content/uploads/2025/02/481249476_1186792069473092_8238200639204723272_n-240x300.jpg 240w, https://torpenguin.com/wp-content/uploads/2025/02/481249476_1186792069473092_8238200639204723272_n-768x960.jpg 768w, https://torpenguin.com/wp-content/uploads/2025/02/481249476_1186792069473092_8238200639204723272_n-336x420.jpg 336w, https://torpenguin.com/wp-content/uploads/2025/02/481249476_1186792069473092_8238200639204723272_n-640x800.jpg 640w, https://torpenguin.com/wp-content/uploads/2025/02/481249476_1186792069473092_8238200639204723272_n-681x851.jpg 681w, https://torpenguin.com/wp-content/uploads/2025/02/481249476_1186792069473092_8238200639204723272_n.jpg 864w" sizes="(max-width: 640px) 100vw, 640px" /></p>
+<p><img fetchpriority="high" decoding="async" src="/imported/img-2328627fee8b894b.jpg" alt="งาน DAMN EXPO 2025" width="640" height="800" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/img-2328627fee8b894b.jpg 819w, https://torpenguin.com/wp-content/uploads/2025/02/481249476_1186792069473092_8238200639204723272_n-240x300.jpg 240w, https://torpenguin.com/wp-content/uploads/2025/02/481249476_1186792069473092_8238200639204723272_n-768x960.jpg 768w, https://torpenguin.com/wp-content/uploads/2025/02/481249476_1186792069473092_8238200639204723272_n-336x420.jpg 336w, https://torpenguin.com/wp-content/uploads/2025/02/481249476_1186792069473092_8238200639204723272_n-640x800.jpg 640w, https://torpenguin.com/wp-content/uploads/2025/02/481249476_1186792069473092_8238200639204723272_n-681x851.jpg 681w, https://torpenguin.com/wp-content/uploads/2025/02/481249476_1186792069473092_8238200639204723272_n.jpg 864w" sizes="(max-width: 640px) 100vw, 640px" /></p>
 
 <p><strong>???? ติดตามข่าวสารธุรกิจร้านอาหาร<br />
 </strong><a href="https://www.facebook.com/TORPENGUIN/?locale=th_TH" target="_blank" rel="noopener">Facebook : Torpenguin</a><br />

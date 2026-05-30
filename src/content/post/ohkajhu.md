@@ -6,7 +6,7 @@ excerpt: "โอ้กะจู๋ บทเรียนธุรกิจ ท�
 author: torpenguin
 publishedAt: 2025-08-16T10:00:56
 updatedAt: 2025-08-25T15:33:06
-image: "/imported/ohkajhu-cover.png"
+image: "/imported/img-94cb95a5284c0be8.png"
 ---
 
 <p>‘จุดเริ่มต้นที่เข้มแข็ง ทำให้พวกเรามาจนถึงวันนี้’</p>

@@ -6,7 +6,7 @@ excerpt: "สูตรน้ำสต๊อกปลา ที่ต้องม
 author: torpenguin
 publishedAt: 2025-08-28T10:00:21
 updatedAt: 2025-08-21T20:18:21
-image: "/imported/fish-stock-recipe-cover.webp"
+image: "/imported/img-ac99c2cff58d8d77.webp"
 ---
 
 <h5><strong>สูตรน้ำสต๊อกปลา ที่ต้องมีติดร้าน สะดวกใช้ ทำง่าย แถมเก็บได้นานเป็นเดือน</strong><!-- notionvc: ff280cdf-086f-4ece-8323-5729d4c7d3b7 --></h5>

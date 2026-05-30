@@ -6,7 +6,7 @@ excerpt: "AI เจนภาพสำหรับแบรนด์ เปิด
 author: torpenguin
 publishedAt: 2025-12-18T10:00:31
 updatedAt: 2025-12-16T13:39:47
-image: "/imported/ai-image-generation-tools-for-brand-cover.webp"
+image: "/imported/img-1482b1f50a048e47.webp"
 ---
 
 <p>

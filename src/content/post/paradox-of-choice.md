@@ -6,7 +6,7 @@ excerpt: "Paradox of Choice เมื่อการมีตั"
 author: torpenguin
 publishedAt: 2024-12-16T10:00:03
 updatedAt: 2025-06-18T12:00:27
-image: "/imported/paradox-of-choice-cover.png"
+image: "/imported/img-a0c6c318fe81ace0.png"
 ---
 
 <p><strong>Paradox of Choice เมื่อการมีตัวเลือกมากเกินไป อาจทำให้ลูกค้าไม่เลือกอะไรเลย</strong></p>

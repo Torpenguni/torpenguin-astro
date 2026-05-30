@@ -6,7 +6,7 @@ excerpt: "เปิดร้านอาหารให้รอด ไม่ไ
 author: torpenguin
 publishedAt: 2026-03-31T18:26:48
 updatedAt: 2026-03-31T18:26:48
-image: "/imported/how-to-survive-opening-restaurant-cover.jpg"
+image: "/imported/img-7e02ca6475671392.jpg"
 ---
 
 <p>เจ้าของร้านอาหารจำนวนมากที่ต้องปิดตัวไป ไม่ใช่เพราะอาหารไม่อร่อย หรือทำเลไม่ดีนะคะ แต่เหตุผลหลักที่ทำให้ธุรกิจต้องเจ๊ง คือคำว่า ‘เงินหมดก่อนที่ร้านจะเข้าที่เข้าทาง’</p>

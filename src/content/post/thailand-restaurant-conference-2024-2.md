@@ -6,7 +6,7 @@ excerpt: "Thailand Restaurant Conference"
 author: torpenguin
 publishedAt: 2024-04-04T10:00:17
 updatedAt: 2024-04-02T20:34:04
-image: "/imported/thailand-restaurant-conference-2024-2-cover.jpg"
+image: "/imported/img-83d5e6015bd71138.jpg"
 ---
 
 <p>Thailand Restaurant Conference 2024 : เล็กฟัดใหญ่ เปิดขายบัตรวันที่ 5 เมษายนนี้!</p>

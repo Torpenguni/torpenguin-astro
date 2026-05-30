@@ -6,7 +6,7 @@ excerpt: "Isolation Effect หลักการว่าด้ว"
 author: torpenguin
 publishedAt: 2024-08-26T10:00:04
 updatedAt: 2025-06-18T12:01:03
-image: "/imported/isolation-effect-cover.jpg"
+image: "/imported/img-3182d07a82bb9a6b.jpg"
 ---
 
 <p>Isolation Effect หลักการว่าด้วยความเด่น ถ้าอยากให้ลูกค้าเห็น ต้องหาแสงให้เป็นและทำตัวให้เด่นเข้าไว้</p>

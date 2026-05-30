@@ -6,7 +6,7 @@ excerpt: "นายอ้วนเย็นตาโฟ บะเต็งเส
 author: torpenguin
 publishedAt: 2025-08-30T10:00:37
 updatedAt: 2025-08-21T20:40:13
-image: "/imported/nai-uan-yentafo-cover.webp"
+image: "/imported/img-c9c0340ca8012bc6.webp"
 ---
 
 <p><em><strong>“ตำนานความอร่อยกว่าครึ่งศตวรรษ ที่ส่งต่อจากรุ่นสู่รุ่น”</strong></em></p>

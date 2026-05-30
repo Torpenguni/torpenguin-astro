@@ -6,7 +6,7 @@ excerpt: "Guerilla Marketing การตลาดกองโ"
 author: torpenguin
 publishedAt: 2024-07-15T10:00:39
 updatedAt: 2025-06-18T12:01:04
-image: "/imported/guerilla-marketing-cover.jpg"
+image: "/imported/img-07c5541b137d1911.jpg"
 ---
 
 <p><strong>Guerilla Marketing การตลาดกองโจร กลยุทธ์เรียกลูกค้าด้วยงบที่น้อย แต่จู่โจมอย่างต่อเนื่อง</strong></p>

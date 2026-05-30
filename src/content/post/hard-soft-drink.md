@@ -6,7 +6,7 @@ excerpt: "Hard Soft Drink เทรนด์ใหม่ปี 2"
 author: torpenguin
 publishedAt: 2025-09-29T19:14:44
 updatedAt: 2025-09-29T19:14:44
-image: "/imported/hard-soft-drink-cover.png"
+image: "/imported/img-76c304111fb23b4c.png"
 ---
 
 <h4>Hard Soft Drink เทรนด์ใหม่ปี 2025–2026: เมื่อคนรุ่นใหม่ไม่ได้เลิกดื่ม แต่ “เลือกดื่ม” อย่างฉลาดขึ้น</h4>

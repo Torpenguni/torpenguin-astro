@@ -6,7 +6,7 @@ excerpt: "Cash Flow เหลือน้อย แบบไม่รู้ส"
 author: torpenguin
 publishedAt: 2025-01-29T10:00:56
 updatedAt: 2025-06-18T12:00:25
-image: "/imported/cash-flow-%e0%b9%80%e0%b8%ab%e0%b8%a5%e0%b8%b7%e0%b8%ad%e0%b8%99%e0%b9%89%e0%b8%ad%e0%b8%a2-cover.png"
+image: "/imported/img-2f43a8cb3af008df.png"
 ---
 
 <p><strong><span>Cash Flow เหลือน้อย แบบไม่รู้สาเหตุ ให้ไปหาจาก 5 จุดนี้ ยังไงก็ได้คำตอบ</span><br />

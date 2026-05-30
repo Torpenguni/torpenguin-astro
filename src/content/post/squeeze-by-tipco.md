@@ -6,7 +6,7 @@ excerpt: "Squeeze by Tipco บอกลากันไปอีก"
 author: torpenguin
 publishedAt: 2023-11-10T10:51:01
 updatedAt: 2023-11-10T10:58:25
-image: "/imported/squeeze-by-tipco-cover.jpg"
+image: "/imported/img-ff0b9114429f4c43.jpg"
 ---
 
 <div>Squeeze by Tipco บอกลากันไปอีก 1 เจ้า</div>

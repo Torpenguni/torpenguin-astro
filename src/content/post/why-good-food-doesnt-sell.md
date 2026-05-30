@@ -6,7 +6,7 @@ excerpt: "ทำไมร้านอร่อยถึงขายไม่ด�
 author: torpenguin
 publishedAt: 2025-12-02T14:42:58
 updatedAt: 2026-01-27T18:15:13
-image: "/imported/why-good-food-doesnt-sell-cover.webp"
+image: "/imported/img-0fc2506804f9cb15.webp"
 ---
 
 <h4><strong>ทำไมร้านอร่อยถึงขายไม่ดี? คำถามที่เจ็บแต่จริงของเจ้าของร้านอาหารยุคนี้</strong></h4>

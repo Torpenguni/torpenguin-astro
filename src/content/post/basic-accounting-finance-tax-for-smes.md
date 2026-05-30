@@ -6,7 +6,7 @@ excerpt: "บัญชี การเงิน ภาษี ความรู�
 author: torpenguin
 publishedAt: 2025-11-05T10:00:01
 updatedAt: 2026-01-08T19:13:24
-image: "/imported/basic-accounting-finance-tax-for-smes-cover.webp"
+image: "/imported/img-53ac307cac64cef6.webp"
 ---
 
 <h4>บัญชี การเงิน ภาษี ความรู้พื้นฐานที่ SMEs ต้องรู้ ถ้าไม่เข้าใจ ธุรกิจมีสิทธิ์พัง</h4>

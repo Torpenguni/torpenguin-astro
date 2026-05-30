@@ -6,7 +6,7 @@ excerpt: "COGS คืออะไร ทำความรู้จักต้�
 author: torpenguin
 publishedAt: 2025-03-14T10:00:34
 updatedAt: 2025-09-09T13:47:19
-image: "/imported/cogs-restaurant-cover.png"
+image: "/imported/img-3369c2b3f3bb731a.png"
 ---
 
 <p><strong>COGS คืออะไร ทำความรู้จักต้นทุนก้อนใหญ่ที่สุดของคนทำร้านอาหาร ร้านเจ๊งไม่เจ๊ง ดูกันตรงนี้</strong></p>

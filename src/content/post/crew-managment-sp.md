@@ -6,7 +6,7 @@ excerpt: "5 เคล็ดลับการเป็นหัวหน้า�
 author: torpenguin
 publishedAt: 2025-09-17T10:00:12
 updatedAt: 2025-09-11T20:23:11
-image: "/imported/crew-managment-sp-cover.png"
+image: "/imported/img-cb96319e5f11a5ac.png"
 ---
 
 <p>แรงงานคือหัวใจของทุกธุรกิจ โดยเฉพาะธุรกิจอาหารที่พนักงานต้อง “คลุกคลีอยู่กับงานบริการ” และ “เผชิญหน้ากับลูกค้า” ตลอดเวลา</p>

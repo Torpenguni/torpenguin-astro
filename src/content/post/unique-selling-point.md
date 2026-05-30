@@ -6,7 +6,7 @@ excerpt: "Unique Selling Point ของเราเวิ"
 author: torpenguin
 publishedAt: 2024-04-03T13:00:01
 updatedAt: 2025-06-18T12:01:08
-image: "/imported/unique-selling-point-cover.jpg"
+image: "/imported/img-b48464d2b91b998d.jpg"
 ---
 
 <p>Unique Selling Point ของเราเวิร์กแค่ไหนกัน?</p>

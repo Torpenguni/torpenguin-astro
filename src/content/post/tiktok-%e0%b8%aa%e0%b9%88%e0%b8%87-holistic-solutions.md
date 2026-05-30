@@ -6,7 +6,7 @@ excerpt: "TikTok ส่ง Holistic Solutions"
 author: torpenguin
 publishedAt: 2024-08-20T13:50:24
 updatedAt: 2024-08-20T13:50:24
-image: "/imported/tiktok-%e0%b8%aa%e0%b9%88%e0%b8%87-holistic-solutions-cover.jpg"
+image: "/imported/img-ecd6506011a40b9c.jpg"
 ---
 
 <p><b>TikTok ส่ง Holistic Solutions ต่อยอดความสำเร็จช่วงเทศกาล Mega Sales</b></p>

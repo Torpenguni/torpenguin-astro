@@ -6,7 +6,7 @@ excerpt: "Chomcha ร้านชาโอมากาเสะที่ตั�
 author: torpenguin
 publishedAt: 2024-08-31T10:00:27
 updatedAt: 2024-08-27T15:22:16
-image: "/imported/chomcha-cover.jpg"
+image: "/imported/img-af049faf74df431a.jpg"
 ---
 
 <p><strong>Chomcha ร้านชาโอมากาเสะที่ตั้งใจให้ลูกค้ารู้สึก ‘เหมือนมาบ้านเพื่อนมากกว่ามาร้านชา’</strong></p>

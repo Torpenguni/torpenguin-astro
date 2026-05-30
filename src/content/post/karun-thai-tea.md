@@ -6,7 +6,7 @@ excerpt: "Karun Thai Tea ปั้นแบรนด์ปัง ด"
 author: torpenguin
 publishedAt: 2024-10-16T10:00:44
 updatedAt: 2025-04-25T17:20:36
-image: "/imported/karun-thai-tea-cover.png"
+image: "/imported/img-9697168ca720f8a1.png"
 ---
 
 <p><strong>Karun Thai Tea ปั้นแบรนด์ปัง ด้วยงบการตลาดเพียง 7%</strong></p>

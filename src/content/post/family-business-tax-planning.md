@@ -6,7 +6,7 @@ excerpt: "10 เทคนิควางแผนภาษีธุรกิจ�
 author: torpenguin
 publishedAt: 2025-10-30T10:00:32
 updatedAt: 2025-10-28T18:56:55
-image: "/imported/family-business-tax-planning-cover.webp"
+image: "/imported/img-c7ad8e764bcb09eb.webp"
 ---
 
 <p>ธุรกิจครอบครัวหลายบ้าน “เก่งเรื่องขาย” แต่ “พลาดเรื่องภาษี” สุดท้ายเหนื่อยแทบตาย แต่เงินกลับไหลออกหลังบ้านหมด</p>

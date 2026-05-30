@@ -6,7 +6,7 @@ excerpt: "Elon Musk ถึง ผู้ประกอบการ กับ"
 author: torpenguin
 publishedAt: 2025-04-04T10:00:14
 updatedAt: 2025-06-18T12:00:22
-image: "/imported/elon-musk-cover.png"
+image: "/imported/img-b6791919b771ae8f.png"
 ---
 
 <p><strong>Elon Musk ถึง ผู้ประกอบการ กับ 3 บทเรียนสำคัญสำหรับที่ได้จากมหาเศรษฐีผู้รักอวกาศคนนี้</strong></p>

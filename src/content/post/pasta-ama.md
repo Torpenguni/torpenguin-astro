@@ -6,7 +6,7 @@ excerpt: "PASTA AMA ร้านพาสต้า Cloud Kit"
 author: torpenguin
 publishedAt: 2024-06-15T10:00:40
 updatedAt: 2024-06-12T11:15:48
-image: "/imported/pasta-ama-cover.jpg"
+image: "/imported/img-0d21434b9a502177.jpg"
 ---
 
 <p><em><strong>PASTA AMA ร้านพาสต้า Cloud Kitchen พาเจาะลึกแนวคิดในการสร้างรายได้มากกว่า 1 ทางจากครัวเดียว</strong></em></p>

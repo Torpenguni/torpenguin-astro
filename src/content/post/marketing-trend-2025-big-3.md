@@ -6,7 +6,7 @@ excerpt: "เทรนด์การตลาด 2025 เมื่อการ�
 author: torpenguin
 publishedAt: 2025-08-11T10:00:49
 updatedAt: 2025-08-25T15:25:52
-image: "/imported/marketing-trend-2025-big-3-cover.png"
+image: "/imported/img-42f61d778a50a899.png"
 ---
 
 <h2><strong>เทรนด์การตลาด 2025 เมื่อการลดราคาอาจไม่ผิด แต่ถ้าไม่เข้าใจลูกค้า ก็ไม่มีวันชนะ</strong><!-- notionvc: c4fe8423-61c0-4957-97b2-681d9257a985 --></h2>

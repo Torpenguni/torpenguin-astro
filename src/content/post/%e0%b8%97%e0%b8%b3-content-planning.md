@@ -6,7 +6,7 @@ excerpt: "ทำ Content Planning เปิด 6 ขั้"
 author: torpenguin
 publishedAt: 2024-08-07T10:00:05
 updatedAt: 2025-06-18T12:01:03
-image: "/imported/%e0%b8%97%e0%b8%b3-content-planning-cover.jpg"
+image: "/imported/img-3c48cfcf446e5ac6.jpg"
 ---
 
 <p>ทำ Content Planning เปิด 6 ขั้นตอนที่สามารถเอาไปปรับใช้ได้กับทุกแพลตฟอร์ม</p>

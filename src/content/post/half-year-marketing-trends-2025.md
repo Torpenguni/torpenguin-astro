@@ -6,7 +6,7 @@ excerpt: "เทรนด์การตลาดครึ่งปี 2025 น�
 author: torpenguin
 publishedAt: 2025-08-18T10:00:53
 updatedAt: 2025-08-25T15:36:53
-image: "/imported/half-year-marketing-trends-2025-cover.png"
+image: "/imported/img-41a8380e90f6aab3.png"
 ---
 
 <p>สรุป Half Year Trends: <a href="https://torpenguin.com/category/article/marketing/">Marketing</a> โดยคุณโศรดา ศรประสิทธิ์, CEO บริษัท ปับลิซิส กรุ๊ป (ประเทศไทย) จำกัด และคุณภัทรา ภัทรสุวรรณ Associate Marketing Director KFC จากงาน Creative Talk Conference 2025</p>

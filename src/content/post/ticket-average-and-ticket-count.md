@@ -6,7 +6,7 @@ excerpt: "Ticket Average และ Ticket Coun"
 author: torpenguin
 publishedAt: 2025-08-26T10:00:16
 updatedAt: 2025-08-21T19:51:19
-image: "/imported/ticket-average-and-ticket-count-cover.webp"
+image: "/imported/img-ed018ad53acbcf37.webp"
 ---
 
 <p>ลูกค้าเข้าร้านทุกวัน แต่ยอดไม่โตเลย ล้างแผนเดิมแล้วเริ่มวางกลยุทธ์การขายใหม่ด้วยการเพิ่ม Ticket Average และ Ticket Count</p>

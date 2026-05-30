@@ -6,7 +6,7 @@ excerpt: "Portion Spoons อุปกรณ์สำคัญที่ []"
 author: torpenguin
 publishedAt: 2024-11-12T10:00:15
 updatedAt: 2025-06-18T12:00:29
-image: "/imported/portion-spoons-cover.png"
+image: "/imported/img-b4904b0b408e8b40.png"
 ---
 
 <p><em><strong>Portion Spoons อุปกรณ์สำคัญที่ร้านอาหารยุคใหม่ต้องมี</strong></em><!-- notionvc: d5c74497-686c-476e-9c8f-42c60bfade29 --></p>

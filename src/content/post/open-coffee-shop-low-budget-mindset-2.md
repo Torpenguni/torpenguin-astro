@@ -6,7 +6,7 @@ excerpt: "มีงบน้อยแต่อยากเปิดร้าน�
 author: torpenguin
 publishedAt: 2026-01-19T10:00:28
 updatedAt: 2026-01-16T19:24:40
-image: "/imported/open-coffee-shop-low-budget-mindset-2-cover.webp"
+image: "/imported/img-7165979416629e99.webp"
 ---
 
 <h5><strong>คนงบน้อยคือคนที่มีกระสุนแค่นัดเดียวและยิงพลาดไม่ได้</strong></h5>

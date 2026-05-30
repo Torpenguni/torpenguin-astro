@@ -6,7 +6,7 @@ excerpt: "สูตรมอสซาเรลล่าชีส โฮมเม
 author: torpenguin
 publishedAt: 2024-06-23T10:00:37
 updatedAt: 2025-06-18T12:01:05
-image: "/imported/%e0%b8%aa%e0%b8%b9%e0%b8%95%e0%b8%a3%e0%b8%a1%e0%b8%ad%e0%b8%aa%e0%b8%8b%e0%b8%b2%e0%b9%80%e0%b8%a3%e0%b8%a5%e0%b8%a5%e0%b9%88%e0%b8%b2%e0%b8%8a%e0%b8%b5%e0%b8%aa-cover.jpg"
+image: "/imported/img-814a5b0cd278231c.jpg"
 ---
 
 <p>สูตรมอสซาเรลล่าชีส โฮมเมด ชีสสดทำเองด้วยวัตถุดิบเพียง 3 ชนิด ลดต้นทุน เพิ่มเอกลักษณ์ สร้าง Value</p>

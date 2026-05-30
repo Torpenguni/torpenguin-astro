@@ -6,7 +6,7 @@ excerpt: "กลับมาอีกครั้งในปี 2024 “งา�
 author: torpenguin
 publishedAt: 2024-08-01T14:00:42
 updatedAt: 2024-08-01T16:42:48
-image: "/imported/restech-2024-cover.jpg"
+image: "/imported/img-cc2732eca0000519.jpg"
 ---
 
 <p>กลับมาอีกครั้งในปี 2024 “งานที่จะทำให้ ‘เทคโนโลยี’ เป็นเรื่องง่ายสำหรับร้านอาหาร”</p>
@@ -31,7 +31,7 @@ image: "/imported/restech-2024-cover.jpg"
 <div><strong>099-398-7363 (คุณจ๋อมแจ๋ม)</strong></div>
 <div><strong>Email: restech@penguinx.co</strong></div>
 
-<p><img decoding="async" src="/imported/restech-2024-1.jpg" alt="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" width="640" height="640" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/restech-2024-1.jpg 1024w, https://torpenguin.com/wp-content/uploads/2024/08/453750055_386111161168716_1799467093426082153_n-300x300.jpg 300w, https://torpenguin.com/wp-content/uploads/2024/08/453750055_386111161168716_1799467093426082153_n-150x150.jpg 150w, https://torpenguin.com/wp-content/uploads/2024/08/453750055_386111161168716_1799467093426082153_n-768x768.jpg 768w, https://torpenguin.com/wp-content/uploads/2024/08/453750055_386111161168716_1799467093426082153_n-1536x1536.jpg 1536w, https://torpenguin.com/wp-content/uploads/2024/08/453750055_386111161168716_1799467093426082153_n-420x420.jpg 420w, https://torpenguin.com/wp-content/uploads/2024/08/453750055_386111161168716_1799467093426082153_n-640x640.jpg 640w, https://torpenguin.com/wp-content/uploads/2024/08/453750055_386111161168716_1799467093426082153_n-681x681.jpg 681w, https://torpenguin.com/wp-content/uploads/2024/08/453750055_386111161168716_1799467093426082153_n.jpg 1080w" sizes="(max-width: 640px) 100vw, 640px" /></p>
+<p><img decoding="async" src="/imported/img-a8b9b97055097c7f.jpg" alt="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" width="640" height="640" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/img-a8b9b97055097c7f.jpg 1024w, https://torpenguin.com/wp-content/uploads/2024/08/453750055_386111161168716_1799467093426082153_n-300x300.jpg 300w, https://torpenguin.com/wp-content/uploads/2024/08/453750055_386111161168716_1799467093426082153_n-150x150.jpg 150w, https://torpenguin.com/wp-content/uploads/2024/08/453750055_386111161168716_1799467093426082153_n-768x768.jpg 768w, https://torpenguin.com/wp-content/uploads/2024/08/453750055_386111161168716_1799467093426082153_n-1536x1536.jpg 1536w, https://torpenguin.com/wp-content/uploads/2024/08/453750055_386111161168716_1799467093426082153_n-420x420.jpg 420w, https://torpenguin.com/wp-content/uploads/2024/08/453750055_386111161168716_1799467093426082153_n-640x640.jpg 640w, https://torpenguin.com/wp-content/uploads/2024/08/453750055_386111161168716_1799467093426082153_n-681x681.jpg 681w, https://torpenguin.com/wp-content/uploads/2024/08/453750055_386111161168716_1799467093426082153_n.jpg 1080w" sizes="(max-width: 640px) 100vw, 640px" /></p>
 
 
 <p><strong>???? ติดตามข่าวสารธุรกิจร้านอาหาร<br />

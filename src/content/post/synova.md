@@ -6,7 +6,7 @@ excerpt: "SYNOVA ตัวละครลับเบื้องหลังค
 author: torpenguin
 publishedAt: 2024-11-09T10:00:47
 updatedAt: 2024-11-04T15:44:37
-image: "/imported/synova-cover.png"
+image: "/imported/img-fe421f91c8347a51.png"
 ---
 
 <p><strong>SYNOVA ตัวละครลับเบื้องหลังความสำเร็จของร้านขนมชื่อดังระดับโลก ที่เกิดจากคนเรียนจบหมอที่หลงใหลในขนม</strong></p>

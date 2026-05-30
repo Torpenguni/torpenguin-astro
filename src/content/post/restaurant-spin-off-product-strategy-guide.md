@@ -6,7 +6,7 @@ excerpt: "กลยุทธ์ Spin Off ร้านอาหาร: เม"
 author: torpenguin
 publishedAt: 2026-04-01T17:00:57
 updatedAt: 2026-04-01T16:54:39
-image: "/imported/restaurant-spin-off-product-strategy-guide-cover.jpg"
+image: "/imported/img-ac610f0a871d0583.jpg"
 ---
 
 <h4>กลยุทธ์ Spin Off ร้านอาหาร: เมื่อทางรอดไม่ได้มีแค่การขยายสาขา แต่คือการปั้นโปรดักต์ใหม่เพื่อสเกลยอดขาย</h4>

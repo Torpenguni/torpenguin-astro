@@ -6,7 +6,7 @@ excerpt: "เมื่อ “ราคา” กลายเป็นศูน�
 author: torpenguin
 publishedAt: 2025-10-29T10:00:45
 updatedAt: 2025-10-28T17:52:42
-image: "/imported/business-restaurant-price-centric-thailand-cover.webp"
+image: "/imported/img-8a749c69f1a9fcb7.webp"
 ---
 
 <h5><strong>ภาพรวมเศรษฐกิจร้านอาหารไทยในยุค “ราคาเป็นใหญ่”</strong></h5>

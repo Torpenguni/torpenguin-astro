@@ -6,7 +6,7 @@ excerpt: "Guss Damn Good จากจุดยืนสู่จุด"
 author: torpenguin
 publishedAt: 2025-10-12T10:00:36
 updatedAt: 2025-10-01T16:52:44
-image: "/imported/guss-damn-good-cover.webp"
+image: "/imported/img-b1e0eb062c4a5e67.webp"
 ---
 
 <h5><strong>จากจุดยืน สู่ จุดขาย บทเรียนธุรกิจในแบบ Guss Damn Good</strong></h5>

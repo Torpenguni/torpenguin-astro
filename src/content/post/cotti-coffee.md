@@ -6,7 +6,7 @@ excerpt: "Cotti Coffee ม้ามืดร้านกาแฟจาก []"
 author: torpenguin
 publishedAt: 2024-10-30T10:00:33
 updatedAt: 2025-05-09T13:58:49
-image: "/imported/cotti-coffee-cover.png"
+image: "/imported/img-b88ff71073479cc5.png"
 ---
 
 <p><strong>Cotti Coffee ม้ามืดร้านกาแฟจากจีน ที่โตเร็วจนกลายเป็นแบรนด์กาแฟที่มีสาขามากเป็นอันดับ 4 ของโลก</strong></p>

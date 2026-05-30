@@ -6,7 +6,7 @@ excerpt: "ทำไมลูกค้าต้องเลือกเรา ค
 author: torpenguin
 publishedAt: 2025-08-17T10:00:46
 updatedAt: 2025-08-25T15:35:23
-image: "/imported/1-question-before-start-business-cover.png"
+image: "/imported/img-39cb0f5b120c2426.png"
 ---
 
 <h2>ทำไมลูกค้าต้องเลือกเรา คือ ‘คำถามแรก’ ของการเริ่มทำธุรกิจ</h2>

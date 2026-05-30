@@ -6,7 +6,7 @@ excerpt: "ทำคาเฟ่ควรคิดเหมือน ‘ธุร
 author: torpenguin
 publishedAt: 2026-02-11T14:45:45
 updatedAt: 2026-02-11T14:56:08
-image: "/imported/brand-vs-business-cafe-strategy-cover.webp"
+image: "/imported/img-4b81b4cd7eab66b4.webp"
 ---
 
 <h4><strong>ทำคาเฟ่ควรคิดเหมือน ‘ธุรกิจ’ หรือคิดเหมือน ‘แบรนด์’?</strong></h4>

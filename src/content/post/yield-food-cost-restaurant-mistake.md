@@ -6,7 +6,7 @@ excerpt: "กับดัก Yield ต้นทุนร้านอาหาร
 author: torpenguin
 publishedAt: 2026-01-25T10:00:43
 updatedAt: 2026-01-22T13:06:36
-image: "/imported/yield-food-cost-restaurant-mistake-cover.webp"
+image: "/imported/img-1dbb0ce92221d7e9.webp"
 ---
 
 <h4>กับดัก Yield ต้นทุนร้านอาหารที่เจ้าของร้านตกม้าตายมากที่สุด</h4>

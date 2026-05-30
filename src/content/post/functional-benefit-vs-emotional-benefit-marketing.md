@@ -6,7 +6,7 @@ excerpt: "Functional Benefit และ Emotion"
 author: torpenguin
 publishedAt: 2026-01-28T10:00:03
 updatedAt: 2026-01-26T19:15:25
-image: "/imported/functional-benefit-vs-emotional-benefit-marketing-cover.webp"
+image: "/imported/img-44b1e47d21374f66.webp"
 ---
 
 <h1></h1>

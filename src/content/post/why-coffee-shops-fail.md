@@ -6,7 +6,7 @@ excerpt: "ทำไมร้านกาแฟเจ๊งเยอะ? รว�
 author: torpenguin
 publishedAt: 2023-10-30T12:10:40
 updatedAt: 2025-10-31T15:00:09
-image: "/imported/why-coffee-shops-fail-cover.png"
+image: "/imported/img-773f9ab6243def9d.png"
 ---
 
 <h4>ทำไมร้านกาแฟเจ๊งเยอะ? รวมปัญหาที่คนอยากเปิดร้านกาแฟควรรู้</h4>

@@ -6,7 +6,7 @@ excerpt: "15 เทคนิคตั้งค่าแอด ให้คุ้
 author: torpenguin
 publishedAt: 2025-10-23T10:00:53
 updatedAt: 2025-12-16T13:06:28
-image: "/imported/set-up-ads-tips-for-restaurant-marketing-cover.webp"
+image: "/imported/img-10c007f12e591685.webp"
 ---
 
 <p>หลายร้านยังเข้าใจผิดว่าการยิง Ads คือการเผางบ แต่จริง ๆ ปัญหาไม่ใช่งบแต่คือ “ยิงผิดกลุ่ม” มากกว่า</p>

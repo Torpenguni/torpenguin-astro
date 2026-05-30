@@ -6,7 +6,7 @@ excerpt: "Nose Tea กับความท้าทายใหม่ในว�
 author: torpenguin
 publishedAt: 2025-09-16T10:00:15
 updatedAt: 2025-09-11T19:47:55
-image: "/imported/nose-tea-2-cover.png"
+image: "/imported/img-348dc3e3bc886969.png"
 ---
 
 <p>เมื่อ “ชาชีส” ไม่ใช่ของใหม่อีกต่อไป</p>

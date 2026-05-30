@@ -6,7 +6,7 @@ excerpt: "‘First Place Coffee’ Coffee Tr"
 author: torpenguin
 publishedAt: 2024-05-23T10:00:24
 updatedAt: 2025-06-18T12:01:06
-image: "/imported/first-place-coffee-cover.jpg"
+image: "/imported/img-9035f7f04d46d81a.jpg"
 ---
 
 <p>‘First Place Coffee’ Coffee Truck ที่ยอดขายโตขึ้นกว่า 550% ด้วยการปั้นคอมมูนิตี้ กับ 3 สิ่งที่ใช้มาตลอด 6 ปี ในการทำธุรกิจตั้งแต่ตอนเริ่มทำ</p>

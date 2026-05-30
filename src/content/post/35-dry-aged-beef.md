@@ -6,7 +6,7 @@ excerpt: "35 Dry Aged Beef ร้านเนื้อดราย"
 author: torpenguin
 publishedAt: 2024-05-25T10:00:29
 updatedAt: 2024-05-22T15:18:40
-image: "/imported/35-dry-aged-beef-cover.jpg"
+image: "/imported/img-eceeda62c14cb515.jpg"
 ---
 
 <div>

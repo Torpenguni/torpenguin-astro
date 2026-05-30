@@ -6,7 +6,7 @@ excerpt: "Decoy Pricing การตั้งราคา &#82"
 author: torpenguin
 publishedAt: 2025-03-26T13:05:13
 updatedAt: 2025-06-18T12:00:22
-image: "/imported/decoy-pricing-%e0%b8%81%e0%b8%b2%e0%b8%a3%e0%b8%95%e0%b8%b1%e0%b9%89%e0%b8%87%e0%b8%a3%e0%b8%b2%e0%b8%84%e0%b8%b2-cover.png"
+image: "/imported/img-2a05273f926af01a.png"
 ---
 
 <p><strong>Decoy Pricing การตั้งราคา &#8216;กลาง&#8217; ที่ทำให้ลูกค้าไขว้เขวจนยอมจ่ายแพงกว่าเดิม</strong></p>

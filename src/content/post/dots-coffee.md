@@ -6,7 +6,7 @@ excerpt: "Dots Coffee กับความตั้งใจที่จะ []"
 author: torpenguin
 publishedAt: 2024-11-02T10:00:25
 updatedAt: 2024-11-04T15:32:22
-image: "/imported/dots-coffee-cover.png"
+image: "/imported/img-8f30544e0a3c94ba.png"
 ---
 
 <p><strong>Dots Coffee กับความตั้งใจที่จะเปลี่ยนภาพจำของสังคมที่มีต่อผู้พิการทางสายตา ผ่านธุรกิจกาแฟ</strong></p>

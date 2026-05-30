@@ -6,7 +6,7 @@ excerpt: "ถ้าเอาชนะไม่ได้ ก็ร่วมมื
 author: torpenguin
 publishedAt: 2026-01-17T10:00:07
 updatedAt: 2026-01-15T13:30:10
-image: "/imported/shark-remora-strategy-cover.webp"
+image: "/imported/img-c75d97a878527c6a.webp"
 ---
 
 <h4><strong>ถ้าเอาชนะไม่ได้ ก็ร่วมมือกันซะเลย อยู่กับคู่แข่งแบบพึ่งพาอาศัยกันด้วย ‘กลยุทธ์เหาฉลาม’</strong></h4>

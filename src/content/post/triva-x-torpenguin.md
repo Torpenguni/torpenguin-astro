@@ -6,7 +6,7 @@ excerpt: "TRIVA x Torpenguin จัดงานเทรนด"
 author: torpenguin
 publishedAt: 2024-03-21T13:00:53
 updatedAt: 2024-03-23T11:20:43
-image: "/imported/triva-x-torpenguin-cover.jpg"
+image: "/imported/img-025e991b43a46623.jpg"
 ---
 
 <div>

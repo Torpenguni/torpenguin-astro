@@ -6,7 +6,7 @@ excerpt: "มัดรวมเรื่อง ภาษีร้านอาห
 author: torpenguin
 publishedAt: 2023-05-22T04:06:35
 updatedAt: 2025-10-28T18:24:48
-image: "/imported/restaurant-tax-cover.jpg"
+image: "/imported/img-e92a173a93c2452c.jpg"
 ---
 
 <p><span>นอกจากการทำบัญชีแล้ว “ ภาษีร้านอาหาร ” ก็นับว่า เป็นอีกหนึ่งเรื่องใหญ่ที่สร้างความปวดหัวให้เจ้าของร้านอาหารหลายต่อหลายคน</span></p>

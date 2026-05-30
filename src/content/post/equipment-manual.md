@@ -6,7 +6,7 @@ excerpt: "Equipment Manual คู่มืออุปกรณ์"
 author: torpenguin
 publishedAt: 2025-08-08T10:00:53
 updatedAt: 2025-07-31T13:43:02
-image: "/imported/equipment-manual-cover.png"
+image: "/imported/img-a6723afefde6f1a0.png"
 ---
 
 <h2><strong>Equipment Manual คู่มืออุปกรณ์ในร้านอาหาร ที่เจ้าของร้านไม่ควรมองข้าม</strong><!-- notionvc: e3adfa45-1ac0-40ad-9766-393c246292f0 --></h2>

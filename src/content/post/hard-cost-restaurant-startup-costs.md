@@ -6,7 +6,7 @@ excerpt: "Hard Cost คืออะไร? ต้นทุนก้อนใ"
 author: torpenguin
 publishedAt: 2026-02-05T10:00:20
 updatedAt: 2026-02-05T14:45:58
-image: "/imported/hard-cost-restaurant-startup-costs-cover.webp"
+image: "/imported/img-df10356e29567239.webp"
 ---
 
 <p>หลังจากเข้าใจ <a href="https://torpenguin.com/soft-cost-restaurant-startup-costs/">Soft Cost</a> แล้ว เจ้าของร้านจำนวนมากจะเริ่มรู้สึกว่า<br />“งบที่ตั้งไว้ตอนแรก ไม่น่าจะพอจริง ๆ”</p>

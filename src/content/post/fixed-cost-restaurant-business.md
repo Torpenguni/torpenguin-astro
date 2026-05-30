@@ -6,7 +6,7 @@ excerpt: "Fixed Cost : รู้ทันรายจ่ายประจ"
 author: torpenguin
 publishedAt: 2026-01-08T10:00:51
 updatedAt: 2026-01-07T18:09:00
-image: "/imported/fixed-cost-restaurant-business-cover.jpg"
+image: "/imported/img-47af26532477a707.jpg"
 ---
 
 <h4>Fixed Cost : รู้ทันรายจ่ายประจำ เรื่องสำคัญที่คนทำร้านห้ามมองข้าม</h4>

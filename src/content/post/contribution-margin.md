@@ -6,7 +6,7 @@ excerpt: "กำไรต่อหน่วย สำคัญไม่น้อ
 author: torpenguin
 publishedAt: 2026-01-05T17:30:23
 updatedAt: 2026-01-05T17:30:23
-image: "/imported/contribution-margin-cover.webp"
+image: "/imported/img-64e2394c7872f468.webp"
 ---
 
 <p>ตอนตั้งราคา อย่าดูแต่เปอร์เซ็นต์ของต้นทุน จนลืมดู กำไรต่อหน่วย&#8230;</p>

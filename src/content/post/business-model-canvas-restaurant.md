@@ -6,7 +6,7 @@ excerpt: "Business Model Canvas ร้านอาหา"
 author: torpenguin
 publishedAt: 2025-09-24T13:42:12
 updatedAt: 2025-09-24T13:42:12
-image: "/imported/business-model-canvas-restaurant-cover.png"
+image: "/imported/img-11d35db6a61eaefc.png"
 ---
 
 <p>ธุรกิจร้านอาหารไม่ควรเริ่มจากแค่ “อยากขายอะไร” แต่ต้องเริ่มจาก “ลูกค้าคือใคร และเขาต้องการอะไร”</p>

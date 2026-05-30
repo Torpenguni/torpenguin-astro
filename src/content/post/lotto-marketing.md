@@ -6,7 +6,7 @@ excerpt: "Lotto Marketing กลยุทธ์การตลาด"
 author: torpenguin
 publishedAt: 2024-07-23T10:00:45
 updatedAt: 2025-06-18T12:01:04
-image: "/imported/lotto-marketing-cover.jpg"
+image: "/imported/img-1c148658bf5e00e4.jpg"
 ---
 
 <p><em><strong>Lotto Marketing กลยุทธ์การตลาดจูงใจลูกค้านักเสี่ยงดวง</strong></em></p>

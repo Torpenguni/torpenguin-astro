@@ -6,7 +6,7 @@ excerpt: "สำหรับคนที่ทำอาหารเชื่อ�
 author: torpenguin
 publishedAt: 2025-04-27T09:00:09
 updatedAt: 2025-06-18T12:00:21
-image: "/imported/chili-burns-my-hands-cover.jpg"
+image: "/imported/img-35b0191d10f3c074.jpg"
 ---
 
 <p>สำหรับคนที่ทำอาหารเชื่อได้ว่าปัญหาการแสบมือจาก<a href="https://torpenguin.com/%e0%b9%80%e0%b8%97%e0%b8%84%e0%b8%99%e0%b8%b4%e0%b8%84%e0%b8%81%e0%b8%b2%e0%b8%a3%e0%b9%80%e0%b8%81%e0%b9%87%e0%b8%9a%e0%b8%9e%e0%b8%a3%e0%b8%b4%e0%b8%81/" target="_blank" rel="noopener">พริก</a> เป็นอีกหนึ่งปัญหาที่หลายคนต้องพบเจอ บางครั้งแสบร้อนมือจนไม่เป็นอันทำอะไร แถมยังทำให้เป็นผื่นแดงระคายเคืองไปนาน ยิ่งถ้ามือโดนพริกแล้วยังต้องทำกับข้าวหน้าเตาจนกว่าจะเสร็จ ยิ่งแสบร้อนหนักมากขึ้นไปอีก แล้วคุณล่ะมี วิธีแก้อาการแสบมือจากพริก ยังไง วันนี้เรามีวิธีมาฝากกัน</p>
@@ -15,7 +15,7 @@ image: "/imported/chili-burns-my-hands-cover.jpg"
 <p>หลายคนอาจจะใส่ถุงมือ เพื่อช่วยลดอาการแสบร้อน แต่ก็อาจทำให้ไม่สะดวกในการทำงาน โดยเฉพาะในช่วงเวลาเร่งด่วนของการทำอาหาร หรือแม้กระทั่งพริกอาจกระเด็นไปโดนบริเวณแขนหรือส่วนอื่น ๆ ของร่างกาย</p>
 <p>ซึ่งอาการแสบร้อนเกิดจากสาร Capsaicin ซึ่งอยู่มากบริเวณแกนกลางที่เป็นเยื่อสีขาว ส่วนนี้จะทำให้เกิดการระคายเคืองแสบร้อน หรือที่เราเรียกกันว่าความเผ็ดนั่นเอง</p>
 <p>เรามาดู<a href="https://torpenguin.com/tempura-shrimp/" target="_blank" rel="noopener">เคล็ดลับ</a>ดี ๆ มาฝากให้ทุกคนลองไปทำเพื่อลดอาการแสบร้อนกันค่ะ รับรองได้ผลอย่างแน่นอน</p>
-<p><span><img loading="lazy" decoding="async" src="/imported/chili-burns-my-hands-1.png" alt="วิธีแก้อาการแสบมือจากพริก ลดอาการแสบร้อน ด้วยวัตถุดิบง่าย ๆ" width="640" height="360" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/chili-burns-my-hands-1.png 1024w, https://torpenguin.com/wp-content/uploads/2025/04/แสบมือ-300x169.png 300w, https://torpenguin.com/wp-content/uploads/2025/04/แสบมือ-768x432.png 768w, https://torpenguin.com/wp-content/uploads/2025/04/แสบมือ-1536x864.png 1536w, https://torpenguin.com/wp-content/uploads/2025/04/แสบมือ-747x420.png 747w, https://torpenguin.com/wp-content/uploads/2025/04/แสบมือ-640x360.png 640w, https://torpenguin.com/wp-content/uploads/2025/04/แสบมือ-681x383.png 681w, https://torpenguin.com/wp-content/uploads/2025/04/แสบมือ.png 1920w" sizes="(max-width: 640px) 100vw, 640px" /></span></p>
+<p><span><img loading="lazy" decoding="async" src="/imported/img-cf865da8067a5c36.png" alt="วิธีแก้อาการแสบมือจากพริก ลดอาการแสบร้อน ด้วยวัตถุดิบง่าย ๆ" width="640" height="360" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/img-cf865da8067a5c36.png 1024w, https://torpenguin.com/wp-content/uploads/2025/04/แสบมือ-300x169.png 300w, https://torpenguin.com/wp-content/uploads/2025/04/แสบมือ-768x432.png 768w, https://torpenguin.com/wp-content/uploads/2025/04/แสบมือ-1536x864.png 1536w, https://torpenguin.com/wp-content/uploads/2025/04/แสบมือ-747x420.png 747w, https://torpenguin.com/wp-content/uploads/2025/04/แสบมือ-640x360.png 640w, https://torpenguin.com/wp-content/uploads/2025/04/แสบมือ-681x383.png 681w, https://torpenguin.com/wp-content/uploads/2025/04/แสบมือ.png 1920w" sizes="(max-width: 640px) 100vw, 640px" /></span></p>
 <h3><span>วิธีแก้อาการแสบมือจากพริก ด้วยวัตถุดิบง่าย ๆ</span></h3>
 <ul>
 <li>เกลือ ใช้เกลือเม็ดละเอียด 1 ช้อนโต๊ะ มาทาที่มือให้ทั่ว อย่าถูแรงเพราะจะทำให้แสบผิวได้ ทาทิ้งไว้สักพักแล้วจึงล้างออกด้วยน้ำสบู่ อาการแสบร้อนก็จะหายไป</li>

@@ -6,7 +6,7 @@ excerpt: "บ่อดักไขมัน ร้านอาหาร เร�
 author: torpenguin
 publishedAt: 2026-01-14T10:00:29
 updatedAt: 2026-01-13T15:39:16
-image: "/imported/grease-trap-restaurant-hidden-risk-cover.webp"
+image: "/imported/img-04eccda9bd522357.webp"
 ---
 
 <h4>บ่อดักไขมัน ร้านอาหาร เรื่องเล็กที่ทำร้านเจ๊งแบบเงียบ ๆ ถ้าไม่ดูแลระวังพังทั้งระบบ!</h4>

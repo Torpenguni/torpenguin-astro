@@ -6,7 +6,7 @@ excerpt: "เทคนิคสร้าง Storytelling ร้านอ"
 author: torpenguin
 publishedAt: 2025-05-06T13:56:35
 updatedAt: 2025-10-17T14:27:10
-image: "/imported/build-storytelling-cover.png"
+image: "/imported/img-e782c1952168f4c1.png"
 ---
 
 <h4><strong>เทคนิคสร้าง Storytelling ร้านอาหาร ฉบับคนตัวเล็ก</strong><br />

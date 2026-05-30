@@ -6,7 +6,7 @@ excerpt: "เมื่อยักษ์ใหญ่จากญี่ปุ่�
 author: torpenguin
 publishedAt: 2025-12-23T10:00:21
 updatedAt: 2025-12-22T16:24:20
-image: "/imported/japanese-giants-enter-thailand-sushi-market-war-2-cover.webp"
+image: "/imported/img-32fb130548ec168c.webp"
 ---
 
 <h4>เมื่อยักษ์ใหญ่จากญี่ปุ่นตบเท้าเข้าไทย วิเคราะห์สงครามส่วนแบ่งซูชิในไทย</h4>

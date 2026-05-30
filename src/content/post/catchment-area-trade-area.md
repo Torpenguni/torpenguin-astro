@@ -6,7 +6,7 @@ excerpt: "Catchment Area และ Trade Area"
 author: torpenguin
 publishedAt: 2025-02-28T10:00:18
 updatedAt: 2025-06-18T12:00:23
-image: "/imported/catchment-area-trade-area-cover.png"
+image: "/imported/img-c11c4479241d86e4.png"
 ---
 
 <p><strong>Catchment Area และ Trade Area 2 สิ่งที่ต้องดูก่อนตัดสินใจเช่าทำเลทำร้านอาหาร</strong><!-- notionvc: 9a08d313-665a-4cbb-92fd-fc5b550fb37c --><br />

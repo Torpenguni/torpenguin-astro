@@ -6,7 +6,7 @@ excerpt: "Food Republic ปิดสาขาสุดท้ายใน"
 author: torpenguin
 publishedAt: 2024-08-24T15:08:53
 updatedAt: 2024-08-24T15:08:53
-image: "/imported/food-republic-cover.jpg"
+image: "/imported/img-23cdd08d4276fb0f.jpg"
 ---
 
 <p><strong>Food Republic ปิดสาขาสุดท้ายในไทย 22 พฤศจิกายน นี้</strong></p>

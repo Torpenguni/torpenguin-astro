@@ -6,7 +6,7 @@ excerpt: "ทำร้านในปั๊ม ต้องรู้อะไร
 author: torpenguin
 publishedAt: 2025-08-03T10:00:50
 updatedAt: 2025-08-25T14:36:40
-image: "/imported/rent-space-in-gas-station-cover.png"
+image: "/imported/img-6dda73700bbaede1.png"
 ---
 
 <h2><strong>ทำร้านในปั๊ม ต้องรู้อะไรบ้าง ก่อนตัดสินใจเอาธุรกิจเข้าไปอยู่ในปั๊ม</strong><br />

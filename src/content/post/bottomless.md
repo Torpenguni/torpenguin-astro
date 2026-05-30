@@ -6,7 +6,7 @@ excerpt: "Bottomless ร้านกาแฟ Specialty"
 author: torpenguin
 publishedAt: 2025-05-17T10:00:06
 updatedAt: 2025-05-29T16:00:16
-image: "/imported/bottomless-cover.png"
+image: "/imported/img-d4badff0f842e1f5.png"
 ---
 
 <p>Bottomless ร้านกาแฟ Specialty Coffee ที่เริ่มจากการเป็นร้านเล็ก ๆ ในซอยลึกที่นนทบุรี สู่ 6 สาขาในทำเลสุขุมวิท ทองหล่อ จนถึงห้างสรรพสินค้าชื่อดังในกรุงเทพ ฯ<!-- notionvc: 17cf6591-7d23-4601-b5c3-e59701d263ee --></p>

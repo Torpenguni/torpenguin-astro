@@ -6,7 +6,7 @@ excerpt: "Portion Control ทำยังไง ได้บ้า"
 author: torpenguin
 publishedAt: 2025-02-18T10:00:10
 updatedAt: 2025-10-28T15:14:11
-image: "/imported/how-to-build-portion-control-cover.png"
+image: "/imported/img-9022f650e9efed6d.png"
 ---
 
 <p>Portion Control ทำยากมั้ย?</p>

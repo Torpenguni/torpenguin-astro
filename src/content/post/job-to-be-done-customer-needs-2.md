@@ -6,7 +6,7 @@ excerpt: "จ่ายเพื่อให้ชีวิตตัวเอง�
 author: torpenguin
 publishedAt: 2025-11-04T10:00:01
 updatedAt: 2025-11-03T14:59:03
-image: "/imported/job-to-be-done-customer-needs-2-cover.webp"
+image: "/imported/img-9ba82b7794b856af.webp"
 ---
 
 <h4>จ่ายเพื่อให้ชีวิตตัวเองดีขึ้น Job to be Done ความต้องการแท้จริงที่ลูกค้าไม่เคยบอก กลยุทธ์เข้าใจลูกค้าแบบลึก</h4>

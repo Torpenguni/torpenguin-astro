@@ -6,7 +6,7 @@ excerpt: "รสชาติซอสแบบเดิม ๆ จะเปล�
 author: torpenguin
 publishedAt: 2023-05-18T07:14:47
 updatedAt: 2023-05-30T07:11:13
-image: "/imported/heinz-remix-heinz-%e0%b9%80%e0%b8%9b%e0%b8%b4%e0%b8%94%e0%b8%95%e0%b8%b1%e0%b8%a7-cover.jpg"
+image: "/imported/img-4980451ebe9e180d.jpg"
 ---
 
 <h1>รสชาติซอสแบบเดิม ๆ จะเปลี่ยนไป&#8230;</h1>

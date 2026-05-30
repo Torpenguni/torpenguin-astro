@@ -6,7 +6,7 @@ excerpt: "เมนูที่ขายดีในร้าน อาจไม
 author: torpenguin
 publishedAt: 2025-10-26T10:00:01
 updatedAt: 2025-10-22T17:26:53
-image: "/imported/menu-engineering-restaurant-analysis-cover.webp"
+image: "/imported/img-1c3e2be14f9961d3.webp"
 ---
 
 <h5>เมนูที่ขายดีในร้าน อาจไม่ใช่เมนูที่ร้านเราควรขายเสมอไป</h5>

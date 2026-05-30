@@ -6,7 +6,7 @@ excerpt: "คนตัวเล็กไม่มีวันชนะ ถ้า
 author: torpenguin
 publishedAt: 2025-10-05T10:00:58
 updatedAt: 2025-09-30T18:43:33
-image: "/imported/5-lesson-beer-business-cover.png"
+image: "/imported/img-a2c97eabdd1c5a0d.png"
 ---
 
 <p>ในยุคที่ใคร ๆ ก็ปั้นธุรกิจตามตำรา แต่ <strong>พี่ชิต-วิชิต ซ้ายเกล้า</strong> เจ้าของร้าน <strong>Chitbeer</strong> และ <strong>คุณกิ๊ก-ชนาสิน บำรุงชน</strong> เจ้าของร้าน <strong>ชงเจริญ</strong> กลับเลือกเส้นทางที่แตกต่างออกไป พวกเขากล้าที่จะทำธุรกิจนอกตำรา และสามารถสร้างแบรนด์ร้านเบียร์ที่เติบโตได้อย่างยั่งยืน</p>

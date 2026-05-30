@@ -6,7 +6,7 @@ excerpt: "ไม่มีดีไซเนอร์คนไหนประห�
 author: torpenguin
 publishedAt: 2025-12-10T10:00:14
 updatedAt: 2025-12-09T11:11:44
-image: "/imported/restaurant-budget-design-control-cover.webp"
+image: "/imported/img-e118484f0719869e.webp"
 ---
 
 <h5><span><em>&#8220;ไม่มีดีไซเนอร์คนไหนประหยัดงบให้คุณ นอกจากตัวคุณเอง</em></span></h5>

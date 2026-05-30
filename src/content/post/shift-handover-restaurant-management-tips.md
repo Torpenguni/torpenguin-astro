@@ -6,7 +6,7 @@ excerpt: "Shift Handover ร้านอาหาร : ส่ง"
 author: torpenguin
 publishedAt: 2026-02-24T15:33:03
 updatedAt: 2026-02-24T15:33:03
-image: "/imported/shift-handover-restaurant-management-tips-cover.webp"
+image: "/imported/img-3e50ec00a03bdd2e.webp"
 ---
 
 <h4><strong>Shift Handover ร้านอาหาร : ส่งเวรยังไงไม่ให้งานเข้า? เคล็ดลับที่ร้านอาหารมือโปรต้องมี</strong></h4>

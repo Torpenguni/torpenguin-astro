@@ -6,7 +6,7 @@ excerpt: "Hotpot Buffet ลาแล้ว ปิดตำนานบ"
 author: torpenguin
 publishedAt: 2024-08-22T14:39:45
 updatedAt: 2024-08-22T14:39:45
-image: "/imported/hotpot-buffet-cover.jpg"
+image: "/imported/img-cc0521700c3425cc.jpg"
 ---
 
 <p><strong>Hotpot Buffet ลาแล้ว ปิดตำนานบุฟเฟต์หม้อไฟ 20 ปี</strong></p>

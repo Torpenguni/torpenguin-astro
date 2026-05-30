@@ -6,7 +6,7 @@ excerpt: "เปิดร้านอาหารแล้วเจ๊งเพ�
 author: torpenguin
 publishedAt: 2025-12-12T10:00:04
 updatedAt: 2025-12-09T13:21:37
-image: "/imported/why-restaurant-fail-thailand-cover.webp"
+image: "/imported/img-4d509b79c0a13751.webp"
 ---
 
 <p>หลายคนเข้าใจว่า ร้านอาหารเจ๊งเพราะ “ไม่มีลูกค้า”<br />แต่ในความเป็นจริง ธุรกิจจำนวนมากพังเพราะ <strong>ความกลัวว่าจะดูไม่ดีในสายตาคนอื่น</strong></p>

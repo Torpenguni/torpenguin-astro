@@ -6,7 +6,7 @@ excerpt: "ค่าใช้จ่ายแฝง เปิดร้านอา
 author: torpenguin
 publishedAt: 2026-02-07T10:00:43
 updatedAt: 2026-02-05T16:15:32
-image: "/imported/hidden-costs-restaurant-startup-cover.webp"
+image: "/imported/img-cf588670096c298c.webp"
 ---
 
 <p>เจ้าของร้านอาหารจำนวนมาก ไม่ได้ตั้งใจใช้งบเกิน<br />แต่ปัญหาคือ งบที่ตั้งไว้ตอนแรก <strong>ไม่เคยรวมค่าใช้จ่ายทั้งหมดจริง ๆ</strong></p>

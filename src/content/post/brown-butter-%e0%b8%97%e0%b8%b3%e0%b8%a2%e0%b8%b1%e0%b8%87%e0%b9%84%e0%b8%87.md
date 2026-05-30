@@ -6,7 +6,7 @@ excerpt: "Brown Butter ทำยังไง เนยละลายส"
 author: torpenguin
 publishedAt: 2025-01-26T10:00:36
 updatedAt: 2025-06-18T12:00:25
-image: "/imported/brown-butter-%e0%b8%97%e0%b8%b3%e0%b8%a2%e0%b8%b1%e0%b8%87%e0%b9%84%e0%b8%87-cover.png"
+image: "/imported/img-e5c26bd90dab5846.png"
 ---
 
 <p><strong>Brown Butter ทำยังไง เนยละลายสีน้ำตาล เคล็ดลับกลิ่นหอมที่มีมิติในขนมหวานสไตล์ฝรั่งเศส</strong></p>

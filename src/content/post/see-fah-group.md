@@ -6,7 +6,7 @@ excerpt: "ไม่ว่าอะไรจะเปลี่ยนต้อง�
 author: torpenguin
 publishedAt: 2025-09-06T10:00:50
 updatedAt: 2025-09-05T14:23:22
-image: "/imported/see-fah-group-cover.webp"
+image: "/imported/img-c8d2ba5694f44343.webp"
 ---
 
 <h5>ไม่ว่าอะไรจะเปลี่ยนต้องรักษาแก่น และหัวใจของแบรนด์ไว้ ถอดบทเรียนการอยู่รอด 89 ปีของ SEE FAH Group</h5>

@@ -6,7 +6,7 @@ excerpt: "Scent Marketing กลยุทธ์ใช้ &#8"
 author: torpenguin
 publishedAt: 2024-01-04T15:12:35
 updatedAt: 2025-06-18T12:01:10
-image: "/imported/scent-marketing-cover.jpg"
+image: "/imported/img-bb4af4ee8c9e9cbb.jpg"
 ---
 
 <p>Scent Marketing กลยุทธ์ใช้ &#8216;กลิ่น&#8217; ที่ช่วยกระตุ้นยอดขายได้</p>

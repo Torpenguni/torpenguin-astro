@@ -6,7 +6,7 @@ excerpt: "ขายดีทั้งชีวิต ถ้าเข้าใจ
 author: torpenguin
 publishedAt: 2025-12-25T10:00:06
 updatedAt: 2025-12-23T11:49:21
-image: "/imported/j-jhong-fried-pork-cover.webp"
+image: "/imported/img-b4573d319de98d22.webp"
 ---
 
 <p>หลายคนรู้จัก <strong>เจ๊จง หมูทอด</strong> ในภาพของร้านหมูทอดราคาย่อมเยา ขวัญใจคนทำงาน คนหาเช้ากินค่ำ และคนที่อยากได้กับข้าวดี ๆ ในราคาที่ไม่ต้องคิดมาก</p>

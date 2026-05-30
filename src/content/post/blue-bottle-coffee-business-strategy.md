@@ -10,7 +10,7 @@ keyPoints:
 author: torpenguin
 publishedAt: 2026-02-26T10:00:09
 updatedAt: 2026-02-25T18:29:57
-image: "/imported/blue-bottle-coffee-business-strategy-cover.webp"
+image: "/imported/img-5884c650b999d562.webp"
 ---
 
 <p>หลายคนคงเคยสงสัยว่าทำไมคนถึงยอมต่อคิวแถวยาวเหยียด เพียงเพราะว่าที่นี่คือร้าน <b>Blue Bottle Coffee</b> แค่กาแฟแก้วเดียวมันพิเศษขนาดนั้นเลยหรือไม่ หากจะเปรียบเทียบให้เห็นภาพ Blue Bottle Coffee ก็คงเหมือนกับ Apple ของวงการกาแฟค่ะ เพราะถ้าเราเจาะเข้าไปดูในรายละเอียดหรือสเปก ก็จะพบว่าไม่ได้หวือหวา ออปชั่นไม่ได้เยอะ และราคาก็ไม่ได้ถูกเลย</p>

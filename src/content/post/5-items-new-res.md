@@ -6,7 +6,7 @@ excerpt: "เตรียมเปิดร้านอาหาร ต้อง
 author: torpenguin
 publishedAt: 2025-08-20T10:00:27
 updatedAt: 2025-08-15T18:48:43
-image: "/imported/5-items-new-res-cover.png"
+image: "/imported/img-50c5e3bc87408793.png"
 ---
 
 <h4>เตรียมเปิดร้านอาหาร ต้องมีสิ่งนี้ แนะนำ 5 อุปกรณ์ร้านอาหาร แบบพื้นฐานที่สุดที่ร้านเปิดใหม่ ‘ต้องมี’ ติดร้าน<!-- notionvc: 3aff98d5-ef59-4cfb-9a0a-8a12a02db25e --><br />

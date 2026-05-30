@@ -6,7 +6,7 @@ excerpt: "ต้นทุนธุรกิจที่อันตรายท�
 author: torpenguin
 publishedAt: 2025-11-03T10:00:11
 updatedAt: 2025-10-31T18:05:14
-image: "/imported/dangerous-cost-in-business-cover.webp"
+image: "/imported/img-c5cb99dd26e38d15.webp"
 ---
 
 <h4>ต้นทุนธุรกิจที่อันตรายที่สุด คือ “ความประมาท” บริหารร้านอาหารให้มีกำไรอย่างยั่งยืน</h4>

@@ -6,7 +6,7 @@ excerpt: "ทำบุฟเฟต์ยังไงให้รอด กลย
 author: torpenguin
 publishedAt: 2025-11-29T10:00:23
 updatedAt: 2025-11-27T13:34:06
-image: "/imported/how-to-make-buffet-business-survive-cover.webp"
+image: "/imported/img-698161273823860b.webp"
 ---
 
 <p>

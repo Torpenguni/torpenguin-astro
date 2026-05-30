@@ -6,7 +6,7 @@ excerpt: "การตลาดร้านอาหารวันนี้ย�
 author: torpenguin
 publishedAt: 2025-10-07T10:00:00
 updatedAt: 2025-09-30T19:40:20
-image: "/imported/restaurant-marketing-now-cover.png"
+image: "/imported/img-557e156b2352ab94.png"
 ---
 
 <p>

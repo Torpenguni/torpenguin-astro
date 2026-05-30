@@ -6,7 +6,7 @@ excerpt: "Brand Love Framework เปลี่ยนลู"
 author: torpenguin
 publishedAt: 2025-09-11T10:00:18
 updatedAt: 2025-09-11T15:52:49
-image: "/imported/brand-love-framework-cover.webp"
+image: "/imported/img-8e7c8eabcf025011.webp"
 ---
 
 <p>ท่ามกลางการแข่งขันที่ดุเดือดของสมรภูมิร้านอาหาร แค่ทำอาหารให้อร่อยอาจไม่เพียงพออีกแล้วในยุคสมัยนี้ แต่เราต้องเข้าไปอยู่ในใจของลูกค้าด้วย ประโยคดังกล่าว “พูดง่ายแต่ทำยาก” เราจะต้องทำอย่างไรให้ลูกค้ารักเรา ?</p>

@@ -6,7 +6,7 @@ excerpt: "‘Hunt The Treasure&#8217 []"
 author: torpenguin
 publishedAt: 2024-10-28T14:28:09
 updatedAt: 2025-06-18T12:00:30
-image: "/imported/hunt-the-treasure-cover.png"
+image: "/imported/img-622cc81c1cc93ff5.png"
 ---
 
 <p><strong>&#8216;Hunt The Treasure&#8217; กลยุทธ์แบบการเล่นเกม ที่ช่วยให้ลูกค้าสนุกและอยู่กับแบรนด์นานยิ่งขึ้น</strong><!-- notionvc: b98d39a9-b87d-4b64-ac21-fb5938595320 --></p>

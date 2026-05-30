@@ -6,7 +6,7 @@ excerpt: "5 สิ่งที่คนส่วนใหญ่มักเข�
 author: torpenguin
 publishedAt: 2025-11-02T10:00:14
 updatedAt: 2025-10-31T15:55:20
-image: "/imported/misunderstanding-about-coffee-business-cover.webp"
+image: "/imported/img-45c89737b3d6dde2.webp"
 ---
 
 <p><a href="https://torpenguin.com/why-coffee-shops-fail/">ร้านกาแฟ</a>และคาเฟ่เป็นหนึ่งในความฝันของใครหลายคน เพราะดูเหมือนจะเป็นอาชีพที่ได้ใช้ชีวิตสโลว์ไลฟ์ นั่งจิบกาแฟ ท่ามกลางบรรยากาศดี ๆ</p>

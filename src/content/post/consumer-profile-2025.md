@@ -6,7 +6,7 @@ excerpt: "Consumer Profile 2025 เปิด 4 เ"
 author: torpenguin
 publishedAt: 2024-10-08T10:00:41
 updatedAt: 2025-06-18T12:00:31
-image: "/imported/consumer-profile-2025-cover.png"
+image: "/imported/img-fc728f8c39a54f84.png"
 ---
 
 <p><strong>Consumer Profile 2025 เปิด 4 เทรนด์ผู้บริโภคน่าจับตามองในปี 2025 จาก Creative Thailand</strong></p>

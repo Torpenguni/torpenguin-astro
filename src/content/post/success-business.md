@@ -6,7 +6,7 @@ excerpt: "อยากทำธุรกิจให้สำเร็จ ให
 author: torpenguin
 publishedAt: 2025-08-15T10:00:39
 updatedAt: 2025-08-15T18:40:33
-image: "/imported/success-business-cover.png"
+image: "/imported/img-5d9a78493f104f45.png"
 ---
 
 <p>&#8220;คุณจะไม่สามารถจัดการอะไรได้เลย ถ้าคุณ &#8216;ไม่วัดผล&#8217; มัน”</p>

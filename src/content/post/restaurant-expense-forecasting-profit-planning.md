@@ -6,7 +6,7 @@ excerpt: "คาดการณ์รายจ่ายให้เป็น ก
 author: torpenguin
 publishedAt: 2025-10-27T14:11:22
 updatedAt: 2025-10-27T14:11:22
-image: "/imported/restaurant-expense-forecasting-profit-planning-cover.png"
+image: "/imported/img-6fc3d0ca1e3de2ba.png"
 ---
 
 <h5><strong>เพราะตัวเลขไม่เคยโกหก คาดการณ์รายจ่ายให้เป็น ก็เห็นกำไรตั้งแต่ยังไม่เริ่ม</strong></h5>

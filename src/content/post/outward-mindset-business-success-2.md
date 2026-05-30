@@ -6,7 +6,7 @@ excerpt: "ธุรกิจที่รอด ไม่ใช่ธุรกิ
 author: torpenguin
 publishedAt: 2025-10-31T10:00:17
 updatedAt: 2025-10-30T13:36:51
-image: "/imported/outward-mindset-business-success-2-cover.webp"
+image: "/imported/img-4fb37fc15fd7e7d2.webp"
 ---
 
 <h5><strong>Outward Mindset คืออะไร?</strong></h5>

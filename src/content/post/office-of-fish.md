@@ -6,7 +6,7 @@ excerpt: "Office of Fish โอมากะเสะใจกลาง"
 author: torpenguin
 publishedAt: 2024-06-08T10:00:16
 updatedAt: 2024-05-27T21:26:25
-image: "/imported/office-of-fish-cover.jpg"
+image: "/imported/img-d39e889368c2b2df.jpg"
 ---
 
 <p><strong>Office of Fish โอมากะเสะใจกลางเมืองเชียงใหม่ กับแนวคิดทะลายกรอบรสชาติ &#8216;ปลาสด&#8217; ด้วยการเสิร์ฟ &#8216;ปลา Dry aged&#8217;</strong></p>

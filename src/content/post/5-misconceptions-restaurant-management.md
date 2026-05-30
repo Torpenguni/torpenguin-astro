@@ -6,7 +6,7 @@ excerpt: "5 ความเข้าใจผิดในการบริห�
 author: torpenguin
 publishedAt: 2026-02-12T18:33:50
 updatedAt: 2026-02-17T15:30:49
-image: "/imported/5-misconceptions-restaurant-management-cover.webp"
+image: "/imported/img-6e865563882d8074.webp"
 ---
 
 <h4>5 ความเข้าใจผิดในการบริหารร้านอาหาร ที่เจ้าของร้านต้องระวังก่อนสายเกินไป</h4>

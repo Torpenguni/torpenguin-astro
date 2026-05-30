@@ -6,7 +6,7 @@ excerpt: "Eat Am Are ร้านสเต๊ก 15 สาขาที []"
 author: torpenguin
 publishedAt: 2024-11-23T10:00:36
 updatedAt: 2025-04-25T17:18:43
-image: "/imported/eat-am-are-cover.jpg"
+image: "/imported/img-35309ef7ca5a31a7.jpg"
 ---
 
 <p><strong>Eat Am Are ร้านสเต๊ก 15 สาขาที่รายได้แซงทุกเชนใหญ่ ทำยังไงถึงกลายเป็น Brand Love ของคนเมือง</strong></p>

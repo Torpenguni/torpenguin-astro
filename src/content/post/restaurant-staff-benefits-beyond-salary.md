@@ -6,7 +6,7 @@ excerpt: "สวัสดิการพนักงานร้านอาห�
 author: torpenguin
 publishedAt: 2026-02-27T17:49:07
 updatedAt: 2026-02-27T17:49:07
-image: "/imported/restaurant-staff-benefits-beyond-salary-cover.webp"
+image: "/imported/img-b2e9a951256adde4.webp"
 ---
 
 <p>เจ้าของร้านอาหารหลายท่านอาจเคยตั้งคำถามว่า <b>&#8220;ประกาศรับสมัครพนักงาน ให้เงินเดือนสูงกว่าตลาด แต่ทำไมไม่มีใครมาสมัครเลย?&#8221;</b> หรือ <b>&#8220;พนักงานเก่งๆ อยู่ได้ไม่กี่เดือนก็ลาออก?&#8221;</b></p>

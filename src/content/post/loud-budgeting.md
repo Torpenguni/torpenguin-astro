@@ -6,7 +6,7 @@ excerpt: "Loud budgeting เทรนด์มาแรง 202"
 author: torpenguin
 publishedAt: 2024-06-18T10:00:31
 updatedAt: 2025-06-18T12:01:05
-image: "/imported/loud-budgeting-cover.jpg"
+image: "/imported/img-caf670cdaf96aa78.jpg"
 ---
 
 <p><em><strong>Loud budgeting เทรนด์มาแรง 2024 ที่ใคร ๆ ก็อวดกันประหยัด ธุรกิจปรับตัวยังไงดี?</strong></em></p>

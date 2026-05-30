@@ -6,7 +6,7 @@ excerpt: "Enoteca Maria ร้านอาหารในนิวยอ"
 author: torpenguin
 publishedAt: 2024-07-06T10:00:48
 updatedAt: 2025-04-25T17:24:00
-image: "/imported/enoteca-maria-cover.jpg"
+image: "/imported/img-0cca7436bc57d543.jpg"
 ---
 
 <p>Enoteca Maria ร้านอาหารในนิวยอร์ก กับไอเดีย Nonnas of the world รวบรวม ‘รสมือแม่’ จากทั่วทุกมุมโลก</p>

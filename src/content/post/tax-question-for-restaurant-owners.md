@@ -6,7 +6,7 @@ excerpt: "คำถามเรื่องภาษี เปิดร้าน
 author: torpenguin
 publishedAt: 2025-12-11T10:00:21
 updatedAt: 2025-12-09T12:46:29
-image: "/imported/tax-question-for-restaurant-owners-cover.webp"
+image: "/imported/img-761337a057ae4632.webp"
 ---
 
 <h4><span><strong>คำถามเรื่องภาษี เปิดร้านมา 3 ปีไม่เคยเสียภาษี พอปีที่ 4 จดบริษัท ต้องเสียย้อนหลังไหม?</strong></span></h4>

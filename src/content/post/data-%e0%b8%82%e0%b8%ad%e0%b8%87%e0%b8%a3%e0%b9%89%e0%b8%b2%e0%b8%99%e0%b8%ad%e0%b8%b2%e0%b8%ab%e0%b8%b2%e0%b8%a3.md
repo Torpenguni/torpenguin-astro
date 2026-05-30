@@ -6,7 +6,7 @@ excerpt: "Data ของร้านอาหาร ที่เราเก็�
 author: torpenguin
 publishedAt: 2025-04-28T10:00:00
 updatedAt: 2025-06-18T12:00:21
-image: "/imported/data-%e0%b8%82%e0%b8%ad%e0%b8%87%e0%b8%a3%e0%b9%89%e0%b8%b2%e0%b8%99%e0%b8%ad%e0%b8%b2%e0%b8%ab%e0%b8%b2%e0%b8%a3-cover.png"
+image: "/imported/img-9791ca7fb1bdeb9c.png"
 ---
 
 <p><strong><a href="https://torpenguin.com/success-business/">Data</a> ของร้านอาหาร ที่เราเก็บไว้มันต่อยอดอะไรได้อีกบ้าง? มาเปลี่ยนข้อมูลให้กลายเป็นกำไรและความได้เปรียบ</strong></p>

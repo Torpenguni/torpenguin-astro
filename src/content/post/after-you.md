@@ -6,7 +6,7 @@ excerpt: "After You โตต่อเนื่อง ไตรมาส 2"
 author: torpenguin
 publishedAt: 2024-08-14T18:54:58
 updatedAt: 2024-08-14T18:54:58
-image: "/imported/after-you-cover.jpg"
+image: "/imported/img-a1b7e3d5e2f234aa.jpg"
 ---
 
 <p><strong>After You โตต่อเนื่อง ไตรมาส 2/67 โตพุ่ง 68% เตรียมขยายสาขาเพิ่ม ทั้งในไทยและต่างประเทศ</strong></p>
@@ -21,7 +21,7 @@ image: "/imported/after-you-cover.jpg"
 
 <p><a href="https://www.bangkokbiznews.com/finance/stock/1139586?fbclid=IwY2xjawEpeTVleHRuA2FlbQIxMAABHXqfHlMpxDZ657oFo9u2zjJmOIR-_d-vyIiz7bgbkaDZgXhqrmBVway2OA_aem_jqFK-4IIhXaEvLyqzsYt7g" target="_blank" rel="noopener">Source</a></p>
 
-<p><img loading="lazy" decoding="async" src="/imported/after-you-1.jpg" alt="After You" width="640" height="640" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/after-you-1.jpg 1024w, https://torpenguin.com/wp-content/uploads/2024/08/news_20240814-01-300x300.jpg 300w, https://torpenguin.com/wp-content/uploads/2024/08/news_20240814-01-150x150.jpg 150w, https://torpenguin.com/wp-content/uploads/2024/08/news_20240814-01-768x768.jpg 768w, https://torpenguin.com/wp-content/uploads/2024/08/news_20240814-01-1536x1536.jpg 1536w, https://torpenguin.com/wp-content/uploads/2024/08/news_20240814-01-2048x2048.jpg 2048w, https://torpenguin.com/wp-content/uploads/2024/08/news_20240814-01-420x420.jpg 420w, https://torpenguin.com/wp-content/uploads/2024/08/news_20240814-01-640x640.jpg 640w, https://torpenguin.com/wp-content/uploads/2024/08/news_20240814-01-681x681.jpg 681w, https://torpenguin.com/wp-content/uploads/2024/08/news_20240814-01.jpg 1080w" sizes="(max-width: 640px) 100vw, 640px" /></p>
+<p><img loading="lazy" decoding="async" src="/imported/img-77f5e0ba23d9f00f.jpg" alt="After You" width="640" height="640" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/img-77f5e0ba23d9f00f.jpg 1024w, https://torpenguin.com/wp-content/uploads/2024/08/news_20240814-01-300x300.jpg 300w, https://torpenguin.com/wp-content/uploads/2024/08/news_20240814-01-150x150.jpg 150w, https://torpenguin.com/wp-content/uploads/2024/08/news_20240814-01-768x768.jpg 768w, https://torpenguin.com/wp-content/uploads/2024/08/news_20240814-01-1536x1536.jpg 1536w, https://torpenguin.com/wp-content/uploads/2024/08/news_20240814-01-2048x2048.jpg 2048w, https://torpenguin.com/wp-content/uploads/2024/08/news_20240814-01-420x420.jpg 420w, https://torpenguin.com/wp-content/uploads/2024/08/news_20240814-01-640x640.jpg 640w, https://torpenguin.com/wp-content/uploads/2024/08/news_20240814-01-681x681.jpg 681w, https://torpenguin.com/wp-content/uploads/2024/08/news_20240814-01.jpg 1080w" sizes="(max-width: 640px) 100vw, 640px" /></p>
 <p><strong>???? ติดตามข่าวสารธุรกิจร้านอาหาร<br />
 </strong><a href="https://www.facebook.com/TORPENGUIN/?locale=th_TH" target="_blank" rel="noopener">Facebook : Torpenguin</a><br />
 <a href="https://www.instagram.com/torpenguin/?hl=en" target="_blank" rel="noopener">Instargram : torpenguin</a><br />

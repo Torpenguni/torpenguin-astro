@@ -6,7 +6,7 @@ excerpt: "ใครๆ ก็สามารถเปิดร้านอาห
 author: torpenguin
 publishedAt: 2023-10-03T12:27:29
 updatedAt: 2025-06-18T12:01:12
-image: "/imported/success-restuarant-cover.png"
+image: "/imported/img-23435e8b6f597629.png"
 ---
 
 <p><span>ใครๆ ก็สามารถเปิดร้านอาหารได้ แต่ไม่ใช่ทุกคนจะสามารถ เปิดร้านอาหารให้ประสบความสำเร็จ บทความนี้นำ 10 สิ่งที่ต้องทำ เพื่อให้ร้านอาหารไปรอด และทำกำไรมาฝาก</span></p>

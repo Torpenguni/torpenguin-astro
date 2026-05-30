@@ -6,7 +6,7 @@ excerpt: "กับดักเจ้าของธุรกิจ คือก
 author: torpenguin
 publishedAt: 2025-12-05T10:00:59
 updatedAt: 2025-12-04T10:14:25
-image: "/imported/business-owner-traps-ego-failure-cover.webp"
+image: "/imported/img-6137689f0d25e370.webp"
 ---
 
 <h5><strong>กับดักของคนเป็นเจ้าของ คือการคิดว่า “ไอเดียของเราต้องเวิร์กแน่ ๆ”</strong></h5>

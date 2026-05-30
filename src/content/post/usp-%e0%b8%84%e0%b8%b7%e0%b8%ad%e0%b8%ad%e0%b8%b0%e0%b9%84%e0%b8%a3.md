@@ -6,7 +6,7 @@ excerpt: "USP คืออะไร ทำไมถึงสำคัญกั�
 author: torpenguin
 publishedAt: 2025-04-08T20:13:25
 updatedAt: 2025-06-18T12:00:22
-image: "/imported/usp-%e0%b8%84%e0%b8%b7%e0%b8%ad%e0%b8%ad%e0%b8%b0%e0%b9%84%e0%b8%a3-cover.png"
+image: "/imported/img-3c2f27b616623c49.png"
 ---
 
 <p><strong>USP คืออะไร ทำไมถึงสำคัญกับร้านอาหาร?</strong></p>

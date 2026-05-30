@@ -6,7 +6,7 @@ excerpt: "CHAIXI Plus+ โปรดักซ์ใหม่ในพอร"
 author: torpenguin
 publishedAt: 2024-08-06T14:00:16
 updatedAt: 2024-08-06T13:57:32
-image: "/imported/chaixi-plus-cover.jpg"
+image: "/imported/img-cca2bba2bb32fccf.jpg"
 ---
 
 <p><strong>CHAIXI Plus+ โปรดักซ์ใหม่ในพอร์ตของ ชายสี่ ที่หวังเข้ามาเจาะ &#8216;ตลาดบน&#8217; ที่มีกำลังซื้อสูงในตัวเมือง</strong></p>

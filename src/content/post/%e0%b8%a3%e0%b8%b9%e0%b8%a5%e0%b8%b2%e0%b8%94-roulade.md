@@ -6,7 +6,7 @@ excerpt: "รูลาด Roulade เทคนิคการทำอาหา�
 author: torpenguin
 publishedAt: 2024-12-26T10:00:39
 updatedAt: 2025-06-18T12:00:27
-image: "/imported/%e0%b8%a3%e0%b8%b9%e0%b8%a5%e0%b8%b2%e0%b8%94-roulade-cover.png"
+image: "/imported/img-71f663a15f2c389b.png"
 ---
 
 <p><strong>รูลาด Roulade เทคนิคการทำอาหารด้วยการม้วนจากฝรั่งเศส เพิ่ม Value เมนูอาหารธรรมดาให้ดูพิเศษขึ้น</strong></p>
@@ -97,7 +97,7 @@ Map : <a href="https://maps.app.goo.gl/hbK2ahPkGY3LV9C6A" target="_blank" rel="
 <p>สามารถสมัครด้วยตัวเองได้เลยที่ ???? <a href="https://shop.line.me/@rba_official/product/1006767687" target="_blank" rel="noopener">https://shop.line.me/@rba_official/product/1006767687</a></p>
 </div>
 
-<p><img loading="lazy" decoding="async" src="/imported/%e0%b8%a3%e0%b8%b9%e0%b8%a5%e0%b8%b2%e0%b8%94-roulade-1.jpg" alt="ก๋วยเตี๋ยวเรือ ก๋วยเตี๋ยวน้ำตก" width="640" height="640" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/%e0%b8%a3%e0%b8%b9%e0%b8%a5%e0%b8%b2%e0%b8%94-roulade-1.jpg 1024w, https://torpenguin.com/wp-content/uploads/2024/10/info-course-300x300.jpg 300w, https://torpenguin.com/wp-content/uploads/2024/10/info-course-150x150.jpg 150w, https://torpenguin.com/wp-content/uploads/2024/10/info-course-768x768.jpg 768w, https://torpenguin.com/wp-content/uploads/2024/10/info-course-420x420.jpg 420w, https://torpenguin.com/wp-content/uploads/2024/10/info-course-640x640.jpg 640w, https://torpenguin.com/wp-content/uploads/2024/10/info-course-681x681.jpg 681w, https://torpenguin.com/wp-content/uploads/2024/10/info-course.jpg 1080w" sizes="(max-width: 640px) 100vw, 640px" /></p>
+<p><img loading="lazy" decoding="async" src="/imported/img-5426072a2148e911.jpg" alt="ก๋วยเตี๋ยวเรือ ก๋วยเตี๋ยวน้ำตก" width="640" height="640" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/img-5426072a2148e911.jpg 1024w, https://torpenguin.com/wp-content/uploads/2024/10/info-course-300x300.jpg 300w, https://torpenguin.com/wp-content/uploads/2024/10/info-course-150x150.jpg 150w, https://torpenguin.com/wp-content/uploads/2024/10/info-course-768x768.jpg 768w, https://torpenguin.com/wp-content/uploads/2024/10/info-course-420x420.jpg 420w, https://torpenguin.com/wp-content/uploads/2024/10/info-course-640x640.jpg 640w, https://torpenguin.com/wp-content/uploads/2024/10/info-course-681x681.jpg 681w, https://torpenguin.com/wp-content/uploads/2024/10/info-course.jpg 1080w" sizes="(max-width: 640px) 100vw, 640px" /></p>
 
 <p><strong>???? ติดตามข่าวสารธุรกิจร้านอาหาร<br />
 </strong><a href="https://www.facebook.com/TORPENGUIN/?locale=th_TH" target="_blank" rel="noopener">Facebook : Torpenguin</a><br />

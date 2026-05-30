@@ -6,7 +6,7 @@ excerpt: "3 วิธีเพิ่มกำไรร้านอาหาร �
 author: torpenguin
 publishedAt: 2026-01-09T10:00:52
 updatedAt: 2026-01-08T19:14:03
-image: "/imported/increase-restaurant-profit-without-raising-price-cover.webp"
+image: "/imported/img-660f083fdc3b33ee.webp"
 ---
 
 <p>สิ่งที่สำคัญที่สุดของการทำธุรกิจคือ “ธุรกิจต้องมีกำไร” จะมากหรือน้อยไม่สำคัญ ขอแค่เป็นไปตามเป้าหมายที่วางไว้ก็เพียงพอ</p>

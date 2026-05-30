@@ -6,7 +6,7 @@ excerpt: "ถ้าลูกค้าขอซอสเพิ่ม เราจ
 author: torpenguin
 publishedAt: 2025-12-15T10:00:06
 updatedAt: 2025-12-11T12:36:13
-image: "/imported/how-to-calc-sauce-cost-for-restaurant-cover.webp"
+image: "/imported/img-1d3fb2e7223299b5.webp"
 ---
 
 <p>หลายร้านอาหารมักโฟกัสเฉพาะวัตถุดิบหลัก เช่น เนื้อ ผัก เส้น หรือของสด แต่กลับมองข้ามของที่ใช้ประจำทุกวันอย่าง <strong>น้ำจิ้ม ซอส น้ำซุป น้ำราด หรือเครื่องปรุงต่างๆ</strong> ทั้งที่สิ่งเหล่านี้คือ &#8220;ต้นทุนจริง&#8221; ที่ต้องถูกคำนวณเข้า <a href="https://torpenguin.com/%e0%b8%a7%e0%b8%b4%e0%b8%98%e0%b8%b5%e0%b8%9a%e0%b8%a3%e0%b8%b4%e0%b8%ab%e0%b8%b2%e0%b8%a3%e0%b8%95%e0%b9%89%e0%b8%99%e0%b8%97%e0%b8%b8%e0%b8%99/">Food Cost</a> เช่นกันค่ะ</p>

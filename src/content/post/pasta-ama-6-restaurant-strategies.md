@@ -6,7 +6,7 @@ excerpt: "กลยุทธ์ร้านพาสต้า อาม่า (P
 author: torpenguin
 publishedAt: 2026-03-27T15:00:33
 updatedAt: 2026-03-30T14:32:11
-image: "/imported/pasta-ama-6-restaurant-strategies-cover.jpg"
+image: "/imported/img-62ca6a9827a8493a.jpg"
 ---
 
 <h5></h5>

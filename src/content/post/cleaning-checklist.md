@@ -6,7 +6,7 @@ excerpt: "Cleaning Checklist ระบบความสะอ"
 author: torpenguin
 publishedAt: 2025-09-01T10:00:21
 updatedAt: 2025-08-28T17:05:34
-image: "/imported/cleaning-checklist-cover.png"
+image: "/imported/img-4ed090f727d68500.png"
 ---
 
 <p>ถ้ารสชาติคือสิ่งที่ทำให้ลูกค้ากลับมา</p>

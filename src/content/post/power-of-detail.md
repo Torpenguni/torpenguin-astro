@@ -6,7 +6,7 @@ excerpt: "Power of Detail ความสำเร็จ วัด"
 author: torpenguin
 publishedAt: 2024-09-02T17:00:42
 updatedAt: 2025-06-18T12:01:02
-image: "/imported/power-of-detail-cover.jpg"
+image: "/imported/img-04bdbbb3edb3c550.jpg"
 ---
 
 <p><strong>Power of Detail ความสำเร็จ วัดกันที่รายละเอียด ถอดไอเดียจาก สุกี้ตี๋น้อย และ Karun</strong></p>

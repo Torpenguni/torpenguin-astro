@@ -6,7 +6,7 @@ excerpt: "กำไรขั้นต้น กำไรสุทธิ ต่�
 author: torpenguin
 publishedAt: 2026-02-23T10:00:41
 updatedAt: 2026-02-20T19:28:56
-image: "/imported/gross-profit-vs-net-profit-restaurant-management-cover.webp"
+image: "/imported/img-b53823eb075e3717.webp"
 ---
 
 <p>ปัญหาสุดคลาสสิกของคนทำร้านอาหารคือ ขายดีมาก แต่สิ้นเดือนมาดูเงินในบัญชีแล้วหายไปไหนหมด ความลับเรื่องนี้อยู่ที่การแยกแยะระหว่าง กำไรขั้นต้น (Gross Profit) กับ กำไรสุทธิ (Net Profit) ค่ะ ถ้าเจ้าของร้านแยกสองตัวนี้ไม่ออก คุณจะตกหลุมพราง กับดักยอดขาย ทันที</p>

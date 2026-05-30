@@ -6,7 +6,7 @@ excerpt: "ขายดีจนเหนื่อย แต่เงินใน
 author: torpenguin
 publishedAt: 2026-02-25T13:20:48
 updatedAt: 2026-02-25T13:20:48
-image: "/imported/restaurant-sales-high-no-profit-leaks-cover.webp"
+image: "/imported/img-619f6019d4757eb6.webp"
 ---
 
 <h4><strong>ขายดีจนเหนื่อย แต่เงินในบัญชีหายไปไหนหมด? เช็ก 4 รูรั่วตัวร้ายที่สูบเงินเจ้าของร้าน</strong></h4>

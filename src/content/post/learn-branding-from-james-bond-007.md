@@ -6,7 +6,7 @@ excerpt: "เรียนรู้การสร้างแบรนด์ จ
 author: torpenguin
 publishedAt: 2025-12-29T10:00:12
 updatedAt: 2025-12-23T15:31:37
-image: "/imported/learn-branding-from-james-bond-007-cover.webp"
+image: "/imported/img-fd08d7005261f195.webp"
 ---
 
 <h5><span>คุณเข้าใจเรื่อง “แบรนด์” ว่ายังไงบ้างคะ?</span></h5>

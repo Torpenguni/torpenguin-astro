@@ -6,7 +6,7 @@ excerpt: "เจ้าของร้านควร เลือกพนัก
 author: torpenguin
 publishedAt: 2025-09-03T10:00:03
 updatedAt: 2025-09-01T15:15:20
-image: "/imported/choose-restaurant-crew-cover.webp"
+image: "/imported/img-283c617feafa6b4b.webp"
 ---
 
 <h5>เจ้าของร้านควร เลือกพนักงานร้านอาหาร แบบไหน แล้วควรเลือกจากอะไรในการสัมภาษณ์งาน</h5>

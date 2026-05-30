@@ -6,7 +6,7 @@ excerpt: "ลูกค้าที่ไม่พอใจคุณมากท�
 author: torpenguin
 publishedAt: 2026-01-31T10:00:40
 updatedAt: 2026-01-27T18:22:33
-image: "/imported/unhappy-customers-best-business-learning-source-cover.webp"
+image: "/imported/img-8f5c85330890f585.webp"
 ---
 
 <p>ลูกค้าหนึ่งคน สามารถทำให้ธุรกิจของเราเติบโตขึ้นได้อย่างต่อเนื่อง</p>

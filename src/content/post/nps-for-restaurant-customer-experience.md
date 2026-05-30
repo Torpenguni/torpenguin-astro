@@ -6,7 +6,7 @@ excerpt: "NPS คืออะไร ร้านระดับเชนทำ C
 author: torpenguin
 publishedAt: 2025-11-19T15:01:13
 updatedAt: 2025-11-19T15:01:13
-image: "/imported/nps-for-restaurant-customer-experience-cover.webp"
+image: "/imported/img-3330ba120fd311db.webp"
 ---
 
 <h5><strong>ทำไมร้านระดับเชนถึงทำ CX ได้ดีกว่าร้านทั่วไป</strong></h5>

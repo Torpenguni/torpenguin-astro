@@ -6,7 +6,7 @@ excerpt: "10 วิธีคิดจากพี่แต๋ง After Yum"
 author: torpenguin
 publishedAt: 2025-10-25T10:00:58
 updatedAt: 2025-10-21T18:50:46
-image: "/imported/after-yum-business-mindset-cover.webp"
+image: "/imported/img-fc0587e6f93f2752.webp"
 ---
 
 <p>เคยคิดว่ากระแสของร้าน <a href="https://torpenguin.com/after-yum/"><strong>After Yum</strong></a> จะเป็นเพียงช่วงสั้น ๆ เหมือนร้านฮิตทั่วไป แต่หลายปีผ่านไป ร้านยำร้านนี้กลับยังคงครองใจคนทั่วประเทศ และกลายเป็นหนึ่งในแบรนด์ที่ผู้คนพูดถึงมากที่สุดในวงการอาหารไทย</p>

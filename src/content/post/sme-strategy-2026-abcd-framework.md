@@ -6,7 +6,7 @@ excerpt: "กลยุทธ์ SME 2026 คาถา A-B-C-D"
 author: torpenguin
 publishedAt: 2025-12-06T10:00:45
 updatedAt: 2025-12-04T11:39:33
-image: "/imported/sme-strategy-2026-abcd-framework-cover.webp"
+image: "/imported/img-f7bb06fdc4121775.webp"
 ---
 
 <h4><strong>กลยุทธ์ SME 2026 คาถา A-B-C-D Framework ที่ช่วยให้ธุรกิจอยู่รอดจริง</strong></h4>

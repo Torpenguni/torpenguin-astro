@@ -6,7 +6,7 @@ excerpt: "Netflix กำลังมีหน้าร้าน !? ที่"
 author: torpenguin
 publishedAt: 2023-10-19T13:47:35
 updatedAt: 2023-10-19T13:47:35
-image: "/imported/netflix-house-cover.jpg"
+image: "/imported/img-830d6ed913574ab6.jpg"
 ---
 
 <div>Netflix กำลังมีหน้าร้าน !? ที่ขายอาหาร เสื้อผ้า ไปจนถึงอีเวนต์กึ่งถาวร ประเดิมเปิดใน USA ในปี 2025 ก่อนขยายไปทั่วโลก</div>

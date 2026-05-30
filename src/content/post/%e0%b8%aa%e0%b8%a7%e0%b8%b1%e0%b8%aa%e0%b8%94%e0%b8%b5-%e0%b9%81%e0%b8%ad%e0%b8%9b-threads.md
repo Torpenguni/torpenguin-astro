@@ -6,7 +6,7 @@ excerpt: "หลังจากมีข่าวแว่ว ๆ ไปเม�
 author: torpenguin
 publishedAt: 2023-07-06T05:40:29
 updatedAt: 2023-08-24T15:41:56
-image: "/imported/%e0%b8%aa%e0%b8%a7%e0%b8%b1%e0%b8%aa%e0%b8%94%e0%b8%b5-%e0%b9%81%e0%b8%ad%e0%b8%9b-threads-cover.jpg"
+image: "/imported/img-738725e807eea5b9.jpg"
 ---
 
 <p>หลังจากมีข่าวแว่ว ๆ ไปเมื่อไม่กี่วันก่อน วันนี้ก็ได้ฤกษ์เปิดให้โหลดเป็นที่เรียบร้อยแล้วสำหรับ แอป Threads ของเล่นใหม่จากเครือ META เจ้าของ Facebook และ Instargram ที่พี่มาร์กหมายมั่นปั้นมือ กะเอามาท้าชน Twitter ที่ล่าสุด ที่ล่าสุดขึ้นไปติด Top Chart อันดับ 1 ในหมวด Social Networking ของไทยไปแล้วหลังจากปล่อยออกมาเพียงไม่กี่ชั่วโมง</p>

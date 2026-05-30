@@ -6,7 +6,7 @@ excerpt: "Potato Wedges เปลี่ยนเมนูมันฝร"
 author: torpenguin
 publishedAt: 2025-02-20T10:00:58
 updatedAt: 2025-06-18T12:00:24
-image: "/imported/potato-wedges-cover.png"
+image: "/imported/img-8a9a60aaf1d9a8c9.png"
 ---
 
 <p><strong>Potato Wedges เปลี่ยนเมนูมันฝรั่งธรรมดาให้มีมูลค่าขึ้นด้วยเทคนิคง่าย ๆ สูตรสำหรับคนทำร้านอาหาร เนื้อหนึบ กรอบนอก นุ่มใน กินกับอะไรก็อร่อย</strong></p>

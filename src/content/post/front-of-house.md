@@ -6,7 +6,7 @@ excerpt: "ส่วนหน้าร้าน หรือ Front of Hou []"
 author: torpenguin
 publishedAt: 2023-06-28T08:34:03
 updatedAt: 2025-06-18T12:01:42
-image: "/imported/front-of-house-cover.jpg"
+image: "/imported/img-b49f9d50b4523b23.jpg"
 ---
 
 <p><span>ส่วนหน้าร้าน หรือ Front of House (FOH) ถือเป็นส่วนที่สำคัญมากของร้านอาหาร ไม่แพ้ส่วนหลังบ้าน หรือในครัวเลย เพราะเป็นส่วนช่วยสร้างความประสบการณ์ที่ดีให้กับลูกค้า ทำให้ลูกค้าชื่นชอบร้านของเรา และตัดสินใจกลับมาเป็นลูกค้าประจำ </span></p>

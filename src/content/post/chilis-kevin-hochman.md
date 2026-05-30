@@ -6,7 +6,7 @@ excerpt: "5 บทเรียนการบริหารจาก Kevin Ho"
 author: torpenguin
 publishedAt: 2025-09-19T10:00:17
 updatedAt: 2025-09-16T15:25:17
-image: "/imported/chilis-kevin-hochman-cover.webp"
+image: "/imported/img-6bce4334579b9de1.webp"
 ---
 
 <p>แม้จะเคยบริหาร KFC และ Pizza Hut มาก่อน แต่ Kevin Hochman บอกว่า ไม่มีอะไรเตรียมเขาให้พร้อมสำหรับการพลิกฟื้นร้านอาหาร Full-service อย่าง <strong>Chili’s Grill &amp; Bar</strong> ได้เลย</p>

@@ -6,7 +6,7 @@ excerpt: "ถอดบทเรียน Starbucks เปิดเพลงย"
 author: torpenguin
 publishedAt: 2025-11-15T10:00:24
 updatedAt: 2025-11-14T18:20:34
-image: "/imported/starbucks-music-branding-strategy-cover.webp"
+image: "/imported/img-b3d372cda8436d5e.webp"
 ---
 
 <p>หลายคนอาจเคยสงสัยว่า ทำไมเวลาเดินเข้าร้าน <a href="https://torpenguin.com/%e0%b8%94%e0%b8%b6%e0%b8%87%e0%b8%94%e0%b8%b9%e0%b8%94%e0%b8%a5%e0%b8%b9%e0%b8%81%e0%b8%84%e0%b9%89%e0%b8%b2%e0%b9%81%e0%b8%9a%e0%b8%9a-starbucks/">Starbucks</a> ถึงได้ยินแต่เพลงที่ไม่คุ้นหู แม้จะพยายามค้นหาชื่อเพลงก็ไม่เจอ เพราะ Starbucks ไม่ได้เลือกเพลงเพื่อความบันเทิงอย่างเดียว แต่ใช้ “เพลง” เป็นหนึ่งในกลยุทธ์ Music Branding ที่ช่วยเพิ่มยอดขายได้จริง</p>

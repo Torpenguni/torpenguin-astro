@@ -6,7 +6,7 @@ excerpt: "รีแบรนด์ดิ้ง ไม่ใช่แค่เร
 author: torpenguin
 publishedAt: 2024-06-04T10:00:40
 updatedAt: 2025-08-21T19:26:23
-image: "/imported/rebranding-cover.jpg"
+image: "/imported/img-68eab166d0d4788b.jpg"
 ---
 
 <div>

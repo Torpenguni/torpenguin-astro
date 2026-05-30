@@ -6,7 +6,7 @@ excerpt: "Food Rotation Labels อุปกรณ์ที"
 author: torpenguin
 publishedAt: 2025-04-01T10:00:52
 updatedAt: 2025-06-18T12:00:22
-image: "/imported/food-rotation-labels-cover.png"
+image: "/imported/img-9e571457183894dc.png"
 ---
 
 <p><strong>Food Rotation Labels อุปกรณ์ที่ครัวโรงแรมและร้านอาหารเชนใหญ่ ๆ มักใช้ในการช่วยการบริหารจัดการวัตถุดิบ</strong></p>

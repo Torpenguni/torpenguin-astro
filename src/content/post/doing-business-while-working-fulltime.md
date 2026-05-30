@@ -6,7 +6,7 @@ excerpt: "ทำธุรกิจควบงานประจำ ควรเ
 author: torpenguin
 publishedAt: 2026-01-26T10:22:16
 updatedAt: 2026-01-22T13:39:29
-image: "/imported/doing-business-while-working-fulltime-cover.webp"
+image: "/imported/img-fc0fc6a7957a879d.webp"
 ---
 
 <h4><strong>ทำธุรกิจควบงานประจำ ควรเริ่มยังไงดี ?</strong></h4>

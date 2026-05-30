@@ -6,7 +6,7 @@ excerpt: "Nose Tea จากแบรนด์สกินแคร์สู่�
 author: torpenguin
 publishedAt: 2024-11-16T10:00:40
 updatedAt: 2025-04-25T17:19:06
-image: "/imported/nose-tea-cover.png"
+image: "/imported/img-3af2494085d7f70d.png"
 ---
 
 <p><strong>Nose Tea จากแบรนด์สกินแคร์สู่จุดเริ่มต้นชาชีส ปั้นแบรนด์ยังไงให้ลูกค้าต่อแถวซื้อ</strong></p>

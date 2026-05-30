@@ -6,7 +6,7 @@ excerpt: "ทำไมต้องทำ Value Content ทั้งๆ"
 author: torpenguin
 publishedAt: 2024-07-31T10:00:36
 updatedAt: 2025-06-18T12:01:04
-image: "/imported/%e0%b8%97%e0%b8%b3%e0%b9%84%e0%b8%a1%e0%b8%95%e0%b9%89%e0%b8%ad%e0%b8%87%e0%b8%97%e0%b8%b3-value-content-cover.jpg"
+image: "/imported/img-4a7dc373a455c773.jpg"
 ---
 
 <p><strong>ทำไมต้องทำ Value Content ทั้งๆ ที่เราทำเพจเพื่อขายของ?</strong></p>

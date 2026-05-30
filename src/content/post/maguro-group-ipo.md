@@ -6,7 +6,7 @@ excerpt: "ฉุดเขาไม่อยู่แล้ว! MAGURO Grou"
 author: torpenguin
 publishedAt: 2023-09-18T14:38:50
 updatedAt: 2023-09-18T14:38:50
-image: "/imported/maguro-group-ipo-cover.jpg"
+image: "/imported/img-44aee8ab9b2e85b8.jpg"
 ---
 
 <p>ฉุดเขาไม่อยู่แล้ว! MAGURO Group เดินหน้าเต็มกำลัง! ตั้งเป้าเตรียมเข้า IPO ปี 2567 นี้</p>

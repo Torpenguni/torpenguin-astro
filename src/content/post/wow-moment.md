@@ -6,7 +6,7 @@ excerpt: "WOW Moment การตลาดสุดทรงพลัง ท"
 author: torpenguin
 publishedAt: 2025-08-19T10:00:51
 updatedAt: 2025-08-15T18:29:56
-image: "/imported/wow-moment-cover.png"
+image: "/imported/img-56b8e926b62dd7ba.png"
 ---
 
 <h4><strong>WOW Moment การตลาดสุดทรงพลัง ที่ไม่เน้นใช้เงิน แต่ใช้ความใส่ใจ</strong></h4>

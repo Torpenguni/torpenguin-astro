@@ -6,7 +6,7 @@ excerpt: "ทำธุรกิจเขาดูกันที่บรรท�
 author: torpenguin
 publishedAt: 2026-01-23T10:00:56
 updatedAt: 2026-01-20T15:46:17
-image: "/imported/look-at-net-profit-not-just-sales-cover.webp"
+image: "/imported/img-a800e7f488852e2b.webp"
 ---
 
 <p>ลูกค้าแน่น โต๊ะเต็ม ยอดขายขึ้นทุกเดือน แต่พอถึงสิ้นเดือน เงินกลับไม่เหลือ นี่คือสถานการณ์ที่เจ้าของร้านจำนวนมากเจอเหมือนกัน และไม่ใช่เพราะทำงานไม่เก่ง แต่เพราะกำลัง “ดู<a href="https://torpenguin.com/%e0%b9%80%e0%b8%9b%e0%b8%b4%e0%b8%94%e0%b8%a3%e0%b9%89%e0%b8%b2%e0%b8%99%e0%b8%ad%e0%b8%b2%e0%b8%ab%e0%b8%b2%e0%b8%a3%e0%b9%83%e0%b8%ab%e0%b9%89%e0%b8%a3%e0%b8%ad%e0%b8%94/">ตัวเลข</a>ผิดจุด”</p>

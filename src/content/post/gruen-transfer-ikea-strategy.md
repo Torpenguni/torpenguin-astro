@@ -6,7 +6,7 @@ excerpt: "Gruen Transfer หลักการออกแบบร้"
 author: torpenguin
 publishedAt: 2025-12-13T10:00:37
 updatedAt: 2025-12-09T13:45:42
-image: "/imported/gruen-transfer-ikea-strategy-cover.webp"
+image: "/imported/img-ebd3cd2cd81cc045.webp"
 ---
 
 <p>เคยมั้ยคะเวลาตั้งใจไปซื้อของแค่ชิ้นเดียวที่เราตั้งใจไว้ ซื้อชิ้นเดียวเท่านั้นแล้วกลับบ้านเลย แต่สุดท้ายเรามักได้ของที่ไม่ได้ตั้งใจซื้อติดมือกลับมาด้วย</p>

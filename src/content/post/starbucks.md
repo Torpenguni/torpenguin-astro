@@ -6,7 +6,7 @@ excerpt: "Starbucks รับมือกับลูกค้านักคอ
 author: torpenguin
 publishedAt: 2023-03-19T08:05:27
 updatedAt: 2025-06-18T12:01:45
-image: "/imported/starbucks-cover.jpg"
+image: "/imported/img-7666b75f7f809d6a.jpg"
 ---
 
 <h2>Starbucks รับมือกับลูกค้านักคอมเพลนได้อย่างไร</h2>
@@ -20,7 +20,7 @@ image: "/imported/starbucks-cover.jpg"
 </span></p>
 <p><span>เพื่อเป็นการมั่นใจว่าพนักงานในร้านทุกคนจะมีวิธีการรับมือกับลูกค้าที่เป็นมาตรฐาน วันนี้เราพาไปรู้จักกลยุทธ์รับมือลูกค้าของแบรนด์ระดับโลกอย่าง “สตาร์บัคส์” กับกลยุทธ์ที่มีชื่อว่า “LATTE (ลาเต้)” ซึ่งเป็นวิธีการในการรับมือกับลูกค้าที่ไม่พอใจขึ้นมา เพื่อให้พนักงานทุกสาขาทั่วโลกของสตาร์บัคส์สามารถนำไปปฏิบัติเป็นมาตรฐานเดียวกัน ซึ่งถือเป็นปัจจัยนึงที่ทำให้สตาร์บัคส์ก้าวขึ้นมาเป็นแบรนด์กาแฟอันดับหนึ่งของโลกได้ในปัจจุบัน </span><span><br />
 </span></p>
-<figure aria-describedby="caption-attachment-5310"><img loading="lazy" decoding="async" src="/imported/starbucks-1.jpg" alt="Starbucks ลูกค้าคอมเพลน" width="300" height="199" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/starbucks-1.jpg 300w, https://torpenguin.com/wp-content/uploads/2023/03/pexels-kristi-gy-254156-1024x680.jpg 1024w, https://torpenguin.com/wp-content/uploads/2023/03/pexels-kristi-gy-254156-768x510.jpg 768w, https://torpenguin.com/wp-content/uploads/2023/03/pexels-kristi-gy-254156-1536x1020.jpg 1536w, https://torpenguin.com/wp-content/uploads/2023/03/pexels-kristi-gy-254156-2048x1360.jpg 2048w, https://torpenguin.com/wp-content/uploads/2023/03/pexels-kristi-gy-254156-632x420.jpg 632w, https://torpenguin.com/wp-content/uploads/2023/03/pexels-kristi-gy-254156-640x425.jpg 640w, https://torpenguin.com/wp-content/uploads/2023/03/pexels-kristi-gy-254156-681x452.jpg 681w, https://torpenguin.com/wp-content/uploads/2023/03/pexels-kristi-gy-254156-scaled.jpg 1626w" sizes="(max-width: 300px) 100vw, 300px" /><figcaption>ภาพจาก Pexels.com</figcaption></figure>
+<figure aria-describedby="caption-attachment-5310"><img loading="lazy" decoding="async" src="/imported/img-259deb8d556abf87.jpg" alt="Starbucks ลูกค้าคอมเพลน" width="300" height="199" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/img-259deb8d556abf87.jpg 300w, https://torpenguin.com/wp-content/uploads/2023/03/pexels-kristi-gy-254156-1024x680.jpg 1024w, https://torpenguin.com/wp-content/uploads/2023/03/pexels-kristi-gy-254156-768x510.jpg 768w, https://torpenguin.com/wp-content/uploads/2023/03/pexels-kristi-gy-254156-1536x1020.jpg 1536w, https://torpenguin.com/wp-content/uploads/2023/03/pexels-kristi-gy-254156-2048x1360.jpg 2048w, https://torpenguin.com/wp-content/uploads/2023/03/pexels-kristi-gy-254156-632x420.jpg 632w, https://torpenguin.com/wp-content/uploads/2023/03/pexels-kristi-gy-254156-640x425.jpg 640w, https://torpenguin.com/wp-content/uploads/2023/03/pexels-kristi-gy-254156-681x452.jpg 681w, https://torpenguin.com/wp-content/uploads/2023/03/pexels-kristi-gy-254156-scaled.jpg 1626w" sizes="(max-width: 300px) 100vw, 300px" /><figcaption>ภาพจาก Pexels.com</figcaption></figure>
 <h3><span>โดยเครื่องมือ LATTE นั้นประกอบด้วย 5 ข้อนี้เลย </span><span><br />
 </span></h3>
 <p><span>L &#8211; Listen to the customer A – Acknowledge the problem </span><span><br />

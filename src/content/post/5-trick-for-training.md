@@ -6,7 +6,7 @@ excerpt: "สอนพนักงานยังไง ให้ตามระ
 author: torpenguin
 publishedAt: 2025-08-02T10:00:01
 updatedAt: 2025-08-25T14:30:14
-image: "/imported/5-trick-for-training-cover.png"
+image: "/imported/img-1f1ddd10d9837fce.png"
 ---
 
 <p>ระบบดีแค่ไหน ถ้าคนไม่ทำตามก็พังอยู่ดี เจ้าของร้านจะสอนพนักงานยังไงดี?</p>

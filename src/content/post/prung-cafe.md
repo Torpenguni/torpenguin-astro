@@ -6,7 +6,7 @@ excerpt: "PRUNG Cafe ปรุงด้วยเสน่ห์ของวั"
 author: torpenguin
 publishedAt: 2025-03-22T10:00:50
 updatedAt: 2025-03-17T18:45:34
-image: "/imported/prung-cafe-cover.png"
+image: "/imported/img-e940b8ac1850a184.png"
 ---
 
 <p>PRUNG Cafe ปรุงด้วยเสน่ห์ของวัตถุดิบท้องถิ่น <!-- notionvc: 76f49638-5000-4ef9-886f-020e9b27eb17 -->บาร์ที่เสิร์ฟทั้งขนมไทยและค็อกเทล ย่านตลิ่งชัน</p>

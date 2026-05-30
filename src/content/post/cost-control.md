@@ -6,7 +6,7 @@ excerpt: "บริหารต้นทุน ง่าย ๆ เริ่ม�
 author: torpenguin
 publishedAt: 2025-09-10T10:00:38
 updatedAt: 2025-09-11T15:58:14
-image: "/imported/cost-control-cover.png"
+image: "/imported/img-16f12add2b69e9c1.png"
 ---
 
 <p>เวลาซื้อวัตถุดิบอย่าดูแต่ราคาต่อหน่วย แต่ให้ดูจากปริมาณวัตถุดิบที่เราใช้ได้จริง</p>

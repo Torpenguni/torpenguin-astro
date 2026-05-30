@@ -6,7 +6,7 @@ excerpt: "Mindset เจ้าของธุรกิจร้านอาห�
 author: torpenguin
 publishedAt: 2025-10-24T10:00:12
 updatedAt: 2025-10-30T13:59:59
-image: "/imported/mindset-restaurant-owner-cover.webp"
+image: "/imported/img-4e8c1b4c6a4f2024.webp"
 ---
 
 <h4><strong>Mindset เจ้าของธุรกิจร้านอาหาร แบบไหนที่ควรละทิ้งไปได้แล้วในยุคนี้</strong><!-- notionvc: 61810f96-a7d8-4be6-806c-f57a37e95922 --></h4>

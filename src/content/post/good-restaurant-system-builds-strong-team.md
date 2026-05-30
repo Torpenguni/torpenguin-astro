@@ -6,7 +6,7 @@ excerpt: "ระบบร้านอาหารที่ดี คือหั
 author: torpenguin
 publishedAt: 2026-01-21T10:00:29
 updatedAt: 2026-01-20T12:33:22
-image: "/imported/good-restaurant-system-builds-strong-team-cover.webp"
+image: "/imported/img-c6a997cec0771dbd.webp"
 ---
 
 <p>เจ้าของร้านอาหารจำนวนมากเจอปัญหาเดียวกันคือ พนักงานทำงานพลาด ทำซ้ำไม่ได้ คุณภาพไม่คงที่ และต้องให้เจ้าของเข้าไปแก้ปัญหาตลอดเวลา จนสุดท้ายคำถามที่มักเกิดขึ้นคือ “เราจ้างคนไม่เก่งหรือเปล่า”</p>

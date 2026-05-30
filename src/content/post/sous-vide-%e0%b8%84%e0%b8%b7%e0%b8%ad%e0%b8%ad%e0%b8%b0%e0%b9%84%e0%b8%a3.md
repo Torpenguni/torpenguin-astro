@@ -6,7 +6,7 @@ excerpt: "Sous Vide คืออะไร ? ทำความรู้จ"
 author: torpenguin
 publishedAt: 2025-03-20T10:00:06
 updatedAt: 2025-06-18T12:00:22
-image: "/imported/sous-vide-%e0%b8%84%e0%b8%b7%e0%b8%ad%e0%b8%ad%e0%b8%b0%e0%b9%84%e0%b8%a3-cover.png"
+image: "/imported/img-2858bb9b06f612e9.png"
 ---
 
 <p><strong>Sous Vide คืออะไร ? ทำความรู้จักเทคนิคการทำอาหารให้สุกช้า แต่อร่อยนุ่มชุ่มฉ่ำ เพิ่มมูลค่าให้กับเนื้อสัตว์</strong></p>

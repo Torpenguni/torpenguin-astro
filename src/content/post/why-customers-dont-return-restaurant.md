@@ -6,7 +6,7 @@ excerpt: "ทำไมลูกค้ากินเสร็จแล้วไ�
 author: torpenguin
 publishedAt: 2025-11-20T10:00:05
 updatedAt: 2025-11-19T15:16:02
-image: "/imported/why-customers-dont-return-restaurant-cover.webp"
+image: "/imported/img-651e236e14db82d7.webp"
 ---
 
 <h5><strong>ทำไมลูกค้ากินเสร็จแล้วไม่กลับมาอีก ไม่ใช่เพราะรสชาติอย่างเดียวเสมอไป</strong></h5>

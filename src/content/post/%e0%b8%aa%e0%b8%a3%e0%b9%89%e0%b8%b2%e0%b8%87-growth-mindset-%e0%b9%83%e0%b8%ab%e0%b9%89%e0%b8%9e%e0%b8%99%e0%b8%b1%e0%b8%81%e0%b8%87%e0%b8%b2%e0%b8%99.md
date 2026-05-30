@@ -6,7 +6,7 @@ excerpt: "สร้าง Growth Mindset ให้พนักงา"
 author: torpenguin
 publishedAt: 2024-08-23T12:04:05
 updatedAt: 2025-06-18T12:01:03
-image: "/imported/%e0%b8%aa%e0%b8%a3%e0%b9%89%e0%b8%b2%e0%b8%87-growth-mindset-%e0%b9%83%e0%b8%ab%e0%b9%89%e0%b8%9e%e0%b8%99%e0%b8%b1%e0%b8%81%e0%b8%87%e0%b8%b2%e0%b8%99-cover.jpg"
+image: "/imported/img-674578b82f300f96.jpg"
 ---
 
 <p><strong>สร้าง Growth Mindset ให้พนักงาน เจ้าของร้านสามารถทำยังไงได้บ้าง?</strong></p>

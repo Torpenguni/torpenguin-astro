@@ -6,7 +6,7 @@ excerpt: "หา Customer Insight ยังไง ถ้าเ"
 author: torpenguin
 publishedAt: 2023-12-28T13:00:36
 updatedAt: 2025-06-18T12:01:10
-image: "/imported/%e0%b8%ab%e0%b8%b2-customer-insight-cover.jpg"
+image: "/imported/img-09b9bc41762985ae.jpg"
 ---
 
 <p>หา Customer Insight ยังไง</p>

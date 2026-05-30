@@ -6,7 +6,7 @@ excerpt: "ถ่ายภาพเมนูให้น่าสั่ง Checkl
 author: torpenguin
 publishedAt: 2025-08-14T10:00:26
 updatedAt: 2025-08-25T15:31:09
-image: "/imported/4-checklist-menu-photo-cover.png"
+image: "/imported/img-db2e2e5a1ee7c045.png"
 ---
 
 <p><a href="https://torpenguin.com/food-photography-tips/">การถ่ายภาพอาหาร</a>ของร้านเป็นอีกหนึ่งจุดที่เชื่อว่าเจ้าของร้านหลาย ๆ คน ก็ไม่ได้อยากจะจ้างช่างภาพมาถ่าย เพราะรู้สึกว่าร้านเราไม่ต้องเล่นใหญ่ขนาดนั้นก็ได้ หรือเป็นร้านเล็กที่อยากได้รูปดี ๆ แต่เบี้ยน้อยหอยน้อย งบก็ไม่ถึงอีก</p>

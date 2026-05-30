@@ -6,7 +6,7 @@ excerpt: "Shinkanzen Sushi ซูชิรายได้พัน"
 author: torpenguin
 publishedAt: 2025-01-25T10:00:38
 updatedAt: 2025-01-24T19:26:48
-image: "/imported/shinkanzen-sushi-cover.png"
+image: "/imported/img-2258ec7ab940dce0.png"
 ---
 
 <p><strong>Shinkanzen Sushi ซูชิรายได้พันล้านของคนฝันอยากทำธุรกิจ ที่เริ่มจากร้านเล็ก ๆ ในรั้วมหาลัย</strong><!-- notionvc: 17147c21-ef89-4d92-bca2-a40d54c98662 --></p>

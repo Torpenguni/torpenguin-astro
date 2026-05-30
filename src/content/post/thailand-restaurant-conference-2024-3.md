@@ -6,7 +6,7 @@ excerpt: "เปิดขายบัตรแล้ว! “Thailand Res"
 author: torpenguin
 publishedAt: 2024-04-05T19:02:15
 updatedAt: 2024-04-24T11:43:48
-image: "/imported/thailand-restaurant-conference-2024-3-cover.jpeg"
+image: "/imported/img-ff906f159f547f6c.jpeg"
 ---
 
 <p>เปิดขายบัตรแล้ว! “Thailand Restaurant Conference 2024 : เล็กฟัดใหญ่” ????<br />
@@ -16,7 +16,7 @@ image: "/imported/thailand-restaurant-conference-2024-3-cover.jpeg"
 
 <p><strong><em>’ถอดสูตรวิธีสู้ยิบตาแบบคนตัวเล็ก เรียนรู้กลยุทธ์แบบคนตัวใหญ่’</em></strong></p>
 <p>ชวนชาว SME มาเตรียมความรู้ และ Strategy ให้พร้อม ก่อนใส่นวมขึ้นชกบนสังเวียนจริง ที่เดือดยิ่งกว่าน้ำมันในกระทะ ลุยต่อช่วงครึ่งปีหลัง กับงานสัมมนาครั้งยิ่งใหญ่แห่งปี ที่จัดขึ้นเพื่อคนใน ‘ธุรกิจร้านอาหาร’ โดยเฉพาะ เจอกันตัวเป็น ๆ กับครั้งแรกในรูปแบบออฟไลน์!</p>
-<p><img loading="lazy" decoding="async" src="/imported/thailand-restaurant-conference-2024-3-1.jpg" alt="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" width="800" height="500" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/thailand-restaurant-conference-2024-3-1.jpg 800w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass-300x188.jpg 300w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass-768x480.jpg 768w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass-672x420.jpg 672w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass-640x400.jpg 640w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass-681x426.jpg 681w" sizes="(max-width: 800px) 100vw, 800px" /><em><strong>????ซัดกันมันส์หยอดกับเนื้อหาและความรู้แบบจัดเต็ม</strong></em></p>
+<p><img loading="lazy" decoding="async" src="/imported/img-b024e73faf440ee9.jpg" alt="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" width="800" height="500" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/img-b024e73faf440ee9.jpg 800w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass-300x188.jpg 300w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass-768x480.jpg 768w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass-672x420.jpg 672w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass-640x400.jpg 640w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass-681x426.jpg 681w" sizes="(max-width: 800px) 100vw, 800px" /><em><strong>????ซัดกันมันส์หยอดกับเนื้อหาและความรู้แบบจัดเต็ม</strong></em></p>
 <p>กับ Speaker มากกว่า 20 ชีวิต ทั้งคนตัวใหญ่และคนตัวเล็กในวงการธุรกิจร้านอาหาร ตลอด 2 วันเต็ม! อาทิเช่น</p>
 <div>
 <ul>
@@ -62,7 +62,7 @@ CEO – <strong>QGEN Consultant</strong></li>
 <strong>Line Certified Thailand</strong></li>
 </ul>
 </div>
-<p><img loading="lazy" decoding="async" src="/imported/thailand-restaurant-conference-2024-3-2.jpg" alt="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" width="800" height="500" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/thailand-restaurant-conference-2024-3-2.jpg 800w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass2-300x188.jpg 300w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass2-768x480.jpg 768w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass2-672x420.jpg 672w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass2-640x400.jpg 640w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass2-681x426.jpg 681w" sizes="(max-width: 800px) 100vw, 800px" />???? พบกับบูธแสดงสินค้าเพื่อผู้ประกอบการธุรกิจร้านอาหารมากกว่า 70 บูธ โปรโมชั่นพิเศษมากมายเฉพาะงาน Thailand Restaurant Conference 2024 นี้เท่านั้น</p>
+<p><img loading="lazy" decoding="async" src="/imported/img-2eec6920b908f507.jpg" alt="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" width="800" height="500" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/img-2eec6920b908f507.jpg 800w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass2-300x188.jpg 300w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass2-768x480.jpg 768w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass2-672x420.jpg 672w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass2-640x400.jpg 640w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass2-681x426.jpg 681w" sizes="(max-width: 800px) 100vw, 800px" />???? พบกับบูธแสดงสินค้าเพื่อผู้ประกอบการธุรกิจร้านอาหารมากกว่า 70 บูธ โปรโมชั่นพิเศษมากมายเฉพาะงาน Thailand Restaurant Conference 2024 นี้เท่านั้น</p>
 
 <p>ปักวันเอาไว้เลย<br />
 ???? วันที่ 15-16 มิถุนายน 2567<br />

@@ -6,7 +6,7 @@ excerpt: "Case study แบรนด์ Red Lobster"
 author: torpenguin
 publishedAt: 2026-04-27T15:21:16
 updatedAt: 2026-04-27T15:21:16
-image: "/imported/red-lobster-endless-shrimp-cover.jpg"
+image: "/imported/img-0f784a19847922ee.jpg"
 ---
 
 <p>ลองจินตนาการว่าคุณเปิดโปรโมชั่น ‘กุ้งไม่อั้น’ เพื่อดึงลูกค้า แต่ลูกค้ามาเยอะกว่าที่คาดถึง 40% นั่งโต๊ะนานขึ้น กินกุ้งไปเรื่อยๆ ไม่สั่งอย่างอื่น และคุณขาดทุน 11 ล้านดอลลาร์ ภายใน 3 เดือน<!-- notionvc: 8d688f7a-caff-4017-81fa-41e304a4e77e --></p>

@@ -6,7 +6,7 @@ excerpt: "เลิกเป็นนักสั่ง แล้วมาเป
 author: torpenguin
 publishedAt: 2025-10-17T13:48:47
 updatedAt: 2025-10-17T13:48:47
-image: "/imported/ceo-mindset-cover.png"
+image: "/imported/img-84f03c60fa858b8a.png"
 ---
 
 <h5><strong>&#8216;เลิกเป็นนักสั่ง แล้วมาเป็นนักสอน&#8217;</strong></h5>

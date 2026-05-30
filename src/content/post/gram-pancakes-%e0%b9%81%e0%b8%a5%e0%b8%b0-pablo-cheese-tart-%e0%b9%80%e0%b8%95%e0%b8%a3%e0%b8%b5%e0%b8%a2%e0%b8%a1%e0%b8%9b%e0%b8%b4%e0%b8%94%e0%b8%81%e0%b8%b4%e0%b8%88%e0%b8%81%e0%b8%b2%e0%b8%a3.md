@@ -6,7 +6,7 @@ excerpt: "GRAM Pancakes และ PABLO Cheese"
 author: torpenguin
 publishedAt: 2024-02-09T13:50:46
 updatedAt: 2024-02-09T13:50:46
-image: "/imported/gram-pancakes-%e0%b9%81%e0%b8%a5%e0%b8%b0-pablo-cheese-tart-%e0%b9%80%e0%b8%95%e0%b8%a3%e0%b8%b5%e0%b8%a2%e0%b8%a1%e0%b8%9b%e0%b8%b4%e0%b8%94%e0%b8%81%e0%b8%b4%e0%b8%88%e0%b8%81%e0%b8%b2%e0%b8%a3-cover.jpg"
+image: "/imported/img-1abff7b4712f8a92.jpg"
 ---
 
 <p>GRAM Pancakes และ PABLO Cheese tart เตรียมปิดกิจการ</p>

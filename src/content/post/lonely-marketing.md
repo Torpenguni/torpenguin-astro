@@ -6,7 +6,7 @@ excerpt: "Lonely Marketing การตลาดคนขี้เ"
 author: torpenguin
 publishedAt: 2024-03-23T10:00:21
 updatedAt: 2025-10-28T17:32:30
-image: "/imported/lonely-marketing-cover.jpg"
+image: "/imported/img-364c2ec1935ba835.jpg"
 ---
 
 <h4>Lonely Marketing การตลาดคนขี้เหงา ที่เน้นกลุ่มคนใช้ชีวิตคนเดียว ที่จะเป็นกำลังซื้อหลักในอนาคต</h4>

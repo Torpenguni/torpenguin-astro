@@ -6,7 +6,7 @@ excerpt: "‘ทองสมิทธ์ Hot Pot’ โปรเจคใหม�
 author: torpenguin
 publishedAt: 2023-11-13T11:18:05
 updatedAt: 2023-12-15T13:54:27
-image: "/imported/%e0%b8%97%e0%b8%ad%e0%b8%87%e0%b8%aa%e0%b8%a1%e0%b8%b4%e0%b8%97%e0%b8%98%e0%b9%8c-hot-pot-cover.jpg"
+image: "/imported/img-8613bb868e9b2898.jpg"
 ---
 
 <div>‘ทองสมิทธ์ Hot Pot’ โปรเจคใหม่แกะกล่องของพี่ปลา iBerry เปิด 1 ธันวาคม นี้ ที่ The Emsphere</div>

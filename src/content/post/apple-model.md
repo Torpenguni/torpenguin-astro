@@ -6,7 +6,7 @@ excerpt: "Apple Model สูตรลับเบื้องหลังง"
 author: torpenguin
 publishedAt: 2023-12-23T13:00:10
 updatedAt: 2025-06-18T12:01:11
-image: "/imported/apple-model-cover.jpg"
+image: "/imported/img-eb6c91e20fb682c0.jpg"
 ---
 
 <p>Apple Model สูตรลับเบื้องหลังงานบริการ แบบ Apple</p>

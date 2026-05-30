@@ -6,7 +6,7 @@ excerpt: "การทำธุรกิจ ก็เหมือนเราข
 author: torpenguin
 publishedAt: 2026-01-15T10:00:33
 updatedAt: 2026-01-13T16:52:47
-image: "/imported/business-is-like-driving-a-car-cover.webp"
+image: "/imported/img-98b507ff003f1180.webp"
 ---
 
 <h5></h5>

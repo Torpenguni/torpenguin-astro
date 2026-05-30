@@ -6,7 +6,7 @@ excerpt: "วิธีคิดธุรกิจหมื่นล้าน 6 M
 author: torpenguin
 publishedAt: 2025-11-21T10:00:45
 updatedAt: 2025-11-19T18:04:06
-image: "/imported/billion-business-mindset-for-sme-growth-cover.webp"
+image: "/imported/img-47bde9aeb701de60.webp"
 ---
 
 <p>ธุรกิจที่เติบโตไปถึงหมื่นล้าน ไม่ได้เริ่มจากทุนก้อนใหญ่ แต่เริ่มจาก <strong>วิธีคิด</strong> ที่แข็งแรงตั้งแต่วันแรก</p>

@@ -6,7 +6,7 @@ excerpt: "โครงการ “Upskill-Reskill คนละค"
 author: torpenguin
 publishedAt: 2025-11-18T16:58:38
 updatedAt: 2025-11-18T16:58:38
-image: "/imported/upskill-reskill-kon-la-krueng-cover.webp"
+image: "/imported/img-f1cb77bc55e013e1.webp"
 ---
 
 <h4>โครงการ “Upskill-Reskill คนละครึ่ง พลัส” ครม. ไฟเขียว อัดงบ 800 ล้านบาท สนับสนุนสูงสุด 2,000 บาทต่อร้าน<!-- notionvc: b3358b73-0fcd-485d-8004-44bdbaace6af --></h4>

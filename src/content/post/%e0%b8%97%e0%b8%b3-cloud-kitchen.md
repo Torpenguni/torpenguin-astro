@@ -6,7 +6,7 @@ excerpt: "ทำ Cloud Kitchen ต้องรู้อะไรบ้"
 author: torpenguin
 publishedAt: 2024-12-17T10:00:40
 updatedAt: 2025-06-18T12:00:27
-image: "/imported/%e0%b8%97%e0%b8%b3-cloud-kitchen-cover.png"
+image: "/imported/img-d2865c0fb4a9a265.png"
 ---
 
 <p><strong>ทำ Cloud Kitchen ต้องรู้อะไรบ้าง?</strong></p>

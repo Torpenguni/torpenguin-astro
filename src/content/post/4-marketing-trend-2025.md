@@ -6,7 +6,7 @@ excerpt: "เทรนด์การตลาดหลังจากนี้ 
 author: torpenguin
 publishedAt: 2025-08-13T10:00:46
 updatedAt: 2025-08-25T15:29:33
-image: "/imported/4-marketing-trend-2025-cover.png"
+image: "/imported/img-d3c85b137a0dfb7a.png"
 ---
 
 <p>หลังจากนี้&#8230;<a href="https://torpenguin.com/category/article/marketing/">การตลาด</a>จะไม่เหมือนเดิมอีกต่อไป ในอดีตเราแบ่งโลกของการตลาดออกเป็น “ออฟไลน์” กับ “ออนไลน์” เหมือนมีเส้นกั้นว่าอันไหนคือสื่อเก่า อันไหนคือสื่อใหม่</p>

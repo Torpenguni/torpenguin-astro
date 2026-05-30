@@ -6,7 +6,7 @@ excerpt: "Micro-Moment เสี้ยววินาทีที่ลู"
 author: torpenguin
 publishedAt: 2024-12-02T13:34:51
 updatedAt: 2025-06-18T12:00:28
-image: "/imported/micro-moment-cover.png"
+image: "/imported/img-c2618e056b099eca.png"
 ---
 
 <p><strong>Micro-Moment เสี้ยววินาทีที่ลูกค้าตัดสินใจควักเงินซื้อ สุดยอดโมเมนต์ของคนขาย</strong></p>

@@ -6,7 +6,7 @@ excerpt: "Luckin Coffee ชนะคดี เครื่องหม"
 author: torpenguin
 publishedAt: 2025-03-15T10:00:09
 updatedAt: 2025-03-26T18:20:29
-image: "/imported/luckin-coffee-%e0%b8%8a%e0%b8%99%e0%b8%b0%e0%b8%84%e0%b8%94%e0%b8%b5-cover.png"
+image: "/imported/img-5bc71245f5e2afb7.png"
 ---
 
 <p><strong>Luckin Coffee ชนะคดี เครื่องหมายการค้าในไทยแล้ว</strong></p>

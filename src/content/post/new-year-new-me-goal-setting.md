@@ -6,7 +6,7 @@ excerpt: "ปีใหม่นี้ฉันจะเป็นคนใหม�
 author: torpenguin
 publishedAt: 2026-01-17T10:00:13
 updatedAt: 2026-01-14T19:03:26
-image: "/imported/new-year-new-me-goal-setting-cover.webp"
+image: "/imported/img-46f3233b5f474a5e.webp"
 ---
 
 <h4>ปีใหม่นี้ฉันจะเป็นคนใหม่! 3 วิธีตั้งเป้าหมายให้ชัดเจน ทำได้จริง ไม่ล้มเลิกกลางทาง</h4>

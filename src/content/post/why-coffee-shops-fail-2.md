@@ -6,7 +6,7 @@ excerpt: "ทำไมร้านกาแฟถึงเจ๊ง ทั้ง
 author: torpenguin
 publishedAt: 2025-12-09T10:00:08
 updatedAt: 2025-12-09T10:36:26
-image: "/imported/why-coffee-shops-fail-2-cover.webp"
+image: "/imported/img-396c6f06725ed3ea.webp"
 ---
 
 <p>ร้านกาแฟไม่ได้พังเพราะ “กาแฟไม่อร่อย” แต่มักพังเพราะ <strong>ไม่มีใครรู้ว่าร้านนี้เกิดมาเพื่อใครกันแน่</strong> นี่คือบทเรียนโคตรจริงจาก <a href="https://youtu.be/zgQZHgrMwFk?si=g77vNwjWFvw7EeDc" target="_blank" rel="noopener"><strong>Cafe 101 EP.7</strong></a> ที่คุณตูน Bluetamp พูดไว้อย่างชัดเจนว่า เจ้าของร้านกาแฟจำนวนมากล้มเหลวเพราะ “อยากขายทุกคน”</p>

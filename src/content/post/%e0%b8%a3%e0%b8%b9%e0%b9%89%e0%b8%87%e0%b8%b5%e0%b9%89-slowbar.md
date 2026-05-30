@@ -6,7 +6,7 @@ excerpt: "‘ รู้งี้ Slowbar ‘"
 author: torpenguin
 publishedAt: 2024-05-18T10:00:35
 updatedAt: 2025-06-18T12:01:06
-image: "/imported/%e0%b8%a3%e0%b8%b9%e0%b9%89%e0%b8%87%e0%b8%b5%e0%b9%89-slowbar-cover.jpg"
+image: "/imported/img-62e90d8f19b4800f.jpg"
 ---
 
 <p>&#8216; รู้งี้ Slowbar &#8216; กับคติขายดีเรื่องรอง ขายขำเรื่องหลัก และทำ TikTok ยังไงให้คนตามไปกิน แม้ทำเลเข้าถึงยาก</p>

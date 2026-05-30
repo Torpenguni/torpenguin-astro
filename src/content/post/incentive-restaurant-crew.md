@@ -6,7 +6,7 @@ excerpt: "สร้าง ระบบ Incentive พนักงานร้"
 author: torpenguin
 publishedAt: 2025-10-21T10:00:57
 updatedAt: 2025-10-20T13:37:53
-image: "/imported/incentive-restaurant-crew-cover.webp"
+image: "/imported/img-d9544469cf3b7134.webp"
 ---
 
 <p>เวลาคุยกับเจ้าของร้าน หลายคนชอบบ่นว่า<br />“อยากให้พนักงานช่วยคิดช่วยขายเหมือนเป็นร้านของตัวเอง”</p>

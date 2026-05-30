@@ -6,7 +6,7 @@ excerpt: "3 เรื่องกฎหมายพื้นฐานร้า�
 author: torpenguin
 publishedAt: 2025-10-22T10:00:07
 updatedAt: 2025-10-20T19:38:00
-image: "/imported/restaurant-business-law-basics-cover.webp"
+image: "/imported/img-c5cd384663eab18a.webp"
 ---
 
 <p>ในโลกของร้านอาหารที่แข่งขันกันด้วยรสชาติ การตลาด และรีวิวในโลกออนไลน์ เรามักลืมสิ่งหนึ่งที่เงียบแต่อันตรายที่สุด นั่นคือ <strong>“<a href="https://torpenguin.com/%e0%b8%81%e0%b8%8e%e0%b8%ab%e0%b8%a1%e0%b8%b2%e0%b8%a2%e0%b8%a3%e0%b9%89%e0%b8%b2%e0%b8%99%e0%b8%ad%e0%b8%b2%e0%b8%ab%e0%b8%b2%e0%b8%a3/">กฎหมาย</a>พื้นฐานร้านอาหาร”</strong></p>

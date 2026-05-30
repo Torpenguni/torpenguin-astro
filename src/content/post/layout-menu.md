@@ -6,7 +6,7 @@ excerpt: "Layout Menu วางยังไงให้ลูกค้าส"
 author: torpenguin
 publishedAt: 2025-08-22T10:00:16
 updatedAt: 2025-08-15T19:19:24
-image: "/imported/layout-menu-cover.png"
+image: "/imported/img-fccf52842d6c68b4.png"
 ---
 
 <p>แม้ภาพอาหารในเล่มเมนูจะดีแค่ไหน แต่ถ้า Layout Menu วางไม่เป็นระบบ ลูกค้าก็อาจมองข้าม<a href="https://torpenguin.com/?s=%E0%B9%80%E0%B8%A1%E0%B8%99%E0%B8%B9">เมนู</a>ดี ๆ หรือเมนูที่เราอยากให้ลูกค้าสั่งไปได้</p>

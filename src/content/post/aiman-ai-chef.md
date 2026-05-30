@@ -6,7 +6,7 @@ excerpt: "ร้าน 5 ดาวในดูไบเปิดตัว “เ
 author: torpenguin
 publishedAt: 2025-09-02T10:00:52
 updatedAt: 2025-09-01T13:49:25
-image: "/imported/aiman-ai-chef-cover.webp"
+image: "/imported/img-b3dd3544f006276c.webp"
 ---
 
 <h5>ร้าน 5 ดาวในดูไบเปิดตัว “เชฟ Aiman” เชฟ AI คนแรกของโลก</h5>

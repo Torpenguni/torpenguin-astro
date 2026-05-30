@@ -6,7 +6,7 @@ excerpt: "หนึ่งบาทที่ประหยัดได้ คื
 author: torpenguin
 publishedAt: 2026-01-11T10:00:41
 updatedAt: 2026-01-09T14:24:07
-image: "/imported/cost-saving-strategy-for-restaurant-profit-cover.webp"
+image: "/imported/img-a478937b66663cd2.webp"
 ---
 
 <h4>หนึ่งบาทที่ประหยัดได้ คือหนึ่งบาทกำไรที่เพิ่มขึ้น</h4>

@@ -6,7 +6,7 @@ excerpt: "คนอื่นทำได้ เราก็ต้องทำไ
 author: torpenguin
 publishedAt: 2025-08-29T10:00:30
 updatedAt: 2025-08-21T20:29:22
-image: "/imported/you-can-do-i-can-do-cover.webp"
+image: "/imported/img-bb5b65080bce927a.webp"
 ---
 
 <p><strong>“คนอื่นทำได้ เราก็ต้องทำได้สิ”</strong></p>

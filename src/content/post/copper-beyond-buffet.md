@@ -6,7 +6,7 @@ excerpt: "Where the City Meets Luxury: ‘"
 author: torpenguin
 publishedAt: 2024-03-25T13:57:10
 updatedAt: 2024-03-25T13:57:10
-image: "/imported/copper-beyond-buffet-cover.jpg"
+image: "/imported/img-8a709c674a9b08d6.jpg"
 ---
 
 <p><b>Where the City Meets Luxury: ‘Copper in The City’ </b><b>กับงาน Premiere Party เปิดตัวสาขาใหม่สุดยิ่งใหญ่ </b><b>‘Sexy in The City’ ใจกลางมหานคร </b><b>กับ Copper Beyond Buffet @ Gaysorn Amarin</b></p>

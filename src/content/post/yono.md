@@ -6,7 +6,7 @@ excerpt: "YONO เทรนด์คนรุ่นใหม่ เน้นป�
 author: torpenguin
 publishedAt: 2025-01-20T10:00:20
 updatedAt: 2025-06-18T12:00:25
-image: "/imported/yono-cover.png"
+image: "/imported/img-cfff6696c8c8a31e.png"
 ---
 
 <p><strong>YONO เทรนด์คนรุ่นใหม่ เน้นประหยัดไม่เน้นติดหรู กระแสใหม่ที่ร้านอาหารไม่ควรมองข้ามในปี 2025</strong></p>

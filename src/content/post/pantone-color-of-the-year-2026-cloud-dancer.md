@@ -6,7 +6,7 @@ excerpt: "Pantone Color of the Year 2026"
 author: torpenguin
 publishedAt: 2026-01-13T10:00:05
 updatedAt: 2026-01-12T14:02:07
-image: "/imported/pantone-color-of-the-year-2026-cloud-dancer-cover.webp"
+image: "/imported/img-54afcf3c32c1f671.webp"
 ---
 
 <h5><strong>ทำไมต้องเป็น “สีขาว” ในปี 2026</strong></h5>

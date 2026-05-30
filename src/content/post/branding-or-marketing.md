@@ -6,7 +6,7 @@ excerpt: "ถ้าต้องเลือกระหว่างทำ Brandi
 author: torpenguin
 publishedAt: 2025-08-24T10:00:12
 updatedAt: 2025-08-20T18:28:58
-image: "/imported/branding-or-marketing-cover.png"
+image: "/imported/img-ca0f0dd8089108f0.png"
 ---
 
 <h5>ถ้าต้องเลือกระหว่างทำ Branding หรือ ทำ Marketing เราควรทำตัวไหนก่อน?<!-- notionvc: 031bf47a-efc9-4799-9009-6d2f0c0e8912 --></h5>

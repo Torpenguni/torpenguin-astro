@@ -6,7 +6,7 @@ excerpt: "ขายเมนูเดียว รายได้หลักล
 author: torpenguin
 publishedAt: 2026-01-10T10:00:41
 updatedAt: 2026-01-09T17:27:12
-image: "/imported/single-menu-million-revenue-cover.webp"
+image: "/imported/img-aec76d48bcf3600d.webp"
 ---
 
 <h4>ขายเมนูเดียว รายได้หลักล้าน ถอดสูตรธุรกิจดาราที่คนธรรมดาก็ทำตามได้</h4>

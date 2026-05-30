@@ -6,7 +6,7 @@ excerpt: "Roux เทคนิคทำแป้งรูส์แบบฉบ�
 author: torpenguin
 publishedAt: 2025-01-16T10:00:15
 updatedAt: 2025-06-18T12:00:25
-image: "/imported/roux-cover.png"
+image: "/imported/img-2bfaa0ec0efb3ba6.png"
 ---
 
 <p><strong>Roux เทคนิคทำแป้งรูส์แบบฉบับฝรั่งเศส เคล็ดลับความอร่อยเข้มข้นที่มีมิติในน้ำซอสและซุป</strong></p>

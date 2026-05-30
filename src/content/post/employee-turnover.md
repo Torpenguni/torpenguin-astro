@@ -6,7 +6,7 @@ excerpt: "Employee Turnover 1 ปัญหาเงียบ"
 author: torpenguin
 publishedAt: 2025-08-06T10:00:48
 updatedAt: 2025-07-31T14:01:38
-image: "/imported/employee-turnover-cover.png"
+image: "/imported/img-a5e85486ed9ce55d.png"
 ---
 
 <p>“เดือนนี้ลาออกอีกแล้วเหรอ?”</p>

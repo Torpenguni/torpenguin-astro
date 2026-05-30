@@ -6,7 +6,7 @@ excerpt: "มีเงินหลัก 10 ก็สร้างคอนเท
 author: torpenguin
 publishedAt: 2025-10-13T10:00:11
 updatedAt: 2025-10-01T18:01:00
-image: "/imported/ai-for-content-cover.webp"
+image: "/imported/img-53cf32f76e19fddb.webp"
 ---
 
 <p>ครองใจลูกค้า ด้วยการสร้างคอนเทนต์ที่มีคุณภาพด้วย AI ภายในไม่กี่วินาที</p>

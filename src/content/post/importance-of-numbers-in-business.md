@@ -6,7 +6,7 @@ excerpt: "ตัวเลขคือสิ่งสำคัญในการ�
 author: torpenguin
 publishedAt: 2025-11-07T10:00:15
 updatedAt: 2025-11-06T15:13:50
-image: "/imported/importance-of-numbers-in-business-cover.jpg"
+image: "/imported/img-70af49d3b371e7a4.jpg"
 ---
 
 <p>

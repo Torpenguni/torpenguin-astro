@@ -6,7 +6,7 @@ excerpt: "Training Roadmap ร้านอาหารคือ"
 author: torpenguin
 publishedAt: 2025-08-25T10:00:41
 updatedAt: 2025-08-21T19:31:05
-image: "/imported/what-is-training-roadmap-cover.webp"
+image: "/imported/img-c535f94840956a7e.webp"
 ---
 
 <h5><strong>Training Roadmap ร้านอาหารคือ อะไร ทำไมเจ้าของร้านอาหารถึงต้องมี</strong></h5>

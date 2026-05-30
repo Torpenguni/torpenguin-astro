@@ -6,7 +6,7 @@ excerpt: "Vana Brewing (The Brewing Proj"
 author: torpenguin
 publishedAt: 2025-03-18T10:00:55
 updatedAt: 2025-03-17T17:52:43
-image: "/imported/vana-brewing-cover.png"
+image: "/imported/img-81a5f0d41ee4bd82.png"
 ---
 
 <p><strong>Vana Brewing (The Brewing Project) จากโปรเจกต์สานฝันนักต้มเบียร์ สู่แบรนด์เบียร์ ที่ Represent เสน่ห์ไทย ผ่านแพคเกจจิ้ง</strong></p>

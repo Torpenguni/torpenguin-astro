@@ -6,7 +6,7 @@ excerpt: "กุ้งเทมปุระ เชื่อว่าเป็น
 author: torpenguin
 publishedAt: 2025-04-17T09:00:46
 updatedAt: 2025-06-18T12:00:21
-image: "/imported/tempura-shrimp-cover.jpg"
+image: "/imported/img-b0efa1169dbc2143.jpg"
 ---
 
 <p>กุ้งเทมปุระ เชื่อว่าเป็นเมนูโปรดของใครหลายคนแน่นอน เพราะอร่อย ทานง่าย ทำได้ทั้งเมนูอาหารหลัก หรือเมนูทานเล่น และหลายคนก็คงจะมีร้านโปรดในใจ แต่ถ้าใครอยากจะลองทำเองดูบ้าง หรือทำขายในร้านอาหาร หรือทำขายประกอบอาชีพ วันนี้ Cookวงใน จะมาแชร์ เทคนิคการทำ กุ้งเทมปุระ (Tempura Shrimp) ให้อร่อย กรอบนาน เหมือนไปนั่งรับประทานอยู่ในร้านอาหารญี่ปุ่นเลยทีเดียว</p>
@@ -21,7 +21,7 @@ image: "/imported/tempura-shrimp-cover.jpg"
 <li>ไข่ไก่เบอร์2 1 ฟอง</li>
 <li>แป้งสาลีแห้งสำหรับคลุกตัวกุ้ง</li>
 </ul>
-<p><span><strong><img loading="lazy" decoding="async" src="/imported/tempura-shrimp-1.jpg" alt="เทคนิคการทำ กุ้งเทมปุระ (Tempura Shrimp) ให้น่ากิน อร่อย กรอบนาน เหมือนร้านอาหารญี่ปุ่น" width="640" height="360" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/tempura-shrimp-1.jpg 1024w, https://torpenguin.com/wp-content/uploads/2025/04/เทมปุระ1-300x169.jpg 300w, https://torpenguin.com/wp-content/uploads/2025/04/เทมปุระ1-768x432.jpg 768w, https://torpenguin.com/wp-content/uploads/2025/04/เทมปุระ1-1536x864.jpg 1536w, https://torpenguin.com/wp-content/uploads/2025/04/เทมปุระ1-747x420.jpg 747w, https://torpenguin.com/wp-content/uploads/2025/04/เทมปุระ1-640x360.jpg 640w, https://torpenguin.com/wp-content/uploads/2025/04/เทมปุระ1-681x383.jpg 681w, https://torpenguin.com/wp-content/uploads/2025/04/เทมปุระ1.jpg 1920w" sizes="(max-width: 640px) 100vw, 640px" /></strong></span></p>
+<p><span><strong><img loading="lazy" decoding="async" src="/imported/img-6e438307580d8db1.jpg" alt="เทคนิคการทำ กุ้งเทมปุระ (Tempura Shrimp) ให้น่ากิน อร่อย กรอบนาน เหมือนร้านอาหารญี่ปุ่น" width="640" height="360" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/img-6e438307580d8db1.jpg 1024w, https://torpenguin.com/wp-content/uploads/2025/04/เทมปุระ1-300x169.jpg 300w, https://torpenguin.com/wp-content/uploads/2025/04/เทมปุระ1-768x432.jpg 768w, https://torpenguin.com/wp-content/uploads/2025/04/เทมปุระ1-1536x864.jpg 1536w, https://torpenguin.com/wp-content/uploads/2025/04/เทมปุระ1-747x420.jpg 747w, https://torpenguin.com/wp-content/uploads/2025/04/เทมปุระ1-640x360.jpg 640w, https://torpenguin.com/wp-content/uploads/2025/04/เทมปุระ1-681x383.jpg 681w, https://torpenguin.com/wp-content/uploads/2025/04/เทมปุระ1.jpg 1920w" sizes="(max-width: 640px) 100vw, 640px" /></strong></span></p>
 <p><span>ขั้นตอนการ เตรียมกุ้ง </span><br />
 เลือกใช้กุ้งลายเสือหรือกุ้งขาว ปอกเปลือกไว้หาง ผ่าหลังเอาเส้นดำออก บั้งท้องกุ้งเล็กน้อย 3–4 จุด แล้วใช้นิ้วกดเบา ๆ เพื่อให้กุ้งเหยียดตรง ซับกุ้งให้พอหมาดพักไว้ หมักด้วยเกลือเล็ก น้อย ประมาณ 10 นาที เพื่อให้มีรสที่กล่อมยิ่งขึ้น</p>
 <p><span>เทคนิคการผสมแป้ง</span><br />

@@ -6,7 +6,7 @@ excerpt: "Push & Pull Marketing พื้น"
 author: torpenguin
 publishedAt: 2024-08-05T10:00:16
 updatedAt: 2025-06-18T12:01:03
-image: "/imported/push-pull-marketing-cover.jpg"
+image: "/imported/img-2588ebddfb40b4d3.jpg"
 ---
 
 <p>Push &amp; Pull Marketing พื้นฐานการตลาดเพื่อสร้างยอดขายที่เราควรรู้ อยากขายดีต้องทั้ง &#8216;ผลัก&#8217; ทั้ง &#8216;ดึง&#8217;</p>

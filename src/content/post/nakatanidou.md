@@ -6,7 +6,7 @@ excerpt: "Nakatanidou ร้านโมจิที่โชว์สกิ"
 author: torpenguin
 publishedAt: 2024-06-24T08:00:29
 updatedAt: 2025-06-18T12:01:05
-image: "/imported/nakatanidou-cover.jpg"
+image: "/imported/img-a88c63512be1247b.jpg"
 ---
 
 <p><span><strong>Nakatanidou ร้านโมจิที่โชว์สกิลทุบแป้งระดับเทพจนเป็นไวรัลไปรอบโลก </strong></span></p>

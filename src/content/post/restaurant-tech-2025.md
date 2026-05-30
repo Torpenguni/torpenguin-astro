@@ -6,7 +6,7 @@ excerpt: "เทคโนโลยีร้านอาหาร ตอนนี
 author: torpenguin
 publishedAt: 2025-05-25T10:00:30
 updatedAt: 2025-09-01T14:50:51
-image: "/imported/restaurant-tech-2025-cover.png"
+image: "/imported/img-6b44b2fe21285fbf.png"
 ---
 
 <p>วันนี้มีเรื่อง <a href="https://torpenguin.com/category/article/restauranttechnology/">Tech ในวงการร้านอาหาร</a>มาคุยกัน กับ 6 เทคโนโลยีที่กำลังถูกพูดถึงในวงการร้านอาหาร ทั้งในไทยและต่างประเทศตอนนี้ มาอัปเดตกันค่ะ  ว่ารอบ ๆ ตัวเราเขาทำอะไรกันอยู่บ้าง<!-- notionvc: 8cec8303-a449-4fab-ab98-f8702a299bb8 --></p>

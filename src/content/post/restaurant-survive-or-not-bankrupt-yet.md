@@ -6,7 +6,7 @@ excerpt: "ปีนี้ร้านคุณ “รอด” หรือแ�
 author: torpenguin
 publishedAt: 2025-12-30T10:00:47
 updatedAt: 2025-12-23T17:25:14
-image: "/imported/restaurant-survive-or-not-bankrupt-yet-cover.webp"
+image: "/imported/img-2c047d3b17341a4e.webp"
 ---
 
 <h5>ปีนี้ร้านคุณ “รอด” หรือแค่ “ยังไม่เจ๊ง”?</h5>

@@ -6,7 +6,7 @@ excerpt: "เช่าที่ในปั๊ม 5 สิ่งที่คว�
 author: torpenguin
 publishedAt: 2025-08-09T10:00:10
 updatedAt: 2025-08-25T14:49:59
-image: "/imported/ask-before-rent-gas-station-cover.png"
+image: "/imported/img-2fb855d7e5c2ea73.png"
 ---
 
 <p>ปั๊มสมัยนี้ไม่ได้ขายแค่น้ำมัน แต่ขาย “ทราฟฟิก” ของคนที่พร้อมจะซื้อของ กินข้าว ดื่มกาแฟ หรือหยุดพักก่อนเดินทางต่อ</p>

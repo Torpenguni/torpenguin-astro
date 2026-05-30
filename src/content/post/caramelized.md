@@ -6,7 +6,7 @@ excerpt: "Caramelized เทคนิคการทำน้ำตาลไ"
 author: torpenguin
 publishedAt: 2025-01-09T10:00:16
 updatedAt: 2025-06-18T12:00:26
-image: "/imported/caramelized-cover.png"
+image: "/imported/img-5f908c8f52af07d4.png"
 ---
 
 <p><strong>Caramelized เทคนิคการทำน้ำตาลไหม้ เพิ่มมิติความหอม ให้กลิ่นและรสเฉพาะ ทั้งคาวหวานไม่ซ้ำใคร</strong></p>

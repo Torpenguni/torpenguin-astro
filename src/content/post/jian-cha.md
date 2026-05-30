@@ -6,7 +6,7 @@ excerpt: "JIAN CHA แบรนด์ชาผลไม้ไทย และห
 author: torpenguin
 publishedAt: 2025-10-10T10:00:39
 updatedAt: 2025-10-01T16:05:28
-image: "/imported/jian-cha-cover.webp"
+image: "/imported/img-3d2c21b192c59dd9.webp"
 ---
 
 <p>ตลาดชาที่เคยเงียบไปหลังกระแสชานมไข่มุก กลับมาคึกคักอีกครั้งด้วยกระแสชาใหม่ ๆ จากจีน ไม่ว่าจะเป็นชาชีส ชามะนาว และ <strong>ชาผลไม้</strong> ซึ่งหนึ่งในแบรนด์ที่ถูกพูดถึงมากที่สุดในเวลานี้ก็คือ <strong>JIAN CHA</strong></p>

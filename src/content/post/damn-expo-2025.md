@@ -6,7 +6,7 @@ excerpt: "DAMN EXPO 2025 งานเอ็กซ์โปครั้"
 author: torpenguin
 publishedAt: 2025-01-06T13:11:56
 updatedAt: 2025-02-06T12:20:31
-image: "/imported/damn-expo-2025-cover.jpg"
+image: "/imported/img-1e8139f6bfe5204a.jpg"
 ---
 
 <p><strong>DAMN EXPO 2025 งานเอ็กซ์โปครั้งใหญ่ที่จัดมาเพื่อคนทำร้านอาหารกลางคืนโดยเฉพาะ พบกัน 19-20 มีนาคม 2568 นี้</strong></p>
@@ -61,7 +61,7 @@ image: "/imported/damn-expo-2025-cover.jpg"
 <div></div>
 <div></div>
 <div>
-<p><img loading="lazy" decoding="async" src="/imported/damn-expo-2025-1.jpg" alt="DAMN EXPO 2025" width="640" height="640" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/damn-expo-2025-1.jpg 1024w, https://torpenguin.com/wp-content/uploads/2025/01/472268503_1146190403533259_6834618284103780790_n-300x300.jpg 300w, https://torpenguin.com/wp-content/uploads/2025/01/472268503_1146190403533259_6834618284103780790_n-150x150.jpg 150w, https://torpenguin.com/wp-content/uploads/2025/01/472268503_1146190403533259_6834618284103780790_n-768x768.jpg 768w, https://torpenguin.com/wp-content/uploads/2025/01/472268503_1146190403533259_6834618284103780790_n-1536x1536.jpg 1536w, https://torpenguin.com/wp-content/uploads/2025/01/472268503_1146190403533259_6834618284103780790_n-420x420.jpg 420w, https://torpenguin.com/wp-content/uploads/2025/01/472268503_1146190403533259_6834618284103780790_n-640x640.jpg 640w, https://torpenguin.com/wp-content/uploads/2025/01/472268503_1146190403533259_6834618284103780790_n-681x681.jpg 681w, https://torpenguin.com/wp-content/uploads/2025/01/472268503_1146190403533259_6834618284103780790_n.jpg 1079w" sizes="(max-width: 640px) 100vw, 640px" /></p>
+<p><img loading="lazy" decoding="async" src="/imported/img-fed74f30d36eb33d.jpg" alt="DAMN EXPO 2025" width="640" height="640" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/img-fed74f30d36eb33d.jpg 1024w, https://torpenguin.com/wp-content/uploads/2025/01/472268503_1146190403533259_6834618284103780790_n-300x300.jpg 300w, https://torpenguin.com/wp-content/uploads/2025/01/472268503_1146190403533259_6834618284103780790_n-150x150.jpg 150w, https://torpenguin.com/wp-content/uploads/2025/01/472268503_1146190403533259_6834618284103780790_n-768x768.jpg 768w, https://torpenguin.com/wp-content/uploads/2025/01/472268503_1146190403533259_6834618284103780790_n-1536x1536.jpg 1536w, https://torpenguin.com/wp-content/uploads/2025/01/472268503_1146190403533259_6834618284103780790_n-420x420.jpg 420w, https://torpenguin.com/wp-content/uploads/2025/01/472268503_1146190403533259_6834618284103780790_n-640x640.jpg 640w, https://torpenguin.com/wp-content/uploads/2025/01/472268503_1146190403533259_6834618284103780790_n-681x681.jpg 681w, https://torpenguin.com/wp-content/uploads/2025/01/472268503_1146190403533259_6834618284103780790_n.jpg 1079w" sizes="(max-width: 640px) 100vw, 640px" /></p>
 </div>
 <div>
 

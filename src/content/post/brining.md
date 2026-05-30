@@ -6,7 +6,7 @@ excerpt: "Brining เทคนิคการทำเนื้อสัตว�
 author: torpenguin
 publishedAt: 2025-02-23T10:00:44
 updatedAt: 2025-06-18T12:00:23
-image: "/imported/brining-cover.png"
+image: "/imported/img-ca7dcca69dc17c2a.png"
 ---
 
 <p><strong>Brining เทคนิคการทำเนื้อสัตว์ให้นุ่มด้วยน้ำเกลือ เพิ่มรสชาติเฉพาะ นำไปทำเมนูอะไรก็อร่อย</strong></p>

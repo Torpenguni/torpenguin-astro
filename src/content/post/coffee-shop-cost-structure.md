@@ -6,7 +6,7 @@ excerpt: "โครงสร้างต้นทุนร้านกาแฟ:
 author: torpenguin
 publishedAt: 2026-02-04T10:00:40
 updatedAt: 2026-02-03T15:18:27
-image: "/imported/coffee-shop-cost-structure-cover.jpg"
+image: "/imported/img-a206679fc9b7988e.jpg"
 ---
 
 <h4><strong>โครงสร้างต้นทุนร้านกาแฟ: เรื่องจริงที่คนบอกว่า “ต้นทุนแก้วละไม่กี่บาท” ไม่เคยเล่า</strong></h4>

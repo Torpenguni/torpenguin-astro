@@ -6,7 +6,7 @@ excerpt: "5 เทคนิครีดกำไรแม้ยอดขาย�
 author: torpenguin
 publishedAt: 2025-11-26T15:46:39
 updatedAt: 2025-11-26T15:47:32
-image: "/imported/optimize-restaurant-profit-without-more-sales-2-cover.webp"
+image: "/imported/img-82bd30d444148a8d.webp"
 ---
 
 <h5></h5>

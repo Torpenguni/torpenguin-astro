@@ -6,7 +6,7 @@ excerpt: "Terrine “เทอร์รีน” เทคนิคการถ�
 author: torpenguin
 publishedAt: 2025-03-27T10:00:04
 updatedAt: 2025-06-18T12:00:22
-image: "/imported/terrine-cover.png"
+image: "/imported/img-9af7dcc7bd9ac3ea.png"
 ---
 
 <p><strong>Terrine “เทอร์รีน” เทคนิคการถนอมอาหารแบบดั้งเดิม เพิ่ม Value ในเมนูอาหารด้วยวิธีการทำอาหารสไตล์ฝรั่งเศส</strong></p>

@@ -6,7 +6,7 @@ excerpt: "ฝั่ง Meta เตรียมเปิดตัวของเ�
 author: torpenguin
 publishedAt: 2023-07-04T05:27:13
 updatedAt: 2023-07-04T05:33:48
-image: "/imported/meta-launch-threads-cover.jpg"
+image: "/imported/img-284b049c598cbd59.jpg"
 ---
 
 <p>ฝั่ง Meta เตรียมเปิดตัวของเล่นใหม่ &#8216; Threads &#8216; เตรียมเปิดให้ดาวน์โหลด วันที่ 6 กรกฎาคม นี้</p>

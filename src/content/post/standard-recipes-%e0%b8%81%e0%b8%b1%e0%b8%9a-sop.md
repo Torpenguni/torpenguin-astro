@@ -6,7 +6,7 @@ excerpt: "Standard Recipes กับ SOP 2 อย่"
 author: torpenguin
 publishedAt: 2025-03-11T10:00:13
 updatedAt: 2025-06-18T12:00:23
-image: "/imported/standard-recipes-%e0%b8%81%e0%b8%b1%e0%b8%9a-sop-cover.png"
+image: "/imported/img-49ff85ac0fb9ef5b.png"
 ---
 
 <p><strong>Standard Recipes กับ SOP 2 อย่างนี้มันต่างกันยังไง?</strong></p>

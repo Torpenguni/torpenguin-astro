@@ -6,7 +6,7 @@ excerpt: "ทำครัวกลาง ดียังไง ระบบค�
 author: torpenguin
 publishedAt: 2024-09-24T13:53:43
 updatedAt: 2025-09-30T18:55:22
-image: "/imported/central-kitchen-cover.png"
+image: "/imported/img-09c5245ba86d1dc8.png"
 ---
 
 <p><strong>ระบบครัวกลาง</strong> ระบบที่ร้านอาหารที่ขยายหลายสาขา และธุรกิจแฟรนไชส์ต้องมี เพื่อบริหารจัดการคุณภาพและมาตรฐานของร้านทุกสาขา<!-- notionvc: b4a77067-fecc-470d-bf06-2f64b4dadd1b --></p>

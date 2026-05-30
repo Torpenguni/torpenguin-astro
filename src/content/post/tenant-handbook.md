@@ -6,7 +6,7 @@ excerpt: "Tenant Handbook คู่มือผู้เช่า"
 author: torpenguin
 publishedAt: 2025-08-21T10:00:10
 updatedAt: 2025-08-15T19:09:06
-image: "/imported/tenant-handbook-cover.png"
+image: "/imported/img-f4487576562d52fb.png"
 ---
 
 <p><strong>เวลาคนจะเปิดร้านอาหารในห้างหรืออาคารพาณิชย์</strong></p>

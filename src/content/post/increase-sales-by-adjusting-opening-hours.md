@@ -6,7 +6,7 @@ excerpt: "แค่ “ขยับเวลาเปิด-ปิดร้า�
 author: torpenguin
 publishedAt: 2025-11-13T15:32:03
 updatedAt: 2025-11-13T15:32:03
-image: "/imported/increase-sales-by-adjusting-opening-hours-cover.webp"
+image: "/imported/img-0fdd4ec75d08e29e.webp"
 ---
 
 <p>

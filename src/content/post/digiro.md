@@ -6,7 +6,7 @@ excerpt: "Digiro โมเดลสายพานดิจิตอลรูป
 author: torpenguin
 publishedAt: 2024-11-13T10:00:26
 updatedAt: 2025-06-18T12:00:29
-image: "/imported/digiro-cover.png"
+image: "/imported/img-d642bd7f5d1b92b3.png"
 ---
 
 <p><strong>Digiro โมเดลสายพานดิจิตอลรูปแบบใหม่ของ Sushiro ที่คิดมาเพื่อรับมือพวกเล่นพิเรนทร์</strong></p>

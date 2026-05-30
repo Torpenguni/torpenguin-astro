@@ -6,7 +6,7 @@ excerpt: "Coffee Rave ปาร์ตี้ยามเช้าแบบเ"
 author: torpenguin
 publishedAt: 2025-10-14T10:00:25
 updatedAt: 2025-10-15T15:05:10
-image: "/imported/coffee-rave-cover.webp"
+image: "/imported/img-9bb6172b18e53fe4.webp"
 ---
 
 <p>เมื่อพูดถึงคำว่า “ปาร์ตี้” ภาพที่หลายคนนึกถึงคือแสงสีในยามค่ำคืน เสียงเพลงดังสนั่น และแก้วแอลกอฮอล์ในมือ<br />แต่วันนี้คลื่นลูกใหม่กำลังเปลี่ยนภาพจำเหล่านั้น</p>

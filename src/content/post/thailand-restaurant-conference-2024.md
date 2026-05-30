@@ -6,7 +6,7 @@ excerpt: "Thailand Restaurant Conference"
 author: torpenguin
 publishedAt: 2024-04-03T10:00:16
 updatedAt: 2024-04-24T11:19:55
-image: "/imported/thailand-restaurant-conference-2024-cover.jpg"
+image: "/imported/img-28a3169c4b2190b6.jpg"
 ---
 
 <div>
@@ -46,7 +46,7 @@ image: "/imported/thailand-restaurant-conference-2024-cover.jpg"
 <div></div>
 </div>
 </div>
-<p><img loading="lazy" decoding="async" src="/imported/thailand-restaurant-conference-2024-1.jpg" alt="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" width="300" height="188" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/thailand-restaurant-conference-2024-1.jpg 300w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass-768x480.jpg 768w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass-672x420.jpg 672w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass-640x400.jpg 640w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass-681x426.jpg 681w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass.jpg 800w" sizes="(max-width: 300px) 100vw, 300px" /></p>
+<p><img loading="lazy" decoding="async" src="/imported/img-97962262034d2878.jpg" alt="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" width="300" height="188" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/img-97962262034d2878.jpg 300w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass-768x480.jpg 768w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass-672x420.jpg 672w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass-640x400.jpg 640w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass-681x426.jpg 681w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass.jpg 800w" sizes="(max-width: 300px) 100vw, 300px" /></p>
 
 <p>????ซัดกันมันส์หยอดกับเนื้อหาและความรู้แบบจัดเต็มกับ Speaker มากกว่า 20 ชีวิต ทั้งคนตัวใหญ่และคนตัวเล็กในวงการธุรกิจร้านอาหาร ตลอด 2 วันเต็ม! อาทิเช่น</p>
 <div>
@@ -116,7 +116,7 @@ CEO &#8211; <strong>QGEN Consultant</p>
 </div>
 <div>
 
-<p><img loading="lazy" decoding="async" src="/imported/thailand-restaurant-conference-2024-2.jpg" alt="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" width="300" height="188" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/thailand-restaurant-conference-2024-2.jpg 300w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass2-768x480.jpg 768w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass2-672x420.jpg 672w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass2-640x400.jpg 640w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass2-681x426.jpg 681w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass2.jpg 800w" sizes="(max-width: 300px) 100vw, 300px" />???? พบกับบูธแสดงสินค้าเพื่อผู้ประกอบการธุรกิจร้านอาหารมากกว่า 70 บูธ และโปรโมชั่นพิเศษมากมายเฉพาะงาน TRC 2024 นี้เท่านั้น</p>
+<p><img loading="lazy" decoding="async" src="/imported/img-408fe1624521e2be.jpg" alt="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" width="300" height="188" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/img-408fe1624521e2be.jpg 300w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass2-768x480.jpg 768w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass2-672x420.jpg 672w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass2-640x400.jpg 640w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass2-681x426.jpg 681w, https://torpenguin.com/wp-content/uploads/2024/04/AW_Eventpass2.jpg 800w" sizes="(max-width: 300px) 100vw, 300px" />???? พบกับบูธแสดงสินค้าเพื่อผู้ประกอบการธุรกิจร้านอาหารมากกว่า 70 บูธ และโปรโมชั่นพิเศษมากมายเฉพาะงาน TRC 2024 นี้เท่านั้น</p>
 
 <p><strong> ปักวันไว้เลย!</strong></p>
 <p>???? วันที่ 15-16 มิถุนายน 2567</p>

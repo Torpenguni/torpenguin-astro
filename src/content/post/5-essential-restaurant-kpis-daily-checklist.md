@@ -6,7 +6,7 @@ excerpt: "5 KPI ร้านอาหาร ที่เจ้าของร้
 author: torpenguin
 publishedAt: 2026-02-20T17:32:11
 updatedAt: 2026-02-20T17:33:22
-image: "/imported/5-essential-restaurant-kpis-daily-checklist-cover.webp"
+image: "/imported/img-d7ecc13eab9c2d6a.webp"
 ---
 
 <p>การบริหารร้านอาหารให้ประสบความสำเร็จไม่ได้วัดกันที่ความเหนื่อยในแต่ละวัน แต่ตัดสินกันที่ความแม่นยำของข้อมูล การเช็กตัวเลขในตอนเช้าไม่ใช่แค่การดูว่าเมื่อวานขายดีหรือไม่ แต่มันคือการตรวจสุขภาพร้านเพื่อประเมินว่าวันนี้เราต้องปรับกลยุทธ์หน้างานอย่างไร เพื่อป้องกันปัญหาบานปลายและเพิ่มโอกาสในการทำกำไร</p>
@@ -26,7 +26,7 @@ image: "/imported/5-essential-restaurant-kpis-daily-checklist-cover.webp"
 <h5><strong>2. ต้นทุนวัตถุดิบรายวัน (Daily Food Cost)</strong></h5>
 <p>ปัญหาใหญ่ที่ทำให้ร้านอาหารขาดทุนคือการคุมต้นทุนไม่อยู่ <b>KPI ร้านอาหาร</b> ตัวนี้จะบอกว่าเราใช้ทรัพยากรคุ้มค่าเพียงใด โดยมีสูตรคำนวณเบื้องต้นคือ:</p>
 <div>
-<div><img decoding="async" src="/imported/5-essential-restaurant-kpis-daily-checklist-1.png" alt="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" width="470" height="81" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/5-essential-restaurant-kpis-daily-checklist-1.png 470w, https://torpenguin.com/wp-content/uploads/2026/02/Screenshot-2026-02-20-at-5.22.17-PM-300x52.png 300w" sizes="(max-width: 470px) 100vw, 470px" /></div>
+<div><img decoding="async" src="/imported/img-c1582972ae35f97b.png" alt="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" width="470" height="81" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/img-c1582972ae35f97b.png 470w, https://torpenguin.com/wp-content/uploads/2026/02/Screenshot-2026-02-20-at-5.22.17-PM-300x52.png 300w" sizes="(max-width: 470px) 100vw, 470px" /></div>
 <div></div>
 </div>
 <p>หากพบว่า Food Cost สูงผิดปกติ เจ้าของร้านต้องรีบตรวจสอบในครัวทันทีว่าเกิดปัญหาอาหารเสีย (Waste) พนักงานตักอาหารหนักมือเกินไป (Over-portion) หรือมีความเสี่ยงในการทุจริตเกิดขึ้นหรือไม่</p>

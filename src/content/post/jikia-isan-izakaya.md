@@ -6,7 +6,7 @@ excerpt: "จี่เกีย ถอดวิธีคิดของร้า
 author: torpenguin
 publishedAt: 2025-09-14T10:00:52
 updatedAt: 2025-09-11T18:26:06
-image: "/imported/jikia-isan-izakaya-cover.png"
+image: "/imported/img-41914f2ba25dca24.png"
 ---
 
 <h4>จี่เกีย ถอดวิธีคิดของร้านอาหารอีสานสันดานญี่ปุ่น ที่ลงทุนน้อยแต่คอนเซ็ปต์ชัด</h4>

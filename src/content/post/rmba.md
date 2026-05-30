@@ -6,7 +6,7 @@ excerpt: "RMBA หลักสูตรปริญญาโทด้านก�
 author: torpenguin
 publishedAt: 2024-08-03T14:00:43
 updatedAt: 2024-08-01T16:59:43
-image: "/imported/rmba-cover.jpg"
+image: "/imported/img-e627b2f401950efb.jpg"
 ---
 
 <p><em><strong>RMBA หลักสูตรปริญญาโทด้านการจัดการร้านอาหารที่แรกของไทย เปิดรับนักศึกษาใหม่ รุ่นที่ 2 แล้ว !</strong></em></p>
@@ -35,7 +35,7 @@ Facebook: Restaurant MBA<br />
 โทร. 0898909394 (คุณโอ๋) , 0969531500 (คุณแจม)</p>
 <p>*เงื่อนไขเป็นไปตามที่มหาวิทยาลัยกำหนด</p>
 
-<p><img fetchpriority="high" decoding="async" src="/imported/rmba-1.jpg" alt="RMBA" width="640" height="640" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/rmba-1.jpg 1024w, https://torpenguin.com/wp-content/uploads/2024/08/453739216_1038879254264375_3192952452035665554_n-300x300.jpg 300w, https://torpenguin.com/wp-content/uploads/2024/08/453739216_1038879254264375_3192952452035665554_n-150x150.jpg 150w, https://torpenguin.com/wp-content/uploads/2024/08/453739216_1038879254264375_3192952452035665554_n-768x768.jpg 768w, https://torpenguin.com/wp-content/uploads/2024/08/453739216_1038879254264375_3192952452035665554_n-420x420.jpg 420w, https://torpenguin.com/wp-content/uploads/2024/08/453739216_1038879254264375_3192952452035665554_n-640x640.jpg 640w, https://torpenguin.com/wp-content/uploads/2024/08/453739216_1038879254264375_3192952452035665554_n-681x681.jpg 681w, https://torpenguin.com/wp-content/uploads/2024/08/453739216_1038879254264375_3192952452035665554_n.jpg 1080w" sizes="(max-width: 640px) 100vw, 640px" /></p>
+<p><img fetchpriority="high" decoding="async" src="/imported/img-f770f14cd5668a45.jpg" alt="RMBA" width="640" height="640" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/img-f770f14cd5668a45.jpg 1024w, https://torpenguin.com/wp-content/uploads/2024/08/453739216_1038879254264375_3192952452035665554_n-300x300.jpg 300w, https://torpenguin.com/wp-content/uploads/2024/08/453739216_1038879254264375_3192952452035665554_n-150x150.jpg 150w, https://torpenguin.com/wp-content/uploads/2024/08/453739216_1038879254264375_3192952452035665554_n-768x768.jpg 768w, https://torpenguin.com/wp-content/uploads/2024/08/453739216_1038879254264375_3192952452035665554_n-420x420.jpg 420w, https://torpenguin.com/wp-content/uploads/2024/08/453739216_1038879254264375_3192952452035665554_n-640x640.jpg 640w, https://torpenguin.com/wp-content/uploads/2024/08/453739216_1038879254264375_3192952452035665554_n-681x681.jpg 681w, https://torpenguin.com/wp-content/uploads/2024/08/453739216_1038879254264375_3192952452035665554_n.jpg 1080w" sizes="(max-width: 640px) 100vw, 640px" /></p>
 
 <p><strong>???? ติดตามข่าวสารธุรกิจร้านอาหาร<br />
 </strong><a href="https://www.facebook.com/TORPENGUIN/?locale=th_TH" target="_blank" rel="noopener">Facebook : Torpenguin</a><br />

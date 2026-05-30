@@ -6,7 +6,7 @@ excerpt: "สงครามราคา ร้านอาหาร Disruptiv"
 author: torpenguin
 publishedAt: 2025-09-22T10:00:14
 updatedAt: 2025-09-16T18:59:19
-image: "/imported/disruptive-marketing-trc2025-cover.webp"
+image: "/imported/img-9acf6e812bc2f6d8.webp"
 ---
 
 <p>“อย่าเริ่มทำสงครามราคา เพราะถ้าทุกเจ้าแข่งกันลด ตลาดก็จะพัง”</p>

@@ -6,7 +6,7 @@ excerpt: "สร้างระบบร้านอาหารให้ได�
 author: torpenguin
 publishedAt: 2025-10-11T10:00:03
 updatedAt: 2025-10-01T16:26:02
-image: "/imported/set-restaurant-system-cover.webp"
+image: "/imported/img-f5f9859a50a3c71f.webp"
 ---
 
 <p>คิดจะทำร้านอาหารให้ยั่งยืน ไม่ใช่แค่รสชาติอร่อยอย่างเดียว แต่ “ระบบ” คือหัวใจสำคัญที่จะพาร้านไปต่อได้ไกล โดยเฉพาะสตรีทฟู้ดไทยที่มีศักยภาพจะไปถึงระดับ World Standard ได้เช่นเดียวกับแบรนด์ดังระดับโลกอย่าง KFC, McDonald’s หรือ Burger King</p>

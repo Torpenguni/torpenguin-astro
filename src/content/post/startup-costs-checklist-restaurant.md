@@ -6,7 +6,7 @@ excerpt: "เช็กลิสต์ Start-up Costs ร้านอ"
 author: torpenguin
 publishedAt: 2026-02-08T10:00:57
 updatedAt: 2026-02-06T18:43:01
-image: "/imported/startup-costs-checklist-restaurant-cover.webp"
+image: "/imported/img-cc8cee3e4015f018.webp"
 ---
 
 <h4>เช็กลิสต์ Start-up Costs ร้านอาหาร สำหรับมือใหม่ ก่อนเปิดร้านต้องคิดอะไรบ้าง</h4>

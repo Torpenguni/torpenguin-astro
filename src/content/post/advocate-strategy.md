@@ -6,7 +6,7 @@ excerpt: "Advocate Strategy ยุทธวิธีเปลี"
 author: torpenguin
 publishedAt: 2024-08-19T15:03:38
 updatedAt: 2025-06-18T12:01:03
-image: "/imported/advocate-strategy-cover.jpg"
+image: "/imported/img-a0381950f8a6191b.jpg"
 ---
 
 <p><strong>Advocate Strategy ยุทธวิธีเปลี่ยนคนรู้จัก เป็นคนรู้ใจ ทำให้ลูกค้าตกหลุมรักแบรนด์</strong></p>

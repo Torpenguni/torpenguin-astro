@@ -6,7 +6,7 @@ excerpt: "Negotiation Skill: ทักษะที่เจ้"
 author: torpenguin
 publishedAt: 2025-10-02T10:00:37
 updatedAt: 2025-09-30T13:22:22
-image: "/imported/negotiation-skill-cover.png"
+image: "/imported/img-71dd504a7251bd15.png"
 ---
 
 <h4>Negotiation Skill: ทักษะที่เจ้าของธุรกิจต้องมี ไม่ใช่แค่เพื่อลดราคา แต่เพื่อต่อรองอนาคตของกิจการ</h4>

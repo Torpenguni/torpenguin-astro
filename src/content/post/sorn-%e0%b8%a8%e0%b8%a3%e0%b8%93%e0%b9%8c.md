@@ -6,7 +6,7 @@ excerpt: "SORN ศรณ์ สร้างประวัติศาสตร�
 author: torpenguin
 publishedAt: 2024-11-28T15:45:44
 updatedAt: 2024-11-28T15:45:44
-image: "/imported/sorn-%e0%b8%a8%e0%b8%a3%e0%b8%93%e0%b9%8c-cover.png"
+image: "/imported/img-6f89e1f334b1ddb6.png"
 ---
 
 <p><strong>SORN ศรณ์ สร้างประวัติศาสตร์ คว้า ‘สามดาวมิชลิน’ มาครองเป็นร้านแรกในไทย </strong><!-- notionvc: 03b419bf-757f-48e9-a97b-1817e0c6c4be --></p>

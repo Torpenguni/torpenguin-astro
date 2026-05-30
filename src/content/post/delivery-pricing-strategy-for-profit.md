@@ -6,7 +6,7 @@ excerpt: "คิดแบบนี้ถึงโดนหัก GP ก็ยั
 author: torpenguin
 publishedAt: 2025-11-11T14:33:01
 updatedAt: 2025-11-11T14:33:01
-image: "/imported/delivery-pricing-strategy-for-profit-cover.webp"
+image: "/imported/img-cc8be5fa1608e646.webp"
 ---
 
 <p>ในยุคที่ <strong>ธุรกิจร้านอาหาร</strong> ต้องพึ่งพา <a href="https://torpenguin.com/5-delivery-trick/"><strong>ช่องทาง Delivery</strong></a> มากขึ้นเรื่อย ๆ</p>

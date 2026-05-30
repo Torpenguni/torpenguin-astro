@@ -6,7 +6,7 @@ excerpt: "สั่งของมาตุนไว้ก่อน ช่วย
 author: torpenguin
 publishedAt: 2026-02-17T15:54:39
 updatedAt: 2026-02-17T15:54:39
-image: "/imported/bulk-buying-reduce-cost-inventory-par-level-cover.jpg"
+image: "/imported/img-bedb2f781dee2e75.jpg"
 ---
 
 <p>คำถามที่เจ้าของร้านอาหารหลายคนเชื่อมาตลอดคือ<br /><strong>“สั่งของมาตุนไว้ก่อนจะได้ราคาถูกกว่า แบบนี้ช่วยลดต้นทุนได้จริงหรือเปล่า?”</strong></p>

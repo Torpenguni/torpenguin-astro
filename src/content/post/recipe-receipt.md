@@ -6,7 +6,7 @@ excerpt: "Recipe Receipt ความสำเร็จในการ []"
 author: torpenguin
 publishedAt: 2024-11-04T10:00:32
 updatedAt: 2025-06-18T12:00:30
-image: "/imported/recipe-receipt-cover.png"
+image: "/imported/img-7cda18a2db5ccff9.png"
 ---
 
 <p><strong>Recipe Receipt ความสำเร็จในการมัดใจลูกค้าที่มาจากใบเสร็จของมายองเนส Hellmann&#8217;s</strong></p>

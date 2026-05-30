@@ -6,7 +6,7 @@ excerpt: "โอกาสทางธุรกิจที่มีมากก�
 author: torpenguin
 publishedAt: 2026-01-27T10:00:03
 updatedAt: 2026-01-22T16:54:35
-image: "/imported/city-run-business-opportunity-cafe-restaurant-cover.webp"
+image: "/imported/img-22d93661d3c02aa8.webp"
 ---
 
 <h5><strong>Mega Trend: เมื่อ Health &amp; Wellness จะอยู่กับเราไปอีกยาว ๆ</strong></h5>

@@ -6,7 +6,7 @@ excerpt: "วิธีดูค่าโฆษณา Facebook Ads ให"
 author: torpenguin
 publishedAt: 2025-11-24T17:26:36
 updatedAt: 2025-11-24T17:26:36
-image: "/imported/how-to-read-facebook-ads-report-cover.webp"
+image: "/imported/img-40610acb9e2ee83a.webp"
 ---
 
 <h4>วิธีดูค่าโฆษณา Facebook Ads ให้คุ้มทุกบาท ด้วย 6 Metrics ที่คนยิงแอดต้องรู้</h4>

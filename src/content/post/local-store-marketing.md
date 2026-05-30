@@ -6,7 +6,7 @@ excerpt: "Local Store Marketing เทคนิคเข"
 author: torpenguin
 publishedAt: 2024-01-10T11:19:44
 updatedAt: 2025-06-18T12:01:10
-image: "/imported/local-store-marketing-cover.jpg"
+image: "/imported/img-b49bd4c59c7069f9.jpg"
 ---
 
 <p>Local Store Marketing เทคนิคเข้าถึงลูกค้าด้วยการสำรวจพฤติกรรม</p>

@@ -6,7 +6,7 @@ excerpt: "ทำสิ่งที่ล้ำหน้าคนอื่นไ�
 author: torpenguin
 publishedAt: 2025-09-09T13:28:06
 updatedAt: 2025-09-09T13:28:06
-image: "/imported/leader-do-cover.webp"
+image: "/imported/img-b3a3a7013fac2d45.webp"
 ---
 
 <p>เดี๋ยวนี้ใคร ๆ ก็เริ่มต้นธุรกิจได้ง่าย แต่การ “อยู่รอด” และ “เติบโต” กลับเป็นเรื่องที่ยากกว่าเดิม</p>

@@ -6,7 +6,7 @@ excerpt: "Reverse Engineering ทำธุรกิจให"
 author: torpenguin
 publishedAt: 2024-08-02T10:00:27
 updatedAt: 2025-06-18T12:01:04
-image: "/imported/reverse-engineering-cover.jpg"
+image: "/imported/img-cba0aa0982b03f20.jpg"
 ---
 
 <p><strong>Reverse Engineering ทำธุรกิจให้ &#8216;ก้าวไปข้างหน้า&#8217; ด้วยการ &#8216;คิดย้อนกลับ&#8217;</strong></p>

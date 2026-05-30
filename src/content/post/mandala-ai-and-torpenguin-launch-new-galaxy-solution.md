@@ -6,7 +6,7 @@ excerpt: "Mandala AI ร่วมมือกับเพจ Torpe"
 author: torpenguin
 publishedAt: 2024-02-28T11:40:57
 updatedAt: 2024-02-28T11:40:57
-image: "/imported/mandala-ai-and-torpenguin-launch-new-galaxy-solution-cover.jpg"
+image: "/imported/img-c314261913343876.jpg"
 ---
 
 <p>Mandala AI ร่วมมือกับเพจ Torpenguin เปิดตัว Galaxy โซลูชันใหม่</p>

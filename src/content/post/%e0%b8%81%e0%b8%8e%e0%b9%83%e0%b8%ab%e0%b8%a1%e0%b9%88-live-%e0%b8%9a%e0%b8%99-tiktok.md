@@ -6,7 +6,7 @@ excerpt: "อยากขายของบน TikTok แต่กลัวก�
 author: torpenguin
 publishedAt: 2025-05-19T10:00:14
 updatedAt: 2025-06-25T17:02:21
-image: "/imported/%e0%b8%81%e0%b8%8e%e0%b9%83%e0%b8%ab%e0%b8%a1%e0%b9%88-live-%e0%b8%9a%e0%b8%99-tiktok-cover.png"
+image: "/imported/img-e6915f91334acb5b.png"
 ---
 
 <p><strong>อยากขายของบน TikTok แต่กลัวกฏ ไม่รู้อันไหนจริง อันไหนมั่ว แทนที่จะได้เติบโตกลับไม่ได้เริ่มทำอะไรซักที</strong></p>

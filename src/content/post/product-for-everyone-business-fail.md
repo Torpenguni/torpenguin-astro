@@ -6,7 +6,7 @@ excerpt: "สินค้าของเราขายได้กับทุ�
 author: torpenguin
 publishedAt: 2026-01-24T10:00:19
 updatedAt: 2026-01-20T18:16:15
-image: "/imported/product-for-everyone-business-fail-cover.webp"
+image: "/imported/img-2889197fec4494f0.webp"
 ---
 
 <h5>สินค้าของเราขายได้กับทุกคน: แนวคิดที่ฟังดูดี แต่พาธุรกิจไปไม่รอด</h5>

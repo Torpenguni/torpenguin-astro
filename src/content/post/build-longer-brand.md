@@ -6,7 +6,7 @@ excerpt: "สร้างแบรนด์ให้อยู่ยาว เร
 author: torpenguin
 publishedAt: 2025-10-20T10:00:55
 updatedAt: 2025-10-17T16:16:11
-image: "/imported/build-longer-brand-cover.png"
+image: "/imported/img-4bfd5c2341423ecb.png"
 ---
 
 <h5><strong>สร้างแบรนด์ให้อยู่ยาว ให้เริ่มจาก “กลยุทธ์” ก่อน “ดีไซน์”</strong></h5>

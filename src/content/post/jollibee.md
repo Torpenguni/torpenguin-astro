@@ -6,7 +6,7 @@ excerpt: "Jollibee แบรนด์ไก่ทอดจากฟิลิป�
 author: torpenguin
 publishedAt: 2024-07-09T10:00:20
 updatedAt: 2025-04-25T17:23:50
-image: "/imported/jollibee-cover.jpg"
+image: "/imported/img-2c6da37b424ebc92.jpg"
 ---
 
 <p><strong>Jollibee แบรนด์ไก่ทอดจากฟิลิปปินส์ ที่เอาจุดแข็งและจุดอ่อนของ McDonald&#8217;s มาสร้างร้านของตัวเอง</strong></p>

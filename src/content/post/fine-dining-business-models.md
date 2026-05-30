@@ -6,7 +6,7 @@ excerpt: "Fine Dining 2 โมเดลการทำธุรกิจ"
 author: torpenguin
 publishedAt: 2025-10-15T16:02:56
 updatedAt: 2025-10-15T16:02:56
-image: "/imported/fine-dining-business-models-cover.webp"
+image: "/imported/img-69a66e0b8385f96e.webp"
 ---
 
 <h4>Fine Dining 2 โมเดลการทำธุรกิจร้านอาหารหรู และความเสี่ยงที่เจ้าของต้องรับมือ<!-- notionvc: 5a27957a-c81b-476b-8e6d-b86e6b5f2118 --><br />

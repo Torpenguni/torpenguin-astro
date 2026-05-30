@@ -6,7 +6,7 @@ excerpt: "SME D Bank จับมือ Torpenguin ย"
 author: torpenguin
 publishedAt: 2024-03-11T12:30:15
 updatedAt: 2024-03-11T12:30:15
-image: "/imported/sme-d-bank-cover.png"
+image: "/imported/img-973293d57d6a4cd1.png"
 ---
 
 <p><b>SME D Bank จับมือ Torpenguin ยกทัพกูรูด้านการตลาด ติดอาวุธเสิร์ฟความรู้เสริมแกร่งให้เอสเอ็มอีธุรกิจร้านอาหารและเครื่องดื่ม ช่วยเพิ่มรายได้ ลดต้นทุน ยืนหยัดและแข่งขันกับแบรนด์ใหญ่ได้ พร้อมสร้างโอกาสเข้าถึงแหล่งทุนต่อยอดธุรกิจ เดินสายจัดทั่วประเทศ  ประเดิม </b><b>11 มี.ค. 67 ณ LIDO CONNECT ชั้น 2  </b><b> </b></p>

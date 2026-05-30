@@ -6,7 +6,7 @@ excerpt: "ถอดเบื้องหลัง Live ขาย 30 ล้าน
 author: torpenguin
 publishedAt: 2025-09-20T10:00:26
 updatedAt: 2025-09-30T18:18:25
-image: "/imported/live-30-million-baht-laglace-cover.webp"
+image: "/imported/img-6a1429ee2a02bfa8.webp"
 ---
 
 <p>ในยุคที่ทุกคนสามารถหยิบมือถือขึ้นมา Live ขายของ ไม่ว่าจะเป็นพ่อค้าแม่ค้า หรือแม้แต่แบรนด์ยักษ์ใหญ่ แต่ทำไมบางคนขายได้หลักสิบล้าน ในขณะที่อีกหลายคนกลับพูดอยู่คนเดียวไม่มีใครซื้อ?</p>

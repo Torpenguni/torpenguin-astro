@@ -6,13 +6,13 @@ excerpt: "คาเฟ่ Fjord คาเฟ่ฝีมือคนไทยใ
 author: torpenguin
 publishedAt: 2026-02-01T10:00:26
 updatedAt: 2026-01-29T12:36:22
-image: "/imported/cafe-fjord-cover.webp"
+image: "/imported/img-d01e5039976fd065.webp"
 ---
 
 <p>หากพูดถึงประเทศที่มีการแข่งขันในธุรกิจคาเฟ่ดุเดือดที่สุดในโลก ประเทศเกาหลีใต้ย่อมติดอันดับต้น ๆ อย่างแน่นอน</p>
 <p>แค่คนในประเทศเปิดแข่งกันเองก็ว่าหนักแล้ว แต่การที่คนไทยจะไปเปิดร้านกาแฟแข่งกับเจ้าถิ่นจึงดูเป็นเรื่องที่เป็นไปได้ยากกว่านั้นเยอะ แต่ ‘พี่โจ้’ สถาปนิก และนักธุรกิจสาย Tech/Data ชาวไทย กลับเลือกที่จะกระโดดเข้าไปในเกมนี้ และได้ปลุกปั้นร้านกาแฟที่มีชื่อว่า ‘Fjord’ (ฟยอร์ด) ในย่านยงซาน ขึ้นมาได้สำเร็จ</p>
 
-<p><img fetchpriority="high" decoding="async" src="/imported/cafe-fjord-1.webp" alt="คาเฟ่ Fjord" width="500" height="500" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/cafe-fjord-1.webp 500w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_2-300x300.webp 300w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_2-1024x1024.webp 1024w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_2-150x150.webp 150w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_2-768x768.webp 768w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_2.webp 1080w" sizes="(max-width: 500px) 100vw, 500px" /></p>
+<p><img fetchpriority="high" decoding="async" src="/imported/img-f5d20b6b97da08f6.webp" alt="คาเฟ่ Fjord" width="500" height="500" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/img-f5d20b6b97da08f6.webp 500w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_2-300x300.webp 300w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_2-1024x1024.webp 1024w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_2-150x150.webp 150w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_2-768x768.webp 768w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_2.webp 1080w" sizes="(max-width: 500px) 100vw, 500px" /></p>
 
 
 <h5><strong>Location &amp; Asset มองเห็นเพชรในตึกร้างปี 1935</strong></h5>
@@ -25,7 +25,7 @@ image: "/imported/cafe-fjord-cover.webp"
 <p>Space Management อาคารมีขนาดใหญ่ (เมื่อเทียบกับคาเฟ่ทั่วไปในโซล) ซึ่งกลายเป็นจุดแข็งสำคัญในการรองรับ Traffic ลูกค้า</p>
 
 
-<p><img decoding="async" src="/imported/cafe-fjord-2.webp" alt="คาเฟ่ Fjord" width="500" height="500" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/cafe-fjord-2.webp 500w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_3-300x300.webp 300w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_3-1024x1024.webp 1024w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_3-150x150.webp 150w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_3-768x768.webp 768w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_3.webp 1080w" sizes="(max-width: 500px) 100vw, 500px" /></p>
+<p><img decoding="async" src="/imported/img-efe310b2ecc7b072.webp" alt="คาเฟ่ Fjord" width="500" height="500" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/img-efe310b2ecc7b072.webp 500w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_3-300x300.webp 300w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_3-1024x1024.webp 1024w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_3-150x150.webp 150w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_3-768x768.webp 768w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_3.webp 1080w" sizes="(max-width: 500px) 100vw, 500px" /></p>
 
 <h5><strong>Market Positioning หา Blue Ocean ในดงคู่แข่ง</strong></h5>
 
@@ -40,7 +40,7 @@ image: "/imported/cafe-fjord-cover.webp"
 </ul>
 
 
-<p><img loading="lazy" decoding="async" src="/imported/cafe-fjord-3.webp" alt="คาเฟ่ Fjord" width="500" height="500" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/cafe-fjord-3.webp 500w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_4-300x300.webp 300w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_4-1024x1024.webp 1024w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_4-150x150.webp 150w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_4-768x768.webp 768w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_4.webp 1080w" sizes="(max-width: 500px) 100vw, 500px" /></p>
+<p><img loading="lazy" decoding="async" src="/imported/img-07ee89f3ac1600d5.webp" alt="คาเฟ่ Fjord" width="500" height="500" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/img-07ee89f3ac1600d5.webp 500w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_4-300x300.webp 300w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_4-1024x1024.webp 1024w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_4-150x150.webp 150w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_4-768x768.webp 768w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_4.webp 1080w" sizes="(max-width: 500px) 100vw, 500px" /></p>
 
 
 <h5><strong>Business Model แก้โจทย์ &#8220;ค่าเช่าแพง ค่าแรงสูง&#8221;</strong></h5>
@@ -71,7 +71,7 @@ image: "/imported/cafe-fjord-cover.webp"
 <p>ที่ Fjord ถ้าเข้าไปเช็ก Data ใน POS คือ high retention นะ เข้ากลับมาซ้ำ มาแล้วมาอีก พี่โจ้คิดว่ามันเป็นปัจจัยหลักในธุรกิจร้านคาเฟ่เลย ถ้าลูกค้ามาครั้งเดียวถ่ายรูปแล้วกลับ ก็จะมีความเสี่ยงสูงมาก ร้านไม่มีทางอยู่รอดได้</p>
 
 
-<p><img loading="lazy" decoding="async" src="/imported/cafe-fjord-4.webp" alt="คาเฟ่ Fjord" width="500" height="500" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/cafe-fjord-4.webp 500w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_5-300x300.webp 300w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_5-1024x1024.webp 1024w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_5-150x150.webp 150w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_5-768x768.webp 768w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_5.webp 1080w" sizes="(max-width: 500px) 100vw, 500px" /></p>
+<p><img loading="lazy" decoding="async" src="/imported/img-0e8001cb5129705e.webp" alt="คาเฟ่ Fjord" width="500" height="500" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/img-0e8001cb5129705e.webp 500w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_5-300x300.webp 300w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_5-1024x1024.webp 1024w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_5-150x150.webp 150w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_5-768x768.webp 768w, https://torpenguin.com/wp-content/uploads/2026/01/webbanner_20260129_5.webp 1080w" sizes="(max-width: 500px) 100vw, 500px" /></p>
 
 
 <h5><strong>ข้อได้เปรียบของ &#8220;คนนอก&#8221;</strong></h5>

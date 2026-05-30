@@ -6,7 +6,7 @@ excerpt: "ปี 2026 กับคำถามที่ว่า “เศรษ
 author: torpenguin
 publishedAt: 2026-02-09T19:21:23
 updatedAt: 2026-02-10T11:22:48
-image: "/imported/consumer-behavior-insights-2026-cover.webp"
+image: "/imported/img-ce5a9c742ca29938.webp"
 ---
 
 <h4><strong>ปี 2026 กับคำถามที่ว่า “เศรษฐกิจแบบนี้ ใครยังมีเงินซื้อ?” เมื่อคำตอบไม่ได้อยู่ที่วัย แต่อยู่ที่พฤติกรรม</strong></h4>

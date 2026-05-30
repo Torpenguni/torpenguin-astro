@@ -6,21 +6,21 @@ excerpt: "Walden Home Café คาเฟ่ที่ไม่ต้"
 author: torpenguin
 publishedAt: 2025-11-08T10:00:32
 updatedAt: 2025-11-06T18:03:00
-image: "/imported/walden-home-cafe-brand-story-cover.webp"
+image: "/imported/img-342d7e8fb9677db5.webp"
 ---
 
 <h5><strong>จากอาร์ตไดเรกเตอร์สู่เจ้าของคาเฟ่ที่เข้าใจ “ความรู้สึกของลูกค้า”</strong></h5>
 <p>Walและ Ballad Coffee Bar คือผลงานการเดินทางของ <strong>คุณดิฐ แจ้งศิริเจริญ</strong> อดีตอาร์ตไดเรกเตอร์ผู้คร่ำหวอดในวงการนิตยสารกว่า 8 ปี ที่เลือกเปลี่ยนเส้นทางจากการออกแบบภาพให้กับแบรนด์อื่น มาสู่การออกแบบ “ประสบการณ์” ให้กับผู้คนผ่านร้านกาแฟของตัวเอง</p>
 <p>เริ่มต้นจากคาเฟ่ขนาดหนึ่งคูหาในย่านคลองสานที่ชื่อว่า <strong>Walden Home Café</strong> ร้านที่ไม่ได้เกิดจากแผนธุรกิจรัดกุม แต่จากความฝันที่จะเปิดโฮสเทลพร้อมคาเฟ่เล็ก ๆ จนกระทั่งแผนเปลี่ยน กลายเป็น “ร้านกาแฟอบอุ่นที่มีจิตวิญญาณของความเป็นบ้าน”</p>
 <p>
-<p><img loading="lazy" decoding="async" src="/imported/walden-home-cafe-brand-story-1.webp" alt="Walden Home Café" width="681" height="351" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/walden-home-cafe-brand-story-1.webp 681w, https://torpenguin.com/wp-content/uploads/2025/11/webbanner_20251106_2_1-300x155.webp 300w" sizes="(max-width: 681px) 100vw, 681px" /></p>
+<p><img loading="lazy" decoding="async" src="/imported/img-91118843169dcbc9.webp" alt="Walden Home Café" width="681" height="351" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/img-91118843169dcbc9.webp 681w, https://torpenguin.com/wp-content/uploads/2025/11/webbanner_20251106_2_1-300x155.webp 300w" sizes="(max-width: 681px) 100vw, 681px" /></p>
 <h5></h5>
 <h5><strong>จากยอดขายวันละ 8 แก้ว สู่แบรนด์ที่คนจดจำ</strong></h5>
 <p>ช่วงแรกของการเปิดร้านคือบทเรียนที่หนักที่สุดของชีวิตเจ้าของร้าน</p>
 <p><em>“วันหนึ่งเราขายได้แค่ 8 แก้ว ไม่พอจ่ายค่าเมล็ดกาแฟสำหรับวันรุ่งขึ้น แต่เราเลือกไม่ถอย เพราะรู้ว่าความผิดพลาดคือบทเรียนของการเรียนรู้”</em></p>
 <p>คุณดิฐเล่าว่า จุดเริ่มต้นนั้นเต็มไปด้วยความไม่รู้ในทุกมิติ ตั้งแต่เรื่องสัญญาเช่า การบริหารต้นทุน ไปจนถึงความเข้าใจเรื่องกาแฟ แต่สิ่งที่ทำให้ร้านอยู่รอด คือการเรียนรู้แบบไม่หยุดนิ่ง</p>
 <p>เขาค่อย ๆ ตัดเมนูที่ไม่ทำกำไรออก พัฒนาทักษะการชงด้วยตัวเอง และออกแบบทุกมุมของร้านให้สื่อถึง “ความรู้สึก” มากกว่า “ยอดขาย”</p>
-<p><img loading="lazy" decoding="async" src="/imported/walden-home-cafe-brand-story-2.webp" alt="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" width="681" height="351" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/walden-home-cafe-brand-story-2.webp 681w, https://torpenguin.com/wp-content/uploads/2025/11/webbanner_20251106_2_2-300x155.webp 300w" sizes="(max-width: 681px) 100vw, 681px" /></p>
+<p><img loading="lazy" decoding="async" src="/imported/img-aff4f74cf8b3231b.webp" alt="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" width="681" height="351" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/img-aff4f74cf8b3231b.webp 681w, https://torpenguin.com/wp-content/uploads/2025/11/webbanner_20251106_2_2-300x155.webp 300w" sizes="(max-width: 681px) 100vw, 681px" /></p>
 <p>
 <h5><strong>กลยุทธ์สร้างมูลค่าร้านกาแฟจากประสบการณ์มากกว่ารสชาติ</strong></h5>
 <p><strong>Walden</strong> ไม่ได้เติบโตจากรสชาติกาแฟเพียงอย่างเดียว แต่เติบโตจาก “ความรู้สึกที่ลูกค้าได้รับ”</p>
@@ -33,7 +33,7 @@ image: "/imported/walden-home-cafe-brand-story-cover.webp"
 <p>
 <p>นี่คือแนวคิดเดียวกับที่แบรนด์ระดับโลกอย่าง Starbucks ใช้เพื่อเพิ่ม “มูลค่าการใช้จ่ายต่อคน (Spending per head)”</p>
 <p>
-<p><img loading="lazy" decoding="async" src="/imported/walden-home-cafe-brand-story-3.webp" alt="Walden Home Café" width="681" height="351" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/walden-home-cafe-brand-story-3.webp 681w, https://torpenguin.com/wp-content/uploads/2025/11/webbanner_20251106_2_3-300x155.webp 300w" sizes="(max-width: 681px) 100vw, 681px" /></p>
+<p><img loading="lazy" decoding="async" src="/imported/img-92a740511034e59b.webp" alt="Walden Home Café" width="681" height="351" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/img-92a740511034e59b.webp 681w, https://torpenguin.com/wp-content/uploads/2025/11/webbanner_20251106_2_3-300x155.webp 300w" sizes="(max-width: 681px) 100vw, 681px" /></p>
 <p>
 <h5><strong>Ballad Coffee Bar &#8211; เมื่อกาแฟและเสียงเพลงพูดแทนความรู้สึก</strong></h5>
 <p>หลังจาก Walden สร้างฐานแฟนเหนียวแน่น คุณดิฐเปิดร้านใหม่ในชื่อ <strong>Ballad Coffee Bar</strong><br />ร้านนี้ไม่ได้เกิดจากความมั่นใจเกินตัว แต่จากความตั้งใจ “ทดลองสิ่งใหม่ ๆ อย่างมีความหมาย”</p>

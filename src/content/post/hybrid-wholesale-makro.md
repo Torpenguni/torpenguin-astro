@@ -6,7 +6,7 @@ excerpt: "สู้มาสู้กลับ Makro พร้อมชน Go"
 author: torpenguin
 publishedAt: 2023-10-06T15:02:10
 updatedAt: 2023-10-06T15:08:31
-image: "/imported/hybrid-wholesale-makro-cover.jpg"
+image: "/imported/img-4d81dc7bcbbd9b1f.jpg"
 ---
 
 <p>สู้มาสู้กลับ Makro พร้อมชน Go Wholesale เปิดตัวโมเดลใหม่ แม็คโคร+โลตัส มอลล์ ‘Hybrid Wholesale’ ครบจบที่เดียว<br />

@@ -6,7 +6,7 @@ excerpt: "7 ข้อผิดพลาดของร้านเล็กท�
 author: torpenguin
 publishedAt: 2025-10-19T10:00:57
 updatedAt: 2025-10-17T15:39:22
-image: "/imported/7-mistakes-small-but-style-restaurant-cover.png"
+image: "/imported/img-efb92dd8375b3d6b.png"
 ---
 
 <h4>7 ข้อผิดพลาดของร้านเล็กที่ต้องเลี่ยง ถ้าไม่อยากเจ๊งก่อนครบรอบปี</h4>

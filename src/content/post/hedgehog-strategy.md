@@ -6,7 +6,7 @@ excerpt: "เปลี่ยนธุรกิจที่ Good เป็น Gre
 author: torpenguin
 publishedAt: 2025-10-03T10:00:22
 updatedAt: 2025-09-30T14:00:14
-image: "/imported/hedgehog-strategy-cover.png"
+image: "/imported/img-4d77a20200b68fbf.png"
 ---
 
 <p>เรียนรู้ กลยุทธ์เม่น (Hedgehog Strategy) จากหนังสือ Good to Great</p>

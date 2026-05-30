@@ -6,7 +6,7 @@ excerpt: "Soft Cost ร้านอาหาร คืออะไร? ต"
 author: torpenguin
 publishedAt: 2026-02-03T14:07:42
 updatedAt: 2026-02-04T15:50:57
-image: "/imported/soft-cost-restaurant-startup-costs-cover.jpg"
+image: "/imported/img-9cfb8c64e80a8470.jpg"
 ---
 
 <h4><strong>Soft Cost ร้านอาหาร คืออะไร? ต้นทุนแฝงที่ทำให้เงินทุนร้านตั้งต้นบานปลายโดยไม่รู้ตัว</strong></h4>

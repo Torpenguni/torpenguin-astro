@@ -6,7 +6,7 @@ excerpt: "Minor เข้าซื้อ Sizzler ประกาศซ []"
 author: torpenguin
 publishedAt: 2023-06-27T07:29:48
 updatedAt: 2023-06-27T07:29:48
-image: "/imported/minor-%e0%b8%8b%e0%b8%b7%e0%b9%89%e0%b8%ad-sizzler-cover.jpg"
+image: "/imported/img-e1ca9ac688c74d66.jpg"
 ---
 
 <p>Minor เข้าซื้อ Sizzler ประกาศซื้อแบรนด์ร้านอาหาร Sizzler กว่า 546 ล้าน พร้อมผลักดันไปสู่ตลาดโลก</p>

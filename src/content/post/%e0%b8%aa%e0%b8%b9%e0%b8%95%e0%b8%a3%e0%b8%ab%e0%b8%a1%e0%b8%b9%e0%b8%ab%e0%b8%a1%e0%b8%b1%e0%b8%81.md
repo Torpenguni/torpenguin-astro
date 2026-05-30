@@ -6,7 +6,7 @@ excerpt: "สูตรหมูหมัก สำหรับร้านอา
 author: torpenguin
 publishedAt: 2024-05-07T10:00:13
 updatedAt: 2025-06-18T12:01:07
-image: "/imported/%e0%b8%aa%e0%b8%b9%e0%b8%95%e0%b8%a3%e0%b8%ab%e0%b8%a1%e0%b8%b9%e0%b8%ab%e0%b8%a1%e0%b8%b1%e0%b8%81-cover.jpeg"
+image: "/imported/img-9069e23bdd1d0a0b.jpeg"
 ---
 
 <p><em><strong>สูตรหมูหมัก สำหรับร้านอาหารฉบับเร่งด่วน เทคนิคการทำให้นุ่มไวใน 15 นาที ทำกินได้ ทำขายรวย</strong></em></p>

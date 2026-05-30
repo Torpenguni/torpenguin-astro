@@ -6,7 +6,7 @@ excerpt: "เครื่องหมายการค้าร้านอา�
 author: torpenguin
 publishedAt: 2025-09-25T10:00:05
 updatedAt: 2025-09-24T15:48:53
-image: "/imported/trade-mark-restaurant-cover.png"
+image: "/imported/img-5f45b992ff3237d8.png"
 ---
 
 <p>เปิดร้านอาหารไม่ใช่เรื่องยาก แต่การสร้าง <strong>“แบรนด์ที่ยั่งยืน”</strong> ต่างหากที่ยากกว่า<br />หนึ่งในสิ่งที่เจ้าของร้านจำนวนมากมองข้าม คือ <strong>การจดเครื่องหมายการค้า</strong></p>

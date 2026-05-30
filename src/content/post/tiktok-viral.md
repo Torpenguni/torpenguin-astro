@@ -6,7 +6,7 @@ excerpt: "ทำคอนเทนต์ให้ Viral ด้วย F.I.R"
 author: torpenguin
 publishedAt: 2025-08-04T10:00:47
 updatedAt: 2025-08-25T14:42:51
-image: "/imported/tiktok-viral-cover.png"
+image: "/imported/img-aa0460ea74586bbd.png"
 ---
 
 <h2><strong>ทำคอนเทนต์ให้ Viral ด้วย F.I.R.E. สูตรลับทำคอนเทนต์ให้คนหยุดดูบน TikTok</strong><br />

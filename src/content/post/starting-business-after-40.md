@@ -6,7 +6,7 @@ excerpt: "การเริ่มต้นธุรกิจตอนอาย�
 author: torpenguin
 publishedAt: 2025-11-06T10:00:35
 updatedAt: 2025-11-03T19:00:01
-image: "/imported/starting-business-after-40-cover.webp"
+image: "/imported/img-d768782e73fb77e9.webp"
 ---
 
 <h5><strong>การเริ่มต้นธุรกิจตอนอายุเยอะไม่เคยสาย แต่หมายถึงประสบการณ์ที่ผ่านการเรียนรู้อะไรมามากมาย</strong></h5>

@@ -6,7 +6,7 @@ excerpt: "2 วิธี จับพฤติกรรมลูกค้า เ
 author: torpenguin
 publishedAt: 2025-10-16T10:00:55
 updatedAt: 2025-10-15T18:42:54
-image: "/imported/2-trick-customer-insight-cover.webp"
+image: "/imported/img-1a2eb10adee84134.webp"
 ---
 
 <h4>2 วิธี จับพฤติกรรมลูกค้า เพิ่มโอกาสตั้งแต่ยังไม่เริ่มขาย<!-- notionvc: c3dc8c79-19f6-4ec3-b18d-66cf247fdbb8 --></h4>

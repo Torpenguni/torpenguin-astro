@@ -6,7 +6,7 @@ excerpt: "อย่าเพิ่งยื่นใบลาออกมาเ�
 author: torpenguin
 publishedAt: 2026-02-22T10:00:38
 updatedAt: 2026-02-20T18:51:47
-image: "/imported/quit-job-to-start-business-checklist-cover.webp"
+image: "/imported/img-05c024f166105282.webp"
 ---
 
 <h4>อย่าเพิ่งยื่นใบลาออกมาเปิดร้าน! ถ้าคุณยังตอบคำถาม 5 ข้อนี้ไม่ได้</h4>

@@ -6,7 +6,7 @@ excerpt: "5 สถานการณ์เศรษฐกิจไทย –"
 author: torpenguin
 publishedAt: 2025-09-15T10:00:56
 updatedAt: 2025-09-11T19:16:45
-image: "/imported/5-biggest-economic-crisis-cover.png"
+image: "/imported/img-abc75a0b0e40e118.png"
 ---
 
 <h4>5 สถานการณ์เศรษฐกิจไทย &#8211; โลก ที่กระทบผู้ประกอบการไทย สิ่งที่เจ้าของร้านอาหารต้องรู้</h4>

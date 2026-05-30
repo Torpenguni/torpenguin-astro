@@ -6,7 +6,7 @@ excerpt: "สีแห่งปี 2025 Pantone ประกาศให"
 author: torpenguin
 publishedAt: 2024-12-13T10:00:06
 updatedAt: 2025-06-18T12:00:28
-image: "/imported/%e0%b8%aa%e0%b8%b5%e0%b9%81%e0%b8%ab%e0%b9%88%e0%b8%87%e0%b8%9b%e0%b8%b5-2025-pantone-cover.png"
+image: "/imported/img-5507a7e645f16c24.png"
 ---
 
 <p><strong>สีแห่งปี 2025 Pantone ประกาศให้ ‘สี Mocha Mousse’ เป็น Color of the year ประจำปี 2025 นี้</strong></p>

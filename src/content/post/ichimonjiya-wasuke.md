@@ -6,7 +6,7 @@ excerpt: "Ichimonjiya Wasuke ร้านโมจิย่า"
 author: torpenguin
 publishedAt: 2024-05-20T14:00:35
 updatedAt: 2025-04-25T17:26:03
-image: "/imported/ichimonjiya-wasuke-cover.jpg"
+image: "/imported/img-233fa05c4ebc1885.jpg"
 ---
 
 <p>Ichimonjiya Wasuke ร้านโมจิย่างเก่าแก่ในญี่ปุ่น กิจการอายุกว่าพันปี ที่อยู่รอดมาได้เพราะความไม่ยึดติด</p>
