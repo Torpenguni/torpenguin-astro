@@ -2,32 +2,30 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../../components/Breadcrumb.astro';
 import PostGrid from '../../../components/PostGrid.astro';
-import { getAllTags, getPostsByTag } from '../../../lib/content';
+import { getAllTagSlugs, getPostsByTag } from '../../../lib/content';
 import { howToTopics, howToTopicBySlug } from '../../../data/howto';
 
 export async function getStaticPaths() {
-  // Union of every tag used on a post and the How-to sub-topics (so the
-  // sub-nav never points at a missing page, even before content exists).
-  const tags = new Set<string>([
-    ...(await getAllTags()),
-    ...howToTopics.map((t) => t.slug),
-  ]);
-  return [...tags].map((tag) => ({ params: { tag }, props: { tag } }));
+  // Union of every tag slug used on a post and the How-to sub-topics.
+  const map = new Map<string, string>();
+  for (const { slug, label } of await getAllTagSlugs()) map.set(slug, label);
+  for (const t of howToTopics) if (!map.has(t.slug)) map.set(t.slug, t.label);
+  return [...map].map(([slug, label]) => ({ params: { tag: slug }, props: { slug, label } }));
 }
 
-interface Props { tag: string }
-const { tag } = Astro.props;
-const sub = howToTopicBySlug(tag);
-const posts = await getPostsByTag(tag);
+interface Props { slug: string; label: string }
+const { slug, label } = Astro.props;
+const sub = howToTopicBySlug(slug);
+const posts = await getPostsByTag(slug);
 
 // Thin tag pages should not be indexed (spec: < 3 posts → noindex, follow).
 const noindex = posts.length < 3;
 
-const heading = sub ? sub.th : tag;
+const heading = sub ? sub.th : label;
 const crumbs = [
   { name: 'หน้าแรก', href: '/' },
   { name: 'แท็ก', href: '/tag' },
-  { name: heading, href: `/tag/${tag}` },
+  { name: heading, href: `/tag/${slug}` },
 ];
 ---
 

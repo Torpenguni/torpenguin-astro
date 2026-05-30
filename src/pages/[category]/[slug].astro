@@ -10,6 +10,7 @@ import {
   getRelated,
   getAuthor,
   readingTime,
+  tagSlug,
   type PostEntry,
 } from '../../lib/content';
 
@@ -84,7 +85,7 @@ const FACEBOOK = 'https://www.facebook.com/torpenguin';
       {d.tags.length > 0 && (
         <div class="art-tags">
           {d.tags.map((t) => (
-            <a href={`/tag/${t}`} class="art-tag">{tagLabel(t)}</a>
+            <a href={`/tag/${tagSlug(t)}`} class="art-tag">{tagLabel(t)}</a>
           ))}
         </div>
       )}

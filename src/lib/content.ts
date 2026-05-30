@@ -40,6 +40,18 @@ export const authors: Record<string, Author> = {
 export const getAuthor = (slug: string): Author =>
   authors[slug] ?? authors.torpenguin;
 
+// URL-safe tag slug. Keeps Thai/word chars, replaces everything else (slashes,
+// spaces, punctuation) with a hyphen so /tag/[tag] never breaks routing.
+export function tagSlug(tag: string): string {
+  return tag
+    .trim()
+    .toLowerCase()
+    .replace(/[/\\\s]+/g, '-')
+    .replace(/[^\p{L}\p{N}-]+/gu, '')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '') || 'tag';
+}
+
 // Thai reading-time estimate from the raw markdown body (~400 chars/min).
 export function readingTime(entry: PostEntry): number {
   const chars = (entry.body ?? '').replace(/\s+/g, '').length;
@@ -80,17 +92,28 @@ export async function getPostsByCategory(slug: string): Promise<PostMeta[]> {
   return (await getAllEntries()).filter((e) => e.data.category === slug).map(toMeta);
 }
 
-export async function getPostsByTag(tag: string): Promise<PostMeta[]> {
-  return (await getAllEntries()).filter((e) => e.data.tags.includes(tag)).map(toMeta);
+// Match posts whose any tag slugifies to the given slug.
+export async function getPostsByTag(slug: string): Promise<PostMeta[]> {
+  return (await getAllEntries())
+    .filter((e) => e.data.tags.some((t) => tagSlug(t) === slug))
+    .map(toMeta);
 }
 
-export async function getAllTags(): Promise<string[]> {
+// All distinct tag slugs, each with a display label (first raw tag seen).
+export async function getAllTagSlugs(): Promise<{ slug: string; label: string }[]> {
   const all = await getAllEntries();
-  return [...new Set(all.flatMap((e) => e.data.tags))];
+  const map = new Map<string, string>();
+  for (const e of all) for (const t of e.data.tags) {
+    const s = tagSlug(t);
+    if (!map.has(s)) map.set(s, t);
+  }
+  return [...map].map(([slug, label]) => ({ slug, label }));
 }
 
 export async function howToCount(tag: string): Promise<number> {
-  return (await getPostsByCategory('how-to')).filter((p) => p.tags.includes(tag)).length;
+  return (await getPostsByCategory('how-to')).filter((p) =>
+    p.tags.some((t) => tagSlug(t) === tagSlug(tag)),
+  ).length;
 }
 
 export async function getPostsByAuthor(slug: string): Promise<PostMeta[]> {
