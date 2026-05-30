@@ -2,7 +2,7 @@
 title: "ม้ามืดร้านกาแฟจากจีน Cotti Coffee ที่โตเร็วจนกลายเป็นแบรนด์กาแฟที่มีสาขามากเป็นอันดับ 4 ของโลก"
 category: case-studies
 tags: ["กรณีศึกษา", "Cotti Coffee", "Torpenguin", "ขยายสาขา", "คาเฟ่", "ต่อเพนกวิน", "ธุรกิจจีน", "ธุรกิจร้านกาแฟ", "ร้านกาแฟ", "ร้านกาแฟจีน"]
-excerpt: "Cotti Coffee ม้ามืดร้านกาแฟจาก"
+excerpt: "Cotti Coffee ม้ามืดร้านกาแฟจาก []"
 author: torpenguin
 publishedAt: 2024-10-30T10:00:33
 updatedAt: 2025-05-09T13:58:49

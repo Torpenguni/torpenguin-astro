@@ -2,7 +2,7 @@
 title: "Recipe Receipt ความสำเร็จในการมัดใจลูกค้าที่มาจากใบเสร็จของมายองเนส Hellmann's"
 category: how-to
 tags: ["marketing", "การตลาด", "Hellmann's", "Marketing", "Recipe Receipt", "Torpenguin", "การตลาดร้านอาหาร", "ต่อเพนกวิน", "เทคนิคการตลาด"]
-excerpt: "Recipe Receipt ความสำเร็จในการ"
+excerpt: "Recipe Receipt ความสำเร็จในการ []"
 author: torpenguin
 publishedAt: 2024-11-04T10:00:32
 updatedAt: 2025-06-18T12:00:30

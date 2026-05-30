@@ -2,7 +2,7 @@
 title: "‘Hunt The Treasure' กลยุทธ์แบบการเล่นเกม ที่ช่วยให้ลูกค้าสนุกและอยู่กับแบรนด์นานยิ่งขึ้น"
 category: how-to
 tags: ["marketing", "การตลาด", "Gamification", "Hunt The Treasure", "Marketing", "Torpenguin", "ต่อเพนกวิน", "เทคนิคร้านอาหาร"]
-excerpt: "‘Hunt The Treasure&#8217"
+excerpt: "‘Hunt The Treasure&#8217 []"
 author: torpenguin
 publishedAt: 2024-10-28T14:28:09
 updatedAt: 2025-06-18T12:00:30

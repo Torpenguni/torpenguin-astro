@@ -2,7 +2,7 @@
 title: "Portion Spoons อุปกรณ์สำคัญที่ร้านอาหารยุคใหม่ต้องมี"
 category: how-to
 tags: ["systems", "cost", "การจัดการ", "การบริหารจัดการวัตถุดิบ", "Portion Control", "Portion Spoons", "Serving Spoons", "SOP", "Torpenguin", "ช้อนตวง", "ต่อเพนกวิน", "วางระบบ"]
-excerpt: "Portion Spoons อุปกรณ์สำคัญที่"
+excerpt: "Portion Spoons อุปกรณ์สำคัญที่ []"
 author: torpenguin
 publishedAt: 2024-11-12T10:00:15
 updatedAt: 2025-06-18T12:00:29

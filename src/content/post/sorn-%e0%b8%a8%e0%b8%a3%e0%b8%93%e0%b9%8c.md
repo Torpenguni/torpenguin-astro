@@ -2,7 +2,7 @@
 title: "SORN ศรณ์ สร้างประวัติศาสตร์ คว้า ‘สามดาวมิชลิน’ มาครองเป็นร้านแรกในไทย"
 category: news
 tags: ["ข่าวสาร", "Michelin Guide", "Michelin Guide 2025", "SORN ศรณ์", "Torpenguin", "ต่อเพนกวิน", "มิชลิน", "มิชลินไกด์", "ร้านมิชลิน"]
-excerpt: "SORN ศรณ์ สร้างประวัติศาสตร์ ค"
+excerpt: "SORN ศรณ์ สร้างประวัติศาสตร์ ค []"
 author: torpenguin
 publishedAt: 2024-11-28T15:45:44
 updatedAt: 2024-11-28T15:45:44

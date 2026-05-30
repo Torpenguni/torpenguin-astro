@@ -2,7 +2,7 @@
 title: "ทำร้านอาหารให้น่าเชื่อถือ ด้วยการหลัก Social Proof"
 category: how-to
 tags: ["marketing", "การตลาด", "Marketing", "Social Proof", "Torpenguin", "การตลาดร้านอาหาร", "การหาลูกค้า", "ต่อเพนกวิน", "หาลูกค้า"]
-excerpt: "Social Proof หลักการ Marketing"
+excerpt: "Social Proof หลักการ Marketing []"
 author: torpenguin
 publishedAt: 2024-11-11T10:00:00
 updatedAt: 2025-06-18T12:00:29

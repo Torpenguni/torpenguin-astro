@@ -47,7 +47,10 @@ const decode = (s) =>
     .replace(/&hellip;/g, '').replace(/&nbsp;/g, ' ')
     .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(+n));
 const stripTags = (s) => decode(s.replace(/<[^>]+>/g, '')).replace(/\s+/g, ' ').trim();
-const yaml = (s) => '"' + String(s).replace(/"/g, "'").replace(/\n/g, ' ').trim() + '"';
+const yaml = (s) =>
+  '"' +
+  String(s).replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/[\r\n]+/g, ' ').trim() +
+  '"';
 
 async function downloadImage(url, base) {
   try {

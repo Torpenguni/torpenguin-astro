@@ -2,7 +2,7 @@
 title: "Phed Phed อาณาจักรความแซ่บ ร้านอาหารอีสานที่ยืนหยัดในความเป็นตัวเอง อาศัยปากต่อปากจนเปิด 6 สาขาได้ใน 6 ปี"
 category: interviews
 tags: ["บทสัมภาษณ์", "Phed Phed", "Torpenguin", "ขยายสาขา", "ต่อเพนกวิน", "ร้านอาหารอีสาน", "เปิดร้านอาหาร", "เผ็ดเผ็ด"]
-excerpt: "Phed Phed อาณาจักรความแซ่บ ร้า"
+excerpt: "Phed Phed อาณาจักรความแซ่บ ร้า []"
 author: torpenguin
 publishedAt: 2024-10-19T10:00:23
 updatedAt: 2024-10-16T19:04:34

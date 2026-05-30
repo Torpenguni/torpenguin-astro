@@ -2,7 +2,7 @@
 title: "Eat Am Are ร้านสเต๊ก 15 สาขาที่รายได้แซงทุกเชนใหญ่"
 category: case-studies
 tags: ["กรณีศึกษา", "Eat Am Are", "Torpenguin", "ต่อเพนกวิน", "ร้านสเต๊ก", "อีท แอม อาร์", "เปิดร้านสเต๊ก"]
-excerpt: "Eat Am Are ร้านสเต๊ก 15 สาขาที"
+excerpt: "Eat Am Are ร้านสเต๊ก 15 สาขาที []"
 author: torpenguin
 publishedAt: 2024-11-23T10:00:36
 updatedAt: 2025-04-25T17:18:43

@@ -2,7 +2,7 @@
 title: "Nose Tea จากแบรนด์สกินแคร์สู่จุดเริ่มต้นชาชีส ปั้นแบรนด์ยังไงให้ลูกค้าต่อแถวซื้อ"
 category: case-studies
 tags: ["กรณีศึกษา", "Nose Tea", "Torpenguin", "คาเฟ่", "ต่อเพนกวิน", "ร้านชา", "ร้านชาชีส", "เครื่องดื่ม"]
-excerpt: "Nose Tea จากแบรนด์สกินแคร์สู่จ"
+excerpt: "Nose Tea จากแบรนด์สกินแคร์สู่จ []"
 author: torpenguin
 publishedAt: 2024-11-16T10:00:40
 updatedAt: 2025-04-25T17:19:06

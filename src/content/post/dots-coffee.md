@@ -2,7 +2,7 @@
 title: "Dots Coffee กับความตั้งใจที่จะเปลี่ยนภาพจำของสังคมที่มีต่อผู้พิการทางสายตา ผ่านธุรกิจกาแฟ"
 category: interviews
 tags: ["บทสัมภาษณ์", "Dots Coffee", "Torpenguin", "คาเฟ่", "ต่อเพนกวิน", "ผู้พิการทางสายตา", "ร้านกาแฟ", "เจ้าของธุรกิจ", "เจ้าของร้านกาแฟ"]
-excerpt: "Dots Coffee กับความตั้งใจที่จะ"
+excerpt: "Dots Coffee กับความตั้งใจที่จะ []"
 author: torpenguin
 publishedAt: 2024-11-02T10:00:25
 updatedAt: 2024-11-04T15:32:22

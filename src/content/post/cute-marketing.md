@@ -2,7 +2,7 @@
 title: "‘ความน่ารัก’ มักทำให้เราหวั่นไหว รู้จัก Cute Marketing กลยุทธ์การตลาดที่จู่โจมหัวใจลูกค้าด้วย ‘ความน่ารัก’"
 category: how-to
 tags: ["marketing", "การตลาด", "Cute Marketing", "Marketing", "Torpenguin", "การตลาดร้านอาหาร", "ต่อเพนกวิน", "เทคนิคการตลาด"]
-excerpt: "Cute Marketing กลยุทธ์การตลาดท"
+excerpt: "Cute Marketing กลยุทธ์การตลาดท []"
 author: torpenguin
 publishedAt: 2024-10-21T12:38:16
 updatedAt: 2025-06-18T12:00:30
