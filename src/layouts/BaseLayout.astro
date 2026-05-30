@@ -5,7 +5,7 @@ import Footer from '../components/Footer.astro';
 
 interface Crumb {
   name: string;
-  item: string; // absolute or site-relative URL
+  href: string; // absolute or site-relative URL
 }
 
 interface Props {
@@ -115,7 +115,7 @@ if (breadcrumbs.length > 0) {
       '@type': 'ListItem',
       position: i + 1,
       name: c.name,
-      item: new URL(c.item, SITE).href,
+      item: new URL(c.href, SITE).href,
     })),
   });
 }
