@@ -2,7 +2,7 @@
 title: "ธุรกิจจบ ถ้าไม่พบ หลัก New S-curve 4 วิธีสำคัญในการหา New S-Curve ของธุรกิจตัวเอง"
 category: interviews
 tags: ["แนวคิด"]
-excerpt: "ธุรกิจจบ ถ้าไม่พบ หลัก New S-c []"
+excerpt: "ธุรกิจจบ ถ้าไม่พบ หลัก New S-c"
 author: torpenguin
 publishedAt: 2026-03-03T14:00:39
 updatedAt: 2026-04-03T14:01:21

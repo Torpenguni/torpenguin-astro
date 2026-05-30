@@ -1,0 +1,98 @@
+---
+import Breadcrumb from './Breadcrumb.astro';
+import PostGrid from './PostGrid.astro';
+import Pagination from './Pagination.astro';
+import { howToTopics } from '../data/howto';
+import { howToCount, type PostMeta } from '../lib/content';
+import type { Category } from '../data/categories';
+
+interface Props {
+  category: Category;
+  posts: PostMeta[]; // this page's slice
+  currentPage: number;
+  totalPages: number;
+}
+const { category, posts, currentPage, totalPages } = Astro.props;
+
+// How-to sub-nav, only on the first page.
+const subNav =
+  category.slug === 'how-to' && currentPage === 1
+    ? await Promise.all(howToTopics.map(async (t) => ({ ...t, count: await howToCount(t.slug) })))
+    : [];
+
+const crumbs = [
+  { name: 'หน้าแรก', href: '/' },
+  { name: category.label, href: `/${category.slug}` },
+];
+---
+
+<section class="pillar-head">
+  <div class="container">
+    <Breadcrumb items={crumbs} />
+    <h1 class="pillar-title">{category.label}</h1>
+    <p class="pillar-intent">{category.intent}</p>
+    {currentPage === 1 && <p class="pillar-desc">{category.description}</p>}
+
+    {subNav.length > 0 && (
+      <nav class="subnav" aria-label="หัวข้อย่อย How-to">
+        {subNav.map((t) =>
+          t.count > 0 ? (
+            <a href={`/tag/${t.slug}`} class="subnav-chip">{t.label}<span class="subnav-th">{t.th}</span></a>
+          ) : (
+            <span class="subnav-chip is-disabled">{t.label}<span class="subnav-th">{t.th}</span></span>
+          ),
+        )}
+      </nav>
+    )}
+  </div>
+</section>
+
+<section class="pillar-body">
+  <div class="container">
+    {currentPage > 1 && <p class="pillar-page-note">หน้า {currentPage} จาก {totalPages}</p>}
+    {posts.length === 0 ? (
+      <p class="pillar-empty">หมวดนี้กำลังจะมีเรื่องเร็วๆนี้ ระหว่างนี้ตามอ่านหมวดอื่นของพวกเราไปก่อนได้</p>
+    ) : (
+      <PostGrid posts={posts} cols={3} />
+    )}
+    <Pagination base={`/${category.slug}`} current={currentPage} total={totalPages} />
+  </div>
+</section>
+
+<style>
+  .pillar-head { padding: 28px 0 32px; border-bottom: 1px solid var(--hairline); }
+  .pillar-title {
+    font-family: var(--font-sans);
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 18px 0 8px;
+    line-height: 1.1;
+  }
+  .pillar-intent {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    margin-bottom: 16px;
+  }
+  .pillar-desc { font-size: 18px; line-height: 1.8; color: var(--ink-soft); max-width: 720px; }
+  .pillar-body { padding: 40px 0 64px; }
+  .pillar-page-note { font-family: var(--font-mono); font-size: 12px; color: var(--ink-faint); margin-bottom: 20px; }
+  .pillar-empty { font-size: 17px; color: var(--ink-soft); padding: 24px 0; }
+
+  .subnav { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+  .subnav-chip {
+    display: inline-flex; align-items: baseline; gap: 8px;
+    padding: 9px 16px; border: 1px solid var(--hairline-strong); border-radius: 999px;
+    font-family: var(--font-sans); font-size: 15px; font-weight: 700; color: var(--ink);
+    text-decoration: none; border-bottom: 1px solid var(--hairline-strong);
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .subnav-chip:hover { border-color: var(--ink); }
+  .subnav-chip .subnav-th { font-size: 12px; font-weight: 500; color: var(--ink-faint); }
+  .subnav-chip.is-disabled { color: var(--ink-mute); border-color: var(--hairline); cursor: default; }
+  .subnav-chip.is-disabled .subnav-th { color: var(--ink-mute); }
+</style>

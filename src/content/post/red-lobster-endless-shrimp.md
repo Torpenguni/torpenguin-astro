@@ -2,7 +2,7 @@
 title: "Case study แบรนด์ Red Lobster ร้านซีฟู้ดอันดับ 1 ของ USA กับการขาดทุนที่ต้องยื่นล้มละลายในปี 2024 เพราะโปรฯ Endless Shrimp"
 category: case-studies
 tags: ["กรณีศึกษา"]
-excerpt: "Case study แบรนด์ Red Lobster []"
+excerpt: "Case study แบรนด์ Red Lobster"
 author: torpenguin
 publishedAt: 2026-04-27T15:21:16
 updatedAt: 2026-04-27T15:21:16

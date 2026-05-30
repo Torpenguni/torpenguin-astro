@@ -1,0 +1,95 @@
+---
+title: "The Yard Hostel โฮสเทลที่เปลี่ยนทำเลตาย ให้กลายเป็นโฮสเทลที่จองเต็มทุกซีซัน และเป็น “บ้านญาติ” ของคนทั้งโลก"
+category: interviews
+tags: ["บทสัมภาษณ์", "The Yard Hostel", "Torpenguin", "ต่อเพนกวิน"]
+excerpt: "The Yard Hostel โฮสเทลที่เปลี่"
+author: torpenguin
+publishedAt: 2025-02-08T10:00:47
+updatedAt: 2025-02-03T19:54:49
+image: "/imported/the-yard-hostel-cover.png"
+---
+
+<p><strong>The Yard Hostel โฮสเทลที่เปลี่ยนทำเลตาย ให้กลายเป็นโฮสเทลที่จองเต็มทุกซีซัน และเป็น “บ้านญาติ” ของคนทั้งโลก</strong><!-- notionvc: 2ce77825-c782-44e3-b53d-41b96b525853 --></p>
+
+<p>ธุรกิจร้านอาหาร เวลาพูดถึงคำว่าความยั่งยืนหรือ Sustainability คนส่วนใหญ่มักจะมองเป็นในเรื่องของค่าใช้จ่ายเป็นต้นทุนที่สูงขึ้น<!-- notionvc: e1d5c78c-2ff1-43f3-b886-b5ff39be0fad --></p>
+<p><em>’โอ้โหจะต้องเปลี่ยนจากพลาสติกไปเป็นกระดาษหรอ ปกติก็แพงอยู่แล้วนะ’ </em><br />
+<em>’แค่หมู แค่ไก่ แค่ไข่ปกติก็ราคาสูงขึ้นเรื่อย ๆ ทำไมต้องใช้ผักออร์แกนิคต้น ทุนมาก็แพงผลผลิตก็ไม่ต่อเนื่องอีก’</em><br />
+ไม่เห็นมีอะไรดีเลย<!-- notionvc: ee8bcaea-e403-4e76-9538-b4f43b0330a7 --></p>
+<p>วันนี้อยากให้ทุกคนลองมาเปิดใจให้กับ Case Study นี้ดูค่ะ ว่าเรื่องของ ‘ความยั่งยืน’ มันไม่ได้หมายถึงแค่ต้นทุนที่สูงขึ้น แต่มันจะทำให้ลูกค้าของเรามีเหตุผลที่ต้องมาใช้บริการเรา และจะทำให้เขายินดีที่จะจ่ายให้กับเรามากกว่าปกติ<!-- notionvc: 447ef049-0e63-406b-b9b6-4ddc265f7829 --></p>
+
+<p>วันนี้ชวนคุยกับ <strong><em>คุณส้ม(เล็ก) &#8211; อติพร สังข์เจริญ</em></strong> อดีตวิศวกร ผู้ผันตัวมาทำโฮสเทล เป็นผู้ก่อตั้ง The Yard Hostel โฮสเทลที่มุ่งสร้างความยั่งยืนและใส่ใจ ‘People’ หรือผู้คนเป็นหัวใจสำคัญ เธอเปลี่ยนที่พักแห่งนี้ให้กลายเป็น “บ้านญาติ” ที่เชื่อมโยงนักเดินทางจากทั่วทุกมุมโลกเข้าด้วยกัน<!-- notionvc: e1e8c606-5f48-4e23-8ecb-d7ed389c7548 --></p>
+
+<p><img loading="lazy" decoding="async" src="/imported/the-yard-hostel-1.png" alt="The Yard" width="640" height="640" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/the-yard-hostel-1.png 1024w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_1-300x300.png 300w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_1-150x150.png 150w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_1-768x768.png 768w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_1-420x420.png 420w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_1-640x640.png 640w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_1-681x681.png 681w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_1.png 1080w" sizes="(max-width: 640px) 100vw, 640px" /></p>
+
+<p>ไอเดียของการทำ The Yard เกิดขึ้นจากการบังเอิญไปเห็น Ads ของเว็บไซต์ชื่อ withlocals บน Facebook เมื่อ 10 ปีก่อน เว็บไซต์นี้มันคล้าย ๆ แพลตฟอร์มของ airbnb experience ในปัจจุบัน คือคนสามารถจองเข้ามาร่วมกิจกรรมกับเราได้ เราก็สร้าง activity อะไรก็ได้ให้ต่างชาติมาจอยกับเรา ตอนนั้นคุณส้มก็ให้คนมาทำกับข้าวกินที่บ้าน ภายใน 6 เดือน ได้ถึง 30 Booking เลย<!-- notionvc: b761489b-0f0b-4090-93b0-5815b5348e2b --></p>
+<p>ตอนนั้นได้เจอคนเยอะมาก ๆ และก็เริ่มมีบางคนเริ่มถามเรื่องที่หลับที่นอน บางคนขอนอนบ้าน มันแปลก ๆ ใช่มั้ย 5555555 เราก็ถามเขานะว่าทำไมอยากนอนบ้านเรา สรุปคือเขาเจอโฮสแบบไม่น่ารักอะไรเงี้ย เขาอยากอยากเจอคนที่เขาสามารถพูดคุยแล้วก็แบบหัวเราะได้รู้สึกแบบปลอดภัย<!-- notionvc: a84b4064-8e50-489d-b975-855a166a5d74 --></p>
+<p>หลังจากนั้นเราก็รู้สึกว่าเวลาที่แยกกับคนที่มานอนที่บ้านทำไมเรารู้สึกว่าเราเสียใจ เลยเริ่มตกผลึกว่า เออจริง ๆ แล้วเราอาจจะชอบอะไรแบบนี้ เรื่องความสัมพันธ์กับผู้คน เลยคิดว่านี้เป็นจุดเริ่มต้นของ The Yard<!-- notionvc: f073320e-a72c-4019-b6d2-07dcf7195096 --></p>
+
+<p><img loading="lazy" decoding="async" src="/imported/the-yard-hostel-2.png" alt="The Yard Hostel" width="640" height="640" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/the-yard-hostel-2.png 1024w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_2-300x300.png 300w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_2-150x150.png 150w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_2-768x768.png 768w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_2-420x420.png 420w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_2-640x640.png 640w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_2-681x681.png 681w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_2.png 1080w" sizes="(max-width: 640px) 100vw, 640px" /></p>
+<p>พอเริ่มคิดจะสร้าง Hostel ก็เป็นเหมือนคนอื่นคือตั้งต้นด้วยความเป็น Typical Hostel ทั่วไป แบบมีห้องแถวแล้วก็เอามาแบ่ง ๆ อะไรแบบนั้น แต่เอ้ยเรามานั่งคิดใหม่ว่าถ้า Hostel มันไม่ได้อยู่ในตึกละมันเป็นพื้นที่กว้าง ๆ ละ ทำได้มั้ย เราเริ่มหาที่จากที่ที่เราคุ้นเคยและสามารถมีต้นไม้ได้<!-- notionvc: 43447016-e120-46bf-97fc-c1aeae77cfc5 --></p>
+<p>The Yard เริ่มต้นจากการใช้บ้านเก่าในย่านอารีย์และตู้คอนเทนเนอร์เก่า มารวมให้กลายเป็นที่พัก มีพื้นที่ Courtyard ตรงกลางใช้เป็นพื้นที่จัด Activity<!-- notionvc: 16d6aecb-817d-4817-b7e4-b7ac799499f9 --></p>
+<p>ส่วนเหตุผลที่ว่าทำไมถึงใช้ตู้คอนเทนเนอร์เก่า แทนการก่ออิฐฉาบปูนบ้านขึ้นมาใหม่ ส่วนนึงก็คือมันประหยัดต้นทุนกว่า และที่สำคัญคือตู้คอนเทนเนอร์เก่าฟังก์ชันมันก็ยังใช้ได้ การที่เราไปใช้ทรัพยากรใหม่มันก็ไม่ได้จำเป็น<!-- notionvc: 2c21acaa-fedc-4de0-9607-b5ce576716a3 --></p>
+<p>เฟอร์นิเจอร์ส่วนใหญ่ของที่นี่แม้แต่โต๊ะที่เรานั่งกันอยู่ตรงเนี้ย เป็นร้านในอารีย์นั่นแหละ ที่เขาทิ้งแล้ว หรือแบบเวลาเขาเซ้งร้านแล้วใครจะมาเอาก็ไปยกเอง<!-- notionvc: 77841813-1b8a-4232-b5d6-90c0af5ffb34 --></p>
+<p>ผ้าปูของที่นี่เราไม่ได้ใช้สีขาวแบบที่เห็นตามโรงแรมหรือโฮสเทลที่อื่น เราใช้ผ้าที่เป็น Dead Stock หรือผ้าที่เขาผลิตเกิน อันนี้มันก็ทำให้เราประหยัดขึ้น แถมได้ความเก๋ด้วย<!-- notionvc: a7aea8e1-2e24-4b43-9c62-5d1ae01ceead --></p>
+
+<p><img loading="lazy" decoding="async" src="/imported/the-yard-hostel-3.png" alt="The Yard" width="640" height="640" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/the-yard-hostel-3.png 1024w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_5-300x300.png 300w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_5-150x150.png 150w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_5-768x768.png 768w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_5-420x420.png 420w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_5-640x640.png 640w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_5-681x681.png 681w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_5.png 1080w" sizes="(max-width: 640px) 100vw, 640px" /></p>
+
+<p><strong><em><span>’Sustain ต้องไม่ลำบาก และไม่เบียดเบียนความสุขใคร’</span></em></strong><!-- notionvc: 96d94c92-3c0a-4504-b007-2ad028841ec0 --></p>
+<p>การมาที่นี่ก็เหมือนเรากำลังได้เป็นส่วนหนึ่งในการจัดการขยะและสร้างความยั่งยืน<!-- notionvc: 4017949d-5f53-4cc7-b021-6e55acf49944 --></p>
+<p>ที่นี่ไม่เสิร์ฟน้ำขวด แต่มีตู้น้ำตามจุดต่าง ๆ ให้กดแทน ใครไม่มีขวดก็สามารถมายืมไปใช้ก่อนก็ได้ในขณะที่พักที่นี่ ในแง่ธุรกิจคือประหยัดกว่าเดิมมาก ๆ<!-- notionvc: 8adccde8-2809-4d35-b3bc-47c12ac1bf85 --></p>
+<p>รวมไปถึงเรื่องของ Food Waste อย่างมื้อเช้าบุฟเฟ่ต์ ที่นี่เปลี่ยนเป็นการจัดเซ็ตอาหารเช้าให้ ถ้าไม่อิ่มก็มาเติมได้ โยเกิร์ตและแยมที่เสิร์ฟในเซ็ตก็ทำเอง เพราะถ้าซื้อมาเป็นกระปุก แขก 50 คน ก็ 50 กระปุกแล้ว ขยะทั้งนั้นเลย หากกินไม่หมด มีกล่องให้อาหารกระรอกอยู่เอาไปใส่ไว้ได้ หรือไปเทไว้ในส่วนที่ทำปุ๋ย<!-- notionvc: b642433c-8907-4908-98a8-b48262676ccc --></p>
+<p>หลายคนมาว่า Sustain ต้องลดต้องตัดทุกอย่างออก แต่เรายังมีเครื่องทำน้ำอุ่น เราไม่จำกัดเวลาเปิดแอร์ เราไม่อยากเบียดเบียนความสุขของใคร เราก็จะใช้วิธีว่าเราติดแอร์และใช้เครื่องใช้ไฟฟ้าที่ประหยัดพลังงานที่สุด นี่เป็นสิ่งที่เราทำได้<!-- notionvc: b93fbca2-a5a9-4ad4-a913-91c035f31320 --></p>
+<p>The Yard จะบอกกับแขกเสมอว่าเรากำลังซีเรียสเรื่องอะไร เรากำลังทำแบบนี้เพื่ออะไร เมื่อเราสื่อสาร ลูกค้าทุกคนก็พร้อมเปิดใจและเรียนรู้ไปพร้อม ๆ กันในขณะที่พักอยู่ที่นี่<!-- notionvc: 1a79b1bf-6b56-4112-8cbd-13fe0e0a8d0f --></p>
+
+<p>The Yard ไม่ได้อยู่ในสถานที่ท่องเที่ยว อยู่ในซอยที่เรียกได้ว่าลึกด้วยซ้ำ และราคาก็ไม่ได้เป็นเรตที่ถูกที่สุดในตลาดเมื่อเทียบกับทำเล แต่อะไรที่ทำให้ Occupancy ของเขาสูงถึง 90% ในช่วงโลว์ซีซันและเต็ม 100% ในช่วงไฮซีซัน<!-- notionvc: 9299a2b7-e509-4038-9163-e78861cc624a --></p>
+<p>คำตอบก็คือ ‘ผู้คน’ สิ่งที่ทำให้ผู้คนจากทั่วทุกมุมโลกอยากมาที่นี่<!-- notionvc: 69e86f77-e903-430a-8850-81d2766f15a7 --></p>
+
+<p><img loading="lazy" decoding="async" src="/imported/the-yard-hostel-4.png" alt="The Yard family tree" width="800" height="500" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/the-yard-hostel-4.png 800w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_7-300x188.png 300w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_7-768x480.png 768w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_7-672x420.png 672w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_7-640x400.png 640w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_7-681x426.png 681w" sizes="(max-width: 800px) 100vw, 800px" /></p>
+
+<p><em><strong><span>’People’</span></strong></em><!-- notionvc: b748d287-02a0-4b8b-a9a0-2d5429397c9c --></p>
+<p>นักธุรกิจหลายคนมักมอง P ในแง่ของ Profit อย่างเดียว แต่ The Yard จะสอนให้เรามองตัว P ตัวนี้ในแง่ ‘People’ และเมื่อเราทำ People ดี Profit ที่เราคาดหวังก็จะตามมา<!-- notionvc: 78b37c60-e989-4e95-b82d-d773316700f8 --></p>
+<p>ที่สำคัญมันช่วยในมุมการตลาดและการสร้างแบรนด์ในธุรกิจด้วย ไอ้คำว่าความยั่งยืน กับ Branding สุดท้ายมันคือเรื่องเดียวกัน<!-- notionvc: 5cf96258-0443-43a6-b6c4-91c5dcaeb41c --></p>
+<p>The Yard ถ้าให้แปลเป็นไทย ก็คงเป็นเหมือนบ้านญาติ เราดูแลทุกคนเหมือนญาติ ซึ่งทุกคนในที่นี้ไม่ได้หมายถึงแขกอย่างเดียว แต่ก็รวมไปถึง ‘ทีมงาน’ ด้วย<!-- notionvc: 721e5cbc-c27f-434f-89ff-80e0b9177b0f --></p>
+<p>’Respect Our Staff’ เป็นสิ่งที่เราสื่อสารกับแขกที่มาเสมอ คือให้เขาเคารพในความเป็นเรา เคารพทีมงานของเรา<!-- notionvc: c3e1a8fb-3ea6-4a37-9d98-7d386cefaf04 --></p>
+<p>ถ้าใครเป็นเจ้าของธุรกิจเล็ก ๆ เราจะรู้กันเลยว่า อัตรา Turnover พนักงานสูงแค่ไหน บางที่ 2 Week ก็ไปแล้ว นั่นคือสิ่งที่เรากลับมานั่งทำการบ้าน ว่าเราจะทำยังไงให้คนที่เข้ามาทำกับเรามีชีวิตที่ดีขึ้น<!-- notionvc: 383e4db1-d29d-4c93-9e43-370625b83e69 --></p>
+<p>ที่นี่เราดีไซน์ให้พนักงานทำงาน 13 ช.ม. แล้วหยุดยาวไปเลย 4 วัน ซึ่งมันก็ตรงกับไลฟ์สไตล์คนรุ่นใหม่ ที่เขาอยากออกแบบชีวิตด้วยตัวของเขาเอง พอเป็นแบบนี้ เขาก็ไปหาจ๊อบ 2 ได้ถ้าเขาอยากทำ หรือจะไปเที่ยวที่ไหนไกล ๆ ก็ทำได้<!-- notionvc: daf1c7b0-06ef-4c98-be75-01e0e40b03b7 --></p>
+<p>พอมันมีอิสระในการทำงาน เด็ก ๆ มีความสุข ผลมันก็ออกในรูปแบบงานบริการที่ดี และที่สำคัญอัตรา Turnover มันก็น้อยลง ที่นี่เปิดมาเป็น 10 ปี พนักงาน 6 ตำแหน่ง มีน้อง ๆ ที่ผ่านจากที่นี่ไปแค่ 25 คนเอง<!-- notionvc: fe945a32-47d0-4d59-b72d-be7bb7a55174 --></p>
+<p>ที่นี่ตัดเรื่องขาด ลา มาสายไปได้เลย เพราะมีที่พักให้พนักงาน ห้องนอน ซักผ้า อบผ้า ห้องครัว ทำที่นี่ได้หมด คือไม่ต้องออกไปเช่าหออยู่ ไม่ต้องเสียค่าเดินทางเลย จะได้เอาเงินตรงนี้ไปทำอย่างอื่น เลิกงานก็สามารถมา Hangout กับแขกได้ มองในแง่ Business การทำอย่างงี้ยังไงเราก็ Win <!-- notionvc: fd3d66c4-1e4f-47bb-b57e-76ab4d8aff82 --></p>
+
+<p><img loading="lazy" decoding="async" src="/imported/the-yard-hostel-5.png" alt="The Yard" width="640" height="640" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/the-yard-hostel-5.png 1024w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_3-300x300.png 300w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_3-150x150.png 150w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_3-768x768.png 768w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_3-420x420.png 420w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_3-640x640.png 640w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_3-681x681.png 681w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_3.png 1080w" sizes="(max-width: 640px) 100vw, 640px" /></p>
+<p>The Yard กลายเป็นบ้านที่ทุกคนมาแล้วพร้อมจะเปิดใจ ทุกคนไม่ได้กระอักกระอ่วนในการมาเที่ยวคนเดียว ทุกคนมาที่นี่พร้อมใจที่เปิดในการเรียนรู้ถึงวัฒนธรรม เรียนรู้จากคนใหม่ ๆ The Yard มี Activity กิจกรรมหมุนเวียนอยู่เรื่อย ๆ ให้คนได้มาทำความรู้จักกัน<!-- notionvc: fb3f9b5d-9f88-40ae-acc8-381038e1deff --></p>
+<p>หลายคนเคยมาที่นี่คนเดียว และกลับมาอีกครั้งพร้อมภรรยาพร้อมลูก บางคนพาพ่อแม่มา บางคนมาเจอคนรักที่นี่และกลับมาจัดงานแต่งงานที่นี่ก็มีเหมือนกัน <span aria-label="????">????</span><!-- notionvc: f6e33351-88f5-49a5-b192-33a67b9d748d --></p>
+<p>กลายเป็นว่า The yard มันเหมือนบ้านญาติที่ไม่ว่าเราจะไปไหนมา กลับมาบ้านญาติมันจะมีความอบอุ่นเสมอ<!-- notionvc: 9308c624-7cd8-43aa-a41f-625853d35fe5 --></p>
+
+<p><img loading="lazy" decoding="async" src="/imported/the-yard-hostel-6.png" alt="The Yard Hostel" width="640" height="640" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/the-yard-hostel-6.png 1024w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_4-300x300.png 300w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_4-150x150.png 150w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_4-768x768.png 768w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_4-420x420.png 420w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_4-640x640.png 640w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_4-681x681.png 681w, https://torpenguin.com/wp-content/uploads/2025/02/TheYard_20250203_4.png 1080w" sizes="(max-width: 640px) 100vw, 640px" /></p>
+<p>ทั้งหมดที่ The Yard ทำเขาไม่ได้ทำเพื่อญาติ ณ วันนี้ ที่เป็นลูกค้าและพนักงานเท่านั้น พวกเขายังคิดและทำเพื่อ ‘ญาติในอนาคต’ ด้วย<!-- notionvc: e1314b2d-4eb1-4683-9106-42cd6c2151c4 --></p>
+<p>”ญาติในอนาคตก็คือลูกหลานของญาติในวันนี้เนี่ยแหละ” คุณส้มกล่าว เราทำเรื่องความยั่งยืนจริง ๆ ก็เพื่อลูกหลานในอนาคต เราจะบริหารทรัพยากรยังไงให้พวกเขายังได้ใช้ ให้เลือกไปถึงรุ่นพวกเขา<!-- notionvc: 5c3a31d7-6b0b-45d5-846d-3854ffa7e5a0 --></p>
+<p>ความยั่งยืนในมุมธุรกิจโรงแรมมันไม่ได้บอกว่าคุณจะต้องใช้น้ำให้น้อยลง คุณจะต้องไปรีไซเคิลคุณจะต้องลด Food Waste คุณจะต้องไม่เปลี่ยนผ้าปูที่นอนใหม่ทุกวัน อันนั้นคือเรื่องพื้นฐานโรงแรมที่คุณจะต้องทำอยู่แล้ว<!-- notionvc: d50f2442-36c6-4387-838c-65396ea99df8 --></p>
+<p>แต่สิ่งที่ The Yard ทำในมุมความยั่งคือคำว่า Inclusive ไม่ทอดทิ้งใคร เขาดูแลทั้งพนักงาน คนในชุมชน เหมือนครอบครัว การมี The Yard อยู่ทำให้สังคมในอารีย์มันดียิ่งขึ้น นี่คืออีกหนึ่งปัจจัยในเรื่องของความยั่งยืนที่ไม่ค่อยมีใครได้พูดเรื่องเหล่านี้กันซึ่งผลลัพธ์มันสะท้อนออกมาในมุมธุรกิจ 100% เลย<!-- notionvc: 3de7d254-aef6-46c3-af4c-d2e8e099e21f --></p>
+<p>การที่จะทำธุรกิจโรงแรมโดยเฉพาะโฮสต์เทลและได้ Occupancy ระดับ 90 กว่าเปอร์เซ็นตลอดทั้งปีเรียกว่าเป็นไปได้ยากหรือเรียกว่าเป็นไปไม่ได้ เพราะ Marketing ของ The Yard คือ 0 บาท เขาไม่ได้ทำการตลาดด้วยการใส่เงินเลยด้วยซ้ำ แต่เขาทำการตลาดด้วยความใส่ใจ P หรือ People<!-- notionvc: 5ef6e896-3959-497d-8e9a-d92789bac76f --></p>
+<p>อันนี้คือสิ่งที่เราอยากให้คนทำธุรกิจได้เรียนรู้ เรามักจะมอง Sustainability ในมุม Planet เราจะมองมุมธุรกิจในมุม P Profit แต่ The Yard จะสอนให้เรามองตัว P ตัวนี้ในแง่ ‘People’ และ P People ที่ดีเนี่ยแหละ จะเทิร์นเป็น P Profit ได้ และจะทำให้ P Planet ของเรายั่งยืนได้<!-- notionvc: 10d4797c-8d1a-433a-8dcd-cac2a082bec9 --></p>
+
+<p>หวังว่าเรื่องราวของ The Yard จะเป็นแรงบันดาลใจให้กับทุกคนนะคะ ไว้พบกันใหม่ในบทความหน้า ฝากติดตาม Torpenguin ???? ในทุก ๆ ช่องทางด้วยนะคะ</p>
+
+
+<p><strong>???? ติดตามข่าวสารธุรกิจร้านอาหาร</strong></p>
+<p><a href="https://www.facebook.com/TORPENGUIN/?locale=th_TH" target="_blank" rel="noopener">Facebook : Torpenguin</a><br />
+<a href="https://www.instagram.com/torpenguin/?hl=en" target="_blank" rel="noopener">Instargram : torpenguin</a><br />
+<a href="https://www.tiktok.com/@torpenguin" target="_blank" rel="noopener">TikTok : torpenguin</a><br />
+<a href="https://www.youtube.com/@Torpenguin" target="_blank" rel="noopener">Youtube : Torpenguin</a></p>
+
+<p><b><strong>????</strong>อ่านบทสัมภาษณ์อื่น ๆ ที่น่าสนใจต่อ</b></p>
+<ul>
+<li><a href="https://torpenguin.com/earlybkk/">earlybkk ร้านกาแฟที่ลดขยะตั้งแต่ก่อสร้างยันเสิร์ฟ และการเป็นโรงเรียนแห่งการเรียนรู้ในเรื่องการจัดการสิ่งแวดล้อมขนาดย่อม ๆ</a></li>
+<li><a href="https://torpenguin.com/omakahed/">จากไส้เดือน สู่ เห็ด เรื่องราวของชายผู้เกิดมาจากหนอน สู่ คนบ้าเห็ด และโอมากาเสะในแบบ ‘โอมากาเห็ด’</a></li>
+<li><a href="https://torpenguin.com/dots-coffee/">Dots Coffee กับความตั้งใจที่จะเปลี่ยนภาพจำของสังคมที่มีต่อผู้พิการทางสายตา ผ่านธุรกิจกาแฟ</a></li>
+<li><a href="https://torpenguin.com/toh-daeng-baan-ar-jor/">โต๊ะแดงบ้านอาจ้อ : โมเดลความยั่งยืนของร้านอาหาร บ้าน ชุมชน สู่วันที่กิจการเติบโตมากขึ้น</a></li>
+<li><a href="https://torpenguin.com/rasik-local-kitchen/">รสิก : สนับสนุนวัตถุดิบจากท้องถิ่นทั่วไทย เสิร์ฟเมนูไทยทวิสต์ และเชื่อว่าการรักษามาตรฐานคือหัวใจสำคัญของร้านอาหาร</a></li>
+<li><a href="https://torpenguin.com/soft-food/">Soft Food : สัมผัสนุ่มของอาหาร 4 ระดับ กับโจทย์การเปิดร้านในวันที่ไทยกำลังก้าวเข้าสู่สังคมสูงวัย</a></li>
+<li><a href="https://torpenguin.com/5-a-m-%e0%b8%84%e0%b8%b2%e0%b9%80%e0%b8%9f%e0%b9%88%e0%b8%99%e0%b9%89%e0%b8%b3%e0%b9%80%e0%b8%95%e0%b9%89%e0%b8%b2%e0%b8%ab%e0%b8%b9%e0%b9%89/">5 a.m. คาเฟ่น้ำเต้าหู้แบบ Specialty กับแนวคิดธุรกิจที่อยากเติบโตไปพร้อมกับย่านปากคลองตลาด</a></li>
+<li><a href="https://torpenguin.com/%e0%b8%82%e0%b9%89%e0%b8%b2%e0%b8%a7%e0%b8%a3%e0%b8%b2%e0%b8%a9%e0%b8%8e%e0%b8%a3%e0%b9%8c%e0%b9%81%e0%b8%81%e0%b8%87/">‘ข้าวราษฎร์แกง’ เปลี่ยน Pain point ให้เป็นจุดแข็ง กับแนวคิดธุรกิจที่เชื่อว่าเราต้องใส่ใจในสิ่งแวดล้อม สังคม และพนักงาน</a></li>
+<li><a href="https://torpenguin.com/%e0%b8%a2%e0%b8%b1%e0%b8%81%e0%b8%a9%e0%b9%8c%e0%b8%81%e0%b8%b0%e0%b9%82%e0%b8%88%e0%b8%99-%e0%b8%9b%e0%b8%a3%e0%b8%b8%e0%b8%87%e0%b8%95%e0%b8%b2%e0%b8%a1%e0%b8%a7%e0%b8%b1%e0%b8%95%e0%b8%96%e0%b8%b8/">ยักษ์กะโจน ร้านอาหารที่ชวนคนกินมาร่วมแก้ปัญหาสุขภาพ สังคม และสิ่งแวดล้อมไปพร้อม ๆ กัน</a></li>
+<li><a href="https://torpenguin.com/fishmonger/">Fishmonger ร้านฟิชแอนด์ชิพ ที่เชื่อมคนเมือง กับ ประมงท้องถิ่น ผ่านปลาไทย</a></li>
+<li><a href="https://torpenguin.com/better-moon-cafe/">Better Moon café คาเฟ่กรีน ๆ ที่เชื่อว่า ‘สิ่งแวดล้อม’ กับ ‘ธุรกิจร้านอาหาร’ สามารถเดินไปด้วยกันได้</a></li>
+<li><a href="https://torpenguin.com/saisai/">ไสใส บอกเล่าเรื่องราววัตถุดิบท้องถิ่นในไทย ให้เป็นที่รู้จักผ่านน้ำแข็งไส</a></li>
+</ul>

@@ -9,7 +9,8 @@
 #
 # What it does:
 #   1. Ensures @astrojs/sitemap is installed + wired into astro.config.
-#   2. Writes public/robots.txt (open to all crawlers incl. AI; points to sitemap).
+
+
 #   3. Yellow Pop theme — rewrites the colour variables in src/styles/global.css.
 #   4. Sweeps `color: var(--accent)` -> `--accent-ink` (yellow text on white is unreadable).
 #   5. Fixes the 3 buttons that put light text on a yellow fill -> dark text.

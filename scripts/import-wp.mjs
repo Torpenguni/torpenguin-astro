@@ -88,10 +88,22 @@ async function run() {
   const cats = await (await fetch(`${WP}/categories?per_page=100&_fields=id,slug,name`, { headers: UA })).json();
   const catById = new Map(cats.map((c) => [c.id, { slug: c.slug, name: decode(c.name) }]));
 
-  const posts = await (await fetch(
-    `${WP}/posts?per_page=${LIMIT}&orderby=date&_embed=wp:featuredmedia,wp:term&_fields=slug,date,modified,title,excerpt,content,categories,_links,_embedded`,
-    { headers: UA },
-  )).json();
+  // WP caps per_page at 100 — paginate until we have LIMIT (or run out).
+  const posts = [];
+  const FIELDS = 'slug,date,modified,title,excerpt,content,categories,_links,_embedded';
+  for (let page = 1; posts.length < LIMIT; page++) {
+    const per = Math.min(100, LIMIT - posts.length);
+    const res = await fetch(
+      `${WP}/posts?per_page=${per}&page=${page}&orderby=date&_embed=wp:featuredmedia,wp:term&_fields=${FIELDS}`,
+      { headers: UA },
+    );
+    if (!res.ok) break;
+    const batch = await res.json();
+    if (!Array.isArray(batch) || batch.length === 0) break;
+    posts.push(...batch);
+    console.log(`  fetched page ${page} (${posts.length} total)`);
+    if (batch.length < per) break;
+  }
 
   let imgCount = 0;
   for (const p of posts) {
@@ -123,7 +135,9 @@ async function run() {
       if (local) { body = body.split(url).join(local); imgCount++; }
     }
 
-    const excerpt = stripTags(p.excerpt.rendered) || stripTags(p.content.rendered).slice(0, 160);
+    const excerpt =
+      stripTags(p.excerpt.rendered).replace(/\s*\[(?:…|\.|\s)*\]\s*$/, '').trim() ||
+      stripTags(p.content.rendered).slice(0, 160);
 
     const fm = [
       '---',

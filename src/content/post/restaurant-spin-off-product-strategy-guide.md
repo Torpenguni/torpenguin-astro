@@ -2,7 +2,7 @@
 title: "กลยุทธ์ Spin Off ร้านอาหาร เมื่อทางรอดไม่ได้มีแค่การขยายสาขา แต่คือการปั้นโปรดักต์ใหม่เพื่อสเกลยอดขาย"
 category: case-studies
 tags: ["marketing", "กรณีศึกษา", "การตลาด"]
-excerpt: "กลยุทธ์ Spin Off ร้านอาหาร: เม []"
+excerpt: "กลยุทธ์ Spin Off ร้านอาหาร: เม"
 author: torpenguin
 publishedAt: 2026-04-01T17:00:57
 updatedAt: 2026-04-01T16:54:39

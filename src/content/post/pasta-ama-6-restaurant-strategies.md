@@ -2,7 +2,7 @@
 title: "กลยุทธ์ร้านพาสต้า อาม่า (Pasta Ama) ถอด 6 กลยุทธ์ร้านอาหาร สู่ยอดขาย 300 ล้าน"
 category: case-studies
 tags: ["กรณีศึกษา"]
-excerpt: "กลยุทธ์ร้านพาสต้า อาม่า (Pasta []"
+excerpt: "กลยุทธ์ร้านพาสต้า อาม่า (Pasta"
 author: torpenguin
 publishedAt: 2026-03-27T15:00:33
 updatedAt: 2026-03-30T14:32:11

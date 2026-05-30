@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import CategoryListing from '../../../components/CategoryListing.astro';
+import { categories, PAGE_SIZE } from '../../../data/categories';
+import { getPostsByCategory } from '../../../lib/content';
+
+export async function getStaticPaths() {
+  const paths = [];
+  for (const c of categories) {
+    const all = await getPostsByCategory(c.slug);
+    const totalPages = Math.max(1, Math.ceil(all.length / PAGE_SIZE));
+    for (let n = 2; n <= totalPages; n++) {
+      paths.push({
+        params: { category: c.slug, n: String(n) },
+        props: { category: c, posts: all.slice((n - 1) * PAGE_SIZE, n * PAGE_SIZE), n, totalPages },
+      });
+    }
+  }
+  return paths;
+}
+
+const { category, posts, n, totalPages } = Astro.props;
+const crumbs = [
+  { name: 'หน้าแรก', href: '/' },
+  { name: category.label, href: `/${category.slug}` },
+  { name: `หน้า ${n}`, href: `/${category.slug}/page/${n}` },
+];
+---
+
+<BaseLayout
+  title={`${category.label} — หน้า ${n} | TorPenguin`}
+  description={category.description}
+  breadcrumbs={crumbs}
+>
+  <CategoryListing category={category} posts={posts} currentPage={n} totalPages={totalPages} />
+</BaseLayout>

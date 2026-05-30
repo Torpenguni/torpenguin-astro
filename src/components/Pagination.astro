@@ -1,0 +1,57 @@
+---
+// Crawlable numbered pagination. Page 1 lives at `base`, page n at `base/page/n`.
+interface Props {
+  base: string; // e.g. "/news"
+  current: number;
+  total: number;
+}
+const { base, current, total } = Astro.props;
+
+const href = (n: number) => (n === 1 ? base : `${base}/page/${n}`);
+
+// Compact window of page numbers around the current page.
+const pages: (number | '…')[] = [];
+for (let n = 1; n <= total; n++) {
+  if (n === 1 || n === total || Math.abs(n - current) <= 1) pages.push(n);
+  else if (pages[pages.length - 1] !== '…') pages.push('…');
+}
+---
+
+{total > 1 && (
+  <nav class="pagination" aria-label="หน้า">
+    {current > 1
+      ? <a class="pg pg-arrow" href={href(current - 1)} rel="prev">← ก่อนหน้า</a>
+      : <span class="pg pg-arrow is-off">← ก่อนหน้า</span>}
+
+    <div class="pg-nums">
+      {pages.map((p) =>
+        p === '…'
+          ? <span class="pg-gap">…</span>
+          : <a class={`pg-num ${p === current ? 'is-current' : ''}`} href={href(p)} aria-current={p === current ? 'page' : undefined}>{p}</a>,
+      )}
+    </div>
+
+    {current < total
+      ? <a class="pg pg-arrow" href={href(current + 1)} rel="next">ถัดไป →</a>
+      : <span class="pg pg-arrow is-off">ถัดไป →</span>}
+  </nav>
+)}
+
+<style>
+  .pagination {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap;
+    margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--hairline);
+  }
+  .pg-nums { display: flex; align-items: center; gap: 4px; }
+  .pg, .pg-num {
+    font-family: var(--font-sans); font-size: 14px; font-weight: 600;
+    color: var(--ink); text-decoration: none; border-bottom: none;
+    padding: 8px 12px; border-radius: 8px;
+  }
+  .pg-num { min-width: 38px; text-align: center; }
+  .pg-num:hover, .pg:hover { background: var(--paper-mute); }
+  .pg-num.is-current { background: var(--accent); color: var(--on-accent); }
+  .pg.is-off { color: var(--ink-mute); pointer-events: none; }
+  .pg-gap { color: var(--ink-mute); padding: 0 4px; }
+</style>

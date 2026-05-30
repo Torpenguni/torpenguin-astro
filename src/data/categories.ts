@@ -60,3 +60,6 @@ export const categories: Category[] = [
 
 export const categoryBySlug = (slug: string): Category | undefined =>
   categories.find((c) => c.slug === slug);
+
+// Posts per page on pillar / archive listings.
+export const PAGE_SIZE = 18;

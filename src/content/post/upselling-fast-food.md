@@ -1,0 +1,92 @@
+---
+title: "เทคนิคเพิ่มยอดขาย แบบร้านฟาสต์ฟู้ด เรียนรู้ 6 เทคนิคที่ใช้ได้ผลเสมอ"
+category: how-to
+tags: ["marketing", "การตลาดร้านอาหาร", "Marketing", "Torpenguin", "ความรู้ร้านอาหาร", "ต่อเพนกวิน", "เทคนิคร้านอาหาร", "เทคนิคเพิ่มยอดขาย", "เปิดร้านอาหาร", "เพิ่มยอดขาย"]
+excerpt: "เทคนิคเพิ่มยอดขาย แบบร้าน Fast"
+author: torpenguin
+publishedAt: 2024-05-15T10:00:14
+updatedAt: 2026-01-27T16:15:37
+image: "/imported/upselling-fast-food-cover.jpg"
+---
+
+<h4><strong>เทคนิคเพิ่มยอดขาย แบบร้าน Fast Food เรียนรู้ 6 เทคนิคที่ใช้ได้ผลเสมอ</strong></h4>
+
+<p>ไม่ใช่เรื่องง่ายที่ร้านอาหารจะสามารถเพิ่มยอดขายโดยการหาลูกค้าใหม่ในยุคนี้ กว่าจะได้ลูกค้าใหม่แต่ละคนจำเป็นที่จะต้องนำเสนอโปรโมชั่นส่วนลดต่างๆ เพื่อดึงลูกค้าจากคู่แข่งมาเป็นของเรา</p>
+<p>แต่ในความเป็นจริงมีอีกหลายวิธีที่ร้านสามารถเพิ่มยอดขายโดยไม่ต้องเพิ่มลูกค้าเลย ซึ่งทั้ง 6 วิธีนี้เป็นวิธีที่ร้าน Fast Food และเชนร้านอาหารขนาดใหญ่นิยมใช้กัน</p>
+<p>มีอะไรบ้าง ร้านอาหารจะนำไปใช้ได้ยังไง เดี๋ยววันนี้ผมจะมาเล่าให้ฟังค่ะ</p>
+
+<h5><span><em><strong><span>1. Up-selling</span></strong></em></span></h5>
+<p><img loading="lazy" decoding="async" src="/imported/upselling-fast-food-1.jpg" alt="เทคนิคเพิ่มยอดขาย" width="640" height="640" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/upselling-fast-food-1.jpg 1024w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-02-300x300.jpg 300w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-02-150x150.jpg 150w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-02-768x768.jpg 768w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-02-1536x1536.jpg 1536w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-02-420x420.jpg 420w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-02-640x640.jpg 640w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-02-681x681.jpg 681w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-02.jpg 1079w" sizes="(max-width: 640px) 100vw, 640px" /></p>
+
+
+<p>คือการเชียร์ขายสินค้าตัวที่มีราคาสูงขึ้นหรือตัวพรีเมี่ยมมากขึ้นจากที่ลูกค้าได้ตั้งใจไว้ในตอนแรก เช่น ที่พนักงานร้าน Fast food ถามคุณว่า “คุณลูกค้าสนใจเพิ่ม 10 บาท เพื่ออัพไซส์โค๊กและเฟรนฟรายส์เป็นไซส์ L มั้ยคะ ?” ซึ่งมันคือการกดดันให้ลูกค้าต้องตัดสินใจโดยใส่ตัวเลือกความคุ้มค่าลงไปในการตัดสินใจนั้น และถ้าหากลูกค้าเปลี่ยนใจมาสั่ง จะทำให้คุณได้ยอดขายต่อหัวเพิ่มขึ้นทันที โดยที่ต้นทุนก็เพิ่มขึ้นไม่มากนัก</p>
+<p>หรือถ้าลูกค้าต้องการสั่งน้ำเก็กฮวยสองแก้วในราคาแก้วละ 30 บาท การเชียร์ขายลูกค้าเป็นเหยือกเลยในราคา 99 บาท และบอกลูกค้าว่าปริมาณเท่ากับสี่แก้วซึ่งคุ้มค่ากว่า ก็จะทำให้ร้านได้รายได้เพิ่มขึ้น 39 บาททันที ซึ่งมันคือการกดดันให้ลูกค้าต้องตัดสินใจโดยใส่ตัวเลือกความคุ้มค่าลงไปในการตัดสินใจนั้น</p>
+<p>ร้านบุฟเฟ่ต์เองก็สามารถทำ Up-Selling ได้เช่นกัน สมมุติว่าคุณเป็นร้านชาบูบุฟเฟ่ต์หัวละ 299 บาท คุณก็สามารถทำ Up-Selling ด้วยการมีเมนูในราคา 399 โดยอาจเพิ่มอาหารบางอย่างขึ้นมาเช่น อาหารทะเล เนื้อนำเข้าหรืออาจมีไลน์ของทานเล่นหรือของหวานมากขึ้น</p>
+<p>เพราะต่อให้เป็นลูกค้าคนเดียวกันแต่ในแต่ละวันของเดือนเค้าก็มีเงินในกระเป๋าไม่เท่ากัน ต้นเดือนเค้าอาจมีกำลังซื้อมากเพราะเป็นช่วงเงินเดือนออก ปลายเดือนอาจจะมีน้อย การที่เรามีตัวเลือกราคาที่แพงขึ้นก็สามารถเพิ่มยอดขายต่อหัวในช่วงต้นเดือนได้</p>
+
+<h5><span><strong><span>2. Cross-selling</span></strong></span></h5>
+<p><img loading="lazy" decoding="async" src="/imported/upselling-fast-food-2.jpg" alt="เทคนิคเพิ่มยอดขาย" width="640" height="640" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/upselling-fast-food-2.jpg 1024w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-03-300x300.jpg 300w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-03-150x150.jpg 150w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-03-768x768.jpg 768w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-03-1536x1536.jpg 1536w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-03-420x420.jpg 420w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-03-640x640.jpg 640w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-03-681x681.jpg 681w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-03.jpg 1079w" sizes="(max-width: 640px) 100vw, 640px" /></p>
+
+
+<p>คือการนำเสนอสินค้าที่เกี่ยวเนื่องกับสินค้าตัวหลักที่ลูกค้าสนใจ หากเรานึกภาพตามง่ายๆคือ ถ้าคุณเข้าไปในร้าน Fast food คุณจะสังเกตเห็นว่าบริเวณเคาน์เตอร์สั่งอาหารจะมี Tent card หรือ ป้ายโปรโมชั่นต่างๆ ปิดอยู่เต็มไปหมด คุณอาจตั้งใจไปสั่งแค่เมนูเซ็ตนึงในราคา 109 บาท แต่สุดท้ายคุณอาจสั่งพายสัปปะรดเพิ่มเข้าไปด้วย เพราะเห็นจากป้ายว่ามีโปรโมชั่นเหลือเพียง 19 บาท</p>
+<p>ในมุมของร้านอาหารคุณสามารถทำ Cross-selling ได้ เช่นถ้าร้านคุณเป็นร้านก๋วยเตี๋ยวชามละ 50 บาท คุณอาจจะมีเมนู ลูกชิ้นปลาลวกจิ้มราคา 70 บาท หรือเกี๊ยวกรอบราคา 50 บาท ไว้เชียร์ขาย</p>
+<p>เวลาลูกค้ามาทานกันสองคนคุณก็เชียร์ขายเมนูเหล่านี้ เพื่อมาทานคู่กับก๋วยเตี๋ยวก็จะทำให้ยอดขายต่อหัว (Average check) สูงขึ้นได้โดยที่ไม่ต้องให้ลูกค้าสั่งก๋วยเตี๋ยวเพิ่มจากที่คุณอาจ ได้รายได้ต่อหัวแค่ 70 บาท คุณอาจได้เพิ่มเป็น 110 บาทก็ได้</p>
+
+<h5><span><strong><span>3. Bundle Sales</span></strong></span></h5>
+<p><img loading="lazy" decoding="async" src="/imported/upselling-fast-food-3.jpg" alt="เทคนิคเพิ่มยอดขาย" width="640" height="640" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/upselling-fast-food-3.jpg 1024w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-04-300x300.jpg 300w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-04-150x150.jpg 150w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-04-768x768.jpg 768w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-04-1536x1536.jpg 1536w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-04-420x420.jpg 420w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-04-640x640.jpg 640w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-04-681x681.jpg 681w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-04.jpg 1080w" sizes="(max-width: 640px) 100vw, 640px" /></p>
+
+
+<p>คือการขายพ่วงหรือขายเป็นเซ็ตเมนูที่ลูกค้าจะได้สินค้าในราคาที่ถูกบวกจากการซื้อในครั้งเดียว และร้านอาหารก็จะได้รายได้ต่อบิลเพิ่มขึ้น</p>
+<p>ซึ่งเป็นที่นิยมในร้านอาหารประเภท Fast Food ที่เรามักเห็นการจับคู่เมนูต่างๆ เข้าด้วยกันแล้วขายในราคาที่พิเศษ (ถูกลง) โดยอาจเป็นการมัดรวมเมนูยอดนิยมกับเมนูที่ขายได้น้อยเพื่อเป็นการระบายสต็อกโดยไม่ต้องลดราคาเมนูโดยตรง</p>
+
+<h5><span><strong><span>4. Add-On</span></strong></span></h5>
+<p><img loading="lazy" decoding="async" src="/imported/upselling-fast-food-4.jpg" alt="เทคนิคเพิ่มยอดขาย" width="640" height="640" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/upselling-fast-food-4.jpg 1024w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-05-300x300.jpg 300w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-05-150x150.jpg 150w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-05-768x768.jpg 768w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-05-1536x1536.jpg 1536w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-05-420x420.jpg 420w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-05-640x640.jpg 640w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-05-681x681.jpg 681w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-05.jpg 1079w" sizes="(max-width: 640px) 100vw, 640px" /></p>
+
+
+<p>Add-On หรือ การขายส่วนต่างเพิ่มเติม จุดประสงค์หลักๆ ของเทคนิคนี้คือการเพิ่มทางเลือกมาเพื่อตอบสนองความต้องการและเพิ่มความสบายใจให้ลูกค้า</p>
+<p>อย่างเช่นลูกค้าซื้อข้าวมันไก่ เราอาจมีตัวเลือกอะไรให้ลูกค้าเลือกแต่ต้องจ่ายเพิ่ม อย่างเช่นจ่าย 20 บาท ได้ไก่เพิ่ม จ่าย 10 บาท ได้ไข่ต้มเพิ่ม ประมาณนี้</p>
+<p>พอลูกค้าเห็นแบบนี้ เขาจะเริ่มคิดถึงเรื่องส่วนต่างที่ต้องจ่ายเพิ่มกับสิ่งที่ได้มามันคุ้มมั้ย ซึ่งแน่นอนว่าในมุมมองลูกค้าคือคุ้มกว่าอยู่แล้ว</p>
+<p>พนักงานเสิร์ฟถือเป็นส่วนที่สำคัญเลยที่จะทำให้วิธีนี้ได้ผลมากขึ้น หากลูกค้าเลือกสั่งอาหารแล้วพนักงานมีการแนะนำเพิ่มเติม</p>
+<p>การมีบทพูดและมีการเทรนนิ่งพนักงานที่ดีช่วยเพิ่มยอดขายได้เป็นอย่างดี ถ้าไม่เชื่อคุณลองไปสังเกตร้านอาหารเชน (Chain restaurants) ทั้งหลายดูว่าทุกที่ล้วนมีบทพูดและมีการเทรนพนักงานให้เชียร์ขายทั้งนั้น</p>
+
+
+<h5><span><strong><span>5. การ offer วัตถุดิบที่ดีขึ้น</span></strong></span></h5>
+<p><img loading="lazy" decoding="async" src="/imported/upselling-fast-food-5.jpg" alt="เทคนิคเพิ่มยอดขาย" width="640" height="640" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/upselling-fast-food-5.jpg 1024w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-06-300x300.jpg 300w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-06-150x150.jpg 150w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-06-768x768.jpg 768w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-06-1536x1536.jpg 1536w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-06-420x420.jpg 420w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-06-640x640.jpg 640w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-06-681x681.jpg 681w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-06.jpg 1079w" sizes="(max-width: 640px) 100vw, 640px" /></p>
+
+
+<p>คือการให้ทางเลือกกับลูกค้าในการอัพเกรดเมนูให้ดูพิเศษมากยิ่งขึ้น หลายๆ ครั้งบางร้านติดกับดักราคา ที่ไม่สามารถขายแพงได้ เพราะเมนูเราไม่ได้มีอะไรพิเศษมากนัก</p>
+<p>แต่จริงๆ แล้ว เพียงแค่คุณลองหาวัตถุดิบพิเศษหรือส่วนผสมที่เข้ากัน มาอัพเกรดเมนูให้ดูพิเศษมากขึ้น มันก็สามารถเพิ่มมูลค่าได้แล้ว</p>
+<p>อย่างถ้าคุณเป็นร้านก๋วยเตี๋ยวเนื้อราคา 60 บาท คุณอาจมีเมนูก๋วยเตี๋ยวเนื้อโคขุนราคา 99 บาท หรือ ก๋วยเตี๋ยวเนื้อออสเตรเลียราคา 150 บาท</p>
+<p>ลูกค้าในสมัยนี้ใส่ใจเรื่องการกินกว่าที่เราคิด พวกเขาชอบอะไรที่มีความพิเศษและอยากได้ประสบการณ์การทานอาหารที่แตกต่างอยู่แล้ว ซึ่งลูกค้ามีแนวโน้มที่จะอัพเกรดอย่างแน่นอน และเมื่อลูกค้าสั่งคุณได้ยอดขายต่อหัวเพิ่มขึ้นทันที</p>
+
+
+<h5><span><strong><span>6. Decoy</span></strong></span></h5>
+<p><img loading="lazy" decoding="async" src="/imported/upselling-fast-food-6.jpg" alt="Decoy Pricing" width="640" height="640" title="/ Torpenguin (ต่อเพนกวิน) สื่อออนไลน์เพื่อธุรกิจร้านอาหาร และธุรกิจอาหารของไทย" srcset="/imported/upselling-fast-food-6.jpg 1024w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-07-300x300.jpg 300w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-07-150x150.jpg 150w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-07-768x768.jpg 768w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-07-1536x1536.jpg 1536w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-07-420x420.jpg 420w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-07-640x640.jpg 640w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-07-681x681.jpg 681w, https://torpenguin.com/wp-content/uploads/2024/05/web_20240510_2-07.jpg 1080w" sizes="(max-width: 640px) 100vw, 640px" /></p>
+
+
+<p>เป็นอีกวิธีการหนึ่งที่ทำให้คนนั้นอยากซื้อสินค้าในราคาที่สูงขึ้น โดยปัจจัยสำคัญนี้จะช่วยกระตุ้นให้ลูกค้านั้นเกิดความรู้สึกลังเลถึงความคุ้มค่า</p>
+<p>วิธีนี้จะใช้ได้ดีกับสินค้าประเภทอาหาร เครื่องดื่ม หรือของที่มีปริมาณหลายขนาดให้เลือกใช้</p>
+<p>เช่น การตั้งราคาเฟรนด์ฟรายในร้านฟาสต์ฟู้ด ที่มี 3 ขนาด 3 ราคาให้เลือก ไซส์เล็ก 27 บาท ไซส์กลาง 45 บาท ไซส์ใหญ่ 55 บาท ซึ่งคนส่วนใหญ่จะเลือกไซส์ใหญ่ไปเลย เพราะมีราคาต่างจากไซส์กลางนิดเดียวเอง</p>
+<p>ในทางกลับกัน ถ้าตัดไซส์กลางออก เหลือแค่ไซส์เล็กกับไซส์ใหญ่ คนสั่งไซส์เล็กมากขึ้นทันที</p>
+<p>จะเห็นได้ว่าการตั้งราคาขนาดกลางนั้นทำให้เกิดแรงจูงใจ โดยการตั้งราคาขนาดกลางให้มีแนวโน้มใกล้กับราคาขนาดใหญ่ จะทำให้รู้สึกว่า ถ้าราคาขนาดกลาง ใกล้กับขนาดใหญ่ ทำไมไม่ซื้อขนาดใหญ่ไปเลยคุ้มกว่า ทำให้เรานั้นได้ยอดขายเพิ่มนั่นเอง</p>
+
+
+
+<p>และทั้งหมดนี้ก็คือ เทคนิคเพิ่มยอดขาย แบบร้าน Fast Food และเชนร้านอาหารใหญ่ ๆ ค่ะ สามารถลองเอาไปเป็นแนวทางปรับใช้กับร้านของตัวเองได้นะคะ ฝากติดตาม Torpenguin ในทุกช่องทาง แล้วพบกันใหม่ในบทความหน้าค่ะ 😄</p>
+
+
+<p><strong>???? ติดตามข่าวสารธุรกิจร้านอาหาร<br />
+</strong><a href="https://www.facebook.com/TORPENGUIN/?locale=th_TH" target="_blank" rel="noopener">Facebook : Torpenguin</a><br />
+<a href="https://www.instagram.com/torpenguin/?hl=en" target="_blank" rel="noopener">Instargram : torpenguin</a><br />
+<a href="https://www.tiktok.com/@torpenguin" target="_blank" rel="noopener">TikTok : torpenguin</a><br />
+<a href="https://www.youtube.com/@Torpenguin" target="_blank" rel="noopener">Youtube : Torpenguin</a></p>
+
+
+
+<p><b><strong>???? </strong>อ่านจบแล้ว อ่านอะไรต่อดี ?</b></p>
+<p><a title="ตั้งราคาขายยังไง ให้มีชัยตั้งแต่ยังไม่เริ่มขาย" href="https://torpenguin.com/%e0%b8%95%e0%b8%b1%e0%b9%89%e0%b8%87%e0%b8%a3%e0%b8%b2%e0%b8%84%e0%b8%b2%e0%b8%82%e0%b8%b2%e0%b8%a2%e0%b8%a2%e0%b8%b1%e0%b8%87%e0%b9%84%e0%b8%87/" rel="bookmark">ตั้งราคาขายยังไง ให้มีชัยตั้งแต่ยังไม่เริ่มขาย</a></p>
+<p><a title="ตั้งราคาอาหาร ให้ได้กำไร ได้ใจลูกค้า ด้วย 3 ขั้นตอน" href="https://torpenguin.com/%e0%b8%95%e0%b8%b1%e0%b9%89%e0%b8%87%e0%b8%a3%e0%b8%b2%e0%b8%84%e0%b8%b2%e0%b8%ad%e0%b8%b2%e0%b8%ab%e0%b8%b2%e0%b8%a3/" rel="bookmark">ตั้งราคาอาหาร ให้ได้กำไร ได้ใจลูกค้า ด้วย 3 ขั้นตอน</a></p>
+<p><a title="กลยุทธ์ลดราคา ทำโปรฯแบบไหนลูกค้าพอใจ ร้านได้กำไรเพิ่ม" href="https://torpenguin.com/%e0%b8%81%e0%b8%a5%e0%b8%a2%e0%b8%b8%e0%b8%97%e0%b8%98%e0%b9%8c%e0%b8%a5%e0%b8%94%e0%b8%a3%e0%b8%b2%e0%b8%84%e0%b8%b2/" rel="bookmark">กลยุทธ์ลดราคา ทำโปรฯแบบไหนลูกค้าพอใจ ร้านได้กำไรเพิ่ม</a></p>
+<p><a title="4 วิธี ปรับราคาอาหาร แบบเซียน ขึ้นราคาแบบไม่ให้เสียลูกค้า" href="https://torpenguin.com/%e0%b8%9b%e0%b8%a3%e0%b8%b1%e0%b8%9a%e0%b8%a3%e0%b8%b2%e0%b8%84%e0%b8%b2%e0%b8%ad%e0%b8%b2%e0%b8%ab%e0%b8%b2%e0%b8%a3/" rel="bookmark">4 วิธี ปรับราคาอาหาร แบบเซียน ขึ้นราคาแบบไม่ให้เสียลูกค้า</a></p>
+<p><a title="7 วิธีสู้กลับเมื่อเจอ คู่แข่งขายตัดราคา" href="https://torpenguin.com/%e0%b8%84%e0%b8%b9%e0%b9%88%e0%b9%81%e0%b8%82%e0%b9%88%e0%b8%87%e0%b8%82%e0%b8%b2%e0%b8%a2%e0%b8%95%e0%b8%b1%e0%b8%94%e0%b8%a3%e0%b8%b2%e0%b8%84%e0%b8%b2/" rel="bookmark">7 วิธีสู้กลับเมื่อเจอ คู่แข่งขายตัดราคา</a></p>
+<p><a title="จิตวิทยา กลยุทธ์ตั้งราคาสินค้า ใช้วิธีไหนถึงทำให้ลูกค้าหวั่นไหวได้" href="https://torpenguin.com/%e0%b8%81%e0%b8%a5%e0%b8%a2%e0%b8%b8%e0%b8%97%e0%b8%98%e0%b9%8c%e0%b8%95%e0%b8%b1%e0%b9%89%e0%b8%87%e0%b8%a3%e0%b8%b2%e0%b8%84%e0%b8%b2%e0%b8%aa%e0%b8%b4%e0%b8%99%e0%b8%84%e0%b9%89%e0%b8%b2/" rel="bookmark">จิตวิทยา กลยุทธ์ตั้งราคาสินค้า ใช้วิธีไหนถึงทำให้ลูกค้าหวั่นไหวได้</a></p>

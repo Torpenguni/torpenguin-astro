@@ -2,7 +2,7 @@
 title: "Shift Handover: ส่งเวรยังไงไม่ให้งานเข้า? เคล็ดลับที่ร้านอาหารมือโปรต้องมี"
 category: how-to
 tags: ["systems", "team", "การจัดการ", "การจัดการพนักงาน"]
-excerpt: "Shift Handover ร้านอาหาร : ส่ง []"
+excerpt: "Shift Handover ร้านอาหาร : ส่ง"
 author: torpenguin
 publishedAt: 2026-02-24T15:33:03
 updatedAt: 2026-02-24T15:33:03
