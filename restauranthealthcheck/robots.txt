@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.restauranthealthcheck.com/sitemap.xml
