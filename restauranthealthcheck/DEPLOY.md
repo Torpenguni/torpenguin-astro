@@ -13,7 +13,7 @@
 
 - [ ] บัญชี **Cloudflare** (ฟรี)
 - [ ] บัญชี **Resend** (ฟรี 3,000 เมล/เดือน)
-- [ ] สิทธิ์แก้ **DNS** ของ `restauranthealthcheck.com`
+- [ ] สิทธิ์เข้าบัญชี **GoDaddy** ที่จดโดเมน `restauranthealthcheck.com` ไว้
 - [ ] **Node.js 18 ขึ้นไป** ในเครื่อง (เช็ค: `node -v`)
 
 ---
@@ -75,8 +75,9 @@ npx wrangler d1 execute restauranthealthcheck --remote --file=migrations/0002_ad
 ## 4. ตั้งค่าอีเมล (Resend)
 
 1. สมัคร resend.com → **Domains** → **Add Domain** → ใส่ `restauranthealthcheck.com`
-2. Resend จะให้ **DNS record มา 3 ตัว** (SPF + DKIM + ตัวติดตาม) → เอาไปใส่ที่ผู้ให้บริการ
-   DNS ของโดเมน
+2. Resend จะให้ **DNS record มา 3 ตัว** (SPF + DKIM + ตัวติดตาม) → เอาไปใส่ใน
+   **Cloudflare → DNS → Records** (ทำหลังย้าย nameserver ตามข้อ 7 แล้ว —
+   ดูหมายเหตุเรื่องลำดับท้ายข้อ 7)
 3. รอจนสถานะขึ้น **Verified** (ปกติไม่กี่นาที)
 4. ไปที่ **API Keys** → **Create API Key** → ก๊อปเก็บไว้ (จะเห็นครั้งเดียว)
 
@@ -134,32 +135,77 @@ npx wrangler pages deploy
 
 ---
 
-## 7. ต่อโดเมน
+## 7. ต่อโดเมน (โดเมนอยู่ที่ GoDaddy)
+
+> ⏱ **ขั้นนี้กินเวลารอนานสุด เริ่มทำคู่ขนานไปกับเฟส 2–3 ได้เลย ไม่ต้องรอให้เว็บเสร็จก่อน**
+
+### 7.1 ทำไมต้องย้าย nameserver มา Cloudflare
+
+**GoDaddy ไม่รองรับ CNAME ที่โดเมนหลัก (`@`)** และไม่มี ALIAS/ANAME ให้ใช้
+แปลว่าถ้าทิ้ง DNS ไว้ที่ GoDaddy จะชี้ `restauranthealthcheck.com`
+(แบบไม่มี www) มาที่ Cloudflare Pages **ไม่ได้เลย** ได้แค่ `www` อย่างเดียว
+
+GoDaddy มีเมนู "Forwarding" ให้ปลอมเป็น redirect แต่ทำงานผ่านเซิร์ฟเวอร์ของ GoDaddy
+ชนกับ SSL ของ Cloudflare บ่อย และพังเงียบ ๆ — **อย่าใช้**
+
+ทางที่ถูกคือย้าย nameserver มา Cloudflare แล้วจัดการ DNS ทั้งหมดที่เดียว
+
+### 7.2 เพิ่มโดเมนเข้า Cloudflare
+
+1. dash.cloudflare.com → **Add a site** → พิมพ์ `restauranthealthcheck.com`
+2. เลือกแพลน **Free**
+3. Cloudflare จะสแกน DNS record เดิมจาก GoDaddy มาให้
+   → **ตรวจให้ครบก่อนกดต่อ** โดยเฉพาะ **MX** (อีเมล) และ **TXT**
+   ถ้ามีอีเมลใช้อยู่บนโดเมนนี้แล้ว record หาย = **อีเมลเข้าไม่ได้ทันทีที่ย้าย**
+4. Cloudflare จะให้ **nameserver มา 2 ตัว** หน้าตาประมาณ
+   `xxx.ns.cloudflare.com` — ก๊อปเก็บไว้
+
+### 7.3 เปลี่ยน nameserver ที่ GoDaddy
+
+1. เข้า godaddy.com → **My Products**
+2. หาโดเมน `restauranthealthcheck.com` → กด **DNS** (หรือ **Manage DNS**)
+3. เลื่อนลงหาหัวข้อ **Nameservers** → กด **Change** / **เปลี่ยน**
+4. เลือก **I'll use my own nameservers** (บางหน้าเขียนว่า *Enter my own nameservers*)
+5. ลบของเดิมออก แล้วใส่ 2 ตัวจาก Cloudflare
+6. **Save** — GoDaddy อาจถามยืนยันอีกรอบว่าจะเลิกใช้ DNS ของเขา ให้กดยืนยัน
+
+### 7.4 รอ
+
+Cloudflare จะส่งอีเมลมาบอกเมื่อสถานะขึ้น **Active** ปกติ 5 นาที – 2 ชั่วโมง
+(GoDaddy บอกไว้ว่าอาจถึง 48 ชม. แต่จริง ๆ มักเร็วกว่านั้นมาก)
+
+ระหว่างรอ **เว็บเดิมยังทำงานปกติ** ทำเฟสอื่นต่อได้
+
+### 7.5 ผูกโดเมนกับ Pages (ทำหลัง Cloudflare ขึ้น Active แล้ว)
 
 Cloudflare → **Workers & Pages** → `restauranthealthcheck` → **Custom domains**
-→ **Set up a custom domain**
+→ **Set up a custom domain** → เพิ่มทีละอัน:
 
-เพิ่ม **ทั้งสองตัว** ทีละอัน:
 1. `www.restauranthealthcheck.com`
 2. `restauranthealthcheck.com`
 
-**ถ้า DNS อยู่บน Cloudflare อยู่แล้ว** → กดยืนยัน จบ Cloudflare ใส่ record ให้เอง
+พอ DNS อยู่บน Cloudflare แล้ว **ไม่ต้องใส่ record เอง** ระบบสร้างให้อัตโนมัติ
+SSL ออกให้ภายใน 5–15 นาที
 
-**ถ้า DNS ยังอยู่ที่ผู้ให้บริการที่จดโดเมน** เลือกทางใดทางหนึ่ง:
+### 7.6 ให้ตัวไม่มี www เด้งไปหา www
 
-- **ย้าย nameserver มา Cloudflare** (แนะนำ) — Cloudflare จะให้ NS สองตัวมา
-  เอาไปเปลี่ยนที่หน้าจัดการโดเมน
-- **หรืออยู่ที่เดิม** แล้วเพิ่ม record เอง:
+`SITE_URL` ตั้งเป็น `https://www.` ไว้ ควรให้เหลือทางเข้าเดียวจะได้ไม่งง:
 
-| Type | Name | Value |
-|---|---|---|
-| CNAME | `www` | `restauranthealthcheck.pages.dev` |
-| CNAME / ALIAS / ANAME | `@` | `restauranthealthcheck.pages.dev` |
+Cloudflare → **Rules** → **Redirect Rules** → **Create rule**
 
-SSL ออกอัตโนมัติ รอ 5–15 นาที (บางที่ DNS กระจายตัวถึง 24 ชม.)
+| ช่อง | ค่า |
+|---|---|
+| ชื่อ | `apex to www` |
+| เงื่อนไข | Hostname **equals** `restauranthealthcheck.com` |
+| ปลายทาง (Expression) | `concat("https://www.restauranthealthcheck.com", http.request.uri.path)` |
+| ประเภท | **Dynamic** (ไม่ใช่ Static — ต้องส่ง path เดิมไปด้วย) |
+| Status | 301 |
 
-**ให้ `www` เป็นตัวหลัก** แล้วตั้ง redirect จากตัวไม่มี `www` มาหา
-(Cloudflare → Rules → Redirect Rules) เพราะ `SITE_URL` ตั้งเป็น `www` ไว้
+### ⚠️ ลำดับสำคัญ
+
+**ย้าย nameserver ให้เสร็จก่อนทำเฟส 4 (Resend)** — ไม่งั้นจะต้องใส่ DNS record
+ของ Resend ที่ GoDaddy ก่อน แล้วพอย้าย nameserver ต้องมาใส่ซ้ำที่ Cloudflare อีกรอบ
+เสียเวลาสองเที่ยวโดยไม่จำเป็น
 
 ---
 
