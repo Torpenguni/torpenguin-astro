@@ -48,6 +48,28 @@ export async function endAdminSession(db, request) {
   await db.prepare('DELETE FROM admin_sessions WHERE id = ?').bind(await hashToken(token)).run();
 }
 
+// SQLite refuses a LIKE pattern longer than 50 bytes with
+// "LIKE or GLOB pattern too complex" — a hard limit, not a tunable. The cap is
+// on BYTES, and Thai runs 3 bytes per character, so a shop name of ~17 Thai
+// characters is already over it. Counting characters here would let a normal
+// Thai search crash the whole page with a 500.
+const LIKE_MAX_BYTES = 50;
+
+// Cuts to a byte budget without splitting a character in half.
+function truncateBytes(str, maxBytes) {
+  const enc = new TextEncoder();
+  if (enc.encode(str).length <= maxBytes) return str;
+  let out = '';
+  let used = 0;
+  for (const ch of str) {
+    const size = enc.encode(ch).length;
+    if (used + size > maxBytes) break;
+    out += ch;
+    used += size;
+  }
+  return out;
+}
+
 // Shared filter builder for the list and the CSV export, so the file someone
 // downloads always matches the rows they were looking at.
 export function buildFilter(url) {
@@ -82,7 +104,7 @@ export function buildFilter(url) {
     binds.push(to);
   }
 
-  const q = (url.searchParams.get('q') || '').trim().slice(0, 80);
+  const q = truncateBytes((url.searchParams.get('q') || '').trim(), LIKE_MAX_BYTES - 2);
   if (q) {
     where.push('(shop LIKE ? OR name LIKE ? OR email LIKE ? OR contact LIKE ?)');
     const like = `%${q}%`;

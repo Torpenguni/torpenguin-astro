@@ -76,6 +76,14 @@ t('partial filter excludes finished ones',r.data.leads.every(l=>!l.completed));
 r=await call('/api/admin/leads?tier=NOPE',{cookie:admin});
 t('bogus tier is ignored, not an error',r.status===200);
 
+// SQLite ปฏิเสธ LIKE pattern ที่ยาวเกิน 50 ไบต์ ภาษาไทยตัวละ 3 ไบต์
+// ชื่อร้านไทยแค่ ~17 ตัวอักษรก็เกินแล้ว เคยทำให้หลังบ้าน 500 ทั้งหน้า
+const longThai='ร้านทดสอบชื่อยาวมากจนเกินขีดจำกัดของฐานข้อมูลแน่นอนเลยครับ';
+r=await call('/api/admin/leads?q='+encodeURIComponent(longThai),{cookie:admin});
+t('ค้นหาชื่อไทยยาว ๆ ไม่ทำให้พัง',r.status===200,`got ${r.status}`);
+r=await call('/api/admin/export?q='+encodeURIComponent(longThai),{cookie:admin,raw:true});
+t('export CSV ด้วยคำค้นยาว ๆ ก็ไม่พัง',r.status===200,`got ${r.status}`);
+
 console.log('\n— CSV —');
 r=await call('/api/admin/export',{cookie:admin,raw:true});
 t('csv returns 200',r.status===200);

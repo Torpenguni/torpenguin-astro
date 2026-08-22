@@ -5,3 +5,4 @@ node_modules/
 # ผลลัพธ์จากการรันเทสต์
 tests/mailbox.json
 tests/screenshot-*.png
+tests/screenshot-*.png

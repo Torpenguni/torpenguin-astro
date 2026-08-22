@@ -7,9 +7,11 @@ const SUITES = [
   ['flow บัญชีผู้ใช้ (API)',      'auth.test.mjs'],
   ['หลังบ้าน · เมลผล · CSV',      'admin-email.test.mjs'],
   ['กรณีผู้ให้บริการอีเมลล่ม',    'mail-outage.test.mjs'],
+  ['รายละเอียดราย lead (API)',   'admin-detail.test.mjs'],
   ['ใช้งานจริงบนเว็บ · เดสก์ท็อป', 'ui-assessment.test.mjs', 'desktop'],
   ['ใช้งานจริงบนเว็บ · มือถือ',    'ui-assessment.test.mjs', 'mobile'],
   ['โหมดด่วน · บัญชี · หลังบ้าน',  'ui-account-admin.test.mjs'],
+  ['แผงรายละเอียดใน UI',          'ui-lead-detail.test.mjs'],
 ];
 
 // ทุกชุดยิงจาก 127.0.0.1 เหมือนกันหมด ถ้าไม่ล้างตัวนับ ชุดหลัง ๆ จะโดน
@@ -36,7 +38,7 @@ let totalPass = 0, totalFail = 0, broken = 0;
 for (const [label, file, arg] of SUITES) {
   await resetLimits();
   const { code, out } = await run(file, arg);
-  const m = out.match(/(\d+) passed, (\d+) failed/);
+  const m = out.match(/(\d+) (?:passed|ผ่าน)[\s,·]+(\d+) (?:failed|ไม่ผ่าน)/);
   if (!m) {
     broken++;
     console.log(`✗ ${label.padEnd(30)} ชุดทดสอบพัง (exit ${code})`);

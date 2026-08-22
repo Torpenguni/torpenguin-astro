@@ -75,6 +75,47 @@ td.contact{font-size:13px;color:var(--muted)}
   cursor:pointer;font-family:inherit;font-size:14px}
 .pager button:disabled{opacity:.4;cursor:not-allowed}
 
+/* แผงรายละเอียดรายคน — เลื่อนเข้ามาจากขวา */
+tbody tr{cursor:pointer}
+.sheet-bg{position:fixed;inset:0;background:rgba(23,20,15,.5);z-index:40;
+  opacity:0;transition:opacity .18s}
+.sheet-bg.on{opacity:1}
+.sheet{position:fixed;top:0;right:0;bottom:0;width:min(560px,100%);background:var(--paper);
+  z-index:41;box-shadow:-14px 0 44px rgba(23,20,15,.16);overflow-y:auto;
+  transform:translateX(100%);transition:transform .22s ease}
+.sheet.on{transform:none}
+.sheet-head{position:sticky;top:0;background:var(--ink);color:#fff;padding:18px 22px;
+  display:flex;align-items:flex-start;gap:14px;z-index:2}
+.sheet-head h2{margin:0;font-size:19px;line-height:1.35}
+.sheet-head .sub{font-size:13px;color:rgba(255,255,255,.62);margin-top:3px}
+.sheet-head button{margin-left:auto;background:transparent;border:1px solid rgba(255,255,255,.3);
+  color:#fff;border-radius:8px;width:32px;height:32px;cursor:pointer;font-size:16px;
+  line-height:1;flex:0 0 auto;font-family:inherit}
+.sheet-body{padding:20px 22px 60px;display:flex;flex-direction:column;gap:16px}
+.blk{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:16px 18px}
+.blk h3{margin:0 0 12px;font-size:13px;color:var(--faint);font-weight:600;letter-spacing:.04em}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;font-size:14px}
+.kv dt{color:var(--faint)}
+.kv dd{margin:0;text-align:right;font-weight:600;word-break:break-word}
+.kv dd a{color:var(--brand);text-decoration:none}
+.kv dd a:hover{text-decoration:underline}
+.bigscore{display:flex;align-items:baseline;gap:10px;margin-bottom:4px}
+.bigscore .n{font-family:'Anuphan',sans-serif;font-weight:600;font-size:44px;line-height:1}
+.bigscore .d{color:var(--faint);font-size:15px}
+.dimrow{display:grid;grid-template-columns:120px 1fr 42px;align-items:center;gap:10px;
+  font-size:13.5px;margin-bottom:9px}
+.dimrow:last-child{margin-bottom:0}
+.track{height:8px;background:#efe9e0;border-radius:5px;overflow:hidden}
+.track i{display:block;height:100%;border-radius:5px}
+.dimrow b{text-align:right;font-family:'Anuphan',sans-serif}
+.tags{display:flex;flex-wrap:wrap;gap:7px}
+.tags span{background:#fdecef;color:#8d0d24;font-size:13px;font-weight:600;
+  padding:6px 11px;border-radius:8px}
+.note{font-size:12.5px;color:var(--faint);line-height:1.6;margin-top:10px}
+.warnbox{background:#fff6e8;border:1px solid #f3ddb5;color:#8a5a00;border-radius:10px;
+  padding:10px 12px;font-size:12.5px;line-height:1.6;margin-top:10px}
+@media(max-width:600px){.sheet{width:100%}.kv{grid-template-columns:1fr}.kv dd{text-align:left}}
+
 /* บนมือถือ แถบบนสุดขึ้นบรรทัดใหม่จนดูรก — ตัดป้ายชื่อที่ซ้ำกับ title ออก
    แล้วบีบปุ่มให้อยู่บรรทัดเดียว */
 @media(max-width:600px){
@@ -154,7 +195,7 @@ function renderDash(d) {
   const rate = s.total ? Math.round((s.completed / s.total) * 100) : 0;
 
   const rows = d.leads.length ? d.leads.map((l) => `
-<tr>
+<tr data-id="${esc(l.id)}">
   <td style="font-size:13px;color:var(--faint)">${fmtDate(l.createdAt)}</td>
   <td class="shop">${esc(l.shop || '—')}
     <div style="font-weight:400;font-size:12.5px;color:var(--faint)">${esc(l.name || '')}</div></td>
@@ -229,6 +270,9 @@ function renderDash(d) {
   </div>
 </div>`;
 
+  document.querySelectorAll('tbody tr[data-id]').forEach((tr) =>
+    tr.addEventListener('click', () => openLead(tr.dataset.id)));
+
   $('apply').addEventListener('click', () => {
     const from = $('f_from').value, to = $('f_to').value;
     state.filters = {
@@ -252,6 +296,152 @@ function renderDash(d) {
     try { await api('/api/admin/logout', {}); } catch (e) {}
     renderLogin();
   });
+}
+
+
+const DIM_LABEL = { D1: 'ตัวเจ้าของ & ผู้นำ', D2: 'สุขภาพการเงิน', D3: 'แบรนด์ & การตลาด',
+  D4: 'ระบบ & ทีม', D5: 'ความพร้อมขยาย' };
+const INTENT_LABEL = {
+  need_supplier: '🥩 Supplier / วัตถุดิบต้นทุนดี', need_capital: '💵 แหล่งทุน / นักลงทุน',
+  need_franchise: '🏪 แฟรนไชส์ / ขยายสาขา', need_marketing: '📣 การตลาด / สร้างแบรนด์',
+  need_system: '⚙️ ระบบหลังบ้าน / POS / สต็อก' };
+const dimColor = (v) => (v >= 60 ? 'var(--green)' : v >= 40 ? 'var(--amber)' : 'var(--brand)');
+const baht = (n) => (n == null || n === '' ? '—' : '฿' + Number(n).toLocaleString('th-TH'));
+const pct = (a, b) => (a && b ? (a / b * 100).toFixed(1) + '%' : '—');
+
+function row(k, v) { return v == null || v === '' ? '' : `<dt>${k}</dt><dd>${v}</dd>`; }
+
+function leadSheet(l) {
+  const fin = l.financial;
+  const net = fin && fin.revenue
+    ? fin.revenue - (fin.cogs || 0) - (fin.labor || 0) - (fin.rent || 0) - (fin.other || 0) : null;
+
+  const dims = l.scores ? Object.keys(DIM_LABEL).filter((k) => l.scores[k] != null).map((k) => {
+    const v = Math.round(l.scores[k]);
+    return `<div class="dimrow"><span>${DIM_LABEL[k]}</span>
+      <span class="track"><i style="width:${v}%;background:${dimColor(v)}"></i></span>
+      <b style="color:${dimColor(v)}">${v}</b></div>`;
+  }).join('') : '<div style="color:var(--faint);font-size:14px">ยังทำไม่จบ จึงไม่มีคะแนน</div>';
+
+  return `
+<div class="sheet-head">
+  <div>
+    <h2>${esc(l.shop || 'ไม่ได้ระบุชื่อร้าน')}</h2>
+    <div class="sub">${esc(l.name || '')} · ${fmtDate(l.createdAt)}</div>
+  </div>
+  <button id="sheetClose" aria-label="ปิด">✕</button>
+</div>
+<div class="sheet-body">
+
+  <div class="blk">
+    <h3>ติดต่อ</h3>
+    <dl class="kv">
+      ${row('ชื่อเจ้าของ', esc(l.name))}
+      ${row('เบอร์ / LINE', l.contact
+        ? `<a href="tel:${esc(String(l.contact).replace(/[^+\d]/g, ''))}">${esc(l.contact)}</a>` : '')}
+      ${row('อีเมล', l.email ? `<a href="mailto:${esc(l.email)}">${esc(l.email)}</a>` : '')}
+    </dl>
+    ${!l.email ? '<div class="note">ไม่ได้ให้อีเมลไว้ — ติดต่อได้ทางเบอร์/LINE เท่านั้น</div>' : ''}
+  </div>
+
+  <div class="blk">
+    <h3>ผลประเมิน</h3>
+    ${l.total != null ? `<div class="bigscore">
+      <span class="n" style="color:${dimColor(l.total)}">${l.total}</span>
+      <span class="d">/100</span>
+      ${l.tier ? `<span class="tier ${esc(l.tier)}" style="margin-left:auto">${esc(l.tier)}</span>` : ''}
+    </div>
+    ${l.typeName ? `<div style="font-size:14px;color:var(--muted);margin-bottom:14px">${esc(l.typeName)}</div>` : ''}`
+    : `<div style="color:var(--faint);font-size:14px;margin-bottom:12px">ทำไม่จบ — ไม่มีคะแนน</div>`}
+    ${dims}
+  </div>
+
+  <div class="blk">
+    <h3>ข้อมูลร้าน</h3>
+    <dl class="kv">
+      ${row('ประเภท', esc(l.shopType))}
+      ${row('จำนวนสาขา', esc(l.branches))}
+      ${row('อายุร้าน', esc(l.age))}
+      ${row('ทำแบบ', l.mode === 'quick' ? 'ด่วน (10 ข้อ)' : 'ละเอียด (48 ข้อ)')}
+      ${row('สถานะ', l.completed ? 'ทำจบแล้ว' : 'ทำไม่จบ')}
+    </dl>
+  </div>
+
+  ${fin && !fin.revenue && fin.primePct != null ? `<div class="blk">
+    <h3>ตัวเลขการเงิน</h3>
+    <dl class="kv">
+      ${row('Prime cost', fin.primePct + '%')}
+      ${row('ต้นทุนอาหาร', fin.foodPct !== '' && fin.foodPct != null ? fin.foodPct + '%' : '')}
+      ${row('ค่าแรง', fin.laborPct !== '' && fin.laborPct != null ? fin.laborPct + '%' : '')}
+      ${row('กำไรสุทธิ', fin.netPct != null ? fin.netPct + '%' : '')}
+    </dl>
+    <div class="note">รายการนี้บันทึกไว้ก่อนระบบจะเก็บตัวเลขบาทดิบ จึงมีแต่เปอร์เซ็นต์</div>
+  </div>` : ''}
+
+  ${fin && fin.revenue ? `<div class="blk">
+    <h3>ตัวเลขการเงิน (ต่อเดือน)</h3>
+    <dl class="kv">
+      ${row('ยอดขาย', baht(fin.revenue))}
+      ${row('ต้นทุนอาหาร', `${baht(fin.cogs)} <span style="color:var(--faint);font-weight:400">· ${pct(fin.cogs, fin.revenue)}</span>`)}
+      ${row('ค่าแรง', `${baht(fin.labor)} <span style="color:var(--faint);font-weight:400">· ${pct(fin.labor, fin.revenue)}</span>`)}
+      ${row('ค่าเช่า', baht(fin.rent))}
+      ${row('ค่าใช้จ่ายอื่น', baht(fin.other))}
+      ${row('Prime cost', pct((fin.cogs || 0) + (fin.labor || 0), fin.revenue))}
+      ${row('กำไรสุทธิ', net == null ? '' :
+        `<span style="color:${net >= 0 ? 'var(--green)' : 'var(--brand)'}">${baht(net)} · ${pct(net, fin.revenue)}</span>`)}
+    </dl>
+    ${fin.estimated ? `<div class="warnbox">⚠️ ผู้ใช้ไม่ได้แก้ตัวเลขต้นทุนเอง
+      ค่าที่เห็นเป็น<b>ค่าประมาณที่ระบบเดาให้</b>จากช่วงยอดขาย
+      — อย่าใช้วินิจฉัยราวกับเป็นตัวเลขจริง ควรถามตัวเลขจริงตอนคุย</div>` : ''}
+  </div>` : (fin && fin.primePct != null ? '' : `<div class="blk"><h3>ตัวเลขการเงิน</h3>
+    <div style="color:var(--faint);font-size:14px">ไม่ได้กรอก (ข้ามขั้นนี้ได้)</div></div>`)}
+
+  ${l.intent && l.intent.length ? `<div class="blk">
+    <h3>สนใจให้ช่วยเรื่อง</h3>
+    <div class="tags">${l.intent.map((t) => `<span>${esc(INTENT_LABEL[t] || t)}</span>`).join('')}</div>
+  </div>` : ''}
+
+  <div class="blk">
+    <h3>อื่น ๆ</h3>
+    <dl class="kv">
+      ${row('ยินยอม PDPA เมื่อ', l.consentAt ? fmtDate(l.consentAt) : '')}
+      ${row('ส่งผลทางอีเมลแล้ว', l.resultEmailedAt ? fmtDate(l.resultEmailedAt) : (l.email ? 'ยังไม่ได้ส่ง' : ''))}
+      ${row('สมัครบัญชีไว้', l.account
+        ? `${esc(l.account.email)}${l.account.verified ? '' : ' (ยังไม่ยืนยัน)'}` : '')}
+      ${row('มาจาก', l.referrer ? esc(l.referrer) : '')}
+      ${row('อัปเดตล่าสุด', fmtDate(l.updatedAt))}
+    </dl>
+  </div>
+</div>`;
+}
+
+let sheetEsc = null;
+async function openLead(id) {
+  const bg = document.createElement('div');
+  bg.className = 'sheet-bg';
+  const sheet = document.createElement('div');
+  sheet.className = 'sheet';
+  sheet.innerHTML = '<div class="sheet-body" style="padding-top:40px;color:var(--faint)">กำลังโหลด…</div>';
+  document.body.append(bg, sheet);
+  requestAnimationFrame(() => { bg.classList.add('on'); sheet.classList.add('on'); });
+
+  const close = () => {
+    bg.classList.remove('on'); sheet.classList.remove('on');
+    document.removeEventListener('keydown', sheetEsc);
+    setTimeout(() => { bg.remove(); sheet.remove(); }, 220);
+  };
+  sheetEsc = (e) => { if (e.key === 'Escape') close(); };
+  document.addEventListener('keydown', sheetEsc);
+  bg.addEventListener('click', close);
+
+  try {
+    const d = await api('/api/admin/lead?id=' + encodeURIComponent(id));
+    sheet.innerHTML = leadSheet(d.lead);
+    sheet.querySelector('#sheetClose').addEventListener('click', close);
+  } catch (e) {
+    sheet.innerHTML = `<div class="sheet-body" style="padding-top:40px">
+      <div class="msg err" style="display:block">${esc(e.message)}</div></div>`;
+  }
 }
 
 async function load() {

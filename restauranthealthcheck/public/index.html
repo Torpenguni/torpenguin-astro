@@ -1415,7 +1415,7 @@ function showResult(){
   const pst0=primeStatus();
   // ส่ง lead เข้าระบบ (Google Sheet ผ่าน Apps Script)
   submitLead({...state.reg, scores:sc, total, typeCode:code, typeName:type.name+' · '+type.tag, tier:type.tier, tags, answers:state.answers.map(a=>a&&a.v||0),
-    fin: finData?{netPct:+finData.netPct.toFixed(1),primePct:+finData.primePct.toFixed(1),foodPct:+finData.foodPct.toFixed(1),rev:finData.rev,net:Math.round(finData.net)}:(pst0.p!=null?{primePct:+pst0.p.toFixed(0),foodPct:pst0.cogs!=null?+pst0.cogs.toFixed(0):'',laborPct:pst0.labor!=null?+pst0.labor.toFixed(0):''}:null)});
+    fin: buildFinPayload(finData,pst0)});
   state.result={code,total,tier:type.tier,sc,tags};
 
   go('s-result');
@@ -1613,6 +1613,27 @@ function track(ev,meta){
 // A lead is worth keeping even when the person never reaches the last screen,
 // so this is called twice: right after they register, and again when the
 // report is ready. Both writes carry the same sessionKey and upsert one row.
+// สรุปตัวเลขการเงินที่จะเก็บ — เก็บทั้ง % และ "ตัวเลขบาทดิบ" ที่ผู้ใช้กรอก
+// เพราะทีมที่โทรตามลูกค้าต้องเห็นยอดจริง ไม่ใช่แค่เปอร์เซ็นต์
+// (นโยบายความเป็นส่วนตัวแจ้งไว้แล้วว่าเก็บยอดขาย/ต้นทุน/ค่าแรง/กำไร)
+function buildFinPayload(finData,pst0){
+  const raw=state.fin?{
+    revenue:state.fin.revenue,cogs:state.fin.cogs,labor:state.fin.labor,
+    rent:state.fin.rent,other:state.fin.other,days:state.fin.days,
+    covers:state.fin.covers||null,avgBill:state.fin.avgBill||null,
+    // ผู้ใช้ไม่ได้แก้ต้นทุนเอง = เป็นค่าที่ระบบเดาให้ ห้ามอ่านเป็นตัวเลขจริง
+    estimated:!!state.fin.estimated
+  }:null;
+  if(finData) return {...raw,
+    netPct:+finData.netPct.toFixed(1),primePct:+finData.primePct.toFixed(1),
+    foodPct:+finData.foodPct.toFixed(1),rev:finData.rev,net:Math.round(finData.net)};
+  if(pst0.p!=null) return {...raw,
+    primePct:+pst0.p.toFixed(0),
+    foodPct:pst0.cogs!=null?+pst0.cogs.toFixed(0):'',
+    laborPct:pst0.labor!=null?+pst0.labor.toFixed(0):''};
+  return raw;
+}
+
 function submitLead(payload){
   if(!CONFIG.endpoint){console.log('[no endpoint] lead =',payload);return;}
   const body={
