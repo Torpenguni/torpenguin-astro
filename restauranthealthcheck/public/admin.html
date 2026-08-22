@@ -74,6 +74,15 @@ td.contact{font-size:13px;color:var(--muted)}
 .pager button{padding:8px 15px;border-radius:9px;border:1.5px solid var(--line);background:#fff;
   cursor:pointer;font-family:inherit;font-size:14px}
 .pager button:disabled{opacity:.4;cursor:not-allowed}
+
+/* บนมือถือ แถบบนสุดขึ้นบรรทัดใหม่จนดูรก — ตัดป้ายชื่อที่ซ้ำกับ title ออก
+   แล้วบีบปุ่มให้อยู่บรรทัดเดียว */
+@media(max-width:600px){
+  .bar{padding:12px 14px;gap:8px}
+  .bar .tag{display:none}
+  .bar>span:first-child{white-space:nowrap}
+  .bar a,.bar button{padding:6px 10px;font-size:12px;white-space:nowrap}
+}
 </style>
 </head>
 <body>
