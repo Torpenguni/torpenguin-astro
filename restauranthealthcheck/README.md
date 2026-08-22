@@ -63,16 +63,12 @@ ADMIN_PASSWORD=local-admin-pass
 
 แล้ว `npm run dev` → http://127.0.0.1:8788
 
-## Deploy — Cloudflare Pages
+## Deploy
 
-| ช่อง | ค่า |
-|---|---|
-| Framework preset | None |
-| Build command | *(เว้นว่าง)* |
-| Build output directory | `public` |
-| Root directory | `restauranthealthcheck` |
+ขั้นตอนเอาขึ้น `www.restauranthealthcheck.com` แบบละเอียดทีละขั้น อยู่ที่ **[DEPLOY.md](DEPLOY.md)**
 
-ผูก D1 ที่ Settings → Bindings → D1 database binding ชื่อ **`DB`**
+สรุปสั้น: `npx wrangler pages deploy` ในโฟลเดอร์นี้ (อ่าน `pages_build_output_dir`
+จาก `wrangler.toml` เอง) — แต่ครั้งแรกต้องสร้าง D1 ใส่ secret และต่อโดเมนก่อน
 
 ## ระบบบัญชีทำงานยังไง
 
