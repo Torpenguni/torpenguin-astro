@@ -1,0 +1,18 @@
+name = "restauranthealthcheck"
+compatibility_date = "2026-08-01"
+pages_build_output_dir = "public"
+
+# ── ความลับทั้งหมดไม่ได้อยู่ในไฟล์นี้ ─────────────────────────────────────
+# ตั้งใน Cloudflare dashboard (Settings → Variables and Secrets → Encrypt)
+# หรือด้วย `npx wrangler pages secret put <ชื่อ>`
+#   RESEND_API_KEY  คีย์จาก resend.com
+#   MAIL_FROM       เช่น "Restaurant Health Check <noreply@restauranthealthcheck.com>"
+#   SITE_URL        https://www.restauranthealthcheck.com  (ใช้สร้างลิงก์ในอีเมล)
+# เวลารันในเครื่อง ค่าพวกนี้อ่านจากไฟล์ .dev.vars ซึ่ง .gitignore กันไว้แล้ว
+
+[[d1_databases]]
+binding = "DB"
+database_name = "restauranthealthcheck"
+# ⚠️ แทนที่ด้วย database_id จริงจาก `npx wrangler d1 create restauranthealthcheck`
+# ก่อนรัน `npm run db:remote` (ค่านี้เป็นแค่ตัวยึดที่ทำให้รันในเครื่องได้)
+database_id = "00000000-0000-0000-0000-000000000000"

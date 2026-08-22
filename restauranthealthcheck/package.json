@@ -1,0 +1,13 @@
+{
+  "name": "restauranthealthcheck",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler pages dev",
+    "db:local": "wrangler d1 execute restauranthealthcheck --local --file=migrations/0001_init.sql",
+    "db:remote": "wrangler d1 execute restauranthealthcheck --remote --file=migrations/0001_init.sql"
+  },
+  "devDependencies": {
+    "wrangler": "^4.42.0"
+  }
+}
