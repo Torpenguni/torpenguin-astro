@@ -15,16 +15,27 @@ async function sendMail(env, { to, subject, html, text }) {
     return { ok: false };
   }
 
-  // Overridable so a local or staging run can point at a mail catcher instead
-  // of sending real mail to real people.
-  const res = await fetch(env.RESEND_API_URL || 'https://api.resend.com/emails', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ from, to, subject, html, text }),
-  });
+  // A mail outage must never take the caller down with it: an unreachable
+  // provider would otherwise throw here and turn "save my assessment" into a
+  // 500, losing the lead over an email we could have retried. Every failure
+  // — refused connection, DNS, timeout, 4xx, 5xx — comes back as ok:false.
+  let res;
+  try {
+    // Overridable so a local or staging run can point at a mail catcher
+    // instead of sending real mail to real people.
+    res = await fetch(env.RESEND_API_URL || 'https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ from, to, subject, html, text }),
+      signal: AbortSignal.timeout(10000),
+    });
+  } catch (e) {
+    console.error('[email] could not reach the mail provider:', e && e.message ? e.message : e);
+    return { ok: false };
+  }
 
   if (!res.ok) {
-    console.error('[email] resend failed', res.status, await res.text());
+    console.error('[email] resend failed', res.status, await res.text().catch(() => ''));
     return { ok: false };
   }
   return { ok: true };
@@ -41,7 +52,7 @@ function layout(bodyHtml) {
 ${bodyHtml}
 </td></tr>
 <tr><td style="padding:0 28px 26px;font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:12px;line-height:1.6;color:#8a8077">
-อีเมลนี้ส่งจาก restauranthealthcheck.com · ดำเนินการโดย PenguinX ร่วมกับ CP
+อีเมลนี้ส่งจาก restauranthealthcheck.com · ดำเนินการโดย บริษัท เพนกวินเอ็กซ์ จำกัด ร่วมกับ CP<br>สอบถามเรื่องข้อมูลส่วนบุคคล: <a href="mailto:tor@penguinx.co" style="color:#8a8077">tor@penguinx.co</a>
 </td></tr>
 </table></td></tr></table></body></html>`;
 }
