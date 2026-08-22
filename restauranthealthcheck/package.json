@@ -4,10 +4,13 @@
   "type": "module",
   "scripts": {
     "dev": "wrangler pages dev",
-    "db:local": "wrangler d1 execute restauranthealthcheck --local --file=migrations/0001_init.sql",
-    "db:remote": "wrangler d1 execute restauranthealthcheck --remote --file=migrations/0001_init.sql"
+    "db:local": "wrangler d1 execute restauranthealthcheck --local --file=migrations/0001_init.sql && wrangler d1 execute restauranthealthcheck --local --file=migrations/0002_admin_and_result_email.sql",
+    "db:remote": "wrangler d1 execute restauranthealthcheck --remote --file=migrations/0001_init.sql && wrangler d1 execute restauranthealthcheck --remote --file=migrations/0002_admin_and_result_email.sql",
+    "test": "node tests/run-all.mjs",
+    "test:mail": "node tests/mailcatcher.mjs"
   },
   "devDependencies": {
-    "wrangler": "^4.42.0"
+    "wrangler": "^4.42.0",
+    "puppeteer-core": "^23.0.0"
   }
 }

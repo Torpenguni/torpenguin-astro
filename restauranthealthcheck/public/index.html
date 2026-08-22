@@ -1227,7 +1227,11 @@ function openCta(){
   window.open(CONFIG.ctaUrl+sep+q.toString(),'_blank','noopener');
 }
 function boothPickup(){alert((state.reg.email&&CONFIG.endpoint)?('เยี่ยม! สรุปผลถูกส่งไปที่ '+state.reg.email+'\nแวะรับคำแนะนำเพิ่มเติมได้ที่บูธ CP'):'ขอบคุณ! แวะรับรายงานและคำแนะนำได้ที่บูธ CP');}
-function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');
+  // ตัวนับ % เป็นของหน้าคำถามเท่านั้น ออกจากหน้านั้นแล้วต้องล้าง
+  // ไม่งั้นหน้ารายงานจะค้างเลขไว้มุมขวาบนตลอด
+  const pm=document.getElementById('progMini');if(pm&&id!=='s-quiz')pm.textContent='';
+  window.scrollTo({top:0,behavior:'smooth'});}
 
 track('landing_view');
 flushLeads();

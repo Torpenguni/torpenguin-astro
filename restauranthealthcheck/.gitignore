@@ -1,3 +1,7 @@
 node_modules/
 .wrangler/
 .dev.vars
+
+# ผลลัพธ์จากการรันเทสต์
+tests/mailbox.json
+tests/screenshot-*.png

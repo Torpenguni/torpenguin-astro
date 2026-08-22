@@ -1,0 +1,205 @@
+// Browser coverage for the parts uiflow.mjs does not touch: the quick path,
+// the account pages a returning owner uses, and the back office.
+import puppeteer from 'puppeteer-core';
+import fs from 'node:fs';
+
+const BASE = 'http://127.0.0.1:8788';
+let pass = 0, failed = 0;
+const t = (n, c, x = '') => { c ? (pass++, console.log('  ok   ' + n)) : (failed++, console.log('  FAIL ' + n + (x ? ' — ' + x : ''))); };
+const mail = () => { try { return JSON.parse(fs.readFileSync(new URL('./mailbox.json', import.meta.url), 'utf8')); } catch { return []; } };
+const lastTo = (to) => [...mail()].reverse().find((m) => m.to === to);
+
+const browser = await puppeteer.launch({
+  // ตั้ง CHROME_PATH ให้ชี้ไปที่ Chrome/Chromium ในเครื่อง เช่น
+  // export CHROME_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+  executablePath: process.env.CHROME_PATH || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
+  args: ['--no-sandbox', '--disable-gpu'],
+});
+const page = await browser.newPage();
+await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true });
+
+const jsErrors = [];
+page.on('pageerror', (e) => jsErrors.push(String(e)));
+// การทดสอบชุดนี้ยิงเคสที่ "ต้องล้มเหลว" ด้วย (รหัสสั้น, รหัสผิด, ยังไม่ล็อกอิน)
+// เบราว์เซอร์จะ log HTTP 4xx ลง console เสมอ — ไม่ใช่บั๊ก จึงไม่นับ
+page.on('console', (m) => {
+  if (m.type() !== 'error') return;
+  if (m.text().includes('Failed to load resource')) return;
+  jsErrors.push('console: ' + m.text());
+});
+
+const visible = () => page.$eval('.screen.active', (el) => el.id);
+const clickByOnclick = async (f) => {
+  const h = await page.evaluateHandle((frag) => [...document.querySelectorAll('[onclick]')]
+    .find((el) => el.getAttribute('onclick').includes(frag) && el.offsetParent !== null), f);
+  const el = h.asElement();
+  if (!el) throw new Error('ไม่เจอปุ่ม: ' + f);
+  await el.click();
+};
+
+const EMAIL = `acct${Date.now()}@example.com`;
+const PW = 'penguin-shabu-2026';
+
+// ── โหมดด่วน ────────────────────────────────────────────────────────────
+console.log('\n— โหมดด่วน (10 ข้อ) —');
+await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
+await clickByOnclick("chooseMode('quick')");
+await page.waitForFunction(() => document.querySelector('.screen.active').id === 's-register');
+
+await page.type('#r_name', 'ต่อ');
+await page.type('#r_shop', 'คาเฟ่ทดสอบ');
+await page.type('#r_contact', '0899999999');
+await page.type('#r_email', EMAIL);
+await page.click('#r_consent');
+await clickByOnclick('startQuiz()');
+await page.waitForFunction(() => document.querySelector('.screen.active').id === 's-quiz');
+
+let n = 0;
+for (let g = 0; g < 60 && (await visible()) === 's-quiz'; g++) {
+  for (let i = 0; i < 12; i++) {
+    if (!(await page.$eval('#qNext', (el) => el.disabled))) break;
+    const clicked = await page.evaluate(() => {
+      const b = [...document.querySelectorAll('#qBody button')]
+        .filter((x) => x.offsetParent !== null && !x.className.includes('calc') && !x.classList.contains('sel'));
+      if (!b.length) return false;
+      b[Math.min(1, b.length - 1)].click();
+      return true;
+    });
+    if (!clicked) break;
+    await new Promise((r) => setTimeout(r, 25));
+  }
+  await page.click('#qNext');
+  n++;
+  await new Promise((r) => setTimeout(r, 50));
+}
+t(`โหมดด่วนสั้นกว่าโหมดเต็มจริง (${n} ข้อ)`, n > 0 && n < 30, `ตอบ ${n} ข้อ`);
+t('ไปหน้าเลือกสิ่งที่สนใจ', await visible() === 's-intent', await visible());
+
+const chips = await page.$$eval('#intentChips button', (b) => b.length);
+t('มีตัวเลือกความสนใจให้เลือก', chips > 0, `${chips} ตัวเลือก`);
+await page.evaluate(() => document.querySelectorAll('#intentChips button')[0].click());
+await clickByOnclick('finishQuick()');
+await page.waitForFunction(() => document.querySelector('.screen.active').id === 's-quickresult', { timeout: 8000 });
+t('ได้ผลความพร้อมเบื้องต้น', await visible() === 's-quickresult');
+t('มีคะแนนแสดง', await page.$eval('#qrPct', (el) => /\d/.test(el.textContent)));
+t('ตัวนับ % ไม่ค้าง', await page.$eval('#progMini', (el) => el.textContent.trim() === ''));
+
+// ── หน้าบัญชี ──────────────────────────────────────────────────────────
+console.log('\n— สมัครบัญชีผ่านหน้าเว็บ —');
+await page.goto(BASE + '/account?mode=signup', { waitUntil: 'networkidle0' });
+await page.type('#email', EMAIL);
+await page.type('#password', 'sh0rt');
+await page.click('#go');
+await page.waitForFunction(() => document.getElementById('msg').className.includes('err'), { timeout: 5000 });
+t('กันรหัสผ่านสั้นเกินไป', (await page.$eval('#msg', (el) => el.textContent)).includes('8 ตัวอักษร'));
+
+await page.evaluate(() => { document.getElementById('password').value = ''; });
+await page.type('#password', PW);
+await page.click('#go');
+await page.waitForFunction(() => document.getElementById('msg').className.includes('ok'), { timeout: 8000 });
+t('สมัครสำเร็จ ขึ้นข้อความยืนยัน', true);
+
+const verifyMail = lastTo(EMAIL);
+const verifyLink = verifyMail && (verifyMail.text.match(/http:\/\/\S*\/api\/auth\/verify\?token=\S+/) || [])[0];
+t('ได้อีเมลยืนยัน', !!verifyLink);
+
+console.log('\n— กดลิงก์ยืนยันจากในเมล —');
+await page.goto(verifyLink, { waitUntil: 'networkidle0' });
+t('ถูกพากลับมาหน้าบัญชี', page.url().includes('/account'));
+t('ขึ้นข้อความว่ายืนยันแล้ว', (await page.$eval('#msg', (el) => el.textContent)).includes('ยืนยันอีเมลเรียบร้อย'));
+await page.waitForSelector('#logout', { timeout: 5000 });
+t('เข้าสู่ระบบให้อัตโนมัติ', await page.$('#logout') !== null);
+t('เห็นอีเมลตัวเองบนหน้า', (await page.content()).includes(EMAIL));
+t('เห็นผลประเมินที่เพิ่งทำ', (await page.content()).includes('คาเฟ่ทดสอบ'),
+  await page.$eval('.card', (el) => el.textContent.slice(0, 80)));
+
+console.log('\n— ออกจากระบบ แล้วล็อกอินใหม่ —');
+await page.click('#logout');
+await page.waitForFunction(() => location.pathname === '/', { timeout: 5000 });
+await page.goto(BASE + '/account', { waitUntil: 'networkidle0' });
+await page.waitForSelector('#go');
+t('เด้งกลับหน้าเข้าสู่ระบบ', await page.$('#password') !== null);
+
+await page.type('#email', EMAIL);
+await page.type('#password', 'ผิดแน่นอน');
+await page.click('#go');
+await page.waitForFunction(() => document.getElementById('msg').className.includes('err'), { timeout: 8000 });
+t('รหัสผิดเข้าไม่ได้', (await page.$eval('#msg', (el) => el.textContent)).includes('ไม่ถูกต้อง'));
+
+await page.evaluate(() => { document.getElementById('password').value = ''; });
+await page.type('#password', PW);
+await page.click('#go');
+await page.waitForSelector('#logout', { timeout: 8000 });
+t('รหัสถูกเข้าได้', await page.$('#logout') !== null);
+
+console.log('\n— ลืมรหัสผ่านผ่านหน้าเว็บ —');
+await page.goto(BASE + '/account?mode=forgot', { waitUntil: 'networkidle0' });
+await page.type('#email', EMAIL);
+await page.click('#go');
+await page.waitForFunction(() => document.getElementById('msg').className.includes('ok'), { timeout: 8000 });
+const resetLink = (lastTo(EMAIL).text.match(/http:\/\/\S*\/account\?mode=reset&token=\S+/) || [])[0];
+t('ได้อีเมลลิงก์ตั้งรหัสใหม่', !!resetLink);
+
+await page.goto(resetLink, { waitUntil: 'networkidle0' });
+await page.type('#password', 'brand-new-pass-77');
+await page.type('#password2', 'ไม่ตรงกัน-77');
+await page.click('#go');
+await page.waitForFunction(() => document.getElementById('msg').className.includes('err'), { timeout: 5000 });
+t('กันกรอกรหัสใหม่สองช่องไม่ตรงกัน', (await page.$eval('#msg', (el) => el.textContent)).includes('ไม่ตรงกัน'));
+
+await page.evaluate(() => { document.getElementById('password2').value = ''; });
+await page.type('#password2', 'brand-new-pass-77');
+await page.click('#go');
+await page.waitForFunction(() => document.getElementById('msg').className.includes('ok'), { timeout: 8000 });
+t('ตั้งรหัสใหม่สำเร็จ', true);
+
+// ── หลังบ้าน ───────────────────────────────────────────────────────────
+console.log('\n— หลังบ้าน —');
+await page.setViewport({ width: 1280, height: 900 });
+await page.goto(BASE + '/admin', { waitUntil: 'networkidle0' });
+await page.waitForSelector('#pw');
+t('ไม่ล็อกอินเห็นแค่หน้าใส่รหัส', await page.$('table') === null);
+
+await page.type('#pw', 'รหัสมั่ว');
+await page.click('#go');
+await page.waitForFunction(() => document.getElementById('msg')?.className.includes('err'), { timeout: 8000 });
+t('รหัสผิดเข้าไม่ได้', true);
+
+await page.evaluate(() => { document.getElementById('pw').value = ''; });
+await page.type('#pw', 'local-admin-pass');
+await page.click('#go');
+await page.waitForSelector('table', { timeout: 8000 });
+t('เข้าหลังบ้านได้', await page.$('table') !== null);
+
+const rows = await page.$$eval('tbody tr', (r) => r.length);
+t('เห็นรายการ lead', rows > 0, `${rows} แถว`);
+t('เห็นร้านที่เพิ่งทดสอบ', (await page.content()).includes('คาเฟ่ทดสอบ'));
+t('ลิงก์ CSV ชี้ไปที่ endpoint ถูกต้อง',
+  (await page.$eval('a.csv', (el) => el.getAttribute('href'))).startsWith('/api/admin/export'));
+
+await page.type('#f_q', 'คาเฟ่ทดสอบ');
+await page.click('#apply');
+await page.waitForFunction((term) => {
+  const rs = [...document.querySelectorAll('tbody tr')];
+  return rs.length > 0 && rs.every((r) => r.textContent.includes(term));
+}, { timeout: 8000 }, 'คาเฟ่ทดสอบ').catch(() => {});
+const filtered = await page.$$eval('tbody tr', (r) => r.map((x) => x.textContent));
+t('ค้นหาภาษาไทยกรองได้จริง', filtered.length > 0 && filtered.every((x) => x.includes('คาเฟ่ทดสอบ')),
+  `${filtered.length} แถว, ตรงเงื่อนไข ${filtered.filter((x) => x.includes('คาเฟ่ทดสอบ')).length}`);
+
+await page.evaluate(() => document.getElementById('clear').click());
+await page.waitForFunction((n) => document.querySelectorAll('tbody tr').length >= n, { timeout: 8000 }, rows)
+  .catch(() => {});
+t('ล้างตัวกรองแล้วกลับมาครบ', (await page.$$eval('tbody tr', (r) => r.length)) >= rows,
+  `เหลือ ${await page.$$eval('tbody tr', (r) => r.length)} จาก ${rows}`);
+
+await page.evaluate(() => document.getElementById('out').click());
+await page.waitForSelector('#pw', { timeout: 8000 });
+t('ออกจากระบบหลังบ้านได้', await page.$('table') === null);
+
+console.log('\n— ไม่มี JavaScript error ตลอดทาง —');
+t('ไม่มี error หลุดออกมาเลย', jsErrors.length === 0, jsErrors.slice(0, 3).join(' | '));
+
+await browser.close();
+console.log(`\n${pass} passed, ${failed} failed`);
+process.exit(failed ? 1 : 0);
