@@ -9,17 +9,21 @@ Restaurant Health Check — เครื่องมือตรวจเช็�
 public/           ← เว็บที่คนเห็น (Cloudflare Pages เสิร์ฟโฟลเดอร์นี้)
   index.html        ตัวเครื่องมือ 8 หน้าจอ
   account.html      สมัคร / เข้าสู่ระบบ / ลืมรหัสผ่าน / ดูผลย้อนหลัง
+  admin.html        หลังบ้าน — ดู lead ทั้งหมด กรอง และ export CSV
+  privacy.html      นโยบายความเป็นส่วนตัว (PDPA)
   fonts/            ฟอนต์ Anuphan (แยกออกมาแล้ว ไม่ได้ฝัง base64)
   og.png robots.txt sitemap.xml
 functions/        ← API (Cloudflare Pages Functions)
   _middleware.js    security headers + กันไม่ให้ error หลุดเป็น stack trace
   api/auth/*.js     signup · login · logout · verify · forgot · reset · me
+  api/admin/*.js    login · logout · leads (รายการ+สถิติ) · export (CSV)
   api/assessments.js  บันทึกผลประเมิน + ดึงผลย้อนหลังของตัวเอง
 lib/              ← โค้ดที่ใช้ร่วมกัน (อยู่นอก functions/ จึงไม่กลายเป็น URL)
   crypto.js         แฮชรหัสผ่าน (PBKDF2) + สร้าง/แฮช token
+  admin.js          สิทธิ์ผู้ดูแล + ตัวกรองที่ใช้ร่วมกันระหว่างตารางกับ CSV
   session.js        session + token ใช้ครั้งเดียว
   ratelimit.js      จำกัดจำนวนครั้ง (ราย IP และรายอีเมล)
-  email.js          ส่งอีเมลผ่าน Resend + เทมเพลตภาษาไทย 4 ฉบับ
+  email.js          ส่งอีเมลผ่าน Resend + เทมเพลตภาษาไทย 5 ฉบับ
   http.js           helper กลาง (JSON, cookie, ตรวจอีเมล/รหัสผ่าน)
 migrations/       ← schema ของ D1
 ```
@@ -33,13 +37,14 @@ npm install
 npx wrangler d1 create restauranthealthcheck
 
 # 2. สร้างตาราง
-npm run db:remote        # บน Cloudflare
+npm run db:remote        # บน Cloudflare (รันทั้ง 0001 และ 0002)
 npm run db:local         # ในเครื่อง
 
 # 3. ใส่ความลับ (ห้าม commit)
 npx wrangler pages secret put RESEND_API_KEY
 npx wrangler pages secret put MAIL_FROM
 npx wrangler pages secret put SITE_URL
+npx wrangler pages secret put ADMIN_PASSWORD    # รหัสเข้าหลังบ้าน
 ```
 
 โดเมนผู้ส่งอีเมลต้องยืนยันที่ Resend ก่อน (ใส่ DNS: SPF + DKIM) ไม่งั้นเมลจะเข้าสแปม
@@ -53,6 +58,7 @@ RESEND_API_KEY=local-test-key
 RESEND_API_URL=http://127.0.0.1:8025/emails   # ชี้ไป mail catcher จะได้ไม่ส่งเมลจริง
 MAIL_FROM=Restaurant Health Check <noreply@localhost>
 SITE_URL=http://127.0.0.1:8788
+ADMIN_PASSWORD=local-admin-pass
 ```
 
 แล้ว `npm run dev` → http://127.0.0.1:8788
@@ -102,16 +108,37 @@ SITE_URL=http://127.0.0.1:8788
 - 49 เคส — flow เต็มตั้งแต่สมัคร → ยืนยันเมล → ล็อกอิน → ลืมรหัส → ตั้งรหัสใหม่
   → เตะ session เก่า → ใช้ token ซ้ำไม่ได้ → บันทึก/ดึงผลประเมิน → ออกจากระบบ
   → กัน cross-origin
+- 43 เคส — เมลสรุปผล (ส่งครั้งเดียว ไม่ส่งซ้ำ) · หลังบ้าน (สิทธิ์ ตัวกรอง สถิติ)
+  · CSV (BOM, sep, หัวตารางไทย, เคารพตัวกรอง) · ทุกหน้าเสิร์ฟได้
 - rate limit ทริปตามที่ตั้งไว้จริง
+
+## หลังบ้าน (`/admin`)
+
+เข้าด้วยรหัสเดียวจาก secret `ADMIN_PASSWORD` — ผู้ดูแลไม่ใช่ user ไม่มีแถวใน `users`
+ใช้คุกกี้คนละตัว (`rhc_admin`) และหมดอายุใน 12 ชม.
+
+- ตัวเลขสรุป: คนทำทั้งหมด · ทำจบ (พร้อม %) · มีอีเมล · คะแนนเฉลี่ย · HOT/WARM/NURTURE
+- กรองได้: คำค้น (ชื่อร้าน/ชื่อ/อีเมล/เบอร์) · tier · ประเภทร้าน · ทำจบ/ไม่จบ · ช่วงวันที่
+- **export CSV** ใช้ตัวกรองชุดเดียวกับที่เห็นบนตาราง มี BOM และประกาศ `sep=,`
+  → เปิดใน Excel ภาษาไทยแล้วไม่เป็นตัวยึกยือ และไม่ตกลงช่องเดียว
+
+## เมลสรุปผล
+
+ส่งอัตโนมัติเมื่อทำแบบประเมินจบ *และ* มีอีเมล — มีคะแนนรวม ประเภทร้าน และคะแนนราย
+มิติทั้ง 5 พร้อมลิงก์กลับมาดูรายงานเต็ม เวลาส่งถูกบันทึกไว้ในคอลัมน์
+`result_email_sent_at` (ตัดจ่ายแบบ atomic) จึงไม่มีทางส่งซ้ำ
+ถ้าส่งไม่สำเร็จจะเคลียร์ค่ากลับ เพื่อให้ลองใหม่ได้
 
 ## ยังค้างอยู่
 
-1. **ปุ่ม CTA ท้ายรายงานยังเป็น `alert('Prototype: …')`** — ต้องตัดสินใจว่าจะให้
-   ไปไหน (ลิงก์จองคิว / LINE OA / ฟอร์มติดต่อทีม CP)
-2. **ยังไม่มีหน้า `/admin`** — ตอนนี้ต้องดู lead ผ่าน `wrangler d1 execute`
-   ยังไม่มี UI และยัง export CSV ไม่ได้
-3. **ยังไม่มีเมลสรุปผลส่งให้ผู้ใช้** หลังทำแบบประเมินเสร็จ
-4. **`track()` ยังไม่ได้เก็บที่ไหน** — เขียนลง console อย่างเดียว ถ้าอยากได้
-   funnel จริงต้องทำ `/api/events` เพิ่ม
-5. **หน้า `/privacy`** ตามที่ PDPA ควรมี ยังไม่ได้ทำ (ตอนนี้เก็บ consent
-   timestamp ไว้แล้ว แต่ยังไม่มีหน้าอธิบายนโยบาย)
+1. **ลิงก์ Google Form ของปุ่ม CTA** — `CONFIG.ctaUrl` ใน `public/index.html`
+   ยังว่างอยู่ **ปุ่มจะถูกซ่อนไว้จนกว่าจะใส่ลิงก์** (ดีกว่าปล่อยให้กดแล้วไม่มีอะไรเกิด)
+   ใส่แล้วปุ่มจะโผล่เอง และจะแนบ `rhc_sid` / `rhc_tier` / `rhc_type` ไปกับลิงก์ให้ด้วย
+2. **ค่าที่ต้องยืนยันในหน้า `/privacy`** — ตอนนี้ใส่ไว้ตามที่ระบบทำจริง แต่ 3 จุดนี้
+   เป็นการตัดสินใจเชิงธุรกิจ ควรให้เจ้าของเรื่องเคาะก่อนเปิดจริง:
+   ชื่อนิติบุคคลผู้ควบคุมข้อมูล · อีเมลรับเรื่อง PDPA
+   (ตอนนี้ `privacy@restauranthealthcheck.com`) · ระยะเวลาเก็บข้อมูล (ตอนนี้ 2 ปี)
+3. **`track()` ยังไม่ได้เก็บที่ไหน** — เขียนลง console อย่างเดียว
+   ถ้าอยากได้ funnel ว่าคนหลุดตรงไหน ต้องทำ `/api/events` เพิ่ม
+4. **ยังไม่มีปุ่มลบข้อมูลให้ผู้ใช้กดเอง** — PDPA บอกให้ขอลบได้ ตอนนี้ต้องเมลมาขอ
+   แล้วทีมงานลบให้ด้วยมือ

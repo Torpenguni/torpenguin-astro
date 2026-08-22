@@ -5,7 +5,7 @@
 
 const BRAND = '#C8102E';
 
-async function send(env, { to, subject, html, text }) {
+async function sendMail(env, { to, subject, html, text }) {
   const key = env.RESEND_API_KEY;
   const from = env.MAIL_FROM;
   if (!key || !from) {
@@ -56,7 +56,7 @@ function button(href, label) {
 }
 
 export function sendVerifyEmail(env, to, link) {
-  return send(env, {
+  return sendMail(env, {
     to,
     subject: 'ยืนยันอีเมลของคุณ · Restaurant Health Check',
     html: layout(
@@ -77,7 +77,7 @@ ${link}
 }
 
 export function sendResetEmail(env, to, link) {
-  return send(env, {
+  return sendMail(env, {
     to,
     subject: 'ตั้งรหัสผ่านใหม่ · Restaurant Health Check',
     html: layout(
@@ -100,7 +100,7 @@ ${link}
 // account. The signup endpoint answers identically either way, so this mail is
 // what keeps the flow honest without telling a stranger who is registered.
 export function sendAccountExistsEmail(env, to, loginLink, resetLink) {
-  return send(env, {
+  return sendMail(env, {
     to,
     subject: 'อีเมลนี้มีบัญชีอยู่แล้ว · Restaurant Health Check',
     html: layout(
@@ -120,7 +120,7 @@ ${button(loginLink, 'เข้าสู่ระบบ')}
 }
 
 export function sendPasswordChangedEmail(env, to, resetLink) {
-  return send(env, {
+  return sendMail(env, {
     to,
     subject: 'รหัสผ่านของคุณถูกเปลี่ยนแล้ว · Restaurant Health Check',
     html: layout(
@@ -135,4 +135,75 @@ export function sendPasswordChangedEmail(env, to, resetLink) {
 ถ้าคุณไม่ได้เป็นคนเปลี่ยน ให้ตั้งรหัสผ่านใหม่ทันทีที่:
 ${resetLink}`,
   });
+}
+
+const DIM_LABEL = {
+  D1: 'ตัวเจ้าของ & ผู้นำ',
+  D2: 'สุขภาพการเงิน',
+  D3: 'แบรนด์ & การตลาด',
+  D4: 'ระบบ & ทีม',
+  D5: 'ความพร้อมขยาย',
+};
+
+const TIER_LINE = {
+  HOT: 'ร้านคุณอยู่ในกลุ่มที่พร้อมขยาย',
+  WARM: 'ร้านคุณมีฐานที่ดี แต่ยังมีจุดต้องเสริมก่อนเร่งโต',
+  NURTURE: 'ตอนนี้โฟกัสที่การวางรากฐานก่อนขยาย',
+};
+
+// Summary of a finished assessment. The full report lives on the site — this
+// mail is the number, the five dimensions, and a way back in.
+export function sendResultEmail(env, to, r) {
+  const rows = Object.keys(DIM_LABEL)
+    .filter((k) => r.scores && r.scores[k] != null)
+    .map((k) => {
+      const v = Math.round(r.scores[k]);
+      const color = v >= 60 ? '#1F9D57' : v >= 40 ? '#E08A00' : '#C8102E';
+      return `<tr>
+<td style="padding:7px 0;font-size:15px;color:#5c554c">${DIM_LABEL[k]}</td>
+<td style="padding:7px 0;text-align:right;font-weight:700;font-size:15px;color:${color}">${v}<span style="color:#8a8077;font-weight:400">/100</span></td>
+</tr>`;
+    })
+    .join('');
+
+  const textRows = Object.keys(DIM_LABEL)
+    .filter((k) => r.scores && r.scores[k] != null)
+    .map((k) => `  ${DIM_LABEL[k]}: ${Math.round(r.scores[k])}/100`)
+    .join('\n');
+
+  const shop = r.shop ? `ร้าน${r.shop}` : 'ร้านของคุณ';
+
+  return sendMail(env, {
+    to,
+    subject: `ผลตรวจสุขภาพร้าน: ${r.total}/100 · Restaurant Health Check`,
+    html: layout(
+      `<p style="margin:0 0 6px">สรุปผลตรวจสุขภาพธุรกิจของ<b>${escapeHtml(shop)}</b></p>
+<div style="margin:22px 0;padding:22px;background:#FAF7F2;border-radius:13px;text-align:center">
+  <div style="font-size:13px;color:#8a8077;letter-spacing:.12em;font-weight:600">ดัชนีสุขภาพร้าน</div>
+  <div style="font-size:46px;font-weight:700;line-height:1.15;color:#17140F;margin:4px 0">${r.total}<span style="font-size:19px;color:#8a8077">/100</span></div>
+  ${r.typeName ? `<div style="font-size:15px;color:#5c554c;font-weight:600">${escapeHtml(r.typeName)}</div>` : ''}
+</div>
+<table style="width:100%;border-collapse:collapse">${rows}</table>
+<p style="margin:22px 0 0;font-size:15px;color:#5c554c">${TIER_LINE[r.tier] || ''}</p>
+${button(`${r.site}/account`, 'ดูรายงานฉบับเต็ม')}
+<p style="margin:22px 0 0;font-size:14px;color:#5c554c">
+ถ้ายังไม่ได้สมัครบัญชี สมัครด้วยอีเมลนี้แล้วผลประเมินจะผูกกับบัญชีให้อัตโนมัติ กลับมาดูย้อนหลังได้ทุกเมื่อ</p>`,
+    ),
+    text: `สรุปผลตรวจสุขภาพธุรกิจของ${shop}
+
+ดัชนีสุขภาพร้าน: ${r.total}/100${r.typeName ? `\nประเภทร้าน: ${r.typeName}` : ''}
+
+${textRows}
+
+${TIER_LINE[r.tier] || ''}
+
+ดูรายงานฉบับเต็ม: ${r.site}/account
+
+ถ้ายังไม่ได้สมัครบัญชี สมัครด้วยอีเมลนี้แล้วผลประเมินจะผูกกับบัญชีให้อัตโนมัติ`,
+  });
+}
+
+function escapeHtml(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, (c) =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }

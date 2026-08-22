@@ -1,5 +1,6 @@
 import { newId } from '../../lib/crypto.js';
-import { fail, json, normalizeEmail, now, readJson, sameOrigin, validEmail } from '../../lib/http.js';
+import { fail, json, normalizeEmail, now, readJson, sameOrigin, siteUrl, validEmail } from '../../lib/http.js';
+import { sendResultEmail } from '../../lib/email.js';
 import { guard } from '../../lib/ratelimit.js';
 import { getUser } from '../../lib/session.js';
 
@@ -88,6 +89,35 @@ export async function onRequestPost({ request, env }) {
       row.consent_at, row.user_agent, row.referrer, ts, ts,
     )
     .run();
+
+  // Mail the summary once the run is finished — guarded by a stored timestamp
+  // so a retried save (or a second device) never sends it twice.
+  const saved = await db
+    .prepare('SELECT id, email, shop, completed, total_score, type_name, tier, scores_json, result_email_sent_at FROM assessments WHERE session_key = ?')
+    .bind(sessionKey)
+    .first();
+
+  if (saved && saved.completed !== 0 && saved.email && saved.total_score != null && !saved.result_email_sent_at) {
+    const claimed = await db
+      .prepare('UPDATE assessments SET result_email_sent_at = ? WHERE id = ? AND result_email_sent_at IS NULL')
+      .bind(ts, saved.id)
+      .run();
+
+    if (claimed.meta && claimed.meta.changes === 1) {
+      const sent = await sendResultEmail(env, saved.email, {
+        shop: saved.shop,
+        total: saved.total_score,
+        typeName: saved.type_name,
+        tier: saved.tier,
+        scores: saved.scores_json ? JSON.parse(saved.scores_json) : null,
+        site: siteUrl(env, request),
+      });
+      // Let a failed send be retried rather than silently swallowed.
+      if (!sent.ok) {
+        await db.prepare('UPDATE assessments SET result_email_sent_at = NULL WHERE id = ?').bind(saved.id).run();
+      }
+    }
+  }
 
   return json({ ok: true });
 }

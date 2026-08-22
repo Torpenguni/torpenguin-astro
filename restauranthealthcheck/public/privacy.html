@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>นโยบายความเป็นส่วนตัว · Restaurant Health Check</title>
+<meta name="description" content="นโยบายความเป็นส่วนตัวของ Restaurant Health Check — เก็บข้อมูลอะไร ใช้ทำอะไร เก็บนานแค่ไหน และขอลบได้อย่างไร">
+<meta name="theme-color" content="#C8102E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23C8102E'/%3E%3Cpath d='M9 16.5l4.8 4.8L23 12' fill='none' stroke='white' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+@font-face{font-family:'Anuphan';font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/anuphan-1.woff2) format('woff2');unicode-range:U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC}
+@font-face{font-family:'Anuphan';font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/anuphan-2.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+:root{--paper:#FAF7F2;--surface:#fff;--ink:#17140F;--muted:#5c554c;--faint:#8a8077;--line:#e5ded2;--brand:#C8102E;--amber:#E08A00;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.75 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,.en{font-family:'Anuphan',-apple-system,BlinkMacSystemFont,sans-serif;font-weight:600}
+.brandbar{display:flex;align-items:center;gap:12px;padding:18px 22px;border-bottom:1px solid var(--line);background:var(--surface);font-weight:600;font-size:15px}
+.brandbar .x{color:var(--amber)}
+.brandbar .sep{width:1px;height:18px;background:var(--line)}
+.brandbar .cp{color:var(--faint);font-size:13px}
+.brandbar a{margin-left:auto;color:var(--faint);text-decoration:none;font-size:14px}
+.brandbar a:hover{color:var(--brand)}
+.wrap{max-width:660px;margin:0 auto;padding:42px 22px 90px}
+h1{font-size:31px;line-height:1.28;margin:0 0 10px;letter-spacing:-.3px}
+.updated{color:var(--faint);font-size:14px;margin:0 0 32px}
+h2{font-size:19px;margin:38px 0 12px;line-height:1.4}
+p{margin:0 0 14px;color:var(--muted)}
+ul{margin:0 0 14px;padding-left:22px;color:var(--muted)}
+li{margin-bottom:7px}
+strong{color:var(--ink)}
+a{color:var(--brand)}
+table{width:100%;border-collapse:collapse;margin:0 0 16px;font-size:15px}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:#f4efe7;white-space:nowrap}
+td{color:var(--muted)}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:0 0 16px}
+.tldr{background:#fff6e8;border:1px solid #f3ddb5;border-radius:14px;padding:20px 22px;margin:0 0 34px}
+.tldr p:last-child{margin-bottom:0}
+.foot{margin-top:46px;padding-top:22px;border-top:1px solid var(--line);font-size:14px;color:var(--faint)}
+</style>
+</head>
+<body>
+
+<div class="brandbar">
+  <span class="en">Penguin<span class="x">X</span></span>
+  <span class="sep"></span>
+  <span class="cp">Restaurant Health Check</span>
+  <a href="/">← กลับหน้าแรก</a>
+</div>
+
+<div class="wrap">
+  <h1>นโยบายความเป็นส่วนตัว</h1>
+  <p class="updated">ปรับปรุงล่าสุด: 22 สิงหาคม 2569</p>
+
+  <div class="tldr">
+    <p><strong>สรุปสั้น ๆ</strong></p>
+    <p>เราเก็บข้อมูลร้านและคำตอบของคุณ เพื่อคำนวณผลประเมิน ส่งรายงานให้ และให้ทีมงานติดต่อกลับพร้อมคำแนะนำ
+      ข้อมูลนี้ถูกแบ่งปันกับ <strong>CP</strong> ในฐานะผู้สนับสนุนหลักของโครงการ
+      เราไม่ขายข้อมูลของคุณให้ใคร และคุณขอดูหรือขอลบข้อมูลได้ทุกเมื่อ</p>
+  </div>
+
+  <h2>1. เราคือใคร</h2>
+  <p>เว็บไซต์ <strong>restauranthealthcheck.com</strong> ดำเนินการโดย <strong>PenguinX</strong>
+    ร่วมกับ <strong>CP</strong> ในฐานะผู้สนับสนุนหลัก (Title Sponsor)
+    โดย PenguinX เป็นผู้ควบคุมข้อมูลส่วนบุคคลตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (PDPA)</p>
+
+  <h2>2. เราเก็บข้อมูลอะไรบ้าง</h2>
+  <table>
+    <tr><th>ข้อมูล</th><th>เก็บเมื่อไหร่</th></tr>
+    <tr><td>ชื่อ ชื่อร้าน และช่องทางติดต่อ (เบอร์โทร หรือ LINE ID)</td><td>เมื่อคุณกรอกก่อนเริ่มทำแบบประเมิน</td></tr>
+    <tr><td>อีเมล</td><td>เมื่อคุณกรอก (ไม่บังคับ) หรือเมื่อสมัครบัญชี</td></tr>
+    <tr><td>ประเภทร้าน จำนวนสาขา และอายุร้าน</td><td>เมื่อคุณกรอกก่อนเริ่มทำแบบประเมิน</td></tr>
+    <tr><td>คำตอบแบบประเมินทุกข้อ คะแนนทั้ง 5 มิติ และผลจัดประเภทร้าน</td><td>ระหว่างและหลังทำแบบประเมิน</td></tr>
+    <tr><td>ตัวเลขการเงินของร้าน เช่น ยอดขาย ต้นทุนอาหาร ค่าแรง กำไรสุทธิ</td><td>เฉพาะเมื่อคุณเลือกกรอก — ข้ามได้</td></tr>
+    <tr><td>หัวข้อที่คุณสนใจให้ช่วยเหลือ</td><td>เมื่อคุณเลือกในหน้าที่ถาม</td></tr>
+    <tr><td>รหัสผ่าน (เก็บเป็นค่าที่เข้ารหัสทางเดียว อ่านกลับเป็นรหัสจริงไม่ได้)</td><td>เมื่อสมัครบัญชี</td></tr>
+    <tr><td>ข้อมูลทางเทคนิค: ชนิดเบราว์เซอร์ เว็บที่ลิงก์มา และเวลาที่เข้าใช้</td><td>อัตโนมัติเมื่อบันทึกผล</td></tr>
+    <tr><td>วันเวลาที่คุณกดยินยอมนโยบายนี้</td><td>เมื่อคุณติ๊กช่องยินยอม</td></tr>
+  </table>
+  <p><strong>เราไม่เก็บ</strong>เลขบัตรประชาชน ข้อมูลบัตรเครดิต หรือข้อมูลอ่อนไหวใด ๆ
+    และเว็บนี้ไม่มีการเก็บเงินจากคุณ</p>
+  <p>หากคุณเริ่มทำแบบประเมินแล้วออกไปกลางคัน ข้อมูลที่กรอกไว้แล้วจะถูกบันทึกไว้เช่นกัน</p>
+
+  <h2>3. เราใช้ข้อมูลทำอะไร</h2>
+  <ul>
+    <li>คำนวณผลประเมินสุขภาพธุรกิจและจัดทำแผน 90 วันให้เหมาะกับร้านคุณ</li>
+    <li>ส่งผลประเมินและรายงานให้คุณทางอีเมล</li>
+    <li>ให้คุณกลับมาดูผลย้อนหลังได้ผ่านบัญชีของคุณ</li>
+    <li>ให้ทีมงาน PenguinX และ CP ติดต่อกลับพร้อมคำแนะนำหรือข้อเสนอที่เกี่ยวข้องกับร้านของคุณ</li>
+    <li>ดูภาพรวมแบบไม่ระบุตัวตน เพื่อปรับปรุงเครื่องมือและเนื้อหาให้ดีขึ้น</li>
+  </ul>
+  <p>ฐานทางกฎหมายที่เราใช้คือ <strong>ความยินยอม</strong>ของคุณ ซึ่งคุณถอนได้ทุกเมื่อ</p>
+
+  <h2>4. เราแบ่งปันข้อมูลกับใคร</h2>
+  <p>เราแบ่งปันข้อมูลกับ <strong>CP</strong> ในฐานะผู้สนับสนุนหลัก เพื่อให้ทีมงานติดต่อกลับและให้คำปรึกษาแก่คุณได้
+    นอกจากนี้เราใช้ผู้ให้บริการทางเทคนิคเท่าที่จำเป็น:</p>
+  <ul>
+    <li><strong>Cloudflare</strong> — ให้บริการเว็บไซต์และฐานข้อมูล</li>
+    <li><strong>Resend</strong> — ส่งอีเมลให้คุณ</li>
+  </ul>
+  <p><strong>เราไม่ขายข้อมูลของคุณ</strong> และไม่ส่งต่อให้บุคคลที่สามอื่นเพื่อการตลาด
+    ยกเว้นกรณีที่กฎหมายกำหนดให้ต้องเปิดเผย</p>
+
+  <h2>5. เก็บไว้นานแค่ไหน</h2>
+  <p>เราเก็บข้อมูลผลประเมินและข้อมูลติดต่อไว้ <strong>2 ปี</strong> นับจากครั้งสุดท้ายที่คุณใช้งาน
+    หลังจากนั้นจะถูกลบหรือทำให้ไม่ระบุตัวตน หากคุณขอให้ลบก่อนหน้านั้น เราจะดำเนินการให้</p>
+
+  <h2>6. เราดูแลข้อมูลอย่างไร</h2>
+  <ul>
+    <li>ทุกการเชื่อมต่อเข้ารหัสด้วย HTTPS</li>
+    <li>รหัสผ่านถูกเข้ารหัสทางเดียว — แม้แต่ทีมงานก็อ่านรหัสผ่านของคุณไม่ได้</li>
+    <li>ลิงก์ยืนยันอีเมลและลิงก์ตั้งรหัสผ่านใหม่มีอายุจำกัดและใช้ได้ครั้งเดียว</li>
+    <li>จำกัดจำนวนครั้งการเรียกใช้งาน เพื่อป้องกันการสุ่มเดาและการยิงสแปม</li>
+    <li>จำกัดสิทธิ์การเข้าถึงข้อมูลเฉพาะผู้ที่จำเป็นต้องใช้</li>
+  </ul>
+
+  <h2>7. สิทธิของคุณ</h2>
+  <p>ตาม PDPA คุณมีสิทธิ:</p>
+  <ul>
+    <li><strong>ขอดู</strong>ข้อมูลที่เราเก็บเกี่ยวกับคุณ และขอสำเนา</li>
+    <li><strong>ขอแก้ไข</strong>ข้อมูลที่ไม่ถูกต้อง</li>
+    <li><strong>ขอลบ</strong>ข้อมูลของคุณ</li>
+    <li><strong>ถอนความยินยอม</strong> — หลังจากนั้นเราจะหยุดใช้ข้อมูลของคุณ</li>
+    <li><strong>คัดค้าน</strong>การใช้ข้อมูลเพื่อการติดต่อทางการตลาด</li>
+    <li><strong>ร้องเรียน</strong>ต่อสำนักงานคณะกรรมการคุ้มครองข้อมูลส่วนบุคคล หากเห็นว่าเราทำไม่ถูกต้อง</li>
+  </ul>
+  <div class="box">
+    <p style="margin:0">ใช้สิทธิได้โดยส่งอีเมลมาที่
+      <a href="mailto:privacy@restauranthealthcheck.com">privacy@restauranthealthcheck.com</a>
+      เราจะตอบกลับภายใน 30 วัน</p>
+  </div>
+
+  <h2>8. คุกกี้</h2>
+  <p>เว็บนี้ใช้คุกกี้เท่าที่จำเป็นต่อการทำงานเท่านั้น — คุกกี้ที่จำว่าคุณเข้าสู่ระบบอยู่
+    <strong>เราไม่ใช้คุกกี้เพื่อติดตามโฆษณา</strong> และไม่มีสคริปต์ติดตามจากบุคคลที่สาม</p>
+  <p>นอกจากนี้เว็บจะเก็บข้อมูลที่คุณกำลังกรอกไว้ในเบราว์เซอร์ของคุณเองชั่วคราว
+    เพื่อกันข้อมูลหายหากเน็ตหลุด ข้อมูลส่วนนี้อยู่ในเครื่องคุณ ไม่ได้ส่งไปไหน</p>
+
+  <h2>9. เด็กและเยาวชน</h2>
+  <p>เครื่องมือนี้ทำขึ้นสำหรับผู้ประกอบการร้านอาหาร ไม่ได้มุ่งเก็บข้อมูลจากผู้ที่อายุต่ำกว่า 20 ปี
+    หากพบว่ามีการเก็บข้อมูลดังกล่าวโดยไม่ได้รับความยินยอมจากผู้ปกครอง เราจะลบให้</p>
+
+  <h2>10. การเปลี่ยนแปลงนโยบาย</h2>
+  <p>หากมีการแก้ไข เราจะอัปเดตวันที่ด้านบนของหน้านี้ และหากเป็นการเปลี่ยนแปลงสำคัญ
+    เราจะแจ้งให้ผู้ที่มีบัญชีทราบทางอีเมล</p>
+
+  <div class="foot">
+    Restaurant Health Check · ดำเนินการโดย PenguinX ร่วมกับ CP<br>
+    <a href="/">กลับหน้าแรก</a>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /account
+Disallow: /api/
 
 Sitemap: https://www.restauranthealthcheck.com/sitemap.xml

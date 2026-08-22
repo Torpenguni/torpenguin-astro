@@ -615,7 +615,7 @@ h1 .accent{font-weight:600;color:var(--accent)}
   <div class="field"><label>เปิดร้านมากี่ปีแล้ว</label><select id="r_age"><option>น้อยกว่า 1 ปี</option><option>1-3 ปี</option><option>3-5 ปี</option><option>มากกว่า 5 ปี</option></select></div>
   <label for="r_consent" style="display:flex;gap:10px;align-items:flex-start;margin:24px 0 4px;cursor:pointer;font-size:13px;line-height:1.55;color:#5a5145">
     <input type="checkbox" id="r_consent" style="margin-top:1px;width:19px;height:19px;flex:0 0 auto;accent-color:#C8102E;cursor:pointer">
-    <span>ฉันยินยอมให้ <b>PenguinX × CP</b> จัดเก็บและใช้ข้อมูลนี้เพื่อจัดทำผลประเมิน จัดส่งรายงาน และติดต่อกลับ ตาม<b>นโยบายความเป็นส่วนตัว (PDPA)</b></span></label>
+    <span>ฉันยินยอมให้ <b>PenguinX × CP</b> จัดเก็บและใช้ข้อมูลนี้เพื่อจัดทำผลประเมิน จัดส่งรายงาน และติดต่อกลับ ตาม<a href="/privacy" target="_blank" rel="noopener" style="color:#C8102E;font-weight:700">นโยบายความเป็นส่วนตัว (PDPA)</a></span></label>
   <div class="btn-row">
     <button class="btn btn-ghost en" onclick="go('s-landing')">← กลับ</button>
     <button class="btn btn-primary en" onclick="startQuiz()">เริ่มตอบคำถาม →</button></div>
@@ -735,7 +735,7 @@ h1 .accent{font-weight:600;color:var(--accent)}
   <div class="card"><h3>สุขภาพราย 5 มิติ</h3><div class="sub">เทียบกับค่าเฉลี่ยร้านในระบบ PenguinX</div><div id="barDims"></div></div>
   <div class="cta-card" id="ctaCard">
     <h3 id="ctaTitle"></h3><p id="ctaText"></p>
-    <button class="btn btn-dark en" id="ctaBtn" onclick="alert('Prototype: เชื่อมระบบนัดหมาย / ส่ง lead ให้ทีม CP พร้อม type + tier')"></button></div>
+    <button class="btn btn-dark en" id="ctaBtn" onclick="openCta()"></button></div>
 
   <!-- CONSULTANT REPORT -->
   <div class="report-actions">
@@ -774,7 +774,12 @@ h1 .accent{font-weight:600;color:var(--accent)}
    CONFIG — วาง URL ของ Google Apps Script Web App ที่นี่
    (ดูวิธีติดตั้งใน SETUP-guide) ถ้าเว้นว่าง = โหมด prototype (ไม่ส่งข้อมูล)
    ============================================================ */
-const CONFIG={ endpoint:'/api/assessments' };
+const CONFIG={
+  endpoint:'/api/assessments',
+  // ลิงก์ Google Form ปลายทางของปุ่ม CTA ท้ายรายงาน
+  // ปล่อยว่าง = ซ่อนปุ่มไว้ก่อน ดีกว่าปล่อยให้คนกดแล้วไม่เกิดอะไรขึ้น
+  ctaUrl:''
+};
 
 /* ============================================================
    4 AXES — แต่ละแกนผูกกับ 1 มิติหลัก ตัดที่เกณฑ์ 55
@@ -1213,6 +1218,14 @@ function renderIntent(){const w=document.getElementById('intentChips');w.innerHT
     b.onclick=()=>{const k=state.intent.indexOf(o.tag);const sel=k<0;if(sel)state.intent.push(o.tag);else state.intent.splice(k,1);styleChip(b,sel);};
     w.appendChild(b);});}
 function finishQuick(){showQuickResult();}
+function openCta(){
+  if(!CONFIG.ctaUrl) return;
+  track('cta_click',state.typeCode||'');
+  // แนบ tier/ประเภทร้านไปกับลิงก์ ทีม CP จะได้รู้บริบทโดยไม่ต้องถามซ้ำ
+  const sep=CONFIG.ctaUrl.includes('?')?'&':'?';
+  const q=new URLSearchParams({rhc_sid:state.sid,rhc_tier:state.tier||'',rhc_type:state.typeCode||''});
+  window.open(CONFIG.ctaUrl+sep+q.toString(),'_blank','noopener');
+}
 function boothPickup(){alert((state.reg.email&&CONFIG.endpoint)?('เยี่ยม! สรุปผลถูกส่งไปที่ '+state.reg.email+'\nแวะรับคำแนะนำเพิ่มเติมได้ที่บูธ CP'):'ขอบคุณ! แวะรับรายงานและคำแนะนำได้ที่บูธ CP');}
 function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
 
@@ -1422,11 +1435,14 @@ function showResult(){
     row.innerHTML=`<div class="top"><span class="n"><span class="dchip" style="background:${d.c}1A;color:${d.c}">${d.ico}</span> ${d.th}</span><span class="v" style="color:${col}">${val}</span></div><div class="bar"><div class="f" style="width:0;background:${d.c}"></div></div>`;
     bd.appendChild(row);setTimeout(()=>row.querySelector('.f').style.width=val+'%',300);});
 
+  // เก็บผลไว้บน state ให้ปุ่ม CTA หยิบไปแนบกับลิงก์ฟอร์มได้
+  state.tier=type.tier; state.typeCode=code;
+
   // CTA by tier
   const cta={HOT:['🚀 ร้านคุณพร้อมโต — คุยกับทีมขยายธุรกิจที่บูธ CP','ร้านลักษณะนี้มักได้ประโยชน์จากดีล supply ราคาพิเศษและแผนขยายแบบมีพาร์ทเนอร์ — นัดคุยตัวต่อตัวที่บูธ','จองคิวคุยที่บูธ CP →'],
     WARM:['💬 รับคำปรึกษาฟรีที่บูธ CP','ทีมที่ปรึกษาช่วยวางแผนเสริมจุดที่ร้านคุณยังขาด พร้อมแนะนำโซลูชันที่เหมาะกับร้านคุณ','เข้ามาคุยที่บูธ CP →'],
     NURTURE:['💬 รับคำแนะนำเริ่มต้นที่บูธ CP','ร้านคุณมีหลายจุดที่ต้องเสริมก่อนโต — แวะคุยกับทีม CP รับแนวทางตั้งต้นที่เหมาะกับร้านคุณ','แวะคุยที่บูธ CP →']}[type.tier];
-  document.getElementById('ctaTitle').textContent=cta[0];document.getElementById('ctaText').textContent=cta[1];document.getElementById('ctaBtn').textContent=cta[2];
+  document.getElementById('ctaTitle').textContent=cta[0];document.getElementById('ctaText').textContent=cta[1];const _cb=document.getElementById('ctaBtn');_cb.textContent=cta[2];_cb.style.display=CONFIG.ctaUrl?'':'none';
 
   buildReport(code,type,total,sc,tags);
   track('complete_deep',total);
@@ -1658,7 +1674,8 @@ function showQuickResult(){
   // เก็บ lead ทันที (ก่อน user ออก)
   const sc={};DIMS.forEach(d=>sc[d.key]=dimAvg[d.key]?Math.round(dimAvg[d.key].reduce((s,x)=>s+SCUR(x),0)/dimAvg[d.key].length):0);
   const qtags=Array.from(new Set(['quick_scan',...collectTags(),...(state.intent||[])]));
-  submitLead({...state.reg,scores:sc,total:pct,typeCode:'QUICK',typeName:'Quick Scan',tier:pct>=66?'HOT':pct>=42?'WARM':'NURTURE',tags:qtags,answers:state.answers.map(a=>a&&a.v||0),fin:null});
+  state.tier=pct>=66?'HOT':pct>=42?'WARM':'NURTURE'; state.typeCode='QUICK';
+  submitLead({...state.reg,scores:sc,total:pct,typeCode:'QUICK',typeName:'Quick Scan',tier:state.tier,tags:qtags,answers:state.answers.map(a=>a&&a.v||0),fin:null});
   const qs=document.getElementById('qrSaved');
   qs.innerHTML=(state.reg.email&&CONFIG.endpoint)?`<span>📧 ส่งสรุปผลไปที่ <b>${esc(state.reg.email)}</b> แล้ว</span> — เก็บไว้ดูย้อนหลังได้`:`<span>✅ เก็บผลของคุณไว้แล้ว</span> — รับรายงานฉบับเต็มได้ที่บูธ CP`;
   track('complete_quick',pct);
