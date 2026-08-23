@@ -50,6 +50,7 @@ await page.type('#r_name', 'ต่อ');
 await page.type('#r_shop', 'คาเฟ่ทดสอบ');
 await page.type('#r_contact', '0899999999');
 await page.type('#r_email', EMAIL);
+await page.select('#r_province', 'กรุงเทพมหานคร');
 await page.click('#r_consent');
 await clickByOnclick('startQuiz()');
 await page.waitForFunction(() => document.querySelector('.screen.active').id === 's-quiz');
@@ -245,6 +246,7 @@ await page.evaluate(() => {
   document.getElementById('r_name').value = 'เจ้าของร้านล็อกอิน';
   document.getElementById('r_shop').value = 'ร้านของคนล็อกอิน';
   document.getElementById('r_contact').value = '089-999-1234';
+  document.getElementById('r_province').value = 'เชียงใหม่';
   document.getElementById('r_consent').checked = true;
   startQuiz();
 });

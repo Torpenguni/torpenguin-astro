@@ -20,7 +20,7 @@ console.log('\n— เมลสรุปผลหลังทำแบบปร�
 const EMAIL=`res${Date.now()}@example.com`;
 const sid='s-'+Date.now();
 let r=await call('/api/assessments',{method:'POST',body:{sessionKey:sid,email:EMAIL,name:'ต่อ',
-  shop:'ร้านชาบูหัวมุม',contact:'0812345678',shopType:'buffet',mode:'deep',consent:true}});
+  shop:'ร้านชาบูหัวมุม',contact:'0812345678',shopType:'buffet',province:'สุราษฎร์ธานี',mode:'deep',consent:true}});
 t('partial save ok',r.status===200);
 t('no result mail yet (ยังทำไม่จบ)', !lastTo(EMAIL));
 
@@ -57,6 +57,12 @@ t('admin cookie set',/^rhc_admin=/.test(admin||''));
 
 r=await call('/api/admin/leads',{cookie:admin});
 t('leads listed',r.status===200&&Array.isArray(r.data?.leads));
+t('รายการลีดพกจังหวัดมาด้วย',(r.data.leads||[]).some(l=>l.province==='สุราษฎร์ธานี'));
+t('มีลิสต์จังหวัดไว้ทำตัวกรอง',(r.data.provinces||[]).includes('สุราษฎร์ธานี'),JSON.stringify(r.data.provinces));
+{const f=await call('/api/admin/leads?province='+encodeURIComponent('สุราษฎร์ธานี'),{cookie:admin});
+ t('กรองตามจังหวัดได้',f.status===200&&(f.data.leads||[]).length>0&&(f.data.leads||[]).every(l=>l.province==='สุราษฎร์ธานี'));
+ const g=await call('/api/admin/leads?province='+encodeURIComponent('แม่ฮ่องสอน'),{cookie:admin});
+ t('กรองจังหวัดที่ไม่มีลีดได้ผลว่าง',g.status===200&&(g.data.leads||[]).length===0);}
 t('stats present',r.data?.stats?.total>0,JSON.stringify(r.data?.stats));
 t('completion count > 0',r.data?.stats?.completed>0);
 t('HOT counted',r.data?.stats?.hot>0);
@@ -92,6 +98,9 @@ t('utf-8 content type',/charset=utf-8/.test(r.headers.get('content-type')||''));
 t('starts with BOM (Excel ภาษาไทยไม่เพี้ยน)',r.bytes[0]===0xEF&&r.bytes[1]===0xBB&&r.bytes[2]===0xBF);
 t('declares the separator for Excel',r.text.replace(/^\uFEFF/,'').startsWith('sep=,'));
 t('thai headers present',/ชื่อร้าน/.test(r.text)&&/คะแนนรวม/.test(r.text));
+// ทีม CP แบ่งพื้นที่กันดูแล จังหวัดจึงต้องติดไปกับไฟล์ที่เอาไปแบ่งงานกันจริง
+t('CSV มีคอลัมน์จังหวัด',/จังหวัด/.test(r.text));
+t('CSV มีจังหวัดของแถวเรา',r.text.includes('สุราษฎร์ธานี'));
 t('our row is in the csv',r.text.includes('ร้านชาบูหัวมุม')&&r.text.includes(EMAIL));
 t('dimension columns exported',/70/.test(r.text)&&/64/.test(r.text));
 const csvRows=r.text.trim().split('\r\n');

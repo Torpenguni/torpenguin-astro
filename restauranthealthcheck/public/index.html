@@ -747,7 +747,11 @@ h1 .accent{font-weight:600;color:var(--accent)}
   <div class="field-row">
     <div class="field"><label>ประเภทร้าน</label><select id="r_type"><option>อาหารตามสั่ง / à la carte ทั่วไป</option><option>บุฟเฟต์ / ชาบู / ปิ้งย่าง</option><option>เครื่องดื่ม / คาเฟ่</option><option>เบเกอรี่ / ของหวาน</option><option>Fine Dining / พรีเมียม</option><option>Fast Food / QSR / Grab&Go</option><option>Street Food / รถเข็น / ริมทาง</option><option>Cloud Kitchen / เดลิเวอรี่</option><option>อื่นๆ</option></select></div>
     <div class="field"><label>จำนวนสาขา</label><select id="r_branch"><option>1 สาขา</option><option>2-3 สาขา</option><option>4-10 สาขา</option><option>มากกว่า 10 สาขา</option></select></div></div>
-  <div class="field"><label>เปิดร้านมากี่ปีแล้ว</label><select id="r_age"><option>น้อยกว่า 1 ปี</option><option>1-3 ปี</option><option>3-5 ปี</option><option>มากกว่า 5 ปี</option></select></div>
+  <div class="field-row">
+    <!-- จังหวัดที่ตั้งร้าน — ทีม CP ใช้แบ่งพื้นที่ดูแลลีด ปล่อยให้พิมพ์เองไม่ได้
+         เพราะจะได้ "กทม." "กรุงเทพ" "Bangkok" ปนกันจนจัดกลุ่มไม่ได้ -->
+    <div class="field"><label>จังหวัดที่ตั้งร้าน <span class="req">*</span></label><select id="r_province"><option value="">เลือกจังหวัด</option><option>กระบี่</option><option>กรุงเทพมหานคร</option><option>กาญจนบุรี</option><option>กาฬสินธุ์</option><option>กำแพงเพชร</option><option>ขอนแก่น</option><option>จันทบุรี</option><option>ฉะเชิงเทรา</option><option>ชลบุรี</option><option>ชัยนาท</option><option>ชัยภูมิ</option><option>ชุมพร</option><option>เชียงราย</option><option>เชียงใหม่</option><option>ตรัง</option><option>ตราด</option><option>ตาก</option><option>นครนายก</option><option>นครปฐม</option><option>นครพนม</option><option>นครราชสีมา</option><option>นครศรีธรรมราช</option><option>นครสวรรค์</option><option>นนทบุรี</option><option>นราธิวาส</option><option>น่าน</option><option>บึงกาฬ</option><option>บุรีรัมย์</option><option>ปทุมธานี</option><option>ประจวบคีรีขันธ์</option><option>ปราจีนบุรี</option><option>ปัตตานี</option><option>พระนครศรีอยุธยา</option><option>พะเยา</option><option>พังงา</option><option>พัทลุง</option><option>พิจิตร</option><option>พิษณุโลก</option><option>เพชรบุรี</option><option>เพชรบูรณ์</option><option>แพร่</option><option>ภูเก็ต</option><option>มหาสารคาม</option><option>มุกดาหาร</option><option>แม่ฮ่องสอน</option><option>ยโสธร</option><option>ยะลา</option><option>ร้อยเอ็ด</option><option>ระนอง</option><option>ระยอง</option><option>ราชบุรี</option><option>ลพบุรี</option><option>ลำปาง</option><option>ลำพูน</option><option>เลย</option><option>ศรีสะเกษ</option><option>สกลนคร</option><option>สงขลา</option><option>สตูล</option><option>สมุทรปราการ</option><option>สมุทรสงคราม</option><option>สมุทรสาคร</option><option>สระแก้ว</option><option>สระบุรี</option><option>สิงห์บุรี</option><option>สุโขทัย</option><option>สุพรรณบุรี</option><option>สุราษฎร์ธานี</option><option>สุรินทร์</option><option>หนองคาย</option><option>หนองบัวลำภู</option><option>อ่างทอง</option><option>อำนาจเจริญ</option><option>อุดรธานี</option><option>อุตรดิตถ์</option><option>อุทัยธานี</option><option>อุบลราชธานี</option></select></div>
+    <div class="field"><label>เปิดร้านมากี่ปีแล้ว</label><select id="r_age"><option>น้อยกว่า 1 ปี</option><option>1-3 ปี</option><option>3-5 ปี</option><option>มากกว่า 5 ปี</option></select></div></div>
   <label for="r_consent" style="display:flex;gap:10px;align-items:flex-start;margin:24px 0 4px;cursor:pointer;font-size:13px;line-height:1.55;color:#5a5145">
     <input type="checkbox" id="r_consent" style="margin-top:1px;width:19px;height:19px;flex:0 0 auto;accent-color:#C8102E;cursor:pointer">
     <span>ฉันยินยอมให้ <b>PenguinX × CP</b> จัดเก็บและใช้ข้อมูลนี้เพื่อจัดทำผลประเมิน จัดส่งรายงาน และติดต่อกลับ ตาม<a href="/privacy" target="_blank" rel="noopener" style="color:#C8102E;font-weight:700">นโยบายความเป็นส่วนตัว (PDPA)</a></span></label>
@@ -1561,14 +1565,16 @@ function startQuiz(){
   const name=v('r_name'),shop=v('r_shop'),contact=v('r_contact'),email=v('r_email')||acctEmail;
   const regErr=document.getElementById('regErr');
   const showReg=m=>{regErr.textContent=m;regErr.style.display='block';};
+  const province=v('r_province');
   if(!name||!shop||!contact){showReg('กรุณากรอกชื่อ ชื่อร้าน และช่องทางติดต่อ');return;}
+  if(!province){showReg('กรุณาเลือกจังหวัดที่ตั้งร้าน');return;}
   const dg=contact.replace(/[\s-()]/g,'').replace(/^\+66/,'0');
   if(!/^0\d{8,9}$/.test(dg)){showReg('เบอร์โทรไม่ถูกต้อง — ใส่เลข 9-10 หลักขึ้นต้นด้วย 0');return;}
   if(email&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showReg('อีเมลไม่ถูกต้อง เช่น you@email.com (เว้นว่างได้ถ้าไม่มีอีเมล)');return;}
   regErr.style.display='none';
   if(!document.getElementById('r_consent').checked){document.getElementById('consentErr').style.display='block';return;}
   document.getElementById('consentErr').style.display='none';
-  state.reg={name,shop,contact,email,type:v('r_type'),branch:v('r_branch'),age:v('r_age'),ts:new Date().toISOString(),consent:true,consentTs:new Date().toISOString()};
+  state.reg={name,shop,contact,email,province,type:v('r_type'),branch:v('r_branch'),age:v('r_age'),ts:new Date().toISOString(),consent:true,consentTs:new Date().toISOString()};
   state.costProfile=profileFromRegType(state.reg.type);
   const pi=QUESTIONS.findIndex(q=>q.type==='profile');
   if(pi>=0){const oi=QUESTIONS[pi].o.findIndex(o=>o.pk===state.costProfile);if(oi>=0)state.answers[pi]={oi,profile:state.costProfile};}
@@ -1963,7 +1969,7 @@ function submitLead(payload){
     completed:!!payload.scores,
     mode:state.mode||'',
     name:payload.name, shop:payload.shop, contact:payload.contact, email:payload.email||'',
-    shopType:payload.type||'', branches:payload.branch||'', age:payload.age||'',
+    shopType:payload.type||'', branches:payload.branch||'', age:payload.age||'', province:payload.province||'',
     typeCode:payload.typeCode||'', typeName:payload.typeName||'', tier:payload.tier||'',
     total:payload.total!=null?payload.total:null,
     scores:payload.scores||null,

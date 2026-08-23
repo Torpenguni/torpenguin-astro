@@ -130,6 +130,7 @@ await page.waitForFunction(() => document.querySelector('.screen.active').id ===
 await page.type('#r_name', 'เจ้าของร้านต่อยอด');
 await page.type('#r_shop', 'ร้านทดสอบต่อยอด');
 await page.type('#r_contact', '0891234567');
+await page.select('#r_province', 'กรุงเทพมหานคร');
 await page.click('#r_consent');
 await page.evaluate(() => startQuiz());
 await page.waitForFunction(() => document.querySelector('.screen.active').id === 's-quiz');

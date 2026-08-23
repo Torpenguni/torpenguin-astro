@@ -17,7 +17,7 @@ export async function onRequestGet({ request, env }) {
 
   const { results } = await db
     .prepare(
-      `SELECT id, created_at, name, shop, contact, email, shop_type, branches, age, mode,
+      `SELECT id, created_at, name, shop, contact, email, shop_type, branches, age, province, mode,
               completed, total_score, type_code, type_name, tier, scores_json, financial_json,
               user_id, result_email_sent_at, contact_requested_at
        FROM assessments ${sql}
@@ -48,6 +48,11 @@ export async function onRequestGet({ request, env }) {
     .prepare('SELECT DISTINCT shop_type FROM assessments WHERE shop_type IS NOT NULL AND shop_type <> "" ORDER BY shop_type')
     .all();
 
+  // เช่นเดียวกับประเภทร้าน — ลิสต์เฉพาะจังหวัดที่มีลีดอยู่จริง ไม่ต้องไล่ครบ 77 จังหวัด
+  const { results: provs } = await db
+    .prepare('SELECT DISTINCT province FROM assessments WHERE province IS NOT NULL AND province <> "" ORDER BY province')
+    .all();
+
   return json({
     ok: true,
     page,
@@ -64,6 +69,7 @@ export async function onRequestGet({ request, env }) {
       avgScore: stats.avg_score != null ? Math.round(stats.avg_score) : null,
     },
     shopTypes: (types || []).map((t) => t.shop_type),
+    provinces: (provs || []).map((t) => t.province),
     leads: (results || []).map((r) => ({
       id: r.id,
       createdAt: r.created_at,
@@ -72,6 +78,7 @@ export async function onRequestGet({ request, env }) {
       contact: r.contact,
       email: r.email,
       shopType: r.shop_type,
+      province: r.province,
       branches: r.branches,
       age: r.age,
       mode: r.mode,

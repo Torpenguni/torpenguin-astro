@@ -94,6 +94,7 @@ const submit = (contact) => page.evaluate((c) => {
   document.getElementById('r_name').value = 'เจ้าของร้าน';
   document.getElementById('r_shop').value = 'ร้านทดสอบ';
   document.getElementById('r_contact').value = c;
+  document.getElementById('r_province').value = 'ภูเก็ต';
   document.getElementById('r_consent').checked = true;
   const e = document.getElementById('regErr');
   e.textContent = ''; e.style.display = 'none';
@@ -107,6 +108,42 @@ r = await submit('0812');
 t('เบอร์สั้นเกินไปถูกปฏิเสธ', !r.moved && r.err.includes('เบอร์โทร'), r.err || 'ผ่านไปเลย');
 r = await submit('081-234-5678');
 t('เบอร์ที่ถูกต้องผ่านได้', r.moved, r.err);
+
+console.log('\n— จังหวัดที่ตั้งร้าน —');
+{
+  // ทีม CP แบ่งพื้นที่กันดูแลลีด ถ้าปล่อยให้พิมพ์เองจะได้ "กทม." "กรุงเทพ"
+  // "Bangkok" ปนกันจนกรองตามจังหวัดไม่ได้ จึงต้องเป็น dropdown ที่เลือกได้อย่างเดียว
+  // เทสก่อนหน้ากรอกฟอร์มผ่านไปถึงหน้าคำถามแล้ว ต้องย้อนกลับมาที่หน้าฟอร์มก่อน
+  // ไม่งั้นเช็ค "ไปต่อไม่ได้" จะได้ผลปลอมเพราะหน้าคำถาม active อยู่แล้ว
+  await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
+  await page.evaluate(() => chooseMode('quick'));
+  await page.waitForFunction(() => document.querySelector('.screen.active').id === 's-register');
+
+  const sel = await page.$('#r_province');
+  t('มีช่องเลือกจังหวัดในฟอร์ม', !!sel);
+  const provinces = await page.$$eval('#r_province option', (o) => o.map((x) => x.value));
+  t('มีจังหวัดครบ 77 จังหวัด', provinces.filter(Boolean).length === 77,
+    `มี ${provinces.filter(Boolean).length} จังหวัด`);
+  t('ตัวแรกเป็นตัวเลือกว่างให้กดเลือกเอง ไม่ได้เดาให้', provinces[0] === '');
+  t('ไม่มีจังหวัดซ้ำ', new Set(provinces).size === provinces.length);
+  for (const must of ['กรุงเทพมหานคร', 'บึงกาฬ', 'ภูเก็ต', 'อุบลราชธานี', 'แม่ฮ่องสอน']) {
+    t(`มี ${must}`, provinces.includes(must));
+  }
+
+  const noProvince = await page.evaluate(() => {
+    document.getElementById('r_name').value = 'เจ้าของร้าน';
+    document.getElementById('r_shop').value = 'ร้านทดสอบ';
+    document.getElementById('r_contact').value = '0812345678';
+    document.getElementById('r_province').value = '';
+    document.getElementById('r_consent').checked = true;
+    const e = document.getElementById('regErr');
+    e.textContent = ''; e.style.display = 'none';
+    startQuiz();
+    return { err: e.textContent.trim(), moved: document.getElementById('s-quiz').classList.contains('active') };
+  });
+  t('ไม่เลือกจังหวัดแล้วไปต่อไม่ได้', !noProvince.moved, 'ผ่านไปได้ทั้งที่ไม่ได้เลือก');
+  t('บอกให้ชัดว่าต้องเลือกจังหวัด', noProvince.err.includes('จังหวัด'), noProvince.err);
+}
 
 console.log('\n— ประเภทร้าน & ช่วงยอดขาย —');
 // คำถาม "ร้านคุณเป็นประเภทไหน?" ถูกตัดออกเพราะซ้ำกับฟอร์ม แต่คำถามนั้นเคยเป็น

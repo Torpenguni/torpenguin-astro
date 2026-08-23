@@ -6,7 +6,7 @@ const save=(body)=>fetch(BASE+'/api/assessments',{method:'POST',
   headers:{'Content-Type':'application/json',Origin:BASE},body:JSON.stringify(body)});
 const SID='uidetail-'+Date.now();
 await save({sessionKey:SID,name:'ต่อ ทดสอบ',shop:'ร้านมีตัวเลขครบ',contact:'081-234-5678',
-  email:`uid${Date.now()}@example.com`,shopType:'buffet',branches:'2',age:'2-5 ปี',mode:'deep',consent:true});
+  email:`uid${Date.now()}@example.com`,shopType:'buffet',branches:'2',age:'2-5 ปี',province:'นครราชสีมา',mode:'deep',consent:true});
 await save({sessionKey:SID,completed:true,total:64,tier:'WARM',typeName:'The Craftsman · ของดีมีคนรัก',
   scores:{D1:60,D2:58,D3:71,D4:64,D5:67},answers:[1,2,3],intent:['need_supplier'],
   financial:{revenue:875000,cogs:320000,labor:180000,rent:90000,other:88000,days:26,
@@ -39,6 +39,9 @@ t('มีหัวข้อติดต่อ',txt.includes('ติดต่อ'
 t('มีผลประเมิน',txt.includes('ผลประเมิน'));
 t('มีคะแนน 5 มิติ', await p.$$eval('.dimrow',r=>r.length)===5, await p.$$eval('.dimrow',r=>r.length)+' แถว');
 t('มีบล็อกข้อมูลร้าน',txt.includes('ข้อมูลร้าน'));
+t('แผงรายละเอียดบอกจังหวัด',txt.includes('นครราชสีมา'));
+t('ในตารางก็เห็นจังหวัดโดยไม่ต้องเปิดแผง',
+  await p.$eval('tbody',e=>e.textContent.includes('นครราชสีมา')));
 t('มีตัวเลขการเงินเป็นบาท',/฿[\d,]+/.test(txt),txt.match(/฿[\d,]+/g)?.slice(0,3).join(' '));
 t('มี Prime cost',txt.includes('Prime cost'));
 t('เบอร์โทรกดโทรออกได้', await p.$eval('.sheet',e=>!!e.querySelector('a[href^="tel:"]')));

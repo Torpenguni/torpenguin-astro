@@ -209,7 +209,8 @@ function renderDash(d) {
   <td class="shop">${l.askedAt ? '<span class="asked">ขอให้ติดต่อกลับ</span><br>' : ''}${esc(l.shop || '—')}
     <div style="font-weight:400;font-size:12.5px;color:var(--faint)">${esc(l.name || '')}</div></td>
   <td class="contact">${esc(l.contact || '—')}${l.email ? `<div>${esc(l.email)}</div>` : ''}</td>
-  <td>${esc(l.shopType || '—')}${l.branches ? ` <span class="pill">${esc(l.branches)} สาขา</span>` : ''}</td>
+  <td>${esc(l.shopType || '—')}${l.branches ? ` <span class="pill">${esc(l.branches)} สาขา</span>` : ''}
+    ${l.province ? `<div style="font-size:12.5px;color:var(--faint)">${esc(l.province)}</div>` : ''}</td>
   <td>${l.completed ? '' : '<span class="pill">ไม่จบ</span>'}
       ${l.mode === 'quick' ? '<span class="pill">ด่วน</span>' : ''}</td>
   <td class="score">${l.total != null ? l.total : '—'}</td>
@@ -251,6 +252,11 @@ function renderDash(d) {
       <option value="">ทั้งหมด</option>
       ${d.shopTypes.map((t) =>
         `<option value="${esc(t)}"${state.filters.type === t ? ' selected' : ''}>${esc(t)}</option>`).join('')}
+    </select></div>
+    <div><label for="f_province">จังหวัด</label><select id="f_province">
+      <option value="">ทั้งหมด</option>
+      ${(d.provinces || []).map((t) =>
+        `<option value="${esc(t)}"${state.filters.province === t ? ' selected' : ''}>${esc(t)}</option>`).join('')}
     </select></div>
     <div><label for="f_status">สถานะ</label><select id="f_status">
       <option value="">ทั้งหมด</option>
@@ -294,6 +300,7 @@ function renderDash(d) {
       q: $('f_q').value.trim(),
       tier: $('f_tier').value,
       type: $('f_type').value,
+      province: $('f_province').value,
       status: $('f_status').value,
       asked: $('f_asked').value,
       _from: from, _to: to,
@@ -375,6 +382,7 @@ function leadSheet(l) {
   <div class="blk">
     <h3>ข้อมูลร้าน</h3>
     <dl class="kv">
+      ${row('จังหวัด', esc(l.province))}
       ${row('ประเภท', esc(l.shopType))}
       ${row('จำนวนสาขา', esc(l.branches))}
       ${row('อายุร้าน', esc(l.age))}

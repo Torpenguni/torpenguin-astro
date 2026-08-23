@@ -63,6 +63,7 @@ await page.waitForFunction(() => document.querySelector('.screen.active').id ===
 await page.type('#r_name', 'เจ้าของร้านกดปุ่ม');
 await page.type('#r_shop', 'ร้านกดขอให้ติดต่อ');
 await page.type('#r_contact', PHONE);
+await page.select('#r_province', 'กรุงเทพมหานคร');
 await page.click('#r_consent');
 await clickByOnclick('startQuiz()');
 await page.waitForFunction(() => document.querySelector('.screen.active').id === 's-quiz');

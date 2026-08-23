@@ -16,6 +16,7 @@ const DEVICE = process.argv[2] === 'mobile'
 
 const EMAIL = `ui${Date.now()}@example.com`;
 const SHOP = 'ร้านชาบูต้นตำรับ';
+const PROVINCE = 'กรุงเทพมหานคร';
 
 const browser = await puppeteer.launch({
   // ตั้ง CHROME_PATH ให้ชี้ไปที่ Chrome/Chromium ในเครื่อง เช่น
@@ -99,6 +100,7 @@ await page.select('#r_type', await page.$eval('#r_type option:nth-child(2)', (o)
 await clickByOnclick('startQuiz()');
 t('กันไม่ให้ข้ามช่องยินยอม PDPA', await visible() === 's-register');
 
+await page.select('#r_province', PROVINCE);
 await page.click('#r_consent');
 await clickByOnclick('startQuiz()');
 await page.waitForFunction(() => document.querySelector('.screen.active').id === 's-quiz', { timeout: 5000 });

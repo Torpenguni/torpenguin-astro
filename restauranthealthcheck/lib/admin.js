@@ -88,6 +88,13 @@ export function buildFilter(url) {
     binds.push(type.slice(0, 40));
   }
 
+  // กรองตามจังหวัด — ทีม CP แบ่งพื้นที่กันดูแล จึงต้องหยิบเฉพาะจังหวัดตัวเองได้
+  const province = url.searchParams.get('province');
+  if (province) {
+    where.push('province = ?');
+    binds.push(province.slice(0, 60));
+  }
+
   const status = url.searchParams.get('status');
   if (status === 'completed') where.push('completed = 1');
   if (status === 'partial') where.push('completed = 0');

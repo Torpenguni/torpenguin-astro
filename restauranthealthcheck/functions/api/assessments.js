@@ -37,6 +37,7 @@ export async function onRequestPost({ request, env }) {
     shop_type: str(body.shopType, 80),
     branches: str(body.branches, 40),
     age: str(body.age, 40),
+    province: str(body.province, 60),
     mode: str(body.mode, 20),
     completed: body.completed ? 1 : 0,
     total_score: Number.isFinite(body.total) ? Math.round(body.total) : null,
@@ -55,11 +56,11 @@ export async function onRequestPost({ request, env }) {
   await db
     .prepare(
       `INSERT INTO assessments (
-         id, session_key, user_id, email, name, shop, contact, shop_type, branches, age, mode,
+         id, session_key, user_id, email, name, shop, contact, shop_type, branches, age, province, mode,
          completed, total_score, type_code, type_name, tier,
          scores_json, answers_json, intent_json, financial_json,
          consent_at, user_agent, referrer, created_at, updated_at
-       ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+       ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
        ON CONFLICT(session_key) DO UPDATE SET
          user_id        = COALESCE(excluded.user_id, assessments.user_id),
          email          = COALESCE(excluded.email, assessments.email),
@@ -69,6 +70,7 @@ export async function onRequestPost({ request, env }) {
          shop_type      = COALESCE(excluded.shop_type, assessments.shop_type),
          branches       = COALESCE(excluded.branches, assessments.branches),
          age            = COALESCE(excluded.age, assessments.age),
+         province       = COALESCE(excluded.province, assessments.province),
          mode           = COALESCE(excluded.mode, assessments.mode),
          completed      = MAX(excluded.completed, assessments.completed),
          total_score    = COALESCE(excluded.total_score, assessments.total_score),
@@ -84,7 +86,7 @@ export async function onRequestPost({ request, env }) {
     )
     .bind(
       newId(), sessionKey, row.user_id, row.email, row.name, row.shop, row.contact, row.shop_type,
-      row.branches, row.age, row.mode, row.completed, row.total_score, row.type_code, row.type_name,
+      row.branches, row.age, row.province, row.mode, row.completed, row.total_score, row.type_code, row.type_name,
       row.tier, row.scores_json, row.answers_json, row.intent_json, row.financial_json,
       row.consent_at, row.user_agent, row.referrer, ts, ts,
     )
@@ -130,7 +132,7 @@ export async function onRequestGet({ request, env }) {
   // Rows saved before the account existed are matched by email as well.
   const { results } = await env.DB
     .prepare(
-      `SELECT id, shop, shop_type, mode, completed, total_score, type_code, type_name, tier,
+      `SELECT id, shop, shop_type, province, mode, completed, total_score, type_code, type_name, tier,
               scores_json, created_at
        FROM assessments
        WHERE user_id = ? OR (email IS NOT NULL AND email = ?)
@@ -145,6 +147,7 @@ export async function onRequestGet({ request, env }) {
       id: r.id,
       shop: r.shop,
       shopType: r.shop_type,
+      province: r.province,
       mode: r.mode,
       completed: !!r.completed,
       total: r.total_score,
