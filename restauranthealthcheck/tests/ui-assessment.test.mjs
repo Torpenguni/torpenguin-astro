@@ -17,6 +17,7 @@ const DEVICE = process.argv[2] === 'mobile'
 const EMAIL = `ui${Date.now()}@example.com`;
 const SHOP = 'ร้านชาบูต้นตำรับ';
 const PROVINCE = 'กรุงเทพมหานคร';
+let reportLink = null;
 
 const browser = await puppeteer.launch({
   // ตั้ง CHROME_PATH ให้ชี้ไปที่ Chrome/Chromium ในเครื่อง เช่น
@@ -190,6 +191,9 @@ t('ตัวนับ % ไม่ค้างอยู่บนหน้าร�
 // puppeteer รับเฉพาะ path แบบสตริง ส่ง URL object เข้าไปไม่ได้
 await page.screenshot({ path: fileURLToPath(new URL(`./screenshot-${process.argv[2] || 'desktop'}.png`, import.meta.url)) });
 
+// เก็บรายงานที่เห็นบนจอไว้เทียบทีหลัง ตอนเปิดย้อนหลังต้องได้เหมือนกันทุกตัวอักษร
+const reportOnScreen = await page.$eval('#reportDoc', (el) => el.textContent.replace(/\s+/g, ' ').trim());
+
 console.log('\n— บันทึกรายงานเป็น PDF —');
 {
   // ดักปุ่มพิมพ์ไว้ก่อน เบราว์เซอร์ headless เปิดกล่องพิมพ์จริงไม่ได้
@@ -278,6 +282,68 @@ console.log('\n— หน้ากระดาษตอนพิมพ์ —');
   await new Promise((r) => setTimeout(r, 200));
 }
 
+console.log('\n— เนื้อหาในอีเมลสรุปผล —');
+{
+  // เดิมอีเมลมีแค่คะแนนดิบห้าตัว คนอ่านแล้วไม่รู้ว่าต้องทำอะไรต่อ
+  // ตอนนี้ต้องมีเนื้อหาเดียวกับรายงานที่เห็นบนจอ
+  await new Promise((r) => setTimeout(r, 1500));
+  const m = [...mail()].reverse().find((x) => x.to === EMAIL && /ผลตรวจ/.test(x.subject || ''));
+  t('ได้อีเมลสรุปผล', !!m, m ? '' : 'ไม่มีเมลเข้ามา');
+  const body = (m && m.text) || '';
+  const html = (m && m.html) || '';
+  for (const head of ['บทสรุปผู้บริหาร', 'วิเคราะห์การเงินจริง', 'เทียบมาตรฐานต้นทุน',
+    'เจาะลึกราย 5 มิติ', 'แผนปฏิบัติ 90 วัน', 'ก้าวต่อไป']) {
+    t(`อีเมลมีหัวข้อ "${head}"`, body.includes(head) && html.includes(head));
+  }
+  t('อีเมลมีตัวเลขการเงินจริง ไม่ใช่แค่คะแนน', /กำไรสุทธิจริง/.test(body) && /Food Cost/.test(body), body.slice(0, 80));
+  t('อีเมลมีชื่อร้าน', body.includes(SHOP));
+  t('อีเมลไม่ขึ้นต้นว่า "ร้านร้าน"', !/ร้านร้าน/.test(body), body.split('\n')[0]);
+  // ป้ายกำกับกับข้อความหลักเป็นคนละ span ถ้าอ่านมาต่อกันดื้อ ๆ จะได้ "สัปดาห์ 1เลือกคน…"
+  t('ป้ายสัปดาห์ไม่ติดกับข้อความ', !/สัปดาห์ \d[ก-๙]/.test(body), (body.match(/สัปดาห์ \d[ก-๙][^\n]*/) || [''])[0]);
+  t('บทสรุปผู้บริหารไม่ถูกยำติดกันเป็นก้อนเดียว', !/\)ร้านคุณ/.test(body));
+  t('อีเมลมีลิงก์เปิดรายงานฉบับเต็ม', /\?report=[A-Za-z0-9_-]+/.test(body), body.slice(-200));
+  t('อีเมลยาวกว่าเดิมมาก (มีเนื้อหาจริง)', body.length > 2000, `${body.length} ตัวอักษร`);
+  reportLink = (body.match(/https?:\/\/\S*\?report=[A-Za-z0-9_-]+/) || [])[0] || null;
+}
+
+console.log('\n— เปิดรายงานเดิมย้อนหลัง —');
+if (reportLink) {
+  await page.goto(reportLink, { waitUntil: 'networkidle0' });
+  await page.waitForFunction(() => document.querySelector('.screen.active')
+    && document.querySelector('.screen.active').id === 's-result', { timeout: 15000 })
+    .catch(() => {});
+  await new Promise((r) => setTimeout(r, 2000));
+  t('ลิงก์จากอีเมลพาไปหน้ารายงาน', await visible() === 's-result', await visible());
+  const again = await page.$eval('#reportDoc', (el) => el.textContent.replace(/\s+/g, ' ').trim());
+  // ไม่ได้แสดงข้อความที่เก็บไว้เฉย ๆ แต่ยกคำตอบชุดเดิมกลับมาแล้ววาดใหม่ด้วยโค้ดเดิม
+  // รายงานจึงต้องออกมาเหมือนเดิมทุกตัวอักษร ไม่ใช่แค่ "คล้าย ๆ"
+  t('รายงานที่เปิดย้อนหลังเหมือนของเดิมทุกตัวอักษร', again === reportOnScreen,
+    `เดิม ${reportOnScreen.length} ตัวอักษร · ย้อนหลัง ${again.length} ตัวอักษร`);
+  t('ยังโหลด PDF จากรายงานย้อนหลังได้',
+    await page.$eval('#saveBtn, [onclick*="saveReport"]', (el) => getComputedStyle(el).display !== 'none')
+      .catch(() => false));
+  // เปิดดูย้อนหลังคือการอ่าน ห้ามไปเขียนทับแถวเดิมในฐานข้อมูล
+  t('โหมดดูย้อนหลังไม่ยิงบันทึกซ้ำ', await page.evaluate(() => state.viewOnly === true));
+
+  console.log('\n— หน้าบัญชี: กดที่ร้านแล้วเปิดรายงานได้ —');
+  await page.goto(BASE + '/account', { waitUntil: 'networkidle0' });
+  await new Promise((r) => setTimeout(r, 900));
+  const links = await page.$$eval('a.row.link', (a) => a.map((x) => x.getAttribute('href')));
+  t('แถวประวัติที่ทำจบแล้วกดได้', links.length > 0, `มี ${links.length} แถวที่กดได้`);
+  t('แถวประวัติชี้ไปที่รายงานฉบับเต็ม',
+    links.every((h) => /^\/\?report=[A-Za-z0-9_-]+$/.test(h)), JSON.stringify(links));
+  await page.click('a.row.link');
+  await page.waitForFunction(() => document.querySelector('.screen.active')
+    && document.querySelector('.screen.active').id === 's-result', { timeout: 15000 }).catch(() => {});
+  await new Promise((r) => setTimeout(r, 1500));
+  t('กดจากหน้าบัญชีแล้วได้รายงานเต็ม', await visible() === 's-result', await visible());
+  t('รายงานจากหน้าบัญชีก็เหมือนของเดิม',
+    (await page.$eval('#reportDoc', (el) => el.textContent.replace(/\s+/g, ' ').trim())) === reportOnScreen);
+
+} else {
+  t('มีลิงก์รายงานให้เปิดย้อนหลัง', false, 'ไม่พบลิงก์ในอีเมล จึงข้ามชุดนี้');
+}
+
 console.log('\n— ข้อมูลถึงหลังบ้านจริงไหม —');
 await new Promise((r) => setTimeout(r, 1200));
 const cookie = (await (await fetch(BASE + '/api/admin/login', {
@@ -297,6 +363,38 @@ t('จัดกลุ่ม tier ให้แล้ว', lead && ['HOT', 'WARM',
 const m = [...mail()].reverse().find((x) => x.to === EMAIL);
 t('ส่งเมลสรุปผลให้อัตโนมัติ', !!m);
 t('คะแนนในเมลตรงกับหน้าจอ', m && m.subject.includes(`${score}/100`), m && m.subject);
+
+console.log('\n— ผลเก่าที่ไม่มีคำตอบเก็บไว้ —');
+// แถวที่บันทึกไว้ก่อนระบบเริ่มเก็บคำตอบชุดเต็ม วาดรายงานคืนไม่ได้ ต้องบอกให้รู้เรื่อง
+// ไม่ใช่ค้างอยู่หน้าขาว ๆ และห้ามใช้ alert() ที่ขวางทั้งหน้าไว้เฉย ๆ
+// ชุดนี้อยู่ท้ายสุดเพราะมันเพิ่มแถวใหม่ให้อีเมลเดียวกัน ถ้าวางไว้ก่อนหน้านี้จะไป
+// กลบแถวจริงในชุดที่ตรวจข้อมูลหลังบ้าน (ซึ่งหยิบแถวล่าสุดของอีเมลนั้นมาดู)
+{
+  const legacy = 'legacy-' + Date.now();
+  await fetch(BASE + '/api/assessments', {
+    method: 'POST', headers: { 'Content-Type': 'application/json', Origin: BASE },
+    body: JSON.stringify({ sessionKey: legacy, email: EMAIL, shop: 'ร้านยุคก่อน', completed: true,
+      total: 55, mode: 'deep', scores: { D1: 55, D2: 55, D3: 55, D4: 55, D5: 55 } }),
+  });
+  // ยิงจากในหน้าเว็บ คุกกี้เซสชันเป็น HttpOnly จึงอ่านจาก document.cookie ไม่ได้
+  const old = await page.evaluate(async () => {
+    const r = await fetch('/api/assessments', { credentials: 'same-origin' });
+    const d = await r.json();
+    return (d.assessments || []).find((x) => x.shop === 'ร้านยุคก่อน') || null;
+  });
+  t('เตรียมแถวเก่าไว้ทดสอบได้', !!old);
+  if (old) {
+    let alerted = false;
+    page.once('dialog', async (d) => { alerted = true; await d.dismiss(); });
+    await page.goto(`${BASE}/?report=${old.id}`, { waitUntil: 'networkidle0' });
+    await new Promise((r) => setTimeout(r, 1200));
+    t('ไม่ค้างหน้าเปล่า — พากลับไปหน้าบัญชี', page.url().includes('/account'), page.url());
+    t('บอกเหตุผลให้ผู้ใช้อ่านบนหน้าบัญชี',
+      await page.$eval('#msg', (el) => el.className.includes('err') && el.textContent.length > 10)
+        .catch(() => false));
+    t('ไม่ใช้ alert() ที่ขวางทั้งหน้า', !alerted);
+  }
+}
 
 console.log('\n— ไม่มี JavaScript error ตลอดทาง —');
 t('ไม่มี error หลุดออกมาเลย', jsErrors.length === 0, jsErrors.slice(0, 3).join(' | '));

@@ -4,8 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "wrangler pages dev",
-    "db:local": "wrangler d1 execute restauranthealthcheck --local --file=migrations/0001_init.sql && wrangler d1 execute restauranthealthcheck --local --file=migrations/0002_admin_and_result_email.sql && wrangler d1 execute restauranthealthcheck --local --file=migrations/0003_contact_request.sql && wrangler d1 execute restauranthealthcheck --local --file=migrations/0004_province.sql",
-    "db:remote": "wrangler d1 execute restauranthealthcheck --remote --file=migrations/0001_init.sql && wrangler d1 execute restauranthealthcheck --remote --file=migrations/0002_admin_and_result_email.sql && wrangler d1 execute restauranthealthcheck --remote --file=migrations/0003_contact_request.sql && wrangler d1 execute restauranthealthcheck --remote --file=migrations/0004_province.sql",
+    "db:local": "wrangler d1 execute restauranthealthcheck --local --file=migrations/0001_init.sql && wrangler d1 execute restauranthealthcheck --local --file=migrations/0002_admin_and_result_email.sql && wrangler d1 execute restauranthealthcheck --local --file=migrations/0003_contact_request.sql && wrangler d1 execute restauranthealthcheck --local --file=migrations/0004_province.sql && wrangler d1 execute restauranthealthcheck --local --file=migrations/0005_report.sql",
+    "db:remote": "wrangler d1 execute restauranthealthcheck --remote --file=migrations/0001_init.sql && wrangler d1 execute restauranthealthcheck --remote --file=migrations/0002_admin_and_result_email.sql && wrangler d1 execute restauranthealthcheck --remote --file=migrations/0003_contact_request.sql && wrangler d1 execute restauranthealthcheck --remote --file=migrations/0004_province.sql && wrangler d1 execute restauranthealthcheck --remote --file=migrations/0005_report.sql",
     "test": "node tests/run-all.mjs",
     "test:mail": "node tests/mailcatcher.mjs"
   },

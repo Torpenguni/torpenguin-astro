@@ -121,7 +121,9 @@ t('partial save accepted', r.status === 200, JSON.stringify(r.data));
 
 r = await call('/api/assessments', { method:'POST', cookie: session, body:{
   sessionKey: sid, completed:true, total:72, typeCode:'TSMG', typeName:'Team',
-  tier:'HOT', scores:{D1:70,D2:64,D3:80,D4:71,D5:75}, answers:[1,2,3] } });
+  tier:'HOT', scores:{D1:70,D2:64,D3:80,D4:71,D5:75}, answers:[1,2,3],
+  report:{ exec:'สรุปทดสอบ', plan:[] },
+  snapshot:{ answers:[{oi:1,v:2}], fin:null, mode:'deep', reg:{ shop:'ร้านชาบูของเรา' } } } });
 t('completion save accepted', r.status === 200);
 
 r = await call('/api/assessments', { cookie: session });
@@ -134,6 +136,31 @@ t('one row, not two', r.data?.assessments?.length === 1);
 
 r = await call('/api/assessments');
 t('assessment list requires login', r.status === 401);
+
+console.log('\n— เปิดผลประเมินทีละรายการ —');
+r = await call('/api/assessment?id=' + encodeURIComponent(a.id), { cookie: session });
+t('เจ้าของเปิดผลของตัวเองได้', r.status === 200 && r.data?.assessment?.id === a.id,
+  JSON.stringify(r.data).slice(0, 160));
+t('มีคำตอบชุดเต็มไว้วาดรายงานคืน', !!r.data?.assessment?.snapshot,
+  'snapshot=' + JSON.stringify(r.data?.assessment?.snapshot));
+t('ต้องล็อกอินก่อนถึงเปิดได้', (await call('/api/assessment?id=' + a.id)).status === 401);
+t('ไม่ระบุ id ตอบ 400', (await call('/api/assessment', { cookie: session })).status === 400);
+t('id มั่ว ๆ ตอบ 404', (await call('/api/assessment?id=ไม่มีจริง', { cookie: session })).status === 404);
+
+// ผลประเมินของคนอื่นต้องเปิดไม่ได้เด็ดขาด — id เป็นตัวสุ่มก็จริงแต่มันไปอยู่ใน
+// ลิงก์ในอีเมล ซึ่งถูกส่งต่อ ถูกวางในแชต หรือหลุดอยู่ในประวัติเบราว์เซอร์ได้
+{
+  const other = `intruder${Date.now()}@example.com`;
+  await call('/api/auth/signup', { method: 'POST', body: { email: other, password: 'intruder-pw-2026' } });
+  const vlink = linkIn(lastMailTo(other), /http:\/\/\S*\/api\/auth\/verify\?token=\S+/);
+  const vres = await fetch(vlink, { redirect: 'manual', headers: ORIGIN });
+  const otherCookie = (vres.headers.get('set-cookie') || '').split(';')[0];
+  const peek = await call('/api/assessment?id=' + encodeURIComponent(a.id), { cookie: otherCookie });
+  t('คนอื่นเปิดผลประเมินของเราไม่ได้', peek.status === 404, `got ${peek.status}`);
+  const list = await call('/api/assessments', { cookie: otherCookie });
+  t('รายการย้อนหลังของคนอื่นก็ไม่เห็นของเรา',
+    (list.data?.assessments || []).every((x) => x.id !== a.id));
+}
 
 console.log('\n— ออกจากระบบ —');
 r = await call('/api/auth/logout', { method:'POST', cookie: session, body:{} });

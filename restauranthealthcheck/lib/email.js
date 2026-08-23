@@ -164,6 +164,200 @@ const TIER_LINE = {
 
 // Summary of a finished assessment. The full report lives on the site — this
 // mail is the number, the five dimensions, and a way back in.
+
+// ── ส่วนประกอบของอีเมลสรุปผล ─────────────────────────────────────────────
+// เนื้อหาทั้งหมดในนี้มาจาก report ที่เบราว์เซอร์ถอดมาจากรายงานที่ผู้ใช้เห็นจริง
+// ฝั่งเซิร์ฟเวอร์ไม่ได้คำนวณอะไรใหม่เลย จะได้ไม่มีสูตรสองชุดที่ค่อย ๆ เพี้ยนจากกัน
+// ทุกฟังก์ชันต้องทนกับ report ที่เป็น null หรือมีไม่ครบ (แถวเก่า/รายงานที่วาดไม่สำเร็จ)
+const H2 = 'margin:30px 0 10px;font-size:13px;font-weight:700;letter-spacing:.06em;color:#8a8077;text-transform:uppercase';
+const CELL = 'padding:8px 6px;font-size:14px;border-bottom:1px solid #f0ebe3';
+
+function statusColor(text) {
+  const t = String(text || '');
+  if (/ในเกณฑ์/.test(t)) return '#1F9D57';
+  if (/วิกฤต|เกินเกณฑ์/.test(t)) return '#C8102E';
+  if (/เริ่มสูง|ต่ำกว่าเกณฑ์|พอใช้/.test(t)) return '#E08A00';
+  return '#5c554c';
+}
+
+// ข้อความที่มีการขึ้นบรรทัดโดยตั้งใจ (บทสรุปผู้บริหาร, ก้าวต่อไป) ต้องคง
+// การขึ้นบรรทัดนั้นไว้ใน HTML ด้วย ไม่งั้นสองย่อหน้าจะกลายเป็นก้อนเดียวติดกัน
+function paragraphs(text) {
+  return escapeHtml(text).split('\n').join('<br>');
+}
+
+function section(title, inner) {
+  return inner ? `<div style="${H2}">${escapeHtml(title)}</div>${inner}` : '';
+}
+
+function execHtml(rep) {
+  if (!rep || !rep.exec) return '';
+  return section('บทสรุปผู้บริหาร',
+    `<p style="margin:0;font-size:15px;line-height:1.75;color:#3b352d">${paragraphs(rep.exec)}</p>`);
+}
+
+function finHtml(rep) {
+  if (!rep || (!rep.finHead && !(rep.finRows || []).length)) return '';
+  const head = rep.finHead
+    ? `<div style="background:#17140F;color:#fff;border-radius:11px;padding:14px 16px;font-size:14.5px;line-height:1.6">${escapeHtml(rep.finHead)}</div>`
+    : '';
+  const note = rep.finEstimated
+    ? `<p style="margin:10px 0 0;font-size:13px;line-height:1.6;color:#8a5a00;background:#FFF8E6;border:1px solid #F3DDB5;border-radius:9px;padding:10px 12px">⚠️ ตัวเลขต้นทุนด้านล่างเป็นค่าประมาณที่ระบบเติมให้ ไม่ใช่ตัวเลขจริงของร้านคุณ</p>`
+    : '';
+  const rows = (rep.finRows || []).map((cells) => {
+    const [name, you, target, status, gap] = cells;
+    return `<tr>
+<td style="${CELL};color:#3b352d;font-weight:600">${escapeHtml(name)}</td>
+<td style="${CELL};text-align:right;color:#17140F">${escapeHtml(you)}</td>
+<td style="${CELL};text-align:right;color:#8a8077">${escapeHtml(target)}</td>
+<td style="${CELL};text-align:right;font-weight:600;color:${statusColor(status)}">${escapeHtml(status)}</td>
+<td style="${CELL};text-align:right;color:#C8102E;font-size:13px">${escapeHtml(gap || '')}</td>
+</tr>`;
+  }).join('');
+  const table = rows
+    ? `<table style="width:100%;border-collapse:collapse;margin-top:14px">
+<tr><th style="${CELL};text-align:left;font-size:12px;color:#8a8077;font-weight:600">รายการ</th>
+<th style="${CELL};text-align:right;font-size:12px;color:#8a8077;font-weight:600">ของคุณ</th>
+<th style="${CELL};text-align:right;font-size:12px;color:#8a8077;font-weight:600">เกณฑ์</th>
+<th style="${CELL};text-align:right;font-size:12px;color:#8a8077;font-weight:600">สถานะ</th>
+<th style="${CELL};text-align:right;font-size:12px;color:#8a8077;font-weight:600">กำไรที่เสีย</th></tr>
+${rows}</table>`
+    : '';
+  const profile = rep.finProfile
+    ? `<p style="margin:10px 0 0;font-size:12.5px;color:#8a8077">เกณฑ์อ้างอิงสำหรับ: ${escapeHtml(rep.finProfile)}</p>`
+    : '';
+  return section('วิเคราะห์การเงินจริง · เทียบเกณฑ์ PenguinX', head + note + table + profile);
+}
+
+function listHtml(title, items) {
+  if (!items || !items.length) return '';
+  return section(title, `<ul style="margin:0;padding-left:20px;font-size:14.5px;line-height:1.7;color:#3b352d">${
+    items.map((x) => `<li style="margin-bottom:6px">${escapeHtml(x)}</li>`).join('')}</ul>`);
+}
+
+function dimsHtml(rep) {
+  if (!rep || !(rep.dims || []).length) return '';
+  return section('เจาะลึกราย 5 มิติ · ต้องทำอะไรต่อ', (rep.dims).map((d) => `
+<div style="border:1px solid #ece5da;border-radius:11px;padding:14px 15px;margin-bottom:10px">
+  <div style="font-weight:700;font-size:15px;color:#17140F">${escapeHtml(d.label)}${
+    d.score ? ` <span style="font-weight:600;font-size:13px;color:#8a8077">· ${escapeHtml(d.score)}</span>` : ''}</div>
+  ${d.diag ? `<p style="margin:7px 0 0;font-size:14px;line-height:1.65;color:#5c554c">${escapeHtml(d.diag)}</p>` : ''}
+  ${(d.todo || []).length ? `<ul style="margin:8px 0 0;padding-left:20px;font-size:13.5px;line-height:1.65;color:#3b352d">${
+    d.todo.map((x) => `<li>${escapeHtml(x)}</li>`).join('')}</ul>` : ''}
+</div>`).join(''));
+}
+
+function notesHtml(rep) {
+  if (!rep || !(rep.notes || []).length) return '';
+  return section('เจาะลึกตามสาเหตุที่คุณระบุ · ต้องแก้ตรงไหน', (rep.notes).map((n) => `
+<div style="border-left:3px solid #E08A00;background:#FFFBF3;border-radius:0 10px 10px 0;padding:12px 14px;margin-bottom:10px">
+  <div style="font-size:14px;font-weight:600;color:#17140F;line-height:1.6">${escapeHtml(n.cause)}</div>
+  ${n.lead ? `<p style="margin:7px 0 0;font-size:13.5px;color:#5c554c;line-height:1.65">${escapeHtml(n.lead)}</p>` : ''}
+  ${(n.todo || []).length ? `<ul style="margin:7px 0 0;padding-left:20px;font-size:13.5px;line-height:1.65;color:#3b352d">${
+    n.todo.map((x) => `<li>${escapeHtml(x)}</li>`).join('')}</ul>` : ''}
+  ${(n.tags || []).length ? `<div style="margin-top:8px;font-size:12px;color:#8a8077">${
+    n.tags.map((x) => escapeHtml(x)).join(' · ')}</div>` : ''}
+</div>`).join(''));
+}
+
+function planHtml(rep) {
+  if (!rep || !(rep.plan || []).length) return '';
+  return section('แผนปฏิบัติ 90 วัน · ทำทีละเฟส', (rep.plan).map((p) => `
+<div style="border:1px solid #ece5da;border-radius:11px;overflow:hidden;margin-bottom:12px">
+  <div style="background:#FAF7F2;padding:11px 15px">
+    <div style="font-weight:700;font-size:14.5px;color:#17140F">${escapeHtml(p.month)}</div>
+    ${p.goal ? `<div style="font-size:12.5px;color:#8a8077;margin-top:2px">${escapeHtml(p.goal)}</div>` : ''}
+  </div>
+  <div style="padding:12px 15px">${(p.actions || []).map((a) => `
+    <div style="margin-bottom:10px">
+      <div style="font-weight:600;font-size:14px;color:#17140F">${escapeHtml(a.what)}</div>
+      ${(a.weeks || []).length ? `<ul style="margin:6px 0 0;padding-left:20px;font-size:13.5px;line-height:1.65;color:#5c554c">${
+        a.weeks.map((w) => `<li>${escapeHtml(w)}</li>`).join('')}</ul>` : ''}
+      ${a.measure ? `<div style="margin-top:6px;font-size:13px;color:#1F9D57">${escapeHtml(a.measure)}</div>` : ''}
+    </div>`).join('')}</div>
+</div>`).join(''));
+}
+
+function dragHtml(rep) {
+  if (!rep || !(rep.drags || []).length) return '';
+  return section('3 คำตอบที่ฉุดคะแนนคุณมากที่สุด', (rep.drags).map((d) => `
+<div style="border-left:3px solid #C8102E;background:#FDF6F7;border-radius:0 9px 9px 0;padding:10px 13px;margin-bottom:8px">
+  <div style="font-size:14px;font-weight:600;color:#17140F">${escapeHtml(d.q)}</div>
+  ${d.ans ? `<div style="font-size:13px;color:#5c554c;margin-top:3px">${escapeHtml(d.ans)}</div>` : ''}
+</div>`).join(''));
+}
+
+function benchHtml(rep) {
+  if (!rep || (!(rep.bench || []).length && !rep.prime)) return '';
+  const prime = rep.prime
+    ? `<div style="background:#17140F;color:#fff;border-radius:11px;padding:13px 15px;font-size:14.5px;margin-bottom:12px">${escapeHtml(rep.prime)}</div>`
+    : '';
+  const rows = (rep.bench || []).map((b) => `<tr>
+<td style="${CELL};color:#3b352d">${escapeHtml(b.label)}</td>
+<td style="${CELL};text-align:right;color:#8a8077;font-size:13px">${escapeHtml(b.target)}</td>
+<td style="${CELL};text-align:right;font-weight:600;color:${statusColor(b.status)}">${escapeHtml(b.status)}</td>
+</tr>`).join('');
+  return section('เทียบมาตรฐานต้นทุน · PenguinX',
+    prime + (rows ? `<table style="width:100%;border-collapse:collapse">${rows}</table>` : ''));
+}
+
+// ฉบับข้อความล้วน — โปรแกรมอ่านเมลบางตัวและตัวกรองสแปมอ่านเฉพาะส่วนนี้
+function reportText(rep) {
+  if (!rep) return '';
+  const out = [];
+  const head = (t) => out.push('', '── ' + t + ' ──');
+  if (rep.exec) { head('บทสรุปผู้บริหาร'); out.push(rep.exec); }
+  if (rep.finHead || (rep.finRows || []).length) {
+    head('วิเคราะห์การเงินจริง · เทียบเกณฑ์ PenguinX');
+    if (rep.finHead) out.push(rep.finHead);
+    if (rep.finEstimated) out.push('(ตัวเลขต้นทุนเป็นค่าประมาณที่ระบบเติมให้ ไม่ใช่ตัวเลขจริงของร้าน)');
+    (rep.finRows || []).forEach(([n, you, target, status, gap]) => {
+      out.push(`  ${n}: ${you} (เกณฑ์ ${target}) — ${status}${gap ? ' · ' + gap : ''}`);
+    });
+    if (rep.finProfile) out.push(`  เกณฑ์อ้างอิงสำหรับ: ${rep.finProfile}`);
+  }
+  if (rep.prime || (rep.bench || []).length) {
+    head('เทียบมาตรฐานต้นทุน');
+    if (rep.prime) out.push(rep.prime);
+    (rep.bench || []).forEach((b) => out.push(`  ${b.label} · ${b.target} — ${b.status}`));
+  }
+  if ((rep.syn || []).length) { head('ข้อมูลเชิงลึกที่เชื่อมโยงกัน'); (rep.syn).forEach((x) => out.push('  • ' + x)); }
+  if ((rep.dims || []).length) {
+    head('เจาะลึกราย 5 มิติ · ต้องทำอะไรต่อ');
+    (rep.dims).forEach((d) => {
+      out.push(`  ${d.label}${d.score ? ' · ' + d.score : ''}`);
+      if (d.diag) out.push('    ' + d.diag);
+      (d.todo || []).forEach((x) => out.push('    - ' + x));
+    });
+  }
+  if ((rep.drags || []).length) {
+    head('3 คำตอบที่ฉุดคะแนนคุณมากที่สุด');
+    (rep.drags).forEach((d) => out.push(`  • ${d.q}${d.ans ? ' — ' + d.ans : ''}`));
+  }
+  if ((rep.plan || []).length) {
+    head('แผนปฏิบัติ 90 วัน');
+    (rep.plan).forEach((p) => {
+      out.push(`  ${p.month}${p.goal ? ' — ' + p.goal : ''}`);
+      (p.actions || []).forEach((a) => {
+        out.push('    ' + a.what);
+        (a.weeks || []).forEach((w) => out.push('      - ' + w));
+        if (a.measure) out.push('      ' + a.measure);
+      });
+    });
+  }
+  if ((rep.notes || []).length) {
+    head('เจาะลึกตามสาเหตุที่คุณระบุ · ต้องแก้ตรงไหน');
+    (rep.notes).forEach((n) => {
+      out.push('  • ' + n.cause);
+      if (n.lead) out.push('    ' + n.lead);
+      (n.todo || []).forEach((x) => out.push('    - ' + x));
+      if ((n.tags || []).length) out.push('    ' + n.tags.join(' · '));
+    });
+  }
+  if (rep.next) { head('ก้าวต่อไป'); out.push(rep.next); }
+  return out.join('\n');
+}
+
 export function sendResultEmail(env, to, r) {
   const rows = Object.keys(DIM_LABEL)
     .filter((k) => r.scores && r.scores[k] != null)
@@ -182,7 +376,11 @@ export function sendResultEmail(env, to, r) {
     .map((k) => `  ${DIM_LABEL[k]}: ${Math.round(r.scores[k])}/100`)
     .join('\n');
 
-  const shop = r.shop ? `ร้าน${r.shop}` : 'ร้านของคุณ';
+  // ชื่อร้านส่วนใหญ่ขึ้นต้นด้วยคำว่า "ร้าน" อยู่แล้ว เติมซ้ำจะได้ "ร้านร้าน…"
+  const shop = r.shop ? (/^ร้าน/.test(r.shop.trim()) ? r.shop.trim() : `ร้าน${r.shop}`) : 'ร้านของคุณ';
+  // รายงานฉบับเต็มมีเฉพาะโหมดละเอียดที่วาดรายงานสำเร็จ ที่เหลือได้อีเมลแบบเดิม
+  const rep = r.report && typeof r.report === 'object' ? r.report : null;
+  const link = r.reportUrl || `${r.site}/account`;
 
   return sendMail(env, {
     to,
@@ -196,9 +394,21 @@ export function sendResultEmail(env, to, r) {
 </div>
 <table style="width:100%;border-collapse:collapse">${rows}</table>
 <p style="margin:22px 0 0;font-size:15px;color:#5c554c">${TIER_LINE[r.tier] || ''}</p>
-${button(`${r.site}/account`, 'ดูรายงานฉบับเต็ม')}
+${execHtml(rep)}
+${finHtml(rep)}
+${benchHtml(rep)}
+${listHtml('ข้อมูลเชิงลึกที่เชื่อมโยงกัน', rep && rep.syn)}
+${dimsHtml(rep)}
+${dragHtml(rep)}
+${planHtml(rep)}
+${notesHtml(rep)}
+${rep && rep.next ? section('ก้าวต่อไป',
+  `<p style="margin:0;font-size:15px;line-height:1.75;color:#3b352d">${paragraphs(rep.next)}</p>`) : ''}
+${button(link, 'เปิดรายงานฉบับเต็มบนเว็บ')}
 <p style="margin:22px 0 0;font-size:14px;color:#5c554c">
-ถ้ายังไม่ได้สมัครบัญชี สมัครด้วยอีเมลนี้แล้วผลประเมินจะผูกกับบัญชีให้อัตโนมัติ กลับมาดูย้อนหลังได้ทุกเมื่อ</p>`,
+${r.reportUrl
+  ? 'ลิงก์ด้านบนเปิดรายงานฉบับเต็มแบบเดียวกับที่คุณเห็นบนเว็บ พร้อมกราฟและปุ่มบันทึกเป็น PDF — ต้องเข้าสู่ระบบด้วยอีเมลนี้ก่อน'
+  : 'ถ้ายังไม่ได้สมัครบัญชี สมัครด้วยอีเมลนี้แล้วผลประเมินจะผูกกับบัญชีให้อัตโนมัติ กลับมาดูย้อนหลังได้ทุกเมื่อ'}</p>`,
     ),
     text: `สรุปผลตรวจสุขภาพธุรกิจของ${shop}
 
@@ -207,10 +417,13 @@ ${button(`${r.site}/account`, 'ดูรายงานฉบับเต็ม'
 ${textRows}
 
 ${TIER_LINE[r.tier] || ''}
+${reportText(rep)}
 
-ดูรายงานฉบับเต็ม: ${r.site}/account
+เปิดรายงานฉบับเต็มบนเว็บ: ${link}
 
-ถ้ายังไม่ได้สมัครบัญชี สมัครด้วยอีเมลนี้แล้วผลประเมินจะผูกกับบัญชีให้อัตโนมัติ`,
+${r.reportUrl
+  ? 'ลิงก์ด้านบนเปิดรายงานฉบับเต็มแบบเดียวกับที่คุณเห็นบนเว็บ พร้อมกราฟและปุ่มบันทึกเป็น PDF — ต้องเข้าสู่ระบบด้วยอีเมลนี้ก่อน'
+  : 'ถ้ายังไม่ได้สมัครบัญชี สมัครด้วยอีเมลนี้แล้วผลประเมินจะผูกกับบัญชีให้อัตโนมัติ'}`,
   });
 }
 

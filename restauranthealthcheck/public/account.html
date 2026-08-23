@@ -68,6 +68,10 @@ button.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--li
   padding:15px 0;border-bottom:1px solid var(--line)}
 .row:last-child{border-bottom:0}
 .row .shop{font-weight:600}
+a.row.link{text-decoration:none;color:inherit;cursor:pointer;transition:background .12s}
+a.row.link:hover,a.row.link:focus-visible{background:var(--surface-2,#f6f4ef)}
+a.row.link:focus-visible{outline:2px solid var(--brand);outline-offset:-2px}
+.row .open{font-size:12.5px;color:var(--brand);font-weight:600;margin-top:4px}
 .row .meta{font-size:13px;color:var(--faint)}
 .score{font-family:'IBM Plex Sans Thai',sans-serif;font-weight:600;font-size:24px}
 .tier{font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:20px;letter-spacing:.03em}
@@ -185,16 +189,23 @@ const views = {
   },
 
   account(user, list) {
+    // แถวที่ทำจบแล้วกดเปิดรายงานฉบับเต็มได้ ใช้ <a> จริงเพื่อให้เปิดแท็บใหม่
+    // กดค้าง คัดลอกลิงก์ และเลื่อนหาด้วยแป้นพิมพ์ได้ตามปกติ แถวที่ทำไม่จบไม่มี
+    // รายงานให้เปิด จึงคงเป็นข้อความเฉย ๆ ไม่หลอกให้กด
     const rows = list.length
-      ? list.map((a) => `<div class="row">
-  <div><div class="shop">${esc(a.shop || 'ไม่ได้ระบุชื่อร้าน')}</div>
+      ? list.map((a) => {
+        const body = `<div><div class="shop">${esc(a.shop || 'ไม่ได้ระบุชื่อร้าน')}</div>
     <div class="meta">${new Date(a.createdAt * 1000).toLocaleDateString('th-TH',
-      { year: 'numeric', month: 'short', day: 'numeric' })}${a.completed ? '' : ' · ทำไม่จบ'}</div></div>
+      { year: 'numeric', month: 'short', day: 'numeric' })}${a.province ? ' · ' + esc(a.province) : ''}${a.completed ? '' : ' · ทำไม่จบ'}</div></div>
   <div style="text-align:right">
     ${a.total != null ? `<div class="score">${a.total}<span style="font-size:13px;color:var(--faint)">/100</span></div>` : ''}
     ${a.tier ? `<span class="tier ${esc(a.tier)}">${esc(a.tier)}</span>` : ''}
-  </div>
-</div>`).join('')
+    ${a.completed ? '<div class="open">ดูรายงานฉบับเต็ม →</div>' : ''}
+  </div>`;
+        return a.completed
+          ? `<a class="row link" href="/?report=${encodeURIComponent(a.id)}">${body}</a>`
+          : `<div class="row">${body}</div>`;
+      }).join('')
       : '<div class="empty">ยังไม่มีผลประเมิน — เริ่มทำได้เลย</div>';
 
     return `<h1>บัญชีของคุณ</h1>
@@ -294,7 +305,19 @@ function resumePending() {
   return false;
 }
 
+// ข้อความเวลาเปิดรายงานย้อนหลังไม่สำเร็จ — หน้ารายงานส่งมาเป็นรหัสตายตัว
+// ไม่ใช่ข้อความ จะได้ไม่มีใครยัดข้อความอะไรก็ได้ขึ้นหน้าเว็บผ่าน URL
+const REPORT_ERROR = {
+  notfound: 'ไม่พบผลประเมินนี้ในบัญชีของคุณ — ถ้าคุณทำไว้ด้วยอีเมลอื่น ลองเข้าสู่ระบบด้วยอีเมลนั้น',
+  nosnapshot: 'ผลประเมินนี้ทำไว้ก่อนระบบเริ่มเก็บรายงานย้อนหลัง จึงเปิดดูรายงานฉบับเต็มไม่ได้ — ทำใหม่อีกครั้งแล้วจะเปิดย้อนหลังได้ทุกเมื่อ',
+  offline: 'เชื่อมต่อไม่ได้ ลองใหม่อีกครั้ง',
+  error: 'เปิดรายงานนี้ไม่ได้ ลองใหม่อีกครั้ง',
+};
+
 async function boot() {
+  const reportErr = params.get('report');
+  if (reportErr && REPORT_ERROR[reportErr]) say(REPORT_ERROR[reportErr], 'err');
+
   const verified = params.get('verified');
   if (verified === '1') say('ยืนยันอีเมลเรียบร้อยแล้ว ยินดีต้อนรับครับ', 'ok');
   if (verified === 'expired') say('ลิงก์ยืนยันหมดอายุหรือถูกใช้ไปแล้ว — กดที่ "ลืมรหัสผ่าน" เพื่อขอลิงก์ใหม่', 'err');

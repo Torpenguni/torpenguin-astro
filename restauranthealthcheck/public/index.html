@@ -1546,6 +1546,45 @@ if(new URLSearchParams(location.search).get('start')==='deep'){
   history.replaceState(null,'',location.pathname);
   (async()=>{ if(await needsAccount()) openGate(); else chooseMode('deep'); })();
 }
+/* เปิดรายงานเก่าจากลิงก์ในอีเมลหรือจากหน้าบัญชี — /?report=<id>
+   ไม่ได้แสดงข้อความสรุปที่เก็บไว้ แต่ยกคำตอบชุดเดิมกลับเข้า state แล้วสั่งวาด
+   รายงานใหม่ด้วยโค้ดเดิมทุกบรรทัด รายงานที่ได้จึงเหมือนวันที่ทำครั้งแรกเป๊ะ
+   และยังกดโหลด PDF ต่อได้เลย */
+async function openStoredReport(id){
+  // ล้มเหลวแล้วส่งกลับไปหน้าบัญชีพร้อมรหัสเหตุผล ให้หน้านั้นเป็นคนขึ้นข้อความ
+  // ใช้รหัสตายตัวไม่ใช่ข้อความจาก URL จะได้ไม่มีใครยัดข้อความอะไรก็ได้ขึ้นหน้าเว็บ
+  const fail=code=>{ location.href='/account?report='+code; };
+  let a;
+  try{
+    const res=await fetch('/api/assessment?id='+encodeURIComponent(id),{credentials:'same-origin'});
+    const data=await res.json().catch(()=>({}));
+    if(res.status===401){ location.href='/account?mode=login'; return; }
+    if(!res.ok){ fail(res.status===404?'notfound':'error'); return; }
+    a=data.assessment;
+  }catch(e){ fail('offline'); return; }
+
+  if(!a.snapshot||!a.snapshot.answers){ fail('nosnapshot'); return; }
+
+  state.viewOnly=true;
+  state.sid=a.sessionKey||state.sid;
+  state.reg=a.snapshot.reg||{shop:a.shop,name:a.name,type:a.shopType};
+  state.answers=a.snapshot.answers;
+  state.fin=a.snapshot.fin||null;
+  state.mode=a.snapshot.mode||a.mode||'deep';
+  state.costProfile=profileFromRegType(state.reg.type);
+  showResult();
+  // ปุ่มขอให้ติดต่อกลับ ถ้าเคยกดไปแล้วก็ไม่ต้องให้กดซ้ำ
+  if(a.contactRequested){
+    const btn=document.getElementById('ctaBtn');
+    if(btn){btn.style.display='none';
+      const done=btn.parentElement.querySelector('.cta-done');
+      if(done){done.style.display='';done.textContent='ส่งคำขอให้ทีม CP ติดต่อกลับแล้ว';}}
+  }
+}
+if(new URLSearchParams(location.search).get('report')){
+  openStoredReport(new URLSearchParams(location.search).get('report'));
+}
+
 /* landing axes list (ถ้ามี element) */
 const _axl=document.getElementById('axesList');
 if(_axl){AXES.forEach(a=>{
@@ -1741,9 +1780,6 @@ function showResult(){
   tags.push('focus_'+state.focus);
   const finData=computeFin(state.fin);
   const pst0=primeStatus();
-  // ส่ง lead เข้าระบบ (Google Sheet ผ่าน Apps Script)
-  submitLead({...state.reg, scores:sc, total, typeCode:code, typeName:type.name+' · '+type.tag, tier:type.tier, tags, answers:state.answers.map(a=>a&&a.v||0),
-    fin: buildFinPayload(finData,pst0)});
   state.result={code,total,tier:type.tier,sc,tags};
 
   go('s-result');
@@ -1776,8 +1812,82 @@ function showResult(){
     NURTURE:['💬 รับคำแนะนำเริ่มต้นจากทีม CP','ร้านคุณมีหลายจุดที่ต้องเสริมก่อนโต — ให้ทีม CP แนะนำแนวทางตั้งต้นที่เหมาะกับร้านคุณ','ให้ทีม CP ติดต่อกลับ →']}[type.tier];
   document.getElementById('ctaTitle').textContent=cta[0];document.getElementById('ctaText').textContent=cta[1];const _cb=document.getElementById('ctaBtn');_cb.textContent=cta[2];_cb.style.display='';_cb.disabled=false;const _cd=document.getElementById('ctaDone');_cd.style.display='none';_cd.className='cta-done';
 
-  buildReport(code,type,total,sc,tags);
+  // วาดรายงานก่อน แล้วค่อยส่งเข้าระบบ เพราะสรุปที่จะไปอยู่ในอีเมลถูกอ่านมาจาก
+  // รายงานที่วาดเสร็จแล้วโดยตรง ถ้าการวาดพังด้วยเหตุใดก็ตาม ลีดกับคะแนนต้องยัง
+  // ถูกบันทึกอยู่ดี จึงครอบ try ไว้แล้วส่งโดยไม่มีสรุปแทนที่จะไม่ส่งเลย
+  let summary=null;
+  try{ buildReport(code,type,total,sc,tags); summary=reportSummary(); }
+  catch(e){ console.error('[report]',e); }
+  submitLead({...state.reg, scores:sc, total, typeCode:code, typeName:type.name+' · '+type.tag, tier:type.tier, tags, answers:state.answers.map(a=>a&&a.v||0),
+    fin: buildFinPayload(finData,pst0), report: summary,
+    snapshot:{answers:state.answers,fin:state.fin,mode:state.mode,reg:state.reg}});
   track('complete_deep',total);
+}
+
+// ถอดเนื้อหารายงานออกมาเป็นข้อความล้วน สำหรับส่งไปกับอีเมลสรุปผลและเก็บไว้
+// เปิดดูย้อนหลัง อ่านจากรายงานที่เพิ่งวาดเสร็จบนหน้าจอตรง ๆ ไม่ได้คำนวณใหม่
+// เพราะถ้าคำนวณสองที่ วันหนึ่งเนื้อหาในอีเมลกับบนจอจะไม่ตรงกันโดยไม่มีใครรู้
+function reportSummary(){
+  const clean=el=>el?el.textContent.replace(/\s+/g,' ').trim():'';
+  // <br> เป็นการขึ้นบรรทัดที่ตั้งใจ ถ้าอ่านด้วย textContent เฉย ๆ สองประโยคจะ
+  // ติดกันเป็นพืดในอีเมล จึงแปลงเป็นขึ้นบรรทัดจริงก่อนแล้วค่อยเก็บข้อความ
+  const lines=el=>{
+    if(!el)return '';
+    const tmp=document.createElement('div');
+    tmp.innerHTML=el.innerHTML.replace(/<br\s*\/?>/gi,'\n');
+    return tmp.textContent.split('\n').map(x=>x.replace(/\s+/g,' ').trim())
+      .join('\n').replace(/\n{3,}/g,'\n\n').trim();
+  };
+  const one=s=>document.querySelector(s);
+  const many=s=>[...document.querySelectorAll(s)];
+  // ป้ายกำกับ (ชิปมิติ, "สัปดาห์ 1", ไอคอน) เป็น <span> ที่ติดกับข้อความหลักแบบ
+  // ไม่มีช่องว่างคั่น บนหน้าจอมี CSS จัดระยะให้ แต่พออ่านเป็นข้อความล้วนจะกลายเป็น
+  // "สัปดาห์ 1เลือกคน…" จึงต้องแยกป้ายออกมาแล้วต่อด้วยตัวคั่นที่อ่านออก
+  const labelled=(el,sel,sep)=>{
+    if(!el)return '';
+    const tag=el.querySelector(sel);
+    const rest=[...el.childNodes].filter(n=>n!==tag).map(n=>n.textContent).join('').replace(/\s+/g,' ').trim();
+    const lbl=clean(tag);
+    return lbl?(rest?lbl+sep+rest:lbl):rest;
+  };
+  // ข้อความนำของบล็อกหนึ่ง โดยไม่เอารายการย่อยข้างในมาด้วย
+  const without=(el,sel)=>{
+    if(!el)return '';
+    const drop=el.querySelector(sel);
+    return [...el.childNodes].filter(n=>n!==drop).map(n=>n.textContent)
+      .join('').replace(/\s+/g,' ').trim();
+  };
+  const table=one('#repFin .fin-table');
+  const finVisible=one('#repFinWrap')&&one('#repFinWrap').style.display!=='none';
+  return {
+    exec:lines(one('#repExec')),
+    grade:clean(one('#rGrade')),
+    finHead:finVisible?clean(one('#repFinHead')):'',
+    finProfile:finVisible&&typeof curProfile==='function'?(curProfile()||{}).name||'':'',
+    finEstimated:!!(state.fin&&state.fin.estimated),
+    finRows:finVisible&&table?[...table.rows].slice(1).map(r=>[...r.cells].map(clean)):[],
+    prime:clean(one('#repBench .prime-box .pb-main')),
+    bench:many('#repBench .bench-row').map(r=>({
+      label:clean(r.querySelector('.bn')),target:clean(r.querySelector('.bt')),status:clean(r.querySelector('.bs'))})),
+    syn:many('#repSyn .syn-item').map(x=>labelled(x,'.si-ic',' ')),
+    dims:many('#repDimDeep .dim-deep').map(d=>({
+      label:clean(d.querySelector('.dd-title')),score:clean(d.querySelector('.dd-score')),
+      diag:clean(d.querySelector('.dd-diag')),todo:[...d.querySelectorAll('.dd-todo li')].map(clean)})),
+    drags:many('#repDrag .drag-item').map(d=>({
+      q:clean(d.querySelector('.dg-q')),ans:clean(d.querySelector('.dg-a'))})),
+    notes:many('#repNotes .root-block').map(n=>({
+      cause:clean(n.querySelector('.rb-cause')),
+      todo:[...n.querySelectorAll('.rb-do li')].map(clean),
+      lead:without(n.querySelector('.rb-do'),'ul'),
+      tags:[...n.querySelectorAll('.rb-link,.rb-baht')].map(clean)})),
+    plan:many('#repPlan .phase-block').map(b=>({
+      month:clean(b.querySelector('.ph-month')),goal:clean(b.querySelector('.ph-goal')),
+      actions:[...b.querySelectorAll('.phase-action')].map(a=>({
+        what:labelled(a.querySelector('.pa-title'),'.pa-dim',' · '),
+        weeks:[...a.querySelectorAll('.pa-weeks li')].map(li=>labelled(li,'.wk',': ')),
+        measure:clean(a.querySelector('.pa-measure'))}))})),
+    next:lines(one('#repNext')),
+  };
 }
 
 /* ============================================================ CONSULTANT REPORT ============================================================ */
@@ -1963,6 +2073,8 @@ function buildFinPayload(finData,pst0){
 }
 
 function submitLead(payload){
+  // เปิดรายงานเก่าดูย้อนหลังคือการอ่านอย่างเดียว ห้ามเขียนทับแถวเดิมเด็ดขาด
+  if(state.viewOnly)return;
   if(!CONFIG.endpoint){console.log('[no endpoint] lead =',payload);return;}
   const body={
     sessionKey:state.sid,
@@ -1975,6 +2087,8 @@ function submitLead(payload){
     scores:payload.scores||null,
     answers:payload.answers||null,
     intent:state.intent&&state.intent.length?state.intent:null,
+    report:payload.report||null,
+    snapshot:payload.snapshot||null,
     financial:payload.fin||null,
     consent:!!payload.consent, referrer:document.referrer||''
   };

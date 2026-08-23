@@ -5,7 +5,17 @@ import { guard } from '../../lib/ratelimit.js';
 import { getUser } from '../../lib/session.js';
 
 const str = (v, max = 300) => (v == null ? null : String(v).slice(0, max));
-const jsonField = (v, max = 40000) => (v == null ? null : JSON.stringify(v).slice(0, max));
+// Truncating JSON mid-string would store a fragment that no longer parses, and
+// the read side would silently see "no data". Drop an over-long value instead —
+// losing one oversized field beats corrupting it.
+const jsonField = (v, max = 40000) => {
+  if (v == null) return null;
+  const out = JSON.stringify(v);
+  if (out.length <= max) return out;
+  console.error('[assessments] value too large to store, dropped:', out.length, 'chars');
+  return null;
+};
+const parseJson = (v) => { if (!v) return null; try { return JSON.parse(v); } catch { return null; } };
 
 // Saves an assessment. Called more than once per visit: as soon as the person
 // registers, and again when they finish. `sessionKey` keys the upsert so a
@@ -48,6 +58,8 @@ export async function onRequestPost({ request, env }) {
     answers_json: jsonField(body.answers),
     intent_json: jsonField(body.intent),
     financial_json: jsonField(body.financial),
+    report_json: jsonField(body.report, 60000),
+    state_json: jsonField(body.snapshot, 60000),
     consent_at: body.consent ? ts : null,
     user_agent: str(request.headers.get('user-agent'), 300),
     referrer: str(body.referrer, 300),
@@ -58,9 +70,9 @@ export async function onRequestPost({ request, env }) {
       `INSERT INTO assessments (
          id, session_key, user_id, email, name, shop, contact, shop_type, branches, age, province, mode,
          completed, total_score, type_code, type_name, tier,
-         scores_json, answers_json, intent_json, financial_json,
+         scores_json, answers_json, intent_json, financial_json, report_json, state_json,
          consent_at, user_agent, referrer, created_at, updated_at
-       ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+       ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
        ON CONFLICT(session_key) DO UPDATE SET
          user_id        = COALESCE(excluded.user_id, assessments.user_id),
          email          = COALESCE(excluded.email, assessments.email),
@@ -81,13 +93,15 @@ export async function onRequestPost({ request, env }) {
          answers_json   = COALESCE(excluded.answers_json, assessments.answers_json),
          intent_json    = COALESCE(excluded.intent_json, assessments.intent_json),
          financial_json = COALESCE(excluded.financial_json, assessments.financial_json),
+         report_json    = COALESCE(excluded.report_json, assessments.report_json),
+         state_json     = COALESCE(excluded.state_json, assessments.state_json),
          consent_at     = COALESCE(assessments.consent_at, excluded.consent_at),
          updated_at     = excluded.updated_at`,
     )
     .bind(
       newId(), sessionKey, row.user_id, row.email, row.name, row.shop, row.contact, row.shop_type,
       row.branches, row.age, row.province, row.mode, row.completed, row.total_score, row.type_code, row.type_name,
-      row.tier, row.scores_json, row.answers_json, row.intent_json, row.financial_json,
+      row.tier, row.scores_json, row.answers_json, row.intent_json, row.financial_json, row.report_json, row.state_json,
       row.consent_at, row.user_agent, row.referrer, ts, ts,
     )
     .run();
@@ -95,7 +109,7 @@ export async function onRequestPost({ request, env }) {
   // Mail the summary once the run is finished — guarded by a stored timestamp
   // so a retried save (or a second device) never sends it twice.
   const saved = await db
-    .prepare('SELECT id, email, shop, completed, total_score, type_name, tier, scores_json, result_email_sent_at FROM assessments WHERE session_key = ?')
+    .prepare('SELECT id, email, shop, completed, total_score, type_name, tier, scores_json, report_json, result_email_sent_at FROM assessments WHERE session_key = ?')
     .bind(sessionKey)
     .first();
 
@@ -112,6 +126,9 @@ export async function onRequestPost({ request, env }) {
         typeName: saved.type_name,
         tier: saved.tier,
         scores: saved.scores_json ? JSON.parse(saved.scores_json) : null,
+        // เนื้อหารายงานฉบับเต็ม ถ้ามี อีเมลจะยาวและมีสาระแทนที่จะมีแต่คะแนน
+        report: parseJson(saved.report_json),
+        reportUrl: `${siteUrl(env, request)}/?report=${saved.id}`,
         site: siteUrl(env, request),
       });
       // Let a failed send be retried rather than silently swallowed.
