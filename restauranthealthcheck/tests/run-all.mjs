@@ -5,6 +5,7 @@ import { spawn } from 'node:child_process';
 const SUITES = [
   ['ไฟล์ที่จะขึ้น deploy ครบ',    'shipped-files.test.mjs'],
   ['แฮชรหัสผ่าน & token',        'crypto.test.mjs'],
+  ['โดเมนหลัก www',              'canonical-host.test.mjs'],
   ['flow บัญชีผู้ใช้ (API)',      'auth.test.mjs'],
   ['หลังบ้าน · เมลผล · CSV',      'admin-email.test.mjs'],
   ['กรณีผู้ให้บริการอีเมลล่ม',    'mail-outage.test.mjs'],
