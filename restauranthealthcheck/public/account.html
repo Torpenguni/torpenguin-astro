@@ -8,8 +8,14 @@
 <meta name="theme-color" content="#C8102E">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23C8102E'/%3E%3Cpath d='M9 16.5l4.8 4.8L23 12' fill='none' stroke='white' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <style>
-@font-face{font-family:'Anuphan';font-style:normal;font-weight:400 700;font-display:swap;src:url(/fonts/anuphan-1.woff2) format('woff2');unicode-range:U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC}
-@font-face{font-family:'Anuphan';font-style:normal;font-weight:400 700;font-display:swap;src:url(/fonts/anuphan-2.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'IBM Plex Sans Thai';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/ibm/ibm-thai-400.woff2) format('woff2');unicode-range:U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC}
+@font-face{font-family:'IBM Plex Sans Thai';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/ibm/ibm-thai-500.woff2) format('woff2');unicode-range:U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC}
+@font-face{font-family:'IBM Plex Sans Thai';font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/ibm/ibm-thai-600.woff2) format('woff2');unicode-range:U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC}
+@font-face{font-family:'IBM Plex Sans Thai';font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/ibm/ibm-thai-700.woff2) format('woff2');unicode-range:U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC}
+@font-face{font-family:'IBM Plex Sans Thai';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/ibm/ibm-latin-400.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'IBM Plex Sans Thai';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/ibm/ibm-latin-500.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'IBM Plex Sans Thai';font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/ibm/ibm-latin-600.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'IBM Plex Sans Thai';font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/ibm/ibm-latin-700.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
 
 :root{
   --paper:#FAF7F2; --surface:#fff; --ink:#17140F; --muted:#6b6257; --faint:#8a8077;
@@ -18,9 +24,9 @@
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);
-  font:16px/1.6 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font:16px/1.6 'IBM Plex Sans Thai',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   -webkit-font-smoothing:antialiased}
-h1,h2,.en,.brandbar,button{font-family:'Anuphan',-apple-system,BlinkMacSystemFont,sans-serif}
+h1,h2,.en,.brandbar,button{font-family:'IBM Plex Sans Thai',-apple-system,BlinkMacSystemFont,sans-serif}
 
 .brandbar{display:flex;align-items:center;gap:12px;padding:18px 22px;
   border-bottom:1px solid var(--line);background:var(--surface);font-weight:600;font-size:15px}
@@ -63,7 +69,7 @@ button.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--li
 .row:last-child{border-bottom:0}
 .row .shop{font-weight:600}
 .row .meta{font-size:13px;color:var(--faint)}
-.score{font-family:'Anuphan',sans-serif;font-weight:600;font-size:24px}
+.score{font-family:'IBM Plex Sans Thai',sans-serif;font-weight:600;font-size:24px}
 .tier{font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:20px;letter-spacing:.03em}
 .tier.HOT{background:#fdecef;color:#8d0d24}
 .tier.WARM{background:#fff6e8;color:#8a5a00}
