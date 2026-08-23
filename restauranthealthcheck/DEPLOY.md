@@ -231,6 +231,71 @@ Cloudflare → **Rules** → **Redirect Rules** → **Create rule**
 
 ---
 
+## ทางเลือก: ทำทั้งหมดในเบราว์เซอร์ (ไม่ต้องใช้ Terminal)
+
+โค้ดอยู่บน GitHub แล้ว Cloudflare จึงดึงไป deploy เองได้ ไม่ต้อง `wrangler login`
+ไม่ต้องพิมพ์คำสั่งสักบรรทัด — เหมาะถ้าไม่อยากยุ่งกับ command line
+
+> ⚠️ หน้าจอ Cloudflare เปลี่ยนบ่อย ชื่อเมนูอาจไม่ตรงเป๊ะ แต่ลำดับขั้นตอนเหมือนเดิม
+
+### บ1. สร้างโปรเจกต์จาก GitHub
+
+**Workers & Pages** → **Create** → แท็บ **Pages** → **Connect to Git**
+→ อนุญาตให้ Cloudflare เข้าถึง GitHub → เลือก repo **`Torpenguni/torpenguin-astro`**
+
+ตั้งค่าตามนี้:
+
+| ช่อง | ค่า |
+|---|---|
+| Production branch | `claude/cp-platform-location-ag2t2n` |
+| Framework preset | **None** |
+| Build command | *(เว้นว่าง)* |
+| Build output directory | `public` |
+| Root directory | `restauranthealthcheck` |
+
+กด **Save and Deploy** → ได้ลิงก์ `.pages.dev`
+(กดทำแบบประเมินแล้วจะ error — ถูกต้องแล้ว ยังไม่มีฐานข้อมูล)
+
+### บ2. สร้างฐานข้อมูล + สร้างตาราง
+
+**Storage & Databases** → **D1** → **Create database** → ชื่อ `restauranthealthcheck`
+
+เข้าไปในฐานข้อมูลที่เพิ่งสร้าง → แท็บ **Console** → **ก๊อป SQL ไปวางแล้วกด Execute
+ทีละไฟล์ ตามลำดับ**:
+
+1. เนื้อหาทั้งหมดของ `migrations/0001_init.sql`
+2. เนื้อหาทั้งหมดของ `migrations/0002_admin_and_result_email.sql`
+
+เปิดไฟล์อ่านได้ที่ GitHub → `restauranthealthcheck/migrations/`
+
+### บ3. ผูกฐานข้อมูลเข้ากับเว็บ
+
+กลับไปที่โปรเจกต์ Pages → **Settings** → **Bindings** → **Add** → **D1 database**
+
+| ช่อง | ค่า |
+|---|---|
+| Variable name | **`DB`** (ตัวใหญ่ทั้งสองตัว ห้ามพิมพ์ผิด) |
+| D1 database | `restauranthealthcheck` |
+
+### บ4. ใส่ค่าลับ 4 ตัว
+
+**Settings** → **Variables and Secrets** → **Add** → เลือกชนิดเป็น **Secret (Encrypt)**
+ทั้ง 4 ตัว แล้วใส่ค่าตามตารางในข้อ 5 ด้านบน
+
+### บ5. Deploy ใหม่ให้ค่าที่เพิ่งใส่มีผล
+
+**Deployments** → เลือกอันล่าสุด → **Retry deployment**
+(ค่า binding กับ secret จะมีผลเฉพาะกับ deployment ที่สร้างหลังใส่ค่าแล้ว)
+
+จากนั้นไปทดสอบตามเช็คลิสต์ในข้อ 6 แล้วต่อโดเมนตามข้อ 7.5
+
+### หลังจากนี้ แก้อะไรก็ push ขึ้น GitHub
+
+Cloudflare จะ build ใหม่ให้เองทุกครั้งที่มี commit เข้า branch ที่ตั้งไว้
+ไม่ต้องกดอะไรเพิ่ม
+
+---
+
 ## เวลาจะแก้อะไรทีหลัง
 
 ```bash
