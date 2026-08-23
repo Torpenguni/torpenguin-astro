@@ -384,6 +384,20 @@ header{background:rgba(252,251,248,.82);backdrop-filter:blur(16px) saturate(1.4)
 .cobrand{font-weight:600;letter-spacing:-.01em}
 .cobrand .x{color:var(--accent)}
 .cobrand .cp b{color:var(--accent);font-weight:700}
+/* โลโก้จริงในแถบบน — ไฟล์ต้นทางมาเป็น PNG พื้นขาวทึบทั้งคู่ ลอกพื้นออกแล้ว
+   เก็บไว้ที่ /logos/ ความสูงคุมด้วย CSS ส่วน width/height บน <img> เป็นขนาด
+   จริงของไฟล์ ใส่ไว้ให้เบราว์เซอร์จองที่ล่วงหน้า หน้าจะได้ไม่กระตุกตอนโหลด
+   ความสูงสองอันไม่เท่ากันโดยตั้งใจ: ตราวงกลมสายตาคนจะเห็นเล็กกว่าคำที่สูง
+   เท่ากัน เลยต้องให้ CP สูงกว่าเล็กน้อยถึงจะดูสมดุล */
+.cobrand .lg-px{height:22px;width:auto;display:block}
+.cobrand .lg-cp{height:36px;width:auto;display:block}
+.cobrand .cp{display:inline-flex;align-items:center;gap:7px}
+@media(max-width:600px){
+  .cobrand{gap:9px}
+  .cobrand .lg-px{height:18px}
+  .cobrand .lg-cp{height:30px}
+  .cobrand .cp{font-size:11px;gap:6px}
+}
 .progress-mini{font-variant-numeric:tabular-nums}
 
 /* rhythm — let it breathe */
@@ -563,7 +577,7 @@ h1 .accent{font-weight:600;color:var(--accent)}
 
 
 <header><div class="bar">
-  <div class="cobrand"><span class="en">Penguin<span class="x">X</span></span><span class="sep"></span><span class="cp">Title Sponsor · <b>CP</b></span><a class="acct" href="/account">เข้าสู่ระบบ</a></div>
+  <div class="cobrand"><img class="lg-px" src="/logos/penguinx.png" alt="PenguinX" width="655" height="128"><span class="sep"></span><span class="cp">Title Sponsor<img class="lg-cp" src="/logos/cp.png" alt="CP" width="128" height="128"></span><a class="acct" href="/account">เข้าสู่ระบบ</a></div>
   <div class="progress-mini" id="progMini"></div>
 </div></header>
 
