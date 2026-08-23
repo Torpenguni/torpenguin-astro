@@ -155,6 +155,73 @@ const btnContrast = await page.evaluate(() => {
 });
 t(`ปุ่มเส้นขอบบนพื้นแดงอ่านออก (${btnContrast.toFixed(2)}:1)`, btnContrast >= 4.5);
 
+console.log('\n— ข้อความสรุปและการนับเลข —');
+// วลีของบางมิติมีคำว่า "และ" อยู่ในตัวเอง ถ้าเอามาต่อด้วย "และ" อีกจะได้
+// "พร้อมขยายและผู้นำและทีมพร้อม" ซึ่งอ่านสะดุด ไล่ทุกคู่ของมิติที่เป็นไปได้
+const doubled = await page.evaluate(() => {
+  const keys = Object.keys(DIM_PHRASE);
+  const bad = [];
+  for (const a of keys) for (const b of keys) {
+    if (a === b) continue;
+    const sc = {}; keys.forEach((k) => { sc[k] = 20; });
+    sc[a] = 95; sc[b] = 90;
+    const tot = Math.round(keys.reduce((n, k) => n + sc[k], 0) / keys.length);
+    const h = diagnose(sc, tot).headline.replace(/<[^>]+>/g, '');
+    if (/และ[^\s·]*และ/.test(h)) bad.push(`${a}+${b}: ${h}`);
+  }
+  const all = {}; keys.forEach((k) => { all[k] = 90; });
+  const h2 = diagnose(all, 90).headline.replace(/<[^>]+>/g, '');
+  if (/และ[^\s·]*และ/.test(h2)) bad.push(`แข็งแรงรอบด้าน: ${h2}`);
+  return bad;
+});
+t('ไม่มีคำว่า "และ" ซ้อนกันในบทสรุป ไม่ว่าคะแนนจะออกมาแบบไหน',
+  doubled.length === 0, doubled.slice(0, 2).join(' | '));
+
+// ของเดิมผูกความเร็วไว้กับจำนวนครั้งที่ setInterval ถูกเรียก พอหน้ารายงานวาด
+// เนื้อหาหนัก ๆ พร้อมกัน เบราว์เซอร์หน่วง เลขเลยไต่ช้าเป็นหลายวินาที
+const timing = await page.evaluate(() => new Promise((res) => {
+  const el = document.createElement('div');
+  document.body.appendChild(el);
+  const t0 = performance.now();
+  countTo(el, 71);
+  let at300 = null;
+  setTimeout(() => { at300 = Number(el.textContent); }, 300);
+  const iv = setInterval(() => {
+    if (el.textContent === '71') { clearInterval(iv); el.remove(); res({ ms: performance.now() - t0, at300 }); }
+  }, 10);
+  setTimeout(() => { clearInterval(iv); el.remove(); res({ ms: 9999, at300 }); }, 4000);
+}));
+t(`นับเลขจบภายใน 1.5 วินาที (${Math.round(timing.ms)}ms)`, timing.ms <= 1500, `${Math.round(timing.ms)}ms`);
+t(`ผ่านไป 300ms ต้องเข้าใกล้ค่าจริงแล้ว (${timing.at300}/71)`, timing.at300 >= 40, timing.at300);
+
+const reduced = await page.evaluate(() => {
+  const el = document.createElement('div');
+  document.body.appendChild(el);
+  const real = window.matchMedia;
+  window.matchMedia = () => ({ matches: true });
+  countTo(el, 71);
+  window.matchMedia = real;
+  const v = el.textContent; el.remove(); return v;
+});
+t('คนที่ปิดภาพเคลื่อนไหวเห็นเลขจริงทันที', reduced === '71', reduced);
+
+console.log('\n— โฟกัสคีย์บอร์ด —');
+// หน้าจอที่ยังไม่ถึงถูกซ่อนด้วย display:none ทั้งบล็อก ปุ่มข้างในจึงไม่อยู่ใน
+// ลำดับ Tab และไม่ถูกอ่านโดย screen reader ชุดนี้ล็อกคุณสมบัตินั้นไว้ เผื่อวันหนึ่ง
+// มีคนเปลี่ยนวิธีซ่อนหน้าจอเป็น opacity หรือ visibility ซึ่งยังโฟกัสได้
+await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
+const reachable = await page.evaluate(() => {
+  const bad = [];
+  for (const b of document.querySelectorAll('button, a[href], input, select, textarea')) {
+    const sc = b.closest('.screen');
+    if (!sc || sc.classList.contains('active')) continue;
+    b.focus();
+    if (document.activeElement === b) bad.push((b.textContent || b.id || b.tagName).trim().slice(0, 24));
+  }
+  return bad;
+});
+t('ปุ่มบนหน้าจอที่ยังไม่ถึง โฟกัสไม่ได้', reachable.length === 0, reachable.slice(0, 4).join(', '));
+
 console.log(`\n${pass} passed, ${failn} failed`);
 await browser.close();
 process.exit(failn ? 1 : 0);

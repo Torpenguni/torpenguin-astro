@@ -917,6 +917,28 @@ function primeStatus(){const p=primePctVal();const hi=curProfile().prime[1];cons
   else {st='bad';label='วิกฤต · พังทั้งคู่';}
   return {p,hi,st,label,cogs:x.cogs,labor:x.labor};}
 function curProfile(){return COST_PROFILE[state.costProfile]||COST_PROFILE.alacarte;}
+// นับเลขคะแนนขึ้นจาก 0
+//
+// ของเดิมใช้ setInterval บวกทีละ 2 ทุก 16ms ซึ่งผูกความเร็วไว้กับ "จำนวนครั้ง
+// ที่ถูกเรียก" ไม่ใช่เวลาจริง พอหน้ารายงานกำลังวาดเนื้อหาหนัก ๆ อยู่พร้อมกัน
+// เบราว์เซอร์จะหน่วง interval ออกไป เลขเลยไต่ช้ามากจนคนอ่านเร็ว ๆ เห็นเลขต่ำ
+// แล้วเข้าใจผิดว่าคะแนนน้อย
+//
+// ตัวนี้อิงเวลาจริง จบใน 900ms เสมอไม่ว่าเครื่องจะช้าแค่ไหน และใช้เส้นชะลอ
+// ท้าย (ease-out) เลขจึงพุ่งเข้าใกล้ค่าจริงตั้งแต่ต้น เหลือแค่ขยับนิดท้าย ๆ
+function countTo(el,target,ms=900){
+  if(!el)return;
+  target=Math.round(target||0);
+  // คนที่ตั้งเครื่องไว้ว่าไม่เอาภาพเคลื่อนไหว ให้เห็นเลขจริงทันที
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent=target;return;}
+  const t0=performance.now();
+  const step=now=>{
+    const k=Math.min(1,(now-t0)/ms);
+    el.textContent=Math.round(target*(1-Math.pow(1-k,3)));
+    if(k<1)requestAnimationFrame(step);else el.textContent=target;
+  };
+  requestAnimationFrame(step);
+}
 function statusFromRange(rep,hi){return rep==null?'na':(rep<=hi?'good':(rep<=hi+5?'watch':'bad'));}
 // เดิมมีคำถาม "ร้านคุณเป็นประเภทไหน?" คั่นก่อนหน้าการเงิน ซึ่งซ้ำกับที่ถามไป
 // แล้วตอนกรอกข้อมูลร้าน จึงตัดออก แต่คำถามนั้นเป็นตัวเลือกเกณฑ์ต้นทุนของทั้ง
@@ -1184,9 +1206,14 @@ function diagnose(sc,total){
   const arr=DIMS.map(d=>({k:d.key,v:sc[d.key]})).sort((a,b)=>b.v-a.v);
   const strong=arr.filter(x=>x.v>=60), weakest=arr[arr.length-1];
   const sp=k=>DIM_PHRASE[k].strong,wp=k=>DIM_PHRASE[k].weak,cn=k=>DIM_PHRASE[k].cons;
+  // วลีของบางมิติมีคำว่า "และ" อยู่ในตัวเองแล้ว ("ผู้นำและทีมพร้อม",
+  // "ระบบและทีมแน่น") เอามาต่อด้วย "และ" อีกจะได้ "พร้อมขยายและผู้นำและทีมพร้อม"
+  // ซึ่งอ่านสะดุด กรณีนั้นคั่นด้วยจุดกลางแทน
+  const joinPhrases=parts=>parts.length<2?(parts[0]||''):
+    (parts.some(x=>x.indexOf('และ')>=0)?parts.join(' · '):parts.join('และ'));
   let headline;
-  if(weakest.v>=55){headline=`ร้านคุณแข็งแรงรอบด้าน — <b>${strong.slice(0,2).map(x=>sp(x.k)).join('และ')}</b> จังหวะนี้คือเวลาต่อยอด อย่าปล่อยให้นิ่ง`;}
-  else if(strong.length>=1){headline=`ร้านคุณ<b>${strong.slice(0,2).map(x=>sp(x.k)).join('และ')}</b> แต่<b>${wp(weakest.k)}</b> — ${cn(weakest.k)}`;}
+  if(weakest.v>=55){headline=`ร้านคุณแข็งแรงรอบด้าน — <b>${joinPhrases(strong.slice(0,2).map(x=>sp(x.k)))}</b> จังหวะนี้คือเวลาต่อยอด อย่าปล่อยให้นิ่ง`;}
+  else if(strong.length>=1){headline=`ร้านคุณ<b>${joinPhrases(strong.slice(0,2).map(x=>sp(x.k)))}</b> แต่<b>${wp(weakest.k)}</b> — ${cn(weakest.k)}`;}
   else {headline=`ร้านคุณยังมีหลายจุดต้องเสริม จุดที่ควรแก้ก่อนสุดคือ<b>${wp(weakest.k)}</b> — ${cn(weakest.k)}`;}
   return {statusLabel:g[1],emoji:g[2],color:g[3],headline,strong,weakest,arr};
 }
@@ -1589,7 +1616,7 @@ function showResult(){
 
   // gauge
   const arc=document.getElementById('gaugeArc'),C=427;setTimeout(()=>arc.style.strokeDashoffset=C-(C*total/100),200);
-  let cur=0;const sEl=document.getElementById('rScore');const tick=setInterval(()=>{cur+=2;if(cur>=total){cur=total;clearInterval(tick);}sEl.textContent=cur;},16);
+  countTo(document.getElementById('rScore'),total);
   const grades=[[66,'แข็งแรง · พร้อมโต','var(--green)'],[48,'ดี · มีจุดต้องเสริม','var(--amber-lo)'],[30,'เสี่ยง · ต้องแก้ก่อนโต','var(--amber)'],[0,'วิกฤต · ต้องกู้ก่อน','var(--red)']];
   const g=grades.find(x=>total>=x[0]);const gE=document.getElementById('rGrade');gE.textContent=g[1];gE.style.color=g[2];gE.style.background='rgba(255,255,255,.04)';gE.style.border='1px solid '+g[2];
 
