@@ -271,6 +271,7 @@ function planHtml(rep) {
   <div style="padding:12px 15px">${(p.actions || []).map((a) => `
     <div style="margin-bottom:10px">
       <div style="font-weight:600;font-size:14px;color:#17140F">${escapeHtml(a.what)}</div>
+      ${a.why ? `<div style="margin-top:4px;font-size:13px;font-style:italic;color:#8a8077">${escapeHtml(a.why)}</div>` : ''}
       ${(a.weeks || []).length ? `<ul style="margin:6px 0 0;padding-left:20px;font-size:13.5px;line-height:1.65;color:#5c554c">${
         a.weeks.map((w) => `<li>${escapeHtml(w)}</li>`).join('')}</ul>` : ''}
       ${a.measure ? `<div style="margin-top:6px;font-size:13px;color:#1F9D57">${escapeHtml(a.measure)}</div>` : ''}
@@ -340,6 +341,7 @@ function reportText(rep) {
       out.push(`  ${p.month}${p.goal ? ' — ' + p.goal : ''}`);
       (p.actions || []).forEach((a) => {
         out.push('    ' + a.what);
+        if (a.why) out.push('      (' + a.why + ')');
         (a.weeks || []).forEach((w) => out.push('      - ' + w));
         if (a.measure) out.push('      ' + a.measure);
       });

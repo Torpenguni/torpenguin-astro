@@ -210,6 +210,16 @@ console.log('\n— แผน 90 วันครอบคลุมครบทุ
   t('ทุกด้านในแผนมีสิ่งที่ต้องทำรายสัปดาห์',
     await page.$$eval('#repPlan .phase-action', (a) => a.every((x) => x.querySelectorAll('.pa-weeks li').length > 0)));
 
+  // บนหน้าจอจริงต้องเห็นบรรทัดที่อ้างกลับไปที่คำตอบของเขา ไม่ใช่มีแค่ในข้อมูล
+  const why = await page.$$eval('#repPlan .phase-action', (acts) => acts.map((a) => {
+    const el = a.querySelector('.pa-why');
+    return el ? el.textContent.replace(/\s+/g, ' ').trim() : '';
+  }));
+  t('ทุกงานในแผนบอกว่ามาจากคำตอบไหนของเขา',
+    why.length === 5 && why.every((x) => /คุณตอบว่า/.test(x)), JSON.stringify(why));
+  t('บรรทัดนั้นแสดงผลจริง ไม่ได้ถูกซ่อน',
+    await page.$eval('#repPlan .pa-why', (el) => getComputedStyle(el).display !== 'none'));
+
   // ด้านที่เลือกต้องขึ้นเดือนแรก และเปลี่ยนตัวเลือกแล้วแผนต้องจัดใหม่จริง
   const other = await page.evaluate(() => {
     const cur = state.focus;

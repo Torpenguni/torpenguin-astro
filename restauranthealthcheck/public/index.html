@@ -328,6 +328,9 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='12
 .rep-plan-item{display:flex;gap:12px;margin-bottom:13px;font-size:13.5px;color:#333}
 .rep-plan-item .rp-n{font-family:var(--mono);font-weight:700;font-size:12px;color:#fff;background:#C8102E;flex-shrink:0;width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center}
 .rep-plan-item .rp-dim{font-weight:700;color:#111}
+/* บรรทัดอ้างกลับไปที่คำตอบของเขาเอง — ทำให้แผนอ่านแล้วรู้ว่าเขียนถึงร้านนี้
+   ไม่ใช่บทความทั่วไป ตัวเอียงเพื่อแยกจากคำสั่งงานให้ชัด */
+.pa-why{font-size:12.5px;line-height:1.55;color:#6b6257;font-style:italic;margin:5px 0 9px}
 .rep-note-item{font-size:13px;color:#444;padding:9px 13px;background:#fef6e7;border-radius:8px;margin-bottom:8px;border-left:3px solid #C8102E}
 .root-block{background:#fff;border:1px solid #e8e8e8;border-left:3px solid #b45309;border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:11px}
 .rb-cause{font-size:13.5px;font-weight:600;color:#111;line-height:1.5;margin-bottom:9px}
@@ -1903,6 +1906,7 @@ function reportSummary(){
       month:clean(b.querySelector('.ph-month')),goal:clean(b.querySelector('.ph-goal')),
       actions:[...b.querySelectorAll('.phase-action')].map(a=>({
         what:labelled(a.querySelector('.pa-title'),'.pa-dim',' · '),
+        why:clean(a.querySelector('.pa-why')),
         weeks:[...a.querySelectorAll('.pa-weeks li')].map(li=>labelled(li,'.wk',': ')),
         measure:clean(a.querySelector('.pa-measure'))}))})),
     next:lines(one('#repNext')),
@@ -2327,28 +2331,179 @@ function buildReport(code,type,total,sc,tags){
 }
 
 /* ===== 90-day plan: focus picker + re-centered roadmap ===== */
-// แผน 90 วันครอบคลุมครบทั้ง 5 ด้านเสมอ
+/* ============================================================
+   ROOT_PLAN — หัวข้อแผนและตัววัดผล สำหรับ "สาเหตุ" ที่ผู้ตอบระบุเอง
+   คู่กับ ROOT_ACTION ข้างบน (do[] ของที่นั่นถูกใช้เป็นงานรายสัปดาห์)
+   แยกเป็นคนละก้อนเพราะ ROOT_ACTION ถูกใช้ในหัวข้อ "เจาะลึกตามสาเหตุ" อยู่แล้ว
+   ไม่อยากไปเปลี่ยนรูปร่างของมัน
+   baht = ผูกกับตัวเลขจริงของร้าน (ต่อท้ายตัววัดผลตอนเรนเดอร์ถ้ามีข้อมูล)
+   ============================================================ */
+const ROOT_PLAN={
+ stuck_kitchen:{what:'ถอดตัวเองออกจากครัวด้วยสูตรมาตรฐาน',result:'มีคนทำเมนูขายดี 5 อันดับแรกแทนคุณได้โดยรสไม่เพี้ยน'},
+ stuck_service:{what:'ตั้งหัวหน้ากะ + SOP บริการ ให้หน้าร้านเดินได้โดยไม่มีคุณ',result:'ร้านเปิด-ปิดและรับมือหน้างานได้เองในกะที่คุณไม่อยู่'},
+ stuck_cashier:{what:'ยกงานเงินให้ระบบ POS และคนที่ไว้ใจ',result:'คุณดูแค่รายงานสรุป ไม่ต้องนั่งแคชเชียร์อีก'},
+ stuck_stock:{what:'วางจุดสั่งซื้อ (par stock) ให้คนอื่นสั่งของแทนได้',result:'ของไม่ขาดไม่เกิน โดยคุณไม่ต้องเป็นคนสั่งเอง'},
+ risk_money:{what:'ทำตัวเลขให้ชัดจนความกลัวเรื่องเงินหายไป',result:'รู้ยอดขายขั้นต่ำต่อวันที่ปลอดภัย และเริ่มสะสมเงินสำรอง'},
+ risk_people:{what:'สร้างมือสองหนึ่งคนที่ตัดสินใจแทนคุณได้',result:'ทดสอบหายไป 3-5 วันแล้วร้านยังรันเองได้'},
+ risk_market:{what:'ออกไปเก็บข้อมูลตลาดจริงแทนการเดา',result:'รู้จุดยืนเทียบคู่แข่ง 3-5 ร้าน และรู้ว่าลูกค้าเลือกคุณเพราะอะไร'},
+ risk_self:{what:'อุดช่องความรู้ที่ทำให้ไม่กล้าตัดสินใจ',result:'ตัดสินใจจากตัวเลขได้ ไม่ต้องรอให้มั่นใจก่อน'},
+ burnout_money:{what:'คลายแรงกดดันเรื่องเงินก่อน แล้วไฟจะกลับมาเอง',result:'เห็นกำไรจริงรายเดือนและเริ่มมีเงินสำรอง',baht:'margin'},
+ burnout_people:{what:'วางระบบคนให้เลิกต้องจ้ำจี้ทุกวัน',result:'คนใหม่เข้างานตามคู่มือได้ ไม่ต้องสั่งซ้ำ'},
+ burnout_overload:{what:'มอบงานที่ไม่จำเป็นต้องใช้คุณออกไป',result:'มีเวลาทำงานพัฒนาอย่างน้อยสัปดาห์ละครึ่งวัน'},
+ burnout_direction:{what:'ตั้งเป้าให้ชัด งานประจำวันจะกลับมามีความหมาย',result:'มีเป้า 1-3 ปี แตกเป็นเป้าไตรมาสที่วัดได้'},
+ cash_sales:{what:'ดึงรายได้จากฐานลูกค้าเดิมก่อนลงทุนเพิ่ม',result:'ยอดต่อบิลและ repeat สูงขึ้นโดยไม่ต้องเพิ่มงบการตลาด'},
+ cash_cost:{what:'อุด Prime Cost ที่เป็นจุดรั่วหลัก',result:'Prime Cost เข้าเกณฑ์ของประเภทร้านคุณ',baht:'prime'},
+ cash_credit:{what:'จัดรอบเงินเข้า-ออกไม่ให้ชนกัน',result:'รู้ล่วงหน้า 3 เดือนว่าเดือนไหนเงินจะตึง'},
+ cash_invest:{what:'เบรกการลงทุนแล้วเติมเงินสำรองก่อน',result:'มีเงินสำรอง 3-6 เดือนก่อนขยับลงทุนต่อ'},
+ margin_lowsales:{what:'ตั้งเป้ายอดรายวันจากจุดคุ้มทุนจริง',result:'ทุกวันรู้ว่าขายถึงเป้าหรือยัง ไม่ต้องรอสิ้นเดือน',baht:'margin'},
+ margin_highcost:{what:'ลดต้นทุนก่อน อย่าเพิ่งไปเพิ่มยอด',result:'ต้นทุนเข้าเกณฑ์ กำไรเพิ่มโดยยอดขายเท่าเดิม',baht:'prime'},
+ margin_both:{what:'เริ่มที่ต้นทุนก่อน เพราะเห็นผลเร็วกว่าเพิ่มยอด',result:'ต้นทุนเข้าเกณฑ์ แล้วค่อยดัน repeat/AOV ต่อ',baht:'prime'},
+ margin_unknown:{what:'ทำบัญชีต้นทุนแยกหมวดให้เห็นจุดรั่ว',result:'รู้ Prime Cost % และกำไรสุทธิจริงของร้าน',baht:'margin'},
+ norepeat_quality:{what:'คุมคุณภาพให้คงที่ก่อนทุ่มงบดึงลูกค้า',result:'ของเสียและข้อร้องเรียนลดลงเป็นตัวเลขที่วัดได้'},
+ norepeat_price:{what:'ทำให้คุณค่าที่ลูกค้ารับรู้คุ้มกับราคา',result:'มีทางเลือกราคาหลายระดับ ลูกค้าไม่ตัดสินด้วยราคาอย่างเดียว'},
+ norepeat_service:{what:'ออกแบบประสบการณ์ในร้านให้ผูกใจ',result:'มี feedback หลังมื้อและปรับได้ภายในสัปดาห์'},
+ norepeat_boring:{what:'สร้างเหตุผลที่ทำให้ลูกค้าต้องกลับมา',result:'มีเมนูซิกเนเจอร์ + เหตุผลให้กลับภายใน 30 วัน'},
+ mkt_ads:{what:'ทำให้เงินค่าโฆษณาวัดผลเป็นลูกค้าจริงได้',result:'รู้ว่าได้ลูกค้าจริง 1 คนด้วยต้นทุนเท่าไร'},
+ mkt_influencer:{what:'ผูกรีวิวเข้ากับยอดขายด้วยโค้ดเฉพาะราย',result:'รู้ว่าอินฟลูรายไหนสร้างยอดจริง รายไหนแค่ยอดวิว'},
+ mkt_platform:{what:'แยกกำไรรายช่องทางก่อนดันยอดเดลิเวอรี่',result:'รู้กำไรสุทธิต่อช่องทางหลังหัก GP จริง'},
+ mkt_promo:{what:'เปลี่ยนจากลดราคาเป็นเพิ่มคุณค่า',result:'ทุกแคมเปญรู้กำไรที่เหลือหลังหักส่วนลด'},
+ turn_pay:{what:'ผูกผลตอบแทนกับผลงาน แทนการขึ้นฐานอย่างเดียว',result:'ค่าจ้างไม่ต่ำกว่าค่ากลางตลาด และทีมเห็นเส้นทางเติบโต'},
+ turn_workload:{what:'จัดกะตามยอดขายจริง ไม่ใช่ตามความเคยชิน',result:'ชั่วโมงคนตรงกับช่วงพีค ค่าแรงต่อยอดลดลง',baht:'labor'},
+ turn_chaos:{what:'วาง SOP และ onboarding ให้คนใหม่ไม่งง',result:'คนใหม่ทำงานได้มาตรฐานภายใน 1-2 สัปดาห์'},
+ turn_culture:{what:'พัฒนาหัวหน้ากะเรื่องคน ไม่ใช่แค่เรื่องงาน',result:'คนอยู่นานขึ้น อัตราลาออกลดลงเทียบกับไตรมาสก่อน'},
+ scale_recipe:{what:'ถอดสูตรออกจากมือคนเดียว',result:'คนอื่นทำตามได้รสเดิม พร้อมเปิดสาขาที่สอง'},
+ scale_owner:{what:'สร้างผู้จัดการที่ตัดสินใจแทนคุณได้',result:'ถอยออกจากร้านได้ 2 สัปดาห์โดยยอดไม่ตก'},
+ scale_people:{what:'สร้างมือสองในทุกตำแหน่งสำคัญ',result:'ไม่มีตำแหน่งไหนที่ขาดคนเดียวแล้วร้านสะดุด'},
+ scale_brand:{what:'ทำแบรนด์และระบบให้เป็นทรัพย์สินที่ส่งต่อได้',result:'มีเครื่องหมายการค้า + ชุด SOP/สูตรที่ส่งมอบได้'},
+};
+
+// ── แผนปฏิบัติ 90 วัน ────────────────────────────────────────────────
 //
-// เดิมหยิบมาแค่ 3 ด้าน (ด้านที่เลือก + อ่อนรองลงมา + อีกหนึ่ง) อีกสองด้านหายไป
-// เฉย ๆ โดยไม่บอกใคร คนอ่านเลยรู้สึกว่า "ประเมินตั้ง 5 ด้าน ได้แผนมาด้านเดียว"
-// ตอนนี้ตัวเลือกด้านบนเป็นตัวตัดสิน "ลำดับ" ไม่ใช่ "ใครได้เข้าแผน" — ด้านที่เลือก
-// ได้เดือนแรกไปคนเดียวเพื่อให้ลงแรงเต็มที่ก่อน แล้วอีกสี่ด้านเรียงจากอ่อนสุด
-// เดือนละสองด้าน
+// แผนครอบคลุมครบทั้ง 5 ด้านเสมอ ตัวเลือกด้านบนเป็นตัวตัดสิน "ลำดับ" ไม่ใช่
+// "ใครได้เข้าแผน" — ด้านที่เลือกได้เดือนแรกไปคนเดียวเพื่อให้ลงแรงเต็มที่ก่อน
+// แล้วอีกสี่ด้านเรียงจากอ่อนสุด เดือนละสองด้าน
 //
-// ด้านที่คะแนนดีอยู่แล้ว (≥62) ได้แผนแบบต่อยอดจุดแข็ง ไม่ใช่แผนแก้จุดอ่อน
-// ตรงกับที่หัวข้อ "เจาะลึกราย 5 มิติ" ทำอยู่ จะได้ไม่สั่งให้ไปแก้สิ่งที่ไม่ได้พัง
+// แผนของแต่ละด้านมาจากสามทางตามลำดับความเฉพาะเจาะจง:
+//   1. สาเหตุที่ผู้ตอบระบุเอง (ROOT_PLAN + ROOT_ACTION.do) — เฉพาะเจาะจงสุด
+//      สองร้านที่คะแนนเท่ากันแต่บอกคนละสาเหตุ จะได้คนละแผน
+//   2. แผนต่อยอดจุดแข็ง ถ้าด้านนั้นได้ ≥62 — ไม่สั่งให้ไปแก้สิ่งที่ไม่ได้พัง
+//   3. แผนตามช่วงคะแนน (ACTIONS) — ทางสำรองเมื่อไม่มีสาเหตุให้ยึด
+
+// สาเหตุที่ผู้ตอบระบุ พร้อมข้อความคำตอบจริงที่พาไปสู่สาเหตุนั้น
+// ใช้ทั้งเลือกแผนและอ้างอิงกลับให้เขาเห็นว่าแผนนี้มาจากคำตอบไหนของเขาเอง
+function statedCauses(){
+  const out=[];
+  QUESTIONS.forEach((q,qi)=>{
+    const a=state.answers[qi];
+    if(!a||!a.sub)return;
+    const opt=(q.o||[])[a.oi];
+    const so=opt&&opt.sub?(opt.sub.o||[]).find(x=>x.tag===a.sub):null;
+    if(!ROOT_ACTION[a.sub]||!ROOT_PLAN[a.sub])return;
+    out.push({tag:a.sub,qDim:q.d,linkDim:ROOT_ACTION[a.sub].link,
+      answer:opt?opt.t:'',cause:so?so.t:'',score:a.v==null?3:a.v});
+  });
+  return out.sort((x,y)=>x.score-y.score);   // คำตอบที่แย่ที่สุดมาก่อน
+}
+
+// คำตอบที่อ่อนที่สุดในมิตินั้น เอาไว้อ้างอิงเมื่อไม่มีสาเหตุให้ยึด
+function weakestAnswerIn(dimKey){
+  let best=null;
+  QUESTIONS.forEach((q,qi)=>{
+    if(q.d!==dimKey||q.type==='profile'||q.noscore)return;
+    const a=state.answers[qi];
+    if(!a||a.v==null)return;
+    if(!best||a.v<best.v)best={v:a.v,q:q.q,answer:(q.o[a.oi]||{}).t||''};
+  });
+  return best;
+}
+
+// ── ข้อ 3: ตัดคำแนะนำที่ไม่เกี่ยวกับร้านเขาออก ───────────────────────
+// เดิมประเภทร้าน/จำนวนสาขามีผลแค่กับเกณฑ์ต้นทุน ไม่มีผลกับคำแนะนำเลย
+// ร้านสาขาเดียวที่ไม่ได้คิดจะขยายจึงถูกสั่งให้ "วางระบบ QC ข้ามสาขา"
+function branchCount(){
+  const b=(state.reg&&state.reg.branch)||'';
+  if(/มากกว่า 10/.test(b))return 11;
+  if(/4-10/.test(b))return 4;
+  if(/2-3/.test(b))return 2;
+  return 1;
+}
+function wantsExpand(){
+  const t=collectTags();
+  if(t.some(x=>/^exp_|^goal_(expand|franchise)$/.test(x)))return true;
+  return ansVal('แผนขยาย')>=4;
+}
+const IRRELEVANT=[
+  // คำแนะนำเรื่องหลายสาขา/แฟรนไชส์ — ไร้ความหมายกับร้านสาขาเดียวที่ยังไม่คิดขยาย
+  {re:/สาขา|playbook|แฟรนไชส์|central kitchen|ข้ามสาขา/i,ok:()=>branchCount()>=2||wantsExpand()},
+  // คำแนะนำเรื่องเดลิเวอรี่ — ร้านที่ไม่มีเดลิเวอรี่ไม่ต้องอ่าน
+  {re:/เดลิเวอรี่|แพลตฟอร์ม|\bGP\b/i,ok:()=>hasDelivery()},
+];
+function relevant(text){return IRRELEVANT.every(r=>!r.re.test(text)||r.ok());}
+// ตัดเฉพาะขั้นตอนที่ไม่เกี่ยว แต่ต้องเหลืออย่างน้อย 2 ขั้น ไม่งั้นแผนจะกลวง
+function pruneSteps(how){
+  const kept=(how||[]).filter(relevant);
+  return kept.length>=2?kept:how;
+}
+
+// ── ข้อ 1: ตัววัดผลที่มีตัวเลขจริงของร้านต่อท้าย ─────────────────────
+function planUpside(kind){
+  const f=computeFin(state.fin);
+  if(!f)return null;
+  if(kind==='prime'&&f.primeGap>0)return 'เป้าเป็นตัวเงิน: กู้กำไรคืนได้ถึง '+baht(f.primeGap)+'/เดือน';
+  if(kind==='food'&&f.foodGap>0)return 'เป้าเป็นตัวเงิน: กู้กำไรคืนได้ถึง '+baht(f.foodGap)+'/เดือน';
+  if(kind==='labor'&&f.laborGap>0)return 'เป้าเป็นตัวเงิน: กู้กำไรคืนได้ถึง '+baht(f.laborGap)+'/เดือน';
+  if(kind==='margin'&&f.marginGap>0)return 'เป้าเป็นตัวเงิน: ดันกำไรถึง 15% = +'+baht(f.marginGap)+'/เดือน';
+  return null;
+}
+
 function buildPlanItems(focusKey){
   const sc=state.result.sc;
   const arr=DIMS.map(dm=>({dm,v:sc[dm.key]})).sort((a,b)=>a.v-b.v);   // อ่อนสุดมาก่อน
   const focus=arr.find(x=>x.dm.key===focusKey)||arr[0];
   const ordered=[focus,...arr.filter(x=>x.dm.key!==focus.dm.key)];
   const WHEN=['Now','Next','Next','Later','Later'];
+  const causes=statedCauses();
+  const used={};
+
   return ordered.map((x,i)=>{
     const A=ACTIONS[x.dm.key];
-    const act=(x.v>=62&&A.leverage)?A.leverage:(A.plans[x.v<38?'low':'mid']||A.plans.low)[0];
-    return Object.assign({when:WHEN[i]||'Later',dim:A.title,ico:x.dm.ico},act);
+    const dimName=x.dm.ico+' '+A.title;
+    const when=WHEN[i]||'Later';
+
+    // 1) สาเหตุที่เขาระบุเองในมิตินี้ — ถามจากมิติของคำถามก่อน แล้วค่อยดูมิติที่สาเหตุนั้นไปกด
+    const c=causes.find(y=>!used[y.tag]&&y.qDim===x.dm.key)
+         || causes.find(y=>!used[y.tag]&&y.linkDim===x.dm.key);
+    if(c){
+      used[c.tag]=1;
+      const P=ROOT_PLAN[c.tag],R=ROOT_ACTION[c.tag];
+      const up=planUpside(P.baht||R.baht);
+      return {when,dim:A.title,ico:x.dm.ico,dimName,what:P.what,
+        how:pruneSteps(R.do),
+        result:P.result+(up?' · '+up:''),
+        because:'คุณตอบว่า “'+c.answer+'” แล้วระบุว่าเป็นเพราะ “'+c.cause+'”',
+        source:'cause'};
+    }
+
+    // 2) / 3) แผนตามระดับคะแนน — ต่อยอดถ้าแข็ง แก้ถ้าอ่อน
+    let act=(x.v>=62&&A.leverage)?A.leverage:(A.plans[x.v<38?'low':'mid']||A.plans.low)[0];
+    // หัวข้อที่ไม่เกี่ยวกับร้านเขาเลย (เช่นเรื่องหลายสาขากับร้านสาขาเดียว) ให้ใช้แผนสำรองแทน
+    if(!relevant(act.what)){
+      const alt=(A.plans.mid||A.plans.low)[0];
+      if(relevant(alt.what))act=alt;
+    }
+    const w=weakestAnswerIn(x.dm.key);
+    // ต่อท้ายเป้าเป็นตัวเงินเฉพาะด้านการเงิน ซึ่งแผนของมันพูดถึงกำไรตรง ๆ อยู่แล้ว
+    // ด้านอื่นแผนอาจเป็นเรื่องเมนู/ซัพพลาย การเอาตัวเลข "ค่าแรงที่เกินเกณฑ์" ไปแปะ
+    // จะกลายเป็นคำสัญญาที่ไม่ตรงกับสิ่งที่สั่งให้ทำ
+    const up=planUpside(x.dm.key==='D2'?'margin':null);
+    return {when,dim:A.title,ico:x.dm.ico,dimName,what:act.what,
+      how:pruneSteps(act.how),
+      result:act.result+(up?' · '+up:''),
+      because:w?'คะแนนด้านนี้ '+x.v+'/100 — คุณตอบว่า “'+w.answer+'”':'คะแนนด้านนี้ '+x.v+'/100',
+      source:x.v>=62?'strength':'band'};
   });
 }
+
 function renderPlan(focusKey){
   const planItems=buildPlanItems(focusKey);
   const order={Now:0,Next:1,Later:2};planItems.sort((a,b)=>order[a.when]-order[b.when]);
@@ -2366,6 +2521,7 @@ function renderPlan(focusKey){
       const weeks=a.how.map((h,wi)=>`<li><span class="wk">${wkLabel[wi]||'สัปดาห์ 4'}</span><span>${h}</span></li>`).join('');
       body+=`<div class="phase-action">
         <div class="pa-title"><span class="pa-dim">${a.ico} ${a.dim}</span>${a.what}</div>
+        ${a.because?`<div class="pa-why">${a.because}</div>`:''}
         <ul class="pa-weeks">${weeks}</ul>
         <div class="pa-measure"><b>✓ วัดผลเมื่อจบเฟส:</b> ${a.result}</div>
       </div>`;
