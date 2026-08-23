@@ -54,6 +54,7 @@ export async function onRequestGet({ request, env }) {
       financial: parse(r.financial_json),
       consentAt: r.consent_at,
       resultEmailedAt: r.result_email_sent_at,
+      askedAt: r.contact_requested_at || null,
       referrer: r.referrer,
       userAgent: r.user_agent,
       account: r.account_email

@@ -92,6 +92,10 @@ export function buildFilter(url) {
   if (status === 'completed') where.push('completed = 1');
   if (status === 'partial') where.push('completed = 0');
 
+  // คนที่กดปุ่ม "ให้ทีม CP ติดต่อกลับ" เอง — ความตั้งใจที่เขาประกาศออกมา ต่างจาก
+  // tier ที่ระบบเดาให้จากคะแนน ทีมขายควรไล่กลุ่มนี้ก่อนแม้คะแนนจะไม่สูง
+  if (url.searchParams.get('asked') === '1') where.push('contact_requested_at IS NOT NULL');
+
   const from = parseInt(url.searchParams.get('from') || '', 10);
   if (Number.isFinite(from)) {
     where.push('created_at >= ?');

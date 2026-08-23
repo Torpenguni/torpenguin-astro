@@ -22,6 +22,11 @@ const COLUMNS = [
   ['ขยาย (D5)', (r) => dim(r, 'D5')],
   ['มีบัญชี', (r) => (r.user_id ? 'มี' : '')],
   ['ส่งผลทางเมลแล้ว', (r) => (r.result_email_sent_at ? 'ส่งแล้ว' : '')],
+  // คอลัมน์นี้อยู่ท้ายสุดโดยตั้งใจ ทีมขายเปิดไฟล์แล้วเรียงจากคอลัมน์นี้ได้ทันที
+  // ว่าใครยกมือขอให้ติดต่อกลับเอง ซึ่งควรโทรก่อนใครแม้คะแนนจะไม่สูง
+  ['ขอให้ติดต่อกลับ', (r) => (r.contact_requested_at
+    ? new Date(r.contact_requested_at * 1000).toLocaleString('th-TH', { timeZone: 'Asia/Bangkok' })
+    : '')],
 ];
 
 function dim(r, key) {
@@ -54,7 +59,8 @@ export async function onRequestGet({ request, env }) {
   const { results } = await db
     .prepare(
       `SELECT created_at, name, shop, contact, email, shop_type, branches, age, mode, completed,
-              total_score, type_name, tier, scores_json, user_id, result_email_sent_at
+              total_score, type_name, tier, scores_json, user_id, result_email_sent_at,
+              contact_requested_at
        FROM assessments ${sql}
        ORDER BY created_at DESC LIMIT 10000`,
     )

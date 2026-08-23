@@ -438,6 +438,14 @@ header{background:rgba(252,251,248,.82);backdrop-filter:blur(16px) saturate(1.4)
 .acct-mail{font-size:13px;color:var(--ink-dim);background:var(--surface-2);border:1px solid var(--line);
   border-radius:10px;padding:11px 14px;line-height:1.5;word-break:break-all}
 .acct-mail b{color:var(--ink);font-weight:600}
+
+/* ข้อความหลังกดปุ่มขอให้ติดต่อกลับ */
+/* ปุ่มนี้อยู่บนการ์ดสองแบบ — การ์ดพื้นสว่างท้ายรายงานเต็ม และการ์ดพื้นแดงท้าย
+   ผลแบบด่วน ถ้าใช้พื้นโปร่งแสงตามการ์ดจะอ่านไม่ออกบนพื้นแดง จึงตั้งพื้นทึบเป็น
+   สีขาวไปเลย ให้อ่านออกเท่ากันทั้งสองที่ */
+.cta-done{margin-top:12px;font-size:14px;font-weight:700;color:#15803d;background:#fff;
+  border-radius:10px;padding:12px 15px;line-height:1.5;text-align:center}
+.cta-done.err{color:#b91c1c}
 @media(max-width:600px){
   /* จอแคบโชว์แค่ชื่อหน้า @ เต็ม ๆ แล้วแถวจะแตก */
   .cobrand .acct .who-full{display:none}
@@ -733,7 +741,8 @@ h1 .accent{font-weight:600;color:var(--accent)}
     <h3>อยากรู้ลึกกว่านี้?</h3>
     <p>ทำแบบละเอียดต่อ (อีก ~20 นาที) เพื่อรับ <b>วิเคราะห์การเงินเป็นบาท · เจาะลึกราย 5 มิติ · แผนปฏิบัติ 90 วัน</b> เฉพาะร้านคุณ — คำตอบที่ตอบไปแล้วจะถูกเก็บไว้ ไม่ต้องเริ่มใหม่</p>
     <button class="btn btn-primary en" onclick="continueToDeep()">ทำแบบละเอียดต่อ · รับแผน 90 วัน →</button>
-    <button class="btn btn-ghost en" style="margin-top:10px" onclick="boothPickup()">ไว้ก่อน · รับผลที่บูธ CP</button>
+    <button class="btn btn-ghost en" style="margin-top:10px" onclick="requestContact(this)">ให้ทีม CP ติดต่อกลับ</button>
+<div class="cta-done" style="display:none"></div>
   </div>
 </div></section>
 
@@ -794,7 +803,8 @@ h1 .accent{font-weight:600;color:var(--accent)}
   <div class="card"><h3>สุขภาพราย 5 มิติ</h3><div class="sub">เทียบกับค่าเฉลี่ยร้านในระบบ PenguinX</div><div id="barDims"></div></div>
   <div class="cta-card" id="ctaCard">
     <h3 id="ctaTitle"></h3><p id="ctaText"></p>
-    <button class="btn btn-dark en" id="ctaBtn" onclick="openCta()"></button></div>
+    <button class="btn btn-dark en" id="ctaBtn" onclick="requestContact(this)"></button>
+    <div id="ctaDone" class="cta-done" style="display:none"></div></div>
 
   <!-- CONSULTANT REPORT -->
   <div class="report-actions">
@@ -834,10 +844,8 @@ h1 .accent{font-weight:600;color:var(--accent)}
    (ดูวิธีติดตั้งใน SETUP-guide) ถ้าเว้นว่าง = โหมด prototype (ไม่ส่งข้อมูล)
    ============================================================ */
 const CONFIG={
-  endpoint:'/api/assessments',
-  // ลิงก์ Google Form ปลายทางของปุ่ม CTA ท้ายรายงาน
-  // ปล่อยว่าง = ซ่อนปุ่มไว้ก่อน ดีกว่าปล่อยให้คนกดแล้วไม่เกิดอะไรขึ้น
-  ctaUrl:''
+  endpoint:'/api/assessments'
+  // ปุ่มท้ายรายงานเขียนธงลงลีดโดยตรง ไม่ต้องมีลิงก์ปลายทางอีกแล้ว
 };
 
 /* ============================================================
@@ -1277,15 +1285,48 @@ function renderIntent(){const w=document.getElementById('intentChips');w.innerHT
     b.onclick=()=>{const k=state.intent.indexOf(o.tag);const sel=k<0;if(sel)state.intent.push(o.tag);else state.intent.splice(k,1);styleChip(b,sel);};
     w.appendChild(b);});}
 function finishQuick(){showQuickResult();}
-function openCta(){
-  if(!CONFIG.ctaUrl) return;
-  track('cta_click',state.typeCode||'');
-  // แนบ tier/ประเภทร้านไปกับลิงก์ ทีม CP จะได้รู้บริบทโดยไม่ต้องถามซ้ำ
-  const sep=CONFIG.ctaUrl.includes('?')?'&':'?';
-  const q=new URLSearchParams({rhc_sid:state.sid,rhc_tier:state.tier||'',rhc_type:state.typeCode||''});
-  window.open(CONFIG.ctaUrl+sep+q.toString(),'_blank','noopener');
+// ปุ่ม "ให้ทีม CP ติดต่อกลับ" — ไม่เปิดฟอร์มให้กรอกอะไรอีก เพราะตอนนี้เรามีชื่อ
+// เบอร์ อีเมล และผลประเมินของเขาครบแล้ว การให้กรอกซ้ำคือวิธีที่ดีที่สุดที่จะ
+// ทำให้คนหายไป กดครั้งเดียวจบ แล้วติดธงลงบนลีดแถวเดิมด้วย sessionKey
+//
+// รับ element ของปุ่มที่ถูกกดเข้ามา เพราะปุ่มนี้มีสองที่ — ท้ายผลแบบด่วน ซึ่ง
+// เป็นทางที่คนหน้าบูธส่วนใหญ่ใช้ และท้ายรายงานฉบับเต็ม
+async function requestContact(btn){
+  if(!btn||btn.disabled)return;
+  const box=btn.parentElement;
+  let done=box.querySelector('.cta-done');
+  if(!done){done=document.createElement('div');done.className='cta-done';box.appendChild(done);}
+  const label=btn.textContent;
+  btn.disabled=true;btn.textContent='กำลังส่ง…';
+  done.style.display='none';
+  track('contact_request');
+
+  const send=()=>fetch('/api/contact-request',{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({sessionKey:state.sid})});
+
+  let res=null;
+  try{
+    res=await send();
+    // 404 = ลีดยังไปไม่ถึงเซิร์ฟเวอร์ (เน็ตสะดุดตอนส่ง) ระบบมีคิวส่งซ้ำอยู่แล้ว
+    // รอให้มันตามส่งแล้วลองอีกครั้งเดียว ดีกว่าบอกว่าพังทั้งที่อีกแป๊บก็ติด
+    if(res.status===404){flushLeads();await new Promise(r=>setTimeout(r,1400));res=await send();}
+  }catch(e){ res=null; }
+
+  if(res&&res.ok){
+    btn.style.display='none';
+    const phone=(state.reg&&state.reg.contact)||'';
+    done.className='cta-done';
+    done.textContent=phone?'รับเรื่องแล้ว · ทีมงานจะติดต่อกลับที่ '+phone:'รับเรื่องแล้ว · ทีมงานจะติดต่อกลับ';
+    done.style.display='';
+    return;
+  }
+  // ล้มเหลวจริง ๆ — ต้องบอกให้ไปคุยกับคนที่บูธ ไม่ใช่ปล่อยให้เข้าใจว่าส่งไปแล้ว
+  btn.disabled=false;btn.textContent=label;
+  done.className='cta-done err';
+  done.textContent='ส่งไม่สำเร็จ กรุณาลองใหม่ หรือแจ้งทีมงานที่บูธได้เลย';
+  done.style.display='';
 }
-function boothPickup(){alert((state.reg.email&&CONFIG.endpoint)?('เยี่ยม! สรุปผลถูกส่งไปที่ '+state.reg.email+'\nแวะรับคำแนะนำเพิ่มเติมได้ที่บูธ CP'):'ขอบคุณ! แวะรับรายงานและคำแนะนำได้ที่บูธ CP');}
 function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');
   // ตัวนับ % เป็นของหน้าคำถามเท่านั้น ออกจากหน้านั้นแล้วต้องล้าง
   // ไม่งั้นหน้ารายงานจะค้างเลขไว้มุมขวาบนตลอด
@@ -1547,10 +1588,10 @@ function showResult(){
   state.tier=type.tier; state.typeCode=code;
 
   // CTA by tier
-  const cta={HOT:['🚀 ร้านคุณพร้อมโต — คุยกับทีมขยายธุรกิจที่บูธ CP','ร้านลักษณะนี้มักได้ประโยชน์จากดีล supply ราคาพิเศษและแผนขยายแบบมีพาร์ทเนอร์ — นัดคุยตัวต่อตัวที่บูธ','จองคิวคุยที่บูธ CP →'],
-    WARM:['💬 รับคำปรึกษาฟรีที่บูธ CP','ทีมที่ปรึกษาช่วยวางแผนเสริมจุดที่ร้านคุณยังขาด พร้อมแนะนำโซลูชันที่เหมาะกับร้านคุณ','เข้ามาคุยที่บูธ CP →'],
-    NURTURE:['💬 รับคำแนะนำเริ่มต้นที่บูธ CP','ร้านคุณมีหลายจุดที่ต้องเสริมก่อนโต — แวะคุยกับทีม CP รับแนวทางตั้งต้นที่เหมาะกับร้านคุณ','แวะคุยที่บูธ CP →']}[type.tier];
-  document.getElementById('ctaTitle').textContent=cta[0];document.getElementById('ctaText').textContent=cta[1];const _cb=document.getElementById('ctaBtn');_cb.textContent=cta[2];_cb.style.display=CONFIG.ctaUrl?'':'none';
+  const cta={HOT:['🚀 ร้านคุณพร้อมโต — คุยกับทีมขยายธุรกิจที่บูธ CP','ร้านลักษณะนี้มักได้ประโยชน์จากดีล supply ราคาพิเศษและแผนขยายแบบมีพาร์ทเนอร์ — นัดคุยตัวต่อตัวที่บูธ','ให้ทีม CP ติดต่อกลับ →'],
+    WARM:['💬 รับคำปรึกษาฟรีที่บูธ CP','ทีมที่ปรึกษาช่วยวางแผนเสริมจุดที่ร้านคุณยังขาด พร้อมแนะนำโซลูชันที่เหมาะกับร้านคุณ','ให้ทีม CP ติดต่อกลับ →'],
+    NURTURE:['💬 รับคำแนะนำเริ่มต้นที่บูธ CP','ร้านคุณมีหลายจุดที่ต้องเสริมก่อนโต — แวะคุยกับทีม CP รับแนวทางตั้งต้นที่เหมาะกับร้านคุณ','ให้ทีม CP ติดต่อกลับ →']}[type.tier];
+  document.getElementById('ctaTitle').textContent=cta[0];document.getElementById('ctaText').textContent=cta[1];const _cb=document.getElementById('ctaBtn');_cb.textContent=cta[2];_cb.style.display='';_cb.disabled=false;const _cd=document.getElementById('ctaDone');_cd.style.display='none';_cd.className='cta-done';
 
   buildReport(code,type,total,sc,tags);
   track('complete_deep',total);

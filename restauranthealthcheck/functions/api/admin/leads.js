@@ -19,7 +19,7 @@ export async function onRequestGet({ request, env }) {
     .prepare(
       `SELECT id, created_at, name, shop, contact, email, shop_type, branches, age, mode,
               completed, total_score, type_code, type_name, tier, scores_json, financial_json,
-              user_id, result_email_sent_at
+              user_id, result_email_sent_at, contact_requested_at
        FROM assessments ${sql}
        ORDER BY created_at DESC LIMIT ? OFFSET ?`,
     )
@@ -35,6 +35,7 @@ export async function onRequestGet({ request, env }) {
               SUM(CASE WHEN tier = 'WARM' THEN 1 ELSE 0 END) AS warm,
               SUM(CASE WHEN tier = 'NURTURE' THEN 1 ELSE 0 END) AS nurture,
               SUM(CASE WHEN email IS NOT NULL AND email <> '' THEN 1 ELSE 0 END) AS with_email,
+              SUM(CASE WHEN contact_requested_at IS NOT NULL THEN 1 ELSE 0 END) AS asked,
               AVG(CASE WHEN completed = 1 THEN total_score END) AS avg_score
        FROM assessments ${sql}`,
     )
@@ -59,6 +60,7 @@ export async function onRequestGet({ request, env }) {
       warm: stats.warm || 0,
       nurture: stats.nurture || 0,
       withEmail: stats.with_email || 0,
+      asked: stats.asked || 0,
       avgScore: stats.avg_score != null ? Math.round(stats.avg_score) : null,
     },
     shopTypes: (types || []).map((t) => t.shop_type),
@@ -82,6 +84,7 @@ export async function onRequestGet({ request, env }) {
       financial: r.financial_json ? JSON.parse(r.financial_json) : null,
       hasAccount: !!r.user_id,
       resultEmailed: !!r.result_email_sent_at,
+      askedAt: r.contact_requested_at || null,
     })),
   });
 }

@@ -152,8 +152,12 @@ t('แสดงคะแนนราย 5 มิติ', await page.$eval('#barD
   await page.$eval('#barDims', (el) => `มี ${el.children.length} แถว`));
 t('มีรายงานฉบับเต็มด้านล่าง', await page.$eval('#reportDoc', (el) => el.textContent.trim().length > 200));
 t('ไม่มี alert คำว่า Prototype', !(await page.content()).includes('Prototype:'));
-t('ปุ่ม CTA ถูกซ่อนไว้ (ยังไม่มีลิงก์ฟอร์ม)',
-  await page.$eval('#ctaBtn', (el) => getComputedStyle(el).display === 'none'));
+// ปุ่มนี้เคยถูกซ่อนไว้เพราะรอลิงก์ Google Form ตอนนี้มันติดธงลงลีดโดยตรง
+// ไม่ต้องรออะไรอีก จึงต้องแสดงเสมอ
+t('ปุ่มขอให้ติดต่อกลับแสดงอยู่ท้ายรายงาน',
+  await page.$eval('#ctaBtn', (el) => getComputedStyle(el).display !== 'none'));
+t('ป้ายปุ่มบอกว่าจะติดต่อกลับ',
+  await page.$eval('#ctaBtn', (el) => /ติดต่อกลับ/.test(el.textContent)));
 t('ตัวนับ % ไม่ค้างอยู่บนหน้ารายงาน',
   await page.$eval('#progMini', (el) => el.textContent.trim() === ''),
   await page.$eval('#progMini', (el) => `ค้างอยู่ที่ "${el.textContent.trim()}"`));
