@@ -5,6 +5,21 @@
 // attacker rotating IPs still cannot flood one person's inbox or grind their
 // password). Sending mail costs money and burns sender reputation, so this is
 // not optional decoration.
+//
+// The two limits do different jobs, and the per-IP one has to be generous.
+// Thai mobile networks put hundreds of subscribers behind one public address,
+// so a per-IP budget sized for one person locks out everyone else on the same
+// carrier. Forty simulated users sharing an address lost nine assessments and
+// twenty-four signups to it — the report still rendered for them (it is
+// computed in the browser) but the lead never reached the server and nobody
+// found out. The per-email limits are what actually protect an inbox or a
+// password, and those stay tight.
+//
+// KNOWN ISSUE (fix after launch): the read-then-write below is not atomic, so
+// simultaneous requests can read the same count and each write count+1, letting
+// a burst slip past the limit. It errs toward letting people through rather
+// than blocking them, which is why it is not being changed days before a
+// launch. The fix is a single INSERT ... ON CONFLICT ... RETURNING.
 
 import { clientIp, json, now } from './http.js';
 

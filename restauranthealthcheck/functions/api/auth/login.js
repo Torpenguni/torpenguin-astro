@@ -16,7 +16,7 @@ export async function onRequestPost({ request, env }) {
   if (!validEmail(email) || !password) return fail('กรุณากรอกอีเมลและรหัสผ่าน', 400);
 
   const db = env.DB;
-  const limited = await guard(db, request, 'login', email, { ip: [20, 900], email: [10, 900] });
+  const limited = await guard(db, request, 'login', email, { ip: [100, 900], email: [10, 900] });
   if (limited) return limited;
 
   const user = await db

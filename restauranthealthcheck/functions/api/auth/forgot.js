@@ -25,7 +25,7 @@ export async function onRequestPost({ request, env }) {
   const db = env.DB;
   // Tight limits: this endpoint sends mail to an address the requester does
   // not have to prove they own.
-  const limited = await guard(db, request, 'forgot', email, { ip: [10, 3600], email: [3, 3600] });
+  const limited = await guard(db, request, 'forgot', email, { ip: [60, 3600], email: [3, 3600] });
   if (limited) return limited;
 
   const user = await db.prepare('SELECT id, email_verified_at FROM users WHERE email = ?').bind(email).first();

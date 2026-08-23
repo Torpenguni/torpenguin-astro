@@ -26,7 +26,7 @@ export async function onRequestPost({ request, env }) {
   if (pwProblem) return fail(pwProblem, 400);
 
   const db = env.DB;
-  const limited = await guard(db, request, 'signup', email, { ip: [10, 3600], email: [5, 3600] });
+  const limited = await guard(db, request, 'signup', email, { ip: [100, 3600], email: [5, 3600] });
   if (limited) return limited;
 
   const site = siteUrl(env, request);

@@ -18,7 +18,7 @@ export async function onRequestPost({ request, env, waitUntil }) {
   if (!sessionKey) return fail('ไม่ได้ระบุว่าเป็นผลประเมินของใคร', 400);
 
   const db = env.DB;
-  const limited = await guard(db, request, 'contactreq', null, { ip: [20, 3600] });
+  const limited = await guard(db, request, 'contactreq', null, { ip: [200, 3600] });
   if (limited) return limited;
 
   // เขียนเฉพาะตอนที่ยังไม่เคยกด กดซ้ำจะไม่ทับเวลาเดิม ทีมขายจะได้เห็นเวลาที่เขา

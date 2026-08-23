@@ -28,7 +28,7 @@ export async function onRequestPost({ request, env }) {
   if (!body) return fail('รูปแบบข้อมูลไม่ถูกต้อง', 400);
 
   const db = env.DB;
-  const limited = await guard(db, request, 'assessment', null, { ip: [60, 3600] });
+  const limited = await guard(db, request, 'assessment', null, { ip: [600, 3600] });
   if (limited) return limited;
 
   const sessionKey = str(body.sessionKey, 80);

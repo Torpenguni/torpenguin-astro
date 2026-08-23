@@ -17,6 +17,7 @@ const SUITES = [
   ['ประตูโหมดละเอียด',           'deep-gate.test.mjs'],
   ['แผน 90 วันเฉพาะร้าน',        'plan-specificity.test.mjs'],
   ['ทำค้างไว้แล้วกลับมาต่อ',      'resume-progress.test.mjs'],
+  ['รองรับคนเข้าพร้อมกัน',        'capacity.test.mjs'],
   ['โหมดด่วน · บัญชี · หลังบ้าน',  'ui-account-admin.test.mjs'],
   ['แผงรายละเอียดใน UI',          'ui-lead-detail.test.mjs'],
 ];

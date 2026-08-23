@@ -14,7 +14,7 @@ export async function onRequestPost({ request, env }) {
   if (pwProblem) return fail(pwProblem, 400);
 
   const db = env.DB;
-  const limited = await guard(db, request, 'reset', null, { ip: [20, 3600] });
+  const limited = await guard(db, request, 'reset', null, { ip: [100, 3600] });
   if (limited) return limited;
 
   // Single-use and time-limited; useToken consumes it atomically.
