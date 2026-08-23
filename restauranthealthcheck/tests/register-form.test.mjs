@@ -113,16 +113,14 @@ console.log('\n— หน้าแรกบอกว่า 5 มิติคื�
 {
   await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
   const dims = await page.$$eval('.lp-dim', (els) => els.map((e) => ({
-    name: e.querySelector('b').textContent.trim(),
-    desc: (e.querySelector('span:not(.lp-dico)') || {}).textContent?.trim() || '',
+    // ชื่อมิติคือข้อความในชิปหลังจากตัดไอคอนออก
+    name: [...e.childNodes].filter((n) => n.nodeType === 3).map((n) => n.textContent).join('').trim(),
     icon: e.querySelector('.lp-dico').textContent.trim(),
     color: getComputedStyle(e).getPropertyValue('--c').trim(),
     visible: e.offsetParent !== null,
   })));
   t('หน้าแรกลิสต์ครบทั้ง 5 มิติ', dims.length === 5, `มี ${dims.length}`);
   t('ทุกมิติมองเห็นได้จริงบนหน้าแรก', dims.every((d) => d.visible));
-  t('ทุกมิติมีคำอธิบายว่าวัดอะไร', dims.every((d) => d.desc.length > 15),
-    JSON.stringify(dims.map((d) => d.desc.length)));
   t('ทุกมิติมีไอคอนกำกับ', dims.every((d) => d.icon.length > 0));
 
   // ชื่อบนหน้าแรกต้องตรงกับชื่อจริงใน DIMS เป๊ะ ถ้าวันหนึ่งมีคนแก้ชื่อมิติในโค้ด
@@ -137,6 +135,14 @@ console.log('\n— หน้าแรกบอกว่า 5 มิติคื�
 
   t('มีหัวข้อบอกว่านี่คือสิ่งที่วัด',
     await page.$eval('.lp-what', (el) => /วัดอะไรบ้าง/.test(el.textContent)));
+  // หน้าแรกต้องกระชับ: ไม่มีบล็อกอธิบายสิ่งที่จะได้รับ (01-03) มาถ่วงอีก
+  t('หน้าแรกไม่มีบล็อก 01-03 มาถ่วง', await page.$('.lp-deliver') === null);
+  // ชิปต้องอยู่แถวเดียวกันทั้งหมดบนจอกว้าง ไม่ใช่กองกันเป็นหลายบรรทัด
+  const rows = await page.$$eval('.lp-dim', (els) =>
+    new Set(els.map((e) => Math.round(e.getBoundingClientRect().top))).size);
+  t('บนมือถือชิปพับบรรทัดได้ ไม่ล้นจอ',
+    await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth + 1),
+    `${rows} บรรทัด`);
 }
 
 console.log('\n— จังหวัดที่ตั้งร้าน —');

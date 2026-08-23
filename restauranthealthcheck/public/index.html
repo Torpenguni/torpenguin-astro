@@ -672,30 +672,18 @@ h1 .accent{font-weight:600;color:var(--accent)}
 @keyframes lpGrow{to{height:var(--h)}}
 .lp-dimlabels{display:flex;gap:9px;margin-top:8px;padding:0 3px}
 .lp-dimlabels span{flex:1;text-align:center;font-size:9.5px;color:var(--ink-faint);letter-spacing:.01em}
-/* ห้ามิติที่วัด — เขียนไว้บนหน้าแรกให้อ่านออกก่อนกดเริ่ม ไม่ใช่ให้ไปเจอตอนทำเสร็จ
-   ชิปไอคอนใช้สีประจำมิติเดียวกับที่ใช้ในรายงานและกราฟ เพื่อให้จำสีได้ตั้งแต่แรก */
-.lp-what{margin:0 0 34px}
-.lp-what-h{font-size:15.5px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:16px;
-  padding-bottom:14px;border-bottom:1px solid var(--line)}
-.lp-what-k{display:block;font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--accent);margin-bottom:6px}
-.lp-dimlist{display:grid;gap:14px}
-.lp-dim{display:flex;gap:12px;align-items:flex-start}
-.lp-dico{flex:0 0 auto;width:34px;height:34px;border-radius:10px;display:flex;align-items:center;
-  justify-content:center;font-size:17px;background:color-mix(in srgb,var(--c) 13%,transparent);
-  border:1px solid color-mix(in srgb,var(--c) 28%,transparent);line-height:1}
-.lp-dim b{display:block;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:2px}
-.lp-dim span{display:block;font-size:13.5px;line-height:1.5;color:var(--ink-dim)}
-@media(min-width:700px){
-  .lp-dimlist{grid-template-columns:1fr 1fr;gap:18px 32px}
-  .lp-what-k{display:inline-block;margin:0 12px 0 0;vertical-align:2px}
-}
-@media(min-width:1000px){.lp-dimlist{grid-template-columns:1fr 1fr 1fr}}
-.lp-deliver{border-top:1px solid var(--line);margin:0 0 32px}
-.lp-d{display:flex;gap:16px;align-items:baseline;padding:17px 2px;border-bottom:1px solid var(--line)}
-.lp-num{font-family:var(--mono);font-weight:700;font-size:12.5px;color:var(--accent);letter-spacing:.03em;flex-shrink:0}
-.lp-dtxt{font-size:14.5px;color:var(--ink-dim);line-height:1.5}
-.lp-dtxt b{display:block;color:var(--ink);font-weight:600;font-size:15.5px;margin-bottom:2px}
+/* ห้ามิติที่วัด — บอกแค่ว่ามีด้านไหนบ้าง ให้กวาดตาอ่านจบในวินาทีเดียว
+   สีชิปใช้สีประจำมิติเดียวกับที่ใช้ในรายงานและกราฟ เพื่อให้จำสีได้ตั้งแต่แรก */
+.lp-what{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:0 0 30px;
+  padding-top:18px;border-top:1px solid var(--line)}
+.lp-what-k{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-faint);flex:0 0 auto}
+.lp-dimlist{display:flex;flex-wrap:wrap;gap:8px}
+.lp-dim{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;
+  color:var(--ink);white-space:nowrap;padding:6px 12px 6px 7px;border-radius:99px;
+  background:color-mix(in srgb,var(--c) 9%,transparent);
+  border:1px solid color-mix(in srgb,var(--c) 24%,transparent)}
+.lp-dico{font-size:14px;line-height:1}
 .lp-trust{display:flex;flex-wrap:wrap;gap:7px 20px;margin-top:16px;font-size:12.5px;color:var(--ink-faint)}
 .lp-trust span{position:relative}
 .lp-trust span+span::before{content:"";position:absolute;left:-11px;top:50%;width:3px;height:3px;border-radius:50%;background:var(--line-2);transform:translateY(-50%)}
@@ -703,8 +691,6 @@ h1 .accent{font-weight:600;color:var(--accent)}
   .lp-hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;margin-bottom:6px}
   .lp-card{margin:0;max-width:none;padding:24px 26px 22px}
   .lp-gauge{max-width:250px}
-  .lp-deliver{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 30px;border-top:none}
-  .lp-d{border-bottom:none;border-top:1px solid var(--line);padding:20px 0 4px;flex-direction:column;gap:10px}
 }
 </style>
 
@@ -751,35 +737,8 @@ h1 .accent{font-weight:600;color:var(--accent)}
   <!-- หัวข้อใหญ่บอกว่า "5 มิติ" แต่เดิมไม่มีที่ไหนบอกว่าห้ามิตินั้นคืออะไร
        มีแค่ป้ายเล็ก ๆ ใต้เกจในภาพตัวอย่าง ซึ่งอ่านไม่ออกและไม่ได้อธิบายอะไร -->
   <div class="lp-what">
-    <div class="lp-what-h"><span class="lp-what-k">วัดอะไรบ้าง</span>5 มิติที่ตัดสินว่าร้านโตได้จริงหรือไม่</div>
-    <div class="lp-dimlist">
-    <div class="lp-dim" style="--c:var(--d1)">
-      <span class="lp-dico">🧭</span>
-      <div><b>ตัวเจ้าของ &amp; ผู้นำ</b><span>ร้านเดินได้เองไหมถ้าคุณไม่อยู่ หรือทุกเรื่องยังต้องผ่านคุณคนเดียว</span></div>
-    </div>
-    <div class="lp-dim" style="--c:var(--d2)">
-      <span class="lp-dico">💰</span>
-      <div><b>สุขภาพการเงิน</b><span>ต้นทุนวัตถุดิบ ค่าแรง ค่าเช่า เทียบเกณฑ์ประเภทร้านคุณ และจุดคุ้มทุนต่อวัน</span></div>
-    </div>
-    <div class="lp-dim" style="--c:var(--d3)">
-      <span class="lp-dico">📣</span>
-      <div><b>แบรนด์ &amp; การตลาด</b><span>ลูกค้ามาหาเองหรือต้องไล่ล่า และกลับมาซ้ำมากแค่ไหน</span></div>
-    </div>
-    <div class="lp-dim" style="--c:var(--d4)">
-      <span class="lp-dico">⚙️</span>
-      <div><b>ระบบ &amp; ทีม</b><span>มีขั้นตอนให้คนใหม่ทำตามไหม คุณภาพคงที่ทุกวันหรือแกว่งตามคนเข้ากะ</span></div>
-    </div>
-    <div class="lp-dim" style="--c:var(--d5)">
-      <span class="lp-dico">🚀</span>
-      <div><b>ความพร้อมขยาย</b><span>สาขาเดียวกำไรนิ่งแล้วหรือยัง รู้จุดคืนทุนและมีเงินสำรองพอไหม</span></div>
-    </div>
-    </div>
-  </div>
-
-  <div class="lp-deliver">
-    <div class="lp-d"><span class="lp-num">01</span><div class="lp-dtxt"><b>ตัวเลขบาทจริง</b>รู้จุดที่กำไรกำลังรั่ว ไม่ใช่คำแนะนำลอยๆ</div></div>
-    <div class="lp-d"><span class="lp-num">02</span><div class="lp-dtxt"><b>แผน 90 วันเฉพาะร้านคุณ</b>ทำทีละสัปดาห์ พิมพ์ไปแปะที่ร้านได้เลย</div></div>
-    <div class="lp-d"><span class="lp-num">03</span><div class="lp-dtxt"><b>เทียบเกณฑ์มาตรฐาน</b>ต้นทุน/ความพร้อม เทียบกับร้านที่โตได้จริง</div></div>
+    <span class="lp-what-k">วัดอะไรบ้าง</span>
+    <div class="lp-dimlist"><span class="lp-dim" style="--c:var(--d1)"><span class="lp-dico">🧭</span>ตัวเจ้าของ &amp; ผู้นำ</span><span class="lp-dim" style="--c:var(--d2)"><span class="lp-dico">💰</span>สุขภาพการเงิน</span><span class="lp-dim" style="--c:var(--d3)"><span class="lp-dico">📣</span>แบรนด์ &amp; การตลาด</span><span class="lp-dim" style="--c:var(--d4)"><span class="lp-dico">⚙️</span>ระบบ &amp; ทีม</span><span class="lp-dim" style="--c:var(--d5)"><span class="lp-dico">🚀</span>ความพร้อมขยาย</span></div>
   </div>
 
   <div class="mode-pick">
