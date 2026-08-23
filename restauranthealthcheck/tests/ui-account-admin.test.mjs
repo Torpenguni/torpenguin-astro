@@ -87,14 +87,43 @@ t('ตัวนับ % ไม่ค้าง', await page.$eval('#progMini', (e
 // ── หน้าบัญชี ──────────────────────────────────────────────────────────
 console.log('\n— สมัครบัญชีผ่านหน้าเว็บ —');
 await page.goto(BASE + '/account?mode=signup', { waitUntil: 'networkidle0' });
+t('หน้าสมัครมีช่องยืนยันรหัสผ่าน', await page.$('#password2') !== null);
+t('หน้าสมัครมีทางไปหน้าลืมรหัสผ่าน',
+  await page.$eval('.alt', (el) => /ลืมรหัสผ่าน/.test(el.textContent)));
+
+// พิมพ์รหัสผ่านสองช่องไม่ตรงกัน ต้องถูกจับได้ตั้งแต่ในเบราว์เซอร์ ไม่ต้องยิงไปถึง
+// เซิร์ฟเวอร์ เพราะถ้าปล่อยผ่าน คนจะสมัครด้วยรหัสที่ตัวเองพิมพ์ผิดโดยไม่รู้ตัว
+// แล้วเข้าระบบไม่ได้ตลอดไป
 await page.type('#email', EMAIL);
+await page.type('#password', PW);
+await page.type('#password2', PW + 'พิมพ์เกิน');
+await page.click('#go');
+await page.waitForFunction(() => document.getElementById('msg').className.includes('err'), { timeout: 5000 });
+t('จับได้ว่ารหัสผ่านสองช่องไม่ตรงกัน',
+  (await page.$eval('#msg', (el) => el.textContent)).includes('ไม่ตรงกัน'));
+t('ยังไม่ได้สมัคร ปุ่มยังกดได้อยู่', await page.$eval('#go', (el) => !el.disabled));
+
+// ล้างทั้งช่องรหัสและกล่องข้อความก่อนลองรอบใหม่ ถ้าไม่ล้างข้อความ error เก่า
+// จะยังค้างอยู่ แล้ว waitForFunction จะเจอทันทีตั้งแต่ก่อนคำตอบรอบใหม่จะมาถึง
+// กลายเป็นอ่านข้อความของรอบก่อนหน้า
+const resetForm = () => page.evaluate(() => {
+  document.getElementById('password').value = '';
+  document.getElementById('password2').value = '';
+  const m = document.getElementById('msg');
+  m.textContent = '';
+  m.className = '';
+});
+
+await resetForm();
 await page.type('#password', 'sh0rt');
+await page.type('#password2', 'sh0rt');
 await page.click('#go');
 await page.waitForFunction(() => document.getElementById('msg').className.includes('err'), { timeout: 5000 });
 t('กันรหัสผ่านสั้นเกินไป', (await page.$eval('#msg', (el) => el.textContent)).includes('8 ตัวอักษร'));
 
-await page.evaluate(() => { document.getElementById('password').value = ''; });
+await resetForm();
 await page.type('#password', PW);
+await page.type('#password2', PW);
 await page.click('#go');
 await page.waitForFunction(() => document.getElementById('msg').className.includes('ok'), { timeout: 8000 });
 t('สมัครสำเร็จ ขึ้นข้อความยืนยัน', true);

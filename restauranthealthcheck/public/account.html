@@ -143,9 +143,14 @@ const views = {
   <div class="field"><label for="password">ตั้งรหัสผ่าน</label>
     <input id="password" type="password" autocomplete="new-password">
     <div class="hint">อย่างน้อย 8 ตัวอักษร — แนะนำให้ใช้วลีที่จำง่ายแต่เดายาก</div></div>
+  <div class="field"><label for="password2">พิมพ์รหัสผ่านอีกครั้ง</label>
+    <input id="password2" type="password" autocomplete="new-password"></div>
   <button id="go">สมัครใช้งาน</button>
 </div>
-<div class="alt">มีบัญชีอยู่แล้ว? <a href="?mode=login">เข้าสู่ระบบ</a></div>`;
+<div class="alt">
+  มีบัญชีอยู่แล้ว? <a href="?mode=login">เข้าสู่ระบบ</a><br>
+  <a href="?mode=forgot">ลืมรหัสผ่าน?</a>
+</div>`;
   },
 
   forgot() {
@@ -217,6 +222,10 @@ const handlers = {
 
   async signup() {
     const btn = $('go');
+    if ($('password').value !== $('password2').value) {
+      say('รหัสผ่านสองช่องไม่ตรงกัน', 'err');
+      return;
+    }
     busy(btn, true);
     try {
       const r = await api('/api/auth/signup', { email: $('email').value, password: $('password').value });
