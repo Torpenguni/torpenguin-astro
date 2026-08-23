@@ -5,4 +5,9 @@ node_modules/
 # ผลลัพธ์จากการรันเทสต์
 tests/mailbox.json
 tests/screenshot-*.png
-tests/screenshot-*.png
+
+# .gitignore ที่ root ของ repo มีบรรทัด `admin/` เอาไว้กัน build output
+# ของ TinaCMS ในเว็บ torpenguin.com — แต่มันตรงกับ "โฟลเดอร์ชื่อ admin ที่ไหน
+# ก็ได้" เลยกลืนโค้ดหลังบ้านของโปรเจกต์นี้ไปเงียบ ๆ ทั้งโฟลเดอร์ ทำให้ deploy
+# ขึ้นไปแล้ว /api/admin/* กลายเป็น 404 ทั้งหมด บรรทัดนี้ดึงมันกลับมา
+!functions/api/admin/
