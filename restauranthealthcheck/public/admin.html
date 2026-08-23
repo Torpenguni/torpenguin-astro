@@ -101,6 +101,18 @@ tbody tr{cursor:pointer}
   color:#fff;border-radius:8px;width:32px;height:32px;cursor:pointer;font-size:16px;
   line-height:1;flex:0 0 auto;font-family:inherit}
 .sheet-body{padding:20px 22px 60px;display:flex;flex-direction:column;gap:16px}
+.blk.danger{border:1px solid #f0c9d1;background:#fdf7f8;border-radius:12px;padding:14px 16px}
+.blk.danger h3{color:var(--brand)}
+.danger-note{font-size:13px;line-height:1.55;color:var(--muted);margin:0 0 12px}
+.del-btn,.del-yes,.del-no{font-family:inherit;font-size:13.5px;font-weight:600;cursor:pointer;
+  padding:9px 15px;border-radius:9px;border:1px solid transparent}
+.del-btn{background:#fff;color:var(--brand);border-color:#e6b3bf}
+.del-yes{background:var(--brand);color:#fff}
+.del-no{background:#fff;color:var(--ink);border-color:var(--line)}
+.del-confirm{display:flex;flex-wrap:wrap;align-items:center;gap:9px}
+.del-confirm .dc-q{flex:1;min-width:190px;font-size:13.5px;font-weight:600;color:var(--brand)}
+.del-btn:hover,.del-yes:hover,.del-no:hover{opacity:.88}
+.del-btn:disabled,.del-yes:disabled{opacity:.55;cursor:not-allowed}
 .blk{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:16px 18px}
 .blk h3{margin:0 0 12px;font-size:13px;color:var(--faint);font-weight:600;letter-spacing:.04em}
 .kv{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;font-size:14px}
@@ -148,9 +160,9 @@ const fmtDate = (ts) => new Date(ts * 1000).toLocaleString('th-TH',
 
 const state = { page: 1, filters: {} };
 
-async function api(path, body) {
+async function api(path, body, method) {
   const res = await fetch(path, {
-    method: body ? 'POST' : 'GET',
+    method: method || (body ? 'POST' : 'GET'),
     headers: body ? { 'Content-Type': 'application/json' } : {},
     body: body ? JSON.stringify(body) : undefined,
   });
@@ -445,7 +457,52 @@ function leadSheet(l) {
       ${row('อัปเดตล่าสุด', fmtDate(l.updatedAt))}
     </dl>
   </div>
+
+  <!-- ลบทิ้งถาวร — ไว้ล้างข้อมูลทดสอบและลีดขยะ ต้องกดสองจังหวะเสมอ
+       ปุ่มเดียวจบเสี่ยงเกินไปสำหรับของที่กู้คืนจากหน้านี้ไม่ได้ -->
+  <div class="blk danger">
+    <h3>ลบรายการนี้</h3>
+    <p class="danger-note">ลบแล้วหายถาวร กู้จากหน้านี้ไม่ได้ — ใช้เมื่อเป็นข้อมูลทดสอบหรือลีดขยะเท่านั้น</p>
+    <div id="delWrap">
+      <button type="button" class="del-btn" id="delStart">ลบรายการนี้</button>
+    </div>
+  </div>
 </div>`;
+}
+
+// ลบลีดทีละรายการ — สองจังหวะเสมอ กดครั้งแรกได้แค่คำถามยืนยัน
+// พร้อมชื่อร้านกำกับ จะได้ไม่ลบผิดตัวตอนเปิดหลายแผงสลับไปมา
+function wireDelete(sheet, lead, close) {
+  const wrap = sheet.querySelector('#delWrap');
+  if (!wrap) return;
+  const reset = () => {
+    wrap.innerHTML = '<button type="button" class="del-btn" id="delStart">ลบรายการนี้</button>';
+    wrap.querySelector('#delStart').addEventListener('click', ask);
+  };
+  const ask = () => {
+    wrap.innerHTML = `<div class="del-confirm">
+      <span class="dc-q">ลบ “${esc(lead.shop || 'รายการนี้')}” ถาวร?</span>
+      <button type="button" class="del-yes" id="delYes">ลบเลย</button>
+      <button type="button" class="del-no" id="delNo">ยกเลิก</button>
+    </div>`;
+    wrap.querySelector('#delNo').addEventListener('click', reset);
+    wrap.querySelector('#delYes').addEventListener('click', doDelete);
+    wrap.querySelector('#delYes').focus();
+  };
+  const doDelete = async () => {
+    const yes = wrap.querySelector('#delYes');
+    yes.disabled = true; yes.textContent = 'กำลังลบ…';
+    try {
+      await api('/api/admin/lead?id=' + encodeURIComponent(lead.id), null, 'DELETE');
+      close();
+      // ดึงรายการใหม่ ให้แถวที่ลบหายไปจากตารางทันที ไม่ต้องรีเฟรชเอง
+      load();
+    } catch (e) {
+      wrap.innerHTML = `<div class="msg err" style="display:block">${esc(e.message)}</div>`;
+      setTimeout(reset, 2500);
+    }
+  };
+  reset();
 }
 
 let sheetEsc = null;
@@ -471,6 +528,7 @@ async function openLead(id) {
     const d = await api('/api/admin/lead?id=' + encodeURIComponent(id));
     sheet.innerHTML = leadSheet(d.lead);
     sheet.querySelector('#sheetClose').addEventListener('click', close);
+    wireDelete(sheet, d.lead, close);
   } catch (e) {
     sheet.innerHTML = `<div class="sheet-body" style="padding-top:40px">
       <div class="msg err" style="display:block">${esc(e.message)}</div></div>`;

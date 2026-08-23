@@ -56,5 +56,35 @@ t('เก็บค่าเช่าเป็นบาท',f&&typeof f.rent==='n
 t('ยังเก็บ % สรุปไว้เหมือนเดิม',f&&f.primePct!=null&&f.netPct!=null,`prime=${f?.primePct} net=${f?.netPct}`);
 t('มีธงบอกว่าเป็นค่าประมาณหรือตัวเลขจริง',f&&typeof f.estimated==='boolean',`estimated=${f?.estimated}`);
 
+console.log('\n  — ลบลีด —');
+{
+  const del=(id,opts={})=>fetch(`${BASE}/api/admin/lead?id=${encodeURIComponent(id)}`,
+    {method:'DELETE',headers:{Origin:opts.origin||BASE,...(opts.noCookie?{}:{Cookie:cookie})}});
+
+  // ห้ามใครที่ไม่ได้ล็อกอินหลังบ้านลบข้อมูลของลูกค้าได้เด็ดขาด
+  t('ไม่ได้ล็อกอินหลังบ้าน ลบไม่ได้',(await del(d.id,{noCookie:true})).status===401);
+  // และห้ามเว็บอื่นยิงข้ามมาลบผ่านเบราว์เซอร์ของแอดมินที่ล็อกอินค้างอยู่
+  t('ยิงข้ามเว็บมาลบไม่ได้',(await del(d.id,{origin:'https://evil.example'})).status===403);
+  t('ไม่ระบุ id ตอบ 400',(await fetch(BASE+'/api/admin/lead',{method:'DELETE',
+    headers:{Origin:BASE,Cookie:cookie}})).status===400);
+  t('id ที่ไม่มีจริง ตอบ 404',(await del('ไม่มีจริงแน่นอน')).status===404);
+
+  // ลบแล้วต้องหายจริง ทั้งจากรายละเอียดและจากรายการ
+  const before=await (await fetch(`${BASE}/api/admin/leads?q=${encodeURIComponent('ร้านทดสอบรายละเอียด')}`,
+    {headers:{Cookie:cookie,Origin:BASE}})).json();
+  t('ก่อนลบ ยังหาเจอในรายการ',(before.leads||[]).some(x=>x.id===d.id));
+
+  const res=await del(d.id);
+  const body=await res.json();
+  t('ลบสำเร็จ',res.status===200&&body.ok===true,JSON.stringify(body));
+  t('บอกกลับมาว่าลบร้านไหนไป',body.shop==='ร้านทดสอบรายละเอียด',body.shop);
+  t('เปิดรายละเอียดอีกครั้งไม่เจอแล้ว',
+    (await fetch(`${BASE}/api/admin/lead?id=${d.id}`,{headers:{Cookie:cookie,Origin:BASE}})).status===404);
+  const after=await (await fetch(`${BASE}/api/admin/leads?q=${encodeURIComponent('ร้านทดสอบรายละเอียด')}`,
+    {headers:{Cookie:cookie,Origin:BASE}})).json();
+  t('หายจากรายการแล้ว',!(after.leads||[]).some(x=>x.id===d.id));
+  t('ลบซ้ำอีกครั้งตอบ 404 ไม่ใช่พัง',(await del(d.id)).status===404);
+}
+
 console.log(`\n${ok} ผ่าน · ${bad} ไม่ผ่าน`);
 process.exit(bad?1:0);

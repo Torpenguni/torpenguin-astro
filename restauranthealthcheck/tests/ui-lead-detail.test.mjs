@@ -1,6 +1,7 @@
 import puppeteer from 'puppeteer-core';
 const BASE='http://127.0.0.1:8788';
-let ok=0,bad=0; const t=(n,c,x='')=>{c?(ok++,console.log('  ok   '+n)):(bad++,console.log('  FAIL '+n+(x?' — '+x:'')));};
+let ok=0,bad=0; const tap=async sel=>{await p.$eval(sel,e=>e.scrollIntoView({block:'center'}));await new Promise(r=>setTimeout(r,120));await p.$eval(sel,e=>e.click());};
+const t=(n,c,x='')=>{c?(ok++,console.log('  ok   '+n)):(bad++,console.log('  FAIL '+n+(x?' — '+x:'')));};
 // สร้างข้อมูลของตัวเอง: หนึ่งรายทำจบพร้อมตัวเลขการเงิน อีกหนึ่งรายทำไม่จบ
 const save=(body)=>fetch(BASE+'/api/assessments',{method:'POST',
   headers:{'Content-Type':'application/json',Origin:BASE},body:JSON.stringify(body)});
@@ -39,6 +40,19 @@ t('มีหัวข้อติดต่อ',txt.includes('ติดต่อ'
 t('มีผลประเมิน',txt.includes('ผลประเมิน'));
 t('มีคะแนน 5 มิติ', await p.$$eval('.dimrow',r=>r.length)===5, await p.$$eval('.dimrow',r=>r.length)+' แถว');
 t('มีบล็อกข้อมูลร้าน',txt.includes('ข้อมูลร้าน'));
+// ปุ่มลบต้องกดสองจังหวะเสมอ กดครั้งเดียวแล้วหายเลยคือของที่กู้ไม่ได้
+t('มีปุ่มลบในแผงรายละเอียด', await p.$('#delStart')!==null);
+t('ยังไม่มีปุ่มยืนยันโผล่มาก่อน', await p.$('#delYes')===null);
+await tap('#delStart');
+await new Promise(r=>setTimeout(r,150));
+t('กดแล้วขึ้นคำถามยืนยัน', await p.$('#delYes')!==null);
+t('คำถามยืนยันบอกชื่อร้านด้วย จะได้ไม่ลบผิดตัว',
+  await p.$eval('.dc-q',e=>e.textContent.includes('ร้านมีตัวเลขครบ')),
+  await p.$eval('.dc-q',e=>e.textContent));
+await tap('#delNo');
+await new Promise(r=>setTimeout(r,150));
+t('กดยกเลิกแล้วกลับเป็นปุ่มเดิม', await p.$('#delStart')!==null && await p.$('#delYes')===null);
+
 // HOT/WARM/NURTURE ไม่บอกคนที่นั่งไล่โทรว่าต้องทำอะไร จึงแสดงเป็นคำสั่งงานภาษาไทย
 t('ป้ายระดับเป็นภาษาไทย',/ติดต่อก่อน|ติดตามต่อ|ยังไม่พร้อม/.test(txt),txt.match(/HOT|WARM|NURTURE/)?.[0]||'');
 t('ไม่เหลือรหัสอังกฤษให้คนอ่านเดา',!/HOT|WARM|NURTURE/.test(txt));
@@ -73,5 +87,33 @@ if(partial){
 }else t('หาแถวทำไม่จบไม่เจอ',false);
 
 t('ไม่มี JS error',errs.length===0,errs.slice(0,2).join(' | '));
+console.log('\n— ลบจริงแล้วแถวหายจากตาราง —');
+{
+  await p.goto(BASE+'/admin',{waitUntil:'networkidle0'});
+  await p.waitForSelector('table',{timeout:10000});
+  // ชุดทดสอบรอบก่อน ๆ ทิ้งร้านชื่อเดียวกันไว้ในฐานข้อมูล จึงต้องยึด id ของแถว
+  // ไม่ใช่ชื่อร้าน ไม่งั้นเทสจะบอกว่า "ยังอยู่" ทั้งที่ลบตัวที่ตั้งใจไปแล้ว
+  const rowId=await p.evaluate(()=>{
+    const tr=[...document.querySelectorAll('tbody tr')].find(r=>r.textContent.includes('ร้านออกกลางคัน'));
+    return tr?tr.dataset.id:null;
+  });
+  t('ก่อนลบ ยังเห็นแถวในตาราง',!!rowId);
+  await p.evaluate(id=>document.querySelector(`tbody tr[data-id="${id}"]`).click(),rowId);
+  await p.waitForSelector('#delStart',{timeout:8000});
+  await tap('#delStart');
+  await p.waitForSelector('#delYes',{timeout:3000});
+  await tap('#delYes');
+  // แผงต้องปิดเอง แล้วตารางโหลดใหม่ให้ ไม่ต้องรีเฟรชเอง
+  await p.waitForFunction(()=>!document.querySelector('.sheet'),{timeout:8000}).catch(()=>{});
+  await new Promise(r=>setTimeout(r,1200));
+  t('แผงรายละเอียดปิดเอง', await p.$('.sheet')===null);
+  t('แถวหายจากตารางทันที ไม่ต้องรีเฟรช',
+    await p.evaluate(id=>!document.querySelector(`tbody tr[data-id="${id}"]`),rowId));
+  await p.reload({waitUntil:'networkidle0'});
+  await p.waitForSelector('table',{timeout:10000});
+  t('รีเฟรชแล้วก็ยังหายอยู่ (ลบจากฐานข้อมูลจริง)',
+    await p.evaluate(id=>!document.querySelector(`tbody tr[data-id="${id}"]`),rowId));
+}
+
 console.log(`\n${ok} ผ่าน · ${bad} ไม่ผ่าน`);
 await b.close(); process.exit(bad?1:0);
