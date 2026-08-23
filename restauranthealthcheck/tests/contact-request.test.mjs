@@ -4,9 +4,14 @@
 // อีเมล และผลประเมินของเขาครบแล้ว ปุ่มแค่ติดธงลงบนลีดแถวเดิม ชุดนี้จึงตรวจทั้ง
 // ฝั่ง API และการกดจริงบนหน้าเว็บ รวมถึงว่าหลังบ้านเห็นและกรองได้จริง
 import puppeteer from 'puppeteer-core';
+import fs from 'node:fs';
 
 const BASE = process.env.BASE || 'http://127.0.0.1:8788';
 const ADMIN_PW = process.env.ADMIN_PASSWORD || 'local-admin-pass';   // ตรงกับ .dev.vars ที่ใช้รันในเครื่อง
+
+const mail = () => { try { return JSON.parse(fs.readFileSync(new URL('./mailbox.json', import.meta.url), 'utf8')); } catch { return []; } };
+const ALERT_TO = 'tor@penguinx.co';   // ตรงกับค่าตั้งต้นใน functions/api/contact-request.js
+const alerts = () => mail().filter((m) => m.to === ALERT_TO);
 
 let pass = 0, failn = 0;
 const t = (n, c, x) => { c ? (pass++, console.log('  ok  ', n)) : (failn++, console.log('  FAIL', n, x === undefined ? '' : `— ${x}`)); };
@@ -125,6 +130,51 @@ t('ไม่กรองต้องเห็นมากกว่าหรื�
 const csv = await (await get('/api/admin/export?asked=1')).text();
 t('CSV มีคอลัมน์ขอให้ติดต่อกลับ', csv.includes('ขอให้ติดต่อกลับ'));
 t('CSV มีร้านที่เพิ่งกด', csv.includes('ร้านกดขอให้ติดต่อ'));
+
+console.log('\n— อีเมลแจ้งทีมทันทีที่มีคนกด —');
+{
+  // ปุ่มนี้เคยแค่ติดธงในฐานข้อมูล ถ้าทีมไม่เปิดหลังบ้านดู ลีดที่ยกมือเองก็นั่งรอเปล่า ๆ
+  const before = alerts().length;
+  const sid2 = `sid-alert-${Date.now()}`;
+  await post('/api/assessments', {
+    sessionKey: sid2, name: 'สมชาย ใจดี', shop: 'ร้านแจ้งเตือน', contact: '081-234-5678',
+    email: `alert${Date.now()}@example.com`, province: 'เชียงใหม่',
+    shopType: 'บุฟเฟต์ / ชาบู / ปิ้งย่าง', branches: '2-3 สาขา',
+    completed: true, total: 71, tier: 'HOT', typeName: 'The Franchise-Ready · พร้อมแฟรนไชส์',
+    scores: { D1: 70, D2: 68, D3: 74, D4: 71, D5: 72 },
+    financial: { revenue: 875000, cogs: 320000, labor: 180000, rent: 90000, primePct: 57.1, netPct: 22 },
+  });
+  const res = await post('/api/contact-request', { sessionKey: sid2 });
+  t('กดแล้วตอบ ok', res.status === 200);
+
+  // ส่งเมลหลังตอบกลับ (waitUntil) จึงต้องรอสักครู่ก่อนไปดูกล่องจดหมาย
+  for (let i = 0; i < 30 && alerts().length === before; i++) await new Promise((r) => setTimeout(r, 200));
+  const m = alerts()[alerts().length - 1];
+  t('มีอีเมลแจ้งเข้ามาที่ทีม', alerts().length === before + 1, `ก่อน ${before} หลัง ${alerts().length}`);
+  t('ส่งถึง tor@penguinx.co', m && m.to === ALERT_TO, m && m.to);
+  t('หัวเรื่องบอกว่ามีคนขอให้ติดต่อกลับ + ชื่อร้าน',
+    /ขอให้ติดต่อกลับ/.test(m?.subject || '') && /ร้านแจ้งเตือน/.test(m?.subject || ''), m?.subject);
+  t('หัวเรื่องมีคะแนนติดมาด้วย', /71\/100/.test(m?.subject || ''), m?.subject);
+
+  const body = (m && m.text) || '';
+  const html = (m && m.html) || '';
+  for (const [label, want] of [['ชื่อผู้ติดต่อ', 'สมชาย ใจดี'], ['เบอร์โทร', '081-234-5678'],
+    ['จังหวัด', 'เชียงใหม่'], ['ประเภทร้าน', 'บุฟเฟต์'], ['จำนวนสาขา', '2-3 สาขา']]) {
+    t(`อีเมลมี${label}`, body.includes(want), body.slice(0, 60));
+  }
+  t('อีเมลมีคะแนน 5 มิติ', /ตัวเจ้าของ & ผู้นำ 70/.test(body), body.match(/คะแนน 5 มิติ.*/)?.[0]);
+  t('อีเมลมีตัวเลขการเงิน', /Prime Cost 57\.1%/.test(body), body.match(/ตัวเลขการเงิน.*/)?.[0]);
+  // เปิดจากมือถือแล้วต้องกดโทรออกได้เลย ไม่ต้องคัดลอกเบอร์
+  t('เบอร์ในอีเมลกดโทรออกได้', /href="tel:0812345678"/.test(html));
+  // ลิงก์พาไปเปิดลีดนั้นตรง ๆ ไม่ใช่โยนเข้าตารางให้ไปไล่หาเอง
+  t('มีลิงก์เปิดลีดนี้ในหลังบ้าน', /\/admin\?lead=[A-Za-z0-9_-]+/.test(body), body.slice(-160));
+
+  // กดซ้ำต้องไม่ยิงเมลซ้ำ ไม่งั้นทีมจะโดนสแปมจากคนที่กดรัว ๆ
+  const again = await post('/api/contact-request', { sessionKey: sid2 });
+  t('กดซ้ำยังตอบ ok', again.status === 200);
+  await new Promise((r) => setTimeout(r, 1500));
+  t('กดซ้ำไม่ส่งเมลซ้ำ', alerts().length === before + 1, `${alerts().length} ฉบับ`);
+}
 
 console.log(`\n${pass} passed, ${failn} failed`);
 await browser.close();

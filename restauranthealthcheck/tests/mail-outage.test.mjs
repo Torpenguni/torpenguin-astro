@@ -27,6 +27,18 @@ t('สมัครใช้งานยังตอบปกติ',r.status===2
 r=await call('/api/auth/forgot',{email});
 t('ลืมรหัสผ่านยังตอบปกติ',r.status===200,`got ${r.status}`);
 
+// ปุ่ม "ให้ทีม CP ติดต่อกลับ" ยิงเมลแจ้งทีมด้วย ถ้าเมลล่มแล้วปุ่มพัง เจ้าของร้าน
+// จะเห็นข้อความผิดพลาดทั้งที่คำขอของเขาถูกบันทึกไปแล้ว — เสียลีดเพราะเรื่องที่
+// ไม่เกี่ยวกับเขาเลย
+r=await call('/api/contact-request',{sessionKey:sid});
+t('กดขอให้ติดต่อกลับได้ ทั้งที่ส่งเมลแจ้งทีมไม่ได้',r.status===200&&r.data&&r.data.ok===true,
+  `got ${r.status} ${JSON.stringify(r.data)}`);
+{
+  const chk=await call(`/api/admin/leads?q=${encodeURIComponent('ร้านทดสอบ')}`);
+  // ไม่ได้ล็อกอินหลังบ้านจึงอ่านไม่ได้ แค่ยืนยันว่า endpoint ไม่พังไปด้วย
+  t('หลังบ้านยังตอบปกติระหว่างเมลล่ม',chk.status===401,`got ${chk.status}`);
+}
+
 console.log('\n— เมลค้างไว้ให้ส่งใหม่ได้ —');
 const admin=await fetch(BASE+'/api/admin/login',{method:'POST',
   headers:{'Content-Type':'application/json',Origin:BASE},body:JSON.stringify({password:'local-admin-pass'})});

@@ -426,6 +426,61 @@ ${r.reportUrl
   });
 }
 
+// แจ้งทีมทันทีที่มีคนกด "ให้ทีม CP ติดต่อกลับ"
+//
+// คนที่กดปุ่มนี้คือคนที่ประกาศออกมาเองว่าอยากคุย มีค่ากว่าลีดที่ระบบเดาให้ว่า
+// น่าสนใจมาก ก่อนหน้านี้มันแค่ติดธงไว้ในฐานข้อมูล ถ้าทีมไม่เปิดหน้าหลังบ้านดู
+// เขาก็นั่งรอไปเรื่อย ๆ
+//
+// เนื้อหาจงใจให้ "หยิบโทรศัพท์โทรได้เลยโดยไม่ต้องเปิดอะไรเพิ่ม" — เบอร์กดโทรออก
+// ได้ทันทีจากมือถือ และมีคะแนนกับตัวเลขการเงินพอให้รู้ว่าจะเปิดบทสนทนายังไง
+export function sendLeadAlertEmail(env, to, l) {
+  const line = (k, v) => (v ? `<tr>
+<td style="padding:6px 14px 6px 0;font-size:14px;color:#8a8077;white-space:nowrap;vertical-align:top">${escapeHtml(k)}</td>
+<td style="padding:6px 0;font-size:15px;color:#17140F">${v}</td></tr>` : '');
+  const tel = l.contact ? String(l.contact).replace(/[^\d+]/g, '') : '';
+  const dims = l.scores
+    ? Object.keys(DIM_LABEL).filter((k) => l.scores[k] != null)
+      .map((k) => `${DIM_LABEL[k]} ${Math.round(l.scores[k])}`).join(' · ')
+    : '';
+  const money = l.financial && l.financial.revenue
+    ? `ยอดขาย ${Math.round(l.financial.revenue).toLocaleString('th-TH')}/เดือน`
+      + (l.financial.primePct != null ? ` · Prime Cost ${l.financial.primePct.toFixed(1)}%` : '')
+      + (l.financial.netPct != null ? ` · กำไรสุทธิ ${l.financial.netPct.toFixed(1)}%` : '')
+    : '';
+  const shop = l.shop || 'ไม่ได้ระบุชื่อร้าน';
+
+  return sendMail(env, {
+    to,
+    subject: `🔔 ขอให้ติดต่อกลับ: ${shop}${l.total != null ? ` (${l.total}/100)` : ''}`,
+    html: layout(
+      `<p style="margin:0 0 4px;font-size:15px;color:#5c554c">มีเจ้าของร้านกดปุ่ม <b>“ให้ทีม CP ติดต่อกลับ”</b> ท้ายรายงาน</p>
+<div style="margin:20px 0;padding:18px 20px;background:#FAF7F2;border-radius:13px">
+  <div style="font-size:20px;font-weight:700;color:#17140F">${escapeHtml(shop)}</div>
+  ${l.total != null ? `<div style="margin-top:4px;font-size:14px;color:#5c554c">คะแนน ${l.total}/100${l.typeName ? ` · ${escapeHtml(l.typeName)}` : ''}</div>` : ''}
+</div>
+<table style="width:100%;border-collapse:collapse">
+${line('ผู้ติดต่อ', l.name ? escapeHtml(l.name) : '')}
+${line('เบอร์โทร', tel ? `<a href="tel:${escapeHtml(tel)}" style="color:${BRAND};font-weight:700;text-decoration:none">${escapeHtml(l.contact)}</a>` : '')}
+${line('อีเมล', l.email ? `<a href="mailto:${escapeHtml(l.email)}" style="color:${BRAND}">${escapeHtml(l.email)}</a>` : '')}
+${line('จังหวัด', l.province ? escapeHtml(l.province) : '')}
+${line('ประเภทร้าน', l.shopType ? escapeHtml(l.shopType) + (l.branches ? ` · ${escapeHtml(l.branches)}` : '') : '')}
+${line('คะแนน 5 มิติ', dims ? escapeHtml(dims) : '')}
+${line('ตัวเลขการเงิน', money ? escapeHtml(money) : '')}
+${line('กดเมื่อ', escapeHtml(l.askedAt))}
+</table>
+${l.adminUrl ? button(l.adminUrl, 'เปิดดูลีดนี้ในหลังบ้าน') : ''}
+<p style="margin:22px 0 0;font-size:13.5px;color:#8a8077">อีเมลนี้ส่งอัตโนมัติทุกครั้งที่มีคนกดปุ่ม — คนละฉบับกับสรุปผลที่ส่งให้เจ้าของร้าน</p>`,
+    ),
+    text: `มีเจ้าของร้านกดปุ่ม "ให้ทีม CP ติดต่อกลับ" ท้ายรายงาน
+
+ร้าน: ${shop}${l.total != null ? `\nคะแนน: ${l.total}/100${l.typeName ? ` · ${l.typeName}` : ''}` : ''}
+${l.name ? `ผู้ติดต่อ: ${l.name}\n` : ''}${l.contact ? `เบอร์โทร: ${l.contact}\n` : ''}${l.email ? `อีเมล: ${l.email}\n` : ''}${l.province ? `จังหวัด: ${l.province}\n` : ''}${l.shopType ? `ประเภทร้าน: ${l.shopType}${l.branches ? ` · ${l.branches}` : ''}\n` : ''}${dims ? `คะแนน 5 มิติ: ${dims}\n` : ''}${money ? `ตัวเลขการเงิน: ${money}\n` : ''}กดเมื่อ: ${l.askedAt}
+${l.adminUrl ? `\nเปิดดูลีดนี้ในหลังบ้าน: ${l.adminUrl}\n` : ''}
+อีเมลนี้ส่งอัตโนมัติทุกครั้งที่มีคนกดปุ่ม — คนละฉบับกับสรุปผลที่ส่งให้เจ้าของร้าน`,
+  });
+}
+
 function escapeHtml(s) {
   return String(s == null ? '' : s).replace(/[&<>"']/g, (c) =>
     ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));

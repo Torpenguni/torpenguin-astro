@@ -87,6 +87,23 @@ if(partial){
 }else t('หาแถวทำไม่จบไม่เจอ',false);
 
 t('ไม่มี JS error',errs.length===0,errs.slice(0,2).join(' | '));
+console.log('\n— ลิงก์จากอีเมลแจ้งทีม เปิดลีดนั้นให้เลย —');
+{
+  // อีเมลแจ้งทีมมีลิงก์ /admin?lead=<id> ถ้าเปิดแล้วโยนเข้าตารางเฉย ๆ
+  // คนรับสายต้องมานั่งไล่หาเองว่าเป็นรายไหน
+  const id=await p.evaluate(()=>{
+    const tr=[...document.querySelectorAll('tbody tr')].find(r=>r.textContent.includes('ร้านมีตัวเลขครบ'));
+    return tr?tr.dataset.id:null;
+  });
+  await p.goto(`${BASE}/admin?lead=${encodeURIComponent(id)}`,{waitUntil:'networkidle0'});
+  await p.waitForSelector('.sheet .sheet-head',{timeout:10000}).catch(()=>{});
+  t('เปิดลิงก์แล้วแผงรายละเอียดเด้งขึ้นเอง', await p.$('.sheet')!==null);
+  t('เป็นลีดที่ถูกต้อง',
+    await p.$eval('.sheet',e=>e.textContent.includes('ร้านมีตัวเลขครบ')).catch(()=>false));
+  // ถอด query ออกแล้ว รีเฟรชอีกทีจะได้ไม่เด้งซ้ำ
+  t('ถอด ?lead= ออกจาก URL แล้ว', !p.url().includes('lead='), p.url());
+}
+
 console.log('\n— ลบจริงแล้วแถวหายจากตาราง —');
 {
   await p.goto(BASE+'/admin',{waitUntil:'networkidle0'});

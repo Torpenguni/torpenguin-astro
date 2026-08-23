@@ -535,9 +535,22 @@ async function openLead(id) {
   }
 }
 
+// อีเมลแจ้งทีมมีลิงก์ /admin?lead=<id> มาด้วย เปิดแล้วต้องเด้งแผงรายละเอียด
+// ของลีดนั้นให้เลย ไม่ใช่โยนเข้าตารางแล้วให้ไปไล่หาเอง เปิดครั้งเดียวพอ
+// ถ้าปิดแล้วรีเฟรชไม่ต้องเด้งซ้ำ จึงถอด query ออกจาก URL หลังเปิด
+let pendingLead = new URLSearchParams(location.search).get('lead');
+function openPendingLead() {
+  if (!pendingLead) return;
+  const id = pendingLead;
+  pendingLead = null;
+  history.replaceState(null, '', location.pathname);
+  openLead(id);
+}
+
 async function load() {
   try {
     renderDash(await api('/api/admin/leads?' + query()));
+    openPendingLead();
   } catch (e) {
     if (e.status === 401) renderLogin();
     else renderLogin(e.message);
