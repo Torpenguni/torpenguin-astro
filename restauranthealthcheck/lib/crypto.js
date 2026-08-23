@@ -1,11 +1,26 @@
 // Password hashing and token generation.
 //
 // Workers has no bcrypt/argon2, so passwords use PBKDF2-HMAC-SHA256 through
-// WebCrypto. Iterations follow the OWASP recommendation for that algorithm;
-// raising this number later is safe — stored hashes carry their own iteration
-// count, so old passwords keep verifying and get rehashed on next login.
+// WebCrypto. Stored hashes carry their own iteration count, so raising the
+// number later is safe — old passwords keep verifying and get rehashed on the
+// next login.
+//
+// Cloudflare's WebCrypto refuses more than 100,000 iterations in a single
+// deriveBits call:
+//
+//   NotSupportedError: Pbkdf2 failed: iteration counts above 100000 are not
+//   supported (requested 210000).
+//
+// The local dev runtime does not enforce that cap, so this only ever failed on
+// the deployed site — every signup and every login threw, while the whole test
+// suite passed. Rather than drop to 100,000 and halve the work an attacker has
+// to do, the derivation is split into chunks of at most 100,000 and chained:
+// each chunk's output becomes the next chunk's input, so cracking one password
+// still costs the full ITERATIONS of work. A count at or below the cap runs as
+// a single call, exactly as before, which keeps old hashes verifiable.
 
-const ITERATIONS = 210000;
+const MAX_PER_CALL = 100000;   // เพดานของ Cloudflare ต่อการเรียกหนึ่งครั้ง
+const ITERATIONS = 200000;
 const KEY_BYTES = 32;
 const SALT_BYTES = 16;
 
@@ -25,13 +40,19 @@ function fromB64(s) {
 }
 
 async function derive(password, salt, iterations) {
-  const key = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveBits']);
-  const bits = await crypto.subtle.deriveBits(
-    { name: 'PBKDF2', hash: 'SHA-256', salt, iterations },
-    key,
-    KEY_BYTES * 8,
-  );
-  return new Uint8Array(bits);
+  let material = enc.encode(password);
+  let out = null;
+  for (let left = iterations; left > 0; left -= MAX_PER_CALL) {
+    const key = await crypto.subtle.importKey('raw', material, 'PBKDF2', false, ['deriveBits']);
+    const bits = await crypto.subtle.deriveBits(
+      { name: 'PBKDF2', hash: 'SHA-256', salt, iterations: Math.min(left, MAX_PER_CALL) },
+      key,
+      KEY_BYTES * 8,
+    );
+    out = new Uint8Array(bits);
+    material = out;   // ท่อนถัดไปกินผลของท่อนก่อนหน้าเป็นวัตถุดิบ
+  }
+  return out;
 }
 
 // Constant-time compare. Length is not secret here (both are KEY_BYTES).
