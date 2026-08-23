@@ -39,6 +39,13 @@ t('มีหัวข้อติดต่อ',txt.includes('ติดต่อ'
 t('มีผลประเมิน',txt.includes('ผลประเมิน'));
 t('มีคะแนน 5 มิติ', await p.$$eval('.dimrow',r=>r.length)===5, await p.$$eval('.dimrow',r=>r.length)+' แถว');
 t('มีบล็อกข้อมูลร้าน',txt.includes('ข้อมูลร้าน'));
+// HOT/WARM/NURTURE ไม่บอกคนที่นั่งไล่โทรว่าต้องทำอะไร จึงแสดงเป็นคำสั่งงานภาษาไทย
+t('ป้ายระดับเป็นภาษาไทย',/ติดต่อก่อน|ติดตามต่อ|ยังไม่พร้อม/.test(txt),txt.match(/HOT|WARM|NURTURE/)?.[0]||'');
+t('ไม่เหลือรหัสอังกฤษให้คนอ่านเดา',!/HOT|WARM|NURTURE/.test(txt));
+t('รหัสเดิมยังดูได้จาก tooltip',
+  await p.$eval('.sheet .tier',e=>['HOT','WARM','NURTURE'].includes(e.getAttribute('title'))).catch(()=>false));
+t('ในตารางก็เป็นภาษาไทย',
+  await p.$eval('tbody',e=>/ติดต่อก่อน|ติดตามต่อ|ยังไม่พร้อม/.test(e.textContent)&&!/\bHOT\b|\bWARM\b|\bNURTURE\b/.test(e.textContent)));
 t('แผงรายละเอียดบอกจังหวัด',txt.includes('นครราชสีมา'));
 t('ในตารางก็เห็นจังหวัดโดยไม่ต้องเปิดแผง',
   await p.$eval('tbody',e=>e.textContent.includes('นครราชสีมา')));

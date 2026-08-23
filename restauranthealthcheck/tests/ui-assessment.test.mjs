@@ -191,6 +191,44 @@ t('ตัวนับ % ไม่ค้างอยู่บนหน้าร�
 // puppeteer รับเฉพาะ path แบบสตริง ส่ง URL object เข้าไปไม่ได้
 await page.screenshot({ path: fileURLToPath(new URL(`./screenshot-${process.argv[2] || 'desktop'}.png`, import.meta.url)) });
 
+console.log('\n— แผน 90 วันครอบคลุมครบทุกด้าน —');
+{
+  // เดิมแผนหยิบมาแค่ 3 ด้าน อีกสองด้านหายไปเงียบ ๆ คนอ่านเลยรู้สึกว่า
+  // ประเมินตั้ง 5 ด้าน แต่ได้แผนมาไม่ครบ
+  const plan = await page.$$eval('#repPlan .phase-block', (blocks) => blocks.map((b) => ({
+    month: b.querySelector('.ph-month').textContent.trim(),
+    dims: [...b.querySelectorAll('.pa-dim')].map((e) => e.textContent.replace(/\s+/g, ' ').trim()),
+  })));
+  const all = plan.flatMap((p) => p.dims);
+  const real = await page.evaluate(() => DIMS.map((d) => `${d.ico} ${ACTIONS[d.key].title}`));
+  t('แผนแบ่งเป็น 3 เดือน', plan.length === 3, JSON.stringify(plan.map((p) => p.month)));
+  t('แผน 90 วันมีครบทั้ง 5 ด้าน', all.length === 5, `มี ${all.length} ด้าน: ${all.join(' / ')}`);
+  t('ไม่มีด้านไหนซ้ำในแผน', new Set(all).size === all.length, all.join(' / '));
+  t('ชื่อด้านในแผนตรงกับ 5 มิติจริง',
+    all.every((x) => real.includes(x)), `แผน: ${all.join(' / ')}`);
+  t('เดือนแรกมีด้านเดียว ให้ลงแรงเต็มที่ก่อน', plan[0].dims.length === 1, JSON.stringify(plan[0].dims));
+  t('ทุกด้านในแผนมีสิ่งที่ต้องทำรายสัปดาห์',
+    await page.$$eval('#repPlan .phase-action', (a) => a.every((x) => x.querySelectorAll('.pa-weeks li').length > 0)));
+
+  // ด้านที่เลือกต้องขึ้นเดือนแรก และเปลี่ยนตัวเลือกแล้วแผนต้องจัดใหม่จริง
+  const other = await page.evaluate(() => {
+    const cur = state.focus;
+    const next = DIMS.map((d) => d.key).find((k) => k !== cur);
+    setFocus(next);
+    return { key: next, title: `${DIMS.find((d) => d.key === next).ico} ${ACTIONS[next].title}` };
+  });
+  await new Promise((r) => setTimeout(r, 400));
+  const after = await page.$$eval('#repPlan .phase-block', (blocks) => blocks.map((b) =>
+    [...b.querySelectorAll('.pa-dim')].map((e) => e.textContent.replace(/\s+/g, ' ').trim())));
+  t('เลือกด้านอื่นแล้วด้านนั้นขึ้นเดือนแรก', after[0][0] === other.title, `${after[0][0]} vs ${other.title}`);
+  t('เปลี่ยนตัวเลือกแล้วยังครบ 5 ด้านเหมือนเดิม', after.flat().length === 5, after.flat().join(' / '));
+
+  // คืนค่าตัวเลือกเดิมก่อนไปต่อ ชุดถัดไปเทียบรายงานบนจอกับรายงานที่เปิดย้อนหลัง
+  // ซึ่งเริ่มจากด้านที่ระบบแนะนำเสมอ ถ้าทิ้งไว้ตามที่เพิ่งกด สองอันจะไม่ตรงกัน
+  await page.evaluate(() => setFocus(state.focusRec));
+  await new Promise((r) => setTimeout(r, 400));
+}
+
 console.log('\n— หัวรายงานเป็นโลโก้จริง —');
 {
   // รายงานนี้ถูกพิมพ์ออกกระดาษและส่งต่อกันในร้าน หัวกระดาษจึงต้องเป็นตราจริง
@@ -352,6 +390,11 @@ if (reportLink) {
   await new Promise((r) => setTimeout(r, 900));
   const links = await page.$$eval('a.row.link', (a) => a.map((x) => x.getAttribute('href')));
   t('แถวประวัติที่ทำจบแล้วกดได้', links.length > 0, `มี ${links.length} แถวที่กดได้`);
+  // เจ้าของร้านเห็นป้ายนี้ในประวัติของตัวเอง คำว่า NURTURE ไม่ได้บอกอะไรเขาเลย
+  const badges = await page.$$eval('.tier', (els) => els.map((e) => e.textContent.trim()));
+  t('ป้ายในหน้าบัญชีเป็นภาษาไทย',
+    badges.length > 0 && badges.every((b) => /พร้อมขยาย|มีจุดต้องเสริม|ต้องวางรากฐาน/.test(b)),
+    JSON.stringify(badges));
   t('แถวประวัติชี้ไปที่รายงานฉบับเต็ม',
     links.every((h) => /^\/\?report=[A-Za-z0-9_-]+$/.test(h)), JSON.stringify(links));
   await page.click('a.row.link');

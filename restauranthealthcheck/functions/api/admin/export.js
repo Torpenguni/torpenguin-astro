@@ -1,6 +1,8 @@
 import { buildFilter, isAdmin } from '../../../lib/admin.js';
 import { fail } from '../../../lib/http.js';
 
+const TIER_TH = { HOT: 'ติดต่อก่อน', WARM: 'ติดตามต่อ', NURTURE: 'ยังไม่พร้อม' };
+
 const COLUMNS = [
   ['วันที่', (r) => new Date(r.created_at * 1000).toLocaleString('th-TH', { timeZone: 'Asia/Bangkok' })],
   ['ชื่อ', (r) => r.name],
@@ -15,7 +17,9 @@ const COLUMNS = [
   ['ทำจบ', (r) => (r.completed ? 'จบ' : 'ไม่จบ')],
   ['คะแนนรวม', (r) => r.total_score],
   ['ประเภทที่ได้', (r) => r.type_name],
-  ['Tier', (r) => r.tier],
+  // ไฟล์นี้ทีมขายเปิดอ่านเอง ไม่ใช่ระบบอ่าน จึงเขียนเป็นคำสั่งงานภาษาไทย
+  // แบบเดียวกับที่แสดงในหน้าหลังบ้าน
+  ['ความสำคัญ', (r) => TIER_TH[r.tier] || r.tier || ''],
   ['ผู้นำ (D1)', (r) => dim(r, 'D1')],
   ['การเงิน (D2)', (r) => dim(r, 'D2')],
   ['แบรนด์ (D3)', (r) => dim(r, 'D3')],

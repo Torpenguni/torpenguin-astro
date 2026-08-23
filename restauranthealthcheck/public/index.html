@@ -2327,19 +2327,27 @@ function buildReport(code,type,total,sc,tags){
 }
 
 /* ===== 90-day plan: focus picker + re-centered roadmap ===== */
+// แผน 90 วันครอบคลุมครบทั้ง 5 ด้านเสมอ
+//
+// เดิมหยิบมาแค่ 3 ด้าน (ด้านที่เลือก + อ่อนรองลงมา + อีกหนึ่ง) อีกสองด้านหายไป
+// เฉย ๆ โดยไม่บอกใคร คนอ่านเลยรู้สึกว่า "ประเมินตั้ง 5 ด้าน ได้แผนมาด้านเดียว"
+// ตอนนี้ตัวเลือกด้านบนเป็นตัวตัดสิน "ลำดับ" ไม่ใช่ "ใครได้เข้าแผน" — ด้านที่เลือก
+// ได้เดือนแรกไปคนเดียวเพื่อให้ลงแรงเต็มที่ก่อน แล้วอีกสี่ด้านเรียงจากอ่อนสุด
+// เดือนละสองด้าน
+//
+// ด้านที่คะแนนดีอยู่แล้ว (≥62) ได้แผนแบบต่อยอดจุดแข็ง ไม่ใช่แผนแก้จุดอ่อน
+// ตรงกับที่หัวข้อ "เจาะลึกราย 5 มิติ" ทำอยู่ จะได้ไม่สั่งให้ไปแก้สิ่งที่ไม่ได้พัง
 function buildPlanItems(focusKey){
   const sc=state.result.sc;
-  const arr=DIMS.map(dm=>({dm,v:sc[dm.key]})).sort((a,b)=>b.v-a.v);
-  const focus=arr.find(x=>x.dm.key===focusKey)||arr[arr.length-1];
-  const rest=arr.filter(x=>x.dm.key!==focus.dm.key);
-  const weakRest=rest.slice().reverse();
-  const strongRest=rest.filter(x=>x.v>=62);
-  const mk=(x,when)=>{const A=ACTIONS[x.dm.key];const b=x.v<38?'low':'mid';const act=(A.plans[b]||A.plans.low)[0];return Object.assign({when,dim:A.title,ico:x.dm.ico},act);};
-  const items=[mk(focus,'Now')];
-  if(weakRest[0])items.push(mk(weakRest[0],'Next'));
-  const lt=strongRest[0]||weakRest[1]||weakRest[0];
-  if(lt){const A=ACTIONS[lt.dm.key];const act=(lt.v>=62&&A.leverage)?A.leverage:(A.plans.mid||A.plans.low)[0];items.push(Object.assign({when:'Later',dim:A.title,ico:lt.dm.ico},act));}
-  return items;
+  const arr=DIMS.map(dm=>({dm,v:sc[dm.key]})).sort((a,b)=>a.v-b.v);   // อ่อนสุดมาก่อน
+  const focus=arr.find(x=>x.dm.key===focusKey)||arr[0];
+  const ordered=[focus,...arr.filter(x=>x.dm.key!==focus.dm.key)];
+  const WHEN=['Now','Next','Next','Later','Later'];
+  return ordered.map((x,i)=>{
+    const A=ACTIONS[x.dm.key];
+    const act=(x.v>=62&&A.leverage)?A.leverage:(A.plans[x.v<38?'low':'mid']||A.plans.low)[0];
+    return Object.assign({when:WHEN[i]||'Later',dim:A.title,ico:x.dm.ico},act);
+  });
 }
 function renderPlan(focusKey){
   const planItems=buildPlanItems(focusKey);
@@ -2371,7 +2379,7 @@ function renderPlan(focusKey){
 function renderFocusPicker(){
   const sc=state.result.sc,rec=state.focusRec;
   document.getElementById('repFocus').innerHTML=
-    `<div class="fp-label">อยากยกคะแนน<b>ด้านไหนก่อน?</b> เลือกเพื่อจัดแผน 90 วันให้โฟกัสด้านนั้น</div>`+
+    `<div class="fp-label">อยากยกคะแนน<b>ด้านไหนก่อน?</b> ด้านที่เลือกจะได้เดือนแรกไปเต็ม ๆ — แผนครอบคลุมครบทั้ง 5 ด้านเสมอ</div>`+
     `<div class="fp-chips">`+DIMS.map(d=>{
       const sel=d.key===state.focus?' sel':'';
       return `<button type="button" class="fp-chip${sel}" onclick="setFocus('${d.key}')">${d.ico} ${d.th}<span class="fp-score">${sc[d.key]}</span>${d.key===rec?'<span class="fp-rec">แนะนำ</span>':''}</button>`;

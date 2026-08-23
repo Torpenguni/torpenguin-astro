@@ -100,6 +100,9 @@ t('declares the separator for Excel',r.text.replace(/^\uFEFF/,'').startsWith('se
 t('thai headers present',/ชื่อร้าน/.test(r.text)&&/คะแนนรวม/.test(r.text));
 // ทีม CP แบ่งพื้นที่กันดูแล จังหวัดจึงต้องติดไปกับไฟล์ที่เอาไปแบ่งงานกันจริง
 t('CSV มีคอลัมน์จังหวัด',/จังหวัด/.test(r.text));
+// ไฟล์นี้ทีมขายเปิดอ่านเอง ไม่ใช่ระบบอ่าน รหัส HOT/WARM/NURTURE จึงต้องแปลแล้ว
+t('CSV แปลระดับความสำคัญเป็นไทย',/ความสำคัญ/.test(r.text)&&/ติดต่อก่อน/.test(r.text));
+t('CSV ไม่เหลือรหัสอังกฤษ',!/\bHOT\b|\bWARM\b|\bNURTURE\b/.test(r.text));
 t('CSV มีจังหวัดของแถวเรา',r.text.includes('สุราษฎร์ธานี'));
 t('our row is in the csv',r.text.includes('ร้านชาบูหัวมุม')&&r.text.includes(EMAIL));
 t('dimension columns exported',/70/.test(r.text)&&/64/.test(r.text));

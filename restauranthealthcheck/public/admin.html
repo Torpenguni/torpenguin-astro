@@ -198,6 +198,14 @@ function renderLogin(message) {
   $('pw').focus();
 }
 
+// HOT / WARM / NURTURE เป็นรหัสภายในที่ตัวกรองกับไฟล์ CSV ใช้อ้างถึง แต่คนที่
+// นั่งไล่โทรอ่านแล้วไม่รู้ว่าต้องทำอะไรกับมัน จึงแสดงเป็นคำสั่งงานภาษาไทยแทน
+// ค่าที่เก็บในฐานข้อมูลยังเป็นรหัสเดิม (เห็นได้จาก tooltip เวลาเอาเมาส์ชี้)
+const TIER_TH = { HOT: 'ติดต่อก่อน', WARM: 'ติดตามต่อ', NURTURE: 'ยังไม่พร้อม' };
+const tierPill = (t, extra = '') => (t
+  ? `<span class="tier ${esc(t)}" title="${esc(t)}"${extra}>${esc(TIER_TH[t] || t)}</span>`
+  : '');
+
 function renderDash(d) {
   const s = d.stats;
   const pages = Math.max(1, Math.ceil(d.total / d.pageSize));
@@ -214,7 +222,7 @@ function renderDash(d) {
   <td>${l.completed ? '' : '<span class="pill">ไม่จบ</span>'}
       ${l.mode === 'quick' ? '<span class="pill">ด่วน</span>' : ''}</td>
   <td class="score">${l.total != null ? l.total : '—'}</td>
-  <td>${l.tier ? `<span class="tier ${esc(l.tier)}">${esc(l.tier)}</span>` : '—'}
+  <td>${tierPill(l.tier) || '—'}
       <div style="font-size:12px;color:var(--faint)">${esc(l.typeName || '')}</div></td>
   <td class="dims">${l.scores ? ['D1','D2','D3','D4','D5'].map((k) =>
       l.scores[k] != null ? Math.round(l.scores[k]) : '–').join(' · ') : '—'}</td>
@@ -243,10 +251,10 @@ function renderDash(d) {
 
   <div class="filters">
     <div><label for="f_q">ค้นหา</label><input id="f_q" placeholder="ชื่อร้าน ชื่อ อีเมล เบอร์" value="${esc(state.filters.q || '')}"></div>
-    <div><label for="f_tier">Tier</label><select id="f_tier">
+    <div><label for="f_tier">ความสำคัญ</label><select id="f_tier">
       <option value="">ทั้งหมด</option>
       ${['HOT','WARM','NURTURE'].map((t) =>
-        `<option value="${t}"${state.filters.tier === t ? ' selected' : ''}>${t}</option>`).join('')}
+        `<option value="${t}"${state.filters.tier === t ? ' selected' : ''}>${TIER_TH[t]}</option>`).join('')}
     </select></div>
     <div><label for="f_type">ประเภทร้าน</label><select id="f_type">
       <option value="">ทั้งหมด</option>
@@ -279,7 +287,7 @@ function renderDash(d) {
   <div class="tablewrap">
     ${rows ? `<table><thead><tr>
       <th>วันที่</th><th>ร้าน</th><th>ติดต่อ</th><th>ประเภท</th><th></th>
-      <th>คะแนน</th><th>Tier</th><th>D1·D2·D3·D4·D5</th><th></th>
+      <th>คะแนน</th><th>ความสำคัญ</th><th>D1·D2·D3·D4·D5</th><th></th>
     </tr></thead><tbody>${rows}</tbody></table>`
     : '<div class="empty">ยังไม่มีข้อมูลตามเงื่อนไขนี้</div>'}
   </div>
@@ -372,7 +380,7 @@ function leadSheet(l) {
     ${l.total != null ? `<div class="bigscore">
       <span class="n" style="color:${dimColor(l.total)}">${l.total}</span>
       <span class="d">/100</span>
-      ${l.tier ? `<span class="tier ${esc(l.tier)}" style="margin-left:auto">${esc(l.tier)}</span>` : ''}
+      ${tierPill(l.tier, ' style="margin-left:auto"')}
     </div>
     ${l.typeName ? `<div style="font-size:14px;color:var(--muted);margin-bottom:14px">${esc(l.typeName)}</div>` : ''}`
     : `<div style="color:var(--faint);font-size:14px;margin-bottom:12px">ทำไม่จบ — ไม่มีคะแนน</div>`}
