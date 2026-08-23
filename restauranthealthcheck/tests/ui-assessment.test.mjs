@@ -191,6 +191,28 @@ t('ตัวนับ % ไม่ค้างอยู่บนหน้าร�
 // puppeteer รับเฉพาะ path แบบสตริง ส่ง URL object เข้าไปไม่ได้
 await page.screenshot({ path: fileURLToPath(new URL(`./screenshot-${process.argv[2] || 'desktop'}.png`, import.meta.url)) });
 
+console.log('\n— หัวรายงานเป็นโลโก้จริง —');
+{
+  // รายงานนี้ถูกพิมพ์ออกกระดาษและส่งต่อกันในร้าน หัวกระดาษจึงต้องเป็นตราจริง
+  // เหมือนหัวเว็บ ไม่ใช่ข้อความ "PenguinX × CP" ที่พิมพ์ด้วยฟอนต์เฉย ๆ
+  const logos = await page.$$eval('.rep-head img', (els) => els.map((e) => ({
+    src: e.getAttribute('src'), alt: e.alt,
+    w: Math.round(e.getBoundingClientRect().width),
+    h: Math.round(e.getBoundingClientRect().height),
+    loaded: e.complete && e.naturalWidth > 0,
+  })));
+  t('หัวรายงานมีโลโก้สองอัน', logos.length === 2, JSON.stringify(logos));
+  t('เป็นโลโก้ PenguinX กับ CP',
+    logos.some((l) => /penguinx/.test(l.src)) && logos.some((l) => /cp/.test(l.src)), JSON.stringify(logos.map((l) => l.src)));
+  // ไฟล์รูปที่ 404 ยังนับเป็น <img> อยู่ ต้องเช็คว่ามันโหลดขึ้นมาจริง
+  t('ไฟล์โลโก้โหลดขึ้นจริง ไม่ใช่รูปเสีย', logos.every((l) => l.loaded), JSON.stringify(logos));
+  t('โลโก้มีขนาดจริงบนหน้า', logos.every((l) => l.w > 10 && l.h > 10), JSON.stringify(logos));
+  t('มีคำว่า Sponsored by กำกับ',
+    await page.$eval('.rep-head', (el) => /Sponsored by/i.test(el.textContent)));
+  t('ไม่เหลือข้อความ × CP แบบเก่า',
+    await page.$eval('.rep-head', (el) => !/×\s*CP/.test(el.textContent)));
+}
+
 // เก็บรายงานที่เห็นบนจอไว้เทียบทีหลัง ตอนเปิดย้อนหลังต้องได้เหมือนกันทุกตัวอักษร
 const reportOnScreen = await page.$eval('#reportDoc', (el) => el.textContent.replace(/\s+/g, ' ').trim());
 

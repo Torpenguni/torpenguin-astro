@@ -109,6 +109,36 @@ t('เบอร์สั้นเกินไปถูกปฏิเสธ', !r
 r = await submit('081-234-5678');
 t('เบอร์ที่ถูกต้องผ่านได้', r.moved, r.err);
 
+console.log('\n— หน้าแรกบอกว่า 5 มิติคืออะไร —');
+{
+  await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
+  const dims = await page.$$eval('.lp-dim', (els) => els.map((e) => ({
+    name: e.querySelector('b').textContent.trim(),
+    desc: (e.querySelector('span:not(.lp-dico)') || {}).textContent?.trim() || '',
+    icon: e.querySelector('.lp-dico').textContent.trim(),
+    color: getComputedStyle(e).getPropertyValue('--c').trim(),
+    visible: e.offsetParent !== null,
+  })));
+  t('หน้าแรกลิสต์ครบทั้ง 5 มิติ', dims.length === 5, `มี ${dims.length}`);
+  t('ทุกมิติมองเห็นได้จริงบนหน้าแรก', dims.every((d) => d.visible));
+  t('ทุกมิติมีคำอธิบายว่าวัดอะไร', dims.every((d) => d.desc.length > 15),
+    JSON.stringify(dims.map((d) => d.desc.length)));
+  t('ทุกมิติมีไอคอนกำกับ', dims.every((d) => d.icon.length > 0));
+
+  // ชื่อบนหน้าแรกต้องตรงกับชื่อจริงใน DIMS เป๊ะ ถ้าวันหนึ่งมีคนแก้ชื่อมิติในโค้ด
+  // แล้วลืมแก้หน้าแรก คนจะอ่านเจอชื่อหนึ่งตอนกดเริ่ม แล้วเจออีกชื่อในรายงาน
+  const real = await page.evaluate(() => DIMS.map((d) => ({ th: d.th, c: d.c })));
+  t('ชื่อมิติบนหน้าแรกตรงกับชื่อจริงในระบบ',
+    dims.map((d) => d.name).join('|') === real.map((d) => d.th).join('|'),
+    `หน้าแรก: ${dims.map((d) => d.name).join(', ')}`);
+  t('สีประจำมิติตรงกับที่ใช้ในรายงาน',
+    dims.every((d, i) => d.color.toLowerCase() === real[i].c.toLowerCase()),
+    JSON.stringify(dims.map((d, i) => `${d.color} vs ${real[i].c}`)));
+
+  t('มีหัวข้อบอกว่านี่คือสิ่งที่วัด',
+    await page.$eval('.lp-what', (el) => /วัดอะไรบ้าง/.test(el.textContent)));
+}
+
 console.log('\n— จังหวัดที่ตั้งร้าน —');
 {
   // ทีม CP แบ่งพื้นที่กันดูแลลีด ถ้าปล่อยให้พิมพ์เองจะได้ "กทม." "กรุงเทพ"
