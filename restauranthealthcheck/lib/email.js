@@ -180,7 +180,7 @@ function statusColor(text) {
   return '#5c554c';
 }
 
-// ข้อความที่มีการขึ้นบรรทัดโดยตั้งใจ (บทสรุปผู้บริหาร, ก้าวต่อไป) ต้องคง
+// ข้อความที่มีการขึ้นบรรทัดโดยตั้งใจ (เช่นบทสรุปผู้บริหาร) ต้องคง
 // การขึ้นบรรทัดนั้นไว้ใน HTML ด้วย ไม่งั้นสองย่อหน้าจะกลายเป็นก้อนเดียวติดกัน
 function paragraphs(text) {
   return escapeHtml(text).split('\n').join('<br>');
@@ -356,7 +356,6 @@ function reportText(rep) {
       if ((n.tags || []).length) out.push('    ' + n.tags.join(' · '));
     });
   }
-  if (rep.next) { head('ก้าวต่อไป'); out.push(rep.next); }
   return out.join('\n');
 }
 
@@ -404,8 +403,6 @@ ${dimsHtml(rep)}
 ${dragHtml(rep)}
 ${planHtml(rep)}
 ${notesHtml(rep)}
-${rep && rep.next ? section('ก้าวต่อไป',
-  `<p style="margin:0;font-size:15px;line-height:1.75;color:#3b352d">${paragraphs(rep.next)}</p>`) : ''}
 ${button(link, 'เปิดรายงานฉบับเต็มบนเว็บ')}
 <p style="margin:22px 0 0;font-size:14px;color:#5c554c">
 ${r.reportUrl

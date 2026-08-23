@@ -152,6 +152,31 @@ t('ตัดขั้นตอนที่ไม่เกี่ยวออก�
 t('ถ้าตัดแล้วเหลือน้อยกว่า 2 ขั้น ให้คงของเดิมไว้ ไม่ปล่อยแผนกลวง',
   rel.solo.prunedThin.length === 3, JSON.stringify(rel.solo.prunedThin));
 
+console.log('\n— ไม่มีคำถามไหนถามไปแล้วทิ้ง —');
+{
+  // ถามเขา 48 ข้อแล้วเอาไปแค่บวกเป็นคะแนน โดยเนื้อหาไม่เคยโผล่ในรายงานเลย
+  // คือการเสียเวลาของเขาฟรี ๆ ทุกข้อต้องมีทางออกอย่างน้อยหนึ่งทาง:
+  // เป็นคีย์ที่กฎในรายงานเรียกใช้ / ถามต่อว่าเพราะอะไร / ผูกกับตารางเทียบต้นทุน
+  const wasted = await page.evaluate(() => {
+    const src = [...document.querySelectorAll('script')].map((s) => s.textContent).join('\n');
+    const used = new Set();
+    for (const m of src.matchAll(/ans(?:Val|Idx)\('([^']+)'\)/g)) used.add(m[1]);
+    return QUESTIONS
+      .map((q, i) => ({ i, q: q.q.slice(0, 40),
+        ok: (q.k && used.has(q.k)) || (q.o || []).some((o) => o.sub) || !!q.bm || q.type === 'profile' }))
+      .filter((x) => !x.ok);
+  });
+  t('ทุกคำถามมีที่ใช้ในรายงาน ไม่ได้ถามไปเปล่า ๆ', wasted.length === 0,
+    wasted.map((x) => `ข้อ ${x.i}: ${x.q}`).join(' · '));
+
+  // ข้อสังเกตเชิงลึกต้องเยอะพอที่ร้านต่างกันจะได้คนละชุด
+  const rules = await page.evaluate(() => {
+    const src = [...document.querySelectorAll('script')].map((s) => s.textContent).join('\n');
+    return (src.match(/out\.push\(\{sev:/g) || []).length;
+  });
+  t(`มีกฎเชื่อมโยงคำตอบอย่างน้อย 40 กฎ (ตอนนี้ ${rules})`, rules >= 40);
+}
+
 console.log('\n— ไม่มี JavaScript error —');
 t('ไม่มี error หลุดออกมา', errs.length === 0, errs.slice(0, 3).join(' | '));
 
