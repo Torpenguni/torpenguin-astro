@@ -144,6 +144,66 @@ console.log('\n— หน้าแรกบอกว่า 5 มิติคื�
     `${rows} บรรทัด`);
 }
 
+console.log('\n— คำถามอ่านรู้เรื่อง —');
+{
+  await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
+  // กติกา: ตัวคำถามกับตัวเลือกต้องเป็นภาษาไทยที่อ่านแล้วตอบได้ทันที — ตรงนั้นคนต้อง
+  // ตัดสินใจเร็ว ไม่มีเวลามาแปลศัพท์ ส่วนคำอธิบายใต้คำถาม/ปุ่ม ℹ️ ยกศัพท์อังกฤษ
+  // มาสอนได้ เพราะเจ้าของร้านจะได้ยินคำพวกนี้จากธนาคารหรือนักลงทุนอยู่ดี
+  // แต่ต้องมาในวงเล็บคู่กับคำไทยเสมอ ไม่ใช่โผล่ลอย ๆ
+  // (Food Cost / Labor Cost / LINE / ชื่อประเภทร้าน ยกเว้นไว้ เพราะใช้กันจริงในวงการ)
+  const BANNED = ['AOV', 'Repeat', 'Runway', 'Payback', 'Cashflow', 'Turnover',
+    'Occupancy', 'break-even', 'par stock', 'pricing power', 'Pricing Power',
+    'engagement', 'reach', 'on-the-job', 'retail', 'data'];
+  const found = await page.evaluate((banned) => {
+    const hits = [];
+    QUESTIONS.forEach((q, i) => {
+      const parts = [q.q]
+        .concat((q.o || []).map((o) => o.t))
+        .concat((q.o || []).flatMap((o) => o.sub ? [o.sub.q].concat(o.sub.o.map((x) => x.t)) : []));
+      parts.forEach((t) => banned.forEach((w) => {
+        if (String(t).includes(w)) hits.push(`ข้อ ${i}: "${w}" ใน "${String(t).slice(0, 45)}"`);
+      }));
+    });
+    return hits;
+  }, BANNED);
+  t('ไม่มีศัพท์เทคนิคที่คนทั่วไปอ่านไม่ออกในคำถามหรือตัวเลือก', found.length === 0, found.slice(0, 4).join(' · '));
+
+  const naked = await page.evaluate((banned) => {
+    const hits = [];
+    QUESTIONS.forEach((q, i) => {
+      [q.s || '', q.info || ''].forEach((t) => banned.forEach((w) => {
+        const txt = String(t);
+        if (txt.includes(w) && !txt.includes('(' + w) && !txt.includes(w + ' =') && !txt.includes(w + ':')) {
+          hits.push(`ข้อ ${i}: "${w}"`);
+        }
+      }));
+    });
+    return hits;
+  }, BANNED);
+  t('ศัพท์อังกฤษในคำอธิบายมาคู่กับคำไทยเสมอ ไม่โผล่ลอย ๆ', naked.length === 0, naked.slice(0, 4).join(' · '));
+
+  // คำถามยาวเกินไปบนมือถือจะกลายเป็นกำแพงตัวหนังสือ
+  const longest = await page.evaluate(() => Math.max(...QUESTIONS.map((q) => q.q.length)));
+  t('ไม่มีคำถามยาวเกิน 80 ตัวอักษร', longest <= 80, `ยาวสุด ${longest}`);
+
+  // คำถามถูกอ้างถึงด้วยคีย์ถาวร ไม่ใช่ข้อความ — ข้อความจะได้แก้ให้อ่านง่ายขึ้นได้
+  // โดยไม่ทำให้กฎในรายงานหาคำถามไม่เจอแล้วเงียบหายไป
+  const keys = await page.evaluate(() => {
+    const src = [...document.querySelectorAll('script')].map((s) => s.textContent).join('\n');
+    const used = new Set();
+    for (const m of src.matchAll(/ans(?:Val|Idx)\('([^']+)'\)/g)) used.add(m[1]);
+    QUICK_KEYS.forEach((k) => used.add(k));
+    const have = QUESTIONS.map((q) => q.k).filter(Boolean);
+    return { used: [...used], have, missing: [...used].filter((k) => !have.includes(k)),
+      dup: have.filter((k, i, a) => a.indexOf(k) !== i), quick: quickOrder() };
+  });
+  t('ทุกคีย์ที่โค้ดเรียกใช้ มีคำถามรองรับจริง', keys.missing.length === 0, keys.missing.join(', '));
+  t('ไม่มีคีย์ซ้ำกัน', keys.dup.length === 0, keys.dup.join(', '));
+  t('โหมดด่วนยังได้ครบ 10 ข้อ ไม่ซ้ำ',
+    keys.quick.length === 10 && new Set(keys.quick).size === 10, `ได้ ${keys.quick.length} ข้อ`);
+}
+
 console.log('\n— จังหวัดที่ตั้งร้าน —');
 {
   // ทีม CP แบ่งพื้นที่กันดูแลลีด ถ้าปล่อยให้พิมพ์เองจะได้ "กทม." "กรุงเทพ"
