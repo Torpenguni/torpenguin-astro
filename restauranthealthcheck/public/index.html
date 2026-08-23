@@ -368,6 +368,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='12
   --bg:#FCFBF8;--surface:#FFFFFF;--surface-2:#F4F2EC;--line:#E8E5DD;--line-2:#D8D4C8;
   --ink:#17140F;--ink-dim:#6A645A;--ink-faint:#A8A192;
   --accent:#C8102E;--accent-soft:#FBEAEC;
+  --cta-bg:#FDB813;--cta-bg-hi:#FFC53D;--cta-ink:#A00C24;
   --amber:#C8102E;--amber-lo:#C8102E;--amber-glow:rgba(23,20,15,.08);
   --green:#1C8F4E;--red:#C8102E;
   --serif:'IBM Plex Sans','IBM Plex Sans Thai',sans-serif;
@@ -397,6 +398,22 @@ header{background:rgba(252,251,248,.82);backdrop-filter:blur(16px) saturate(1.4)
   .cobrand .lg-px{height:18px}
   .cobrand .lg-cp{height:30px}
   .cobrand .cp{font-size:11px;gap:6px}
+}
+
+/* ปุ่มเข้าสู่ระบบ — เดิมเป็นลิงก์ตัวหนังสือเทาที่เกาะติดโลโก้ CP อ่านแวบแรก
+   เหมือนเป็นก้อนเดียวกัน flex:1 ทำให้กล่องกินความกว้างเต็มแถบ margin-left:auto
+   ที่เขียนไว้แต่แรกถึงจะมีที่ให้ดีดปุ่มไปชิดขวาได้จริง
+   สีตัวอักษรใช้แดงเข้มกว่าแดงแบรนด์เล็กน้อย เพราะแดง #C8102E บนเหลือง #FDB813
+   ให้ค่าความต่างแค่ 3.4:1 ต่ำกว่าเกณฑ์อ่านง่าย 4.5:1 — ที่ตัวหนังสือ 13px
+   คนสายตาสั้นหรืออยู่กลางแดดจะอ่านไม่ออก ค่านี้ได้ 4.7:1 แต่ตาเปล่าแทบแยกไม่ออก */
+.cobrand{flex:1}
+.cobrand .acct{margin-left:auto;background:var(--cta-bg);color:var(--cta-ink);
+  font-size:13px;font-weight:700;padding:7px 15px;border-radius:999px;
+  transition:background .15s ease,transform .15s ease}
+.cobrand .acct:hover{background:var(--cta-bg-hi);color:var(--cta-ink);transform:translateY(-1px)}
+.cobrand .acct:active{transform:translateY(0)}
+@media(max-width:600px){
+  .cobrand .acct{font-size:12px;padding:6px 12px}
 }
 .progress-mini{font-variant-numeric:tabular-nums}
 
