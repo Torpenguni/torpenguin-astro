@@ -447,6 +447,10 @@ header{background:rgba(252,251,248,.82);backdrop-filter:blur(16px) saturate(1.4)
   display:flex;align-items:center;flex-wrap:wrap;gap:0 4px}
 .acct-mail b{color:var(--ink);font-weight:600}
 
+/* บอกคนที่ต่อยอดจากแบบ 10 ข้อว่าคำตอบเดิมไม่ได้หายไปไหน */
+.carried{background:rgba(28,143,78,.09);color:#15803d;border-radius:9px;padding:9px 13px;
+  font-size:13px;font-weight:600;margin-bottom:14px;line-height:1.5}
+
 /* ประตูก่อนเข้าโหมดละเอียด */
 .gate{position:fixed;inset:0;background:rgba(23,20,15,.55);display:flex;align-items:center;
   justify-content:center;padding:22px;z-index:60;animation:fade .2s ease}
@@ -736,6 +740,7 @@ h1 .accent{font-weight:600;color:var(--accent)}
 <section class="screen" id="s-quiz"><div class="wrap pad">
   <div class="quiz-head"><div class="dim-tag" id="qDimTag"></div><div class="q-count num" id="qCount"></div></div>
   <div class="track"><div class="fill" id="qFill"></div></div>
+  <div class="carried" id="qCarried" style="display:none"></div>
   <div class="q-text" id="qText"></div>
   <div class="q-sub" id="qSub"></div>
   <div class="info-toggle" id="qInfoToggle" onclick="toggleInfo()">ℹ️ ทำไมข้อนี้สำคัญ</div>
@@ -1543,6 +1548,14 @@ function toggleInfo(){infoOpen=!infoOpen;document.getElementById('qInfo').classL
 function renderQ(){
   const i=state.order[state.idx],q=QUESTIONS[i],dim=DIMS.find(d=>d.key===q.d);
   const total=state.order.length,pos=state.idx;
+  // คนที่ต่อยอดจากแบบ 10 ข้อจะเห็นเลข "1 / 37" ซึ่งดูเหมือนเริ่มใหม่หมด
+  // บอกไปตรง ๆ ตรงข้อแรกว่าของเดิมยังอยู่ครบ แล้วเก็บออกไปหลังจากนั้น
+  const cr=document.getElementById('qCarried');
+  if(cr){
+    const show=state.carriedOver>0&&state.idx===0;
+    cr.style.display=show?'':'none';
+    if(show)cr.textContent=`✅ เก็บคำตอบ ${state.carriedOver} ข้อแรกไว้ให้แล้ว — เหลืออีก ${total} ข้อ`;
+  }
   document.getElementById('qDimTag').innerHTML=`<span class="dchip" style="background:${dim.c}1A;color:${dim.c}">${dim.ico}</span> <span>${dim.th}</span>`;
   document.getElementById('qDimTag').style.color=dim.c;
   document.getElementById('qFill').style.background=dim.c;
@@ -1976,10 +1989,20 @@ function showQuickResult(){
 async function continueToDeep(){
   if(await needsAccount()){track('gate_shown','upsell');openGate();return;}
   track('upsell_deep');state.mode='deep';
-  // ตัดคำถามประเภทร้านออกเหมือนตอนเริ่มใหม่ ไม่งั้นคนที่ทำ 10 ข้อแล้วต่อยอด
-  // จะเจอคำถามที่ตอบไปแล้วตอนกรอกข้อมูลร้านซ้ำอีกรอบ
+  // ต่อยอดจากแบบ 10 ข้อ = ถามเฉพาะข้อที่ยังไม่ได้ตอบ
+  //
+  // คำตอบเดิมอยู่ใน state.answers ครบอยู่แล้วและถูกนำไปคิดคะแนนเหมือนกัน การให้
+  // เดินผ่านข้อที่ตอบไปแล้วอีก 10 ครั้งไม่ได้เพิ่มอะไร มีแต่ทำให้รู้สึกว่าต้อง
+  // เริ่มใหม่ทั้งหมด ซึ่งเป็นเหตุผลที่คนเลิกกลางคัน
+  // คำถามประเภทร้านถูกตอบไว้จากฟอร์มแล้วเช่นกัน จึงตัดออกด้วย
   const pi=QUESTIONS.findIndex(q=>q.type==='profile');
-  state.order=QUESTIONS.map((_,i)=>i).filter(i=>i!==pi);
+  // ใช้ answered() ตัวเดียวกับที่ปุ่ม "ถัดไป" ใช้ตัดสิน มันรู้จักคำถามแบบตาราง
+  // และคำถามย่อยที่บังคับตอบด้วย จะได้ไม่นับข้อที่ตอบไม่ครบว่าตอบแล้ว
+  const remaining=QUESTIONS.map((_,i)=>i).filter(i=>i!==pi&&!answered(i));
+  const done=QUESTIONS.length-1-remaining.length;
+  // ถ้าตอบครบไปแล้วทุกข้อ (เข้ามาซ้ำรอบสอง) ให้เดินทั้งหมดตามเดิม จะได้ไม่ค้าง
+  state.order=remaining.length?remaining:QUESTIONS.map((_,i)=>i).filter(i=>i!==pi);
+  state.carriedOver=remaining.length?done:0;
   state.idx=0;go('s-quiz');renderQ();
 }
 
