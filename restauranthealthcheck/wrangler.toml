@@ -15,4 +15,4 @@ binding = "DB"
 database_name = "restauranthealthcheck"
 # ⚠️ แทนที่ด้วย database_id จริงจาก `npx wrangler d1 create restauranthealthcheck`
 # ก่อนรัน `npm run db:remote` (ค่านี้เป็นแค่ตัวยึดที่ทำให้รันในเครื่องได้)
-database_id = "00000000-0000-0000-0000-000000000000"
+database_id = "67e4f69c-679c-4a2f-8fc6-8b8d6fa2585a"
