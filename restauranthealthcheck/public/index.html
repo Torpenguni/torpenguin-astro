@@ -673,17 +673,16 @@ h1 .accent{font-weight:600;color:var(--accent)}
 .lp-dimlabels{display:flex;gap:9px;margin-top:8px;padding:0 3px}
 .lp-dimlabels span{flex:1;text-align:center;font-size:9.5px;color:var(--ink-faint);letter-spacing:.01em}
 /* ห้ามิติที่วัด — บอกแค่ว่ามีด้านไหนบ้าง ให้กวาดตาอ่านจบในวินาทีเดียว
-   สีชิปใช้สีประจำมิติเดียวกับที่ใช้ในรายงานและกราฟ เพื่อให้จำสีได้ตั้งแต่แรก */
+   สีเดียวทั้งแถวโดยตั้งใจ ห้าสีเรียงกันแย่งสายตากับปุ่มเริ่มที่อยู่ถัดลงไป
+   ทั้งที่ตรงนี้ยังไม่มีคะแนนอะไรให้แยกด้วยสี — สีประจำมิติไปโผล่ตอนดูผลแทน */
 .lp-what{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:0 0 30px;
   padding-top:18px;border-top:1px solid var(--line)}
 .lp-what-k{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.14em;
   text-transform:uppercase;color:var(--ink-faint);flex:0 0 auto}
 .lp-dimlist{display:flex;flex-wrap:wrap;gap:8px}
-.lp-dim{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;
-  color:var(--ink);white-space:nowrap;padding:6px 12px 6px 7px;border-radius:99px;
-  background:color-mix(in srgb,var(--c) 9%,transparent);
-  border:1px solid color-mix(in srgb,var(--c) 24%,transparent)}
-.lp-dico{font-size:14px;line-height:1}
+.lp-dim{display:inline-flex;align-items:center;font-size:13.5px;font-weight:600;
+  color:var(--ink-dim);white-space:nowrap;padding:6px 13px;border-radius:99px;
+  background:var(--surface);border:1px solid var(--line-2)}
 .lp-trust{display:flex;flex-wrap:wrap;gap:7px 20px;margin-top:16px;font-size:12.5px;color:var(--ink-faint)}
 .lp-trust span{position:relative}
 .lp-trust span+span::before{content:"";position:absolute;left:-11px;top:50%;width:3px;height:3px;border-radius:50%;background:var(--line-2);transform:translateY(-50%)}
@@ -738,7 +737,7 @@ h1 .accent{font-weight:600;color:var(--accent)}
        มีแค่ป้ายเล็ก ๆ ใต้เกจในภาพตัวอย่าง ซึ่งอ่านไม่ออกและไม่ได้อธิบายอะไร -->
   <div class="lp-what">
     <span class="lp-what-k">วัดอะไรบ้าง</span>
-    <div class="lp-dimlist"><span class="lp-dim" style="--c:var(--d1)"><span class="lp-dico">🧭</span>ตัวเจ้าของ &amp; ผู้นำ</span><span class="lp-dim" style="--c:var(--d2)"><span class="lp-dico">💰</span>สุขภาพการเงิน</span><span class="lp-dim" style="--c:var(--d3)"><span class="lp-dico">📣</span>แบรนด์ &amp; การตลาด</span><span class="lp-dim" style="--c:var(--d4)"><span class="lp-dico">⚙️</span>ระบบ &amp; ทีม</span><span class="lp-dim" style="--c:var(--d5)"><span class="lp-dico">🚀</span>ความพร้อมขยาย</span></div>
+    <div class="lp-dimlist"><span class="lp-dim">ตัวเจ้าของ &amp; ผู้นำ</span><span class="lp-dim">สุขภาพการเงิน</span><span class="lp-dim">แบรนด์ &amp; การตลาด</span><span class="lp-dim">ระบบ &amp; ทีม</span><span class="lp-dim">ความพร้อมขยาย</span></div>
   </div>
 
   <div class="mode-pick">

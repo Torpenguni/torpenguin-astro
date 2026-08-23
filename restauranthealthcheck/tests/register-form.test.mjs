@@ -113,26 +113,25 @@ console.log('\n— หน้าแรกบอกว่า 5 มิติคื�
 {
   await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
   const dims = await page.$$eval('.lp-dim', (els) => els.map((e) => ({
-    // ชื่อมิติคือข้อความในชิปหลังจากตัดไอคอนออก
-    name: [...e.childNodes].filter((n) => n.nodeType === 3).map((n) => n.textContent).join('').trim(),
-    icon: e.querySelector('.lp-dico').textContent.trim(),
-    color: getComputedStyle(e).getPropertyValue('--c').trim(),
+    name: e.textContent.trim(),
     visible: e.offsetParent !== null,
+    bg: getComputedStyle(e).backgroundColor,
+    border: getComputedStyle(e).borderTopColor,
+    color: getComputedStyle(e).color,
   })));
   t('หน้าแรกลิสต์ครบทั้ง 5 มิติ', dims.length === 5, `มี ${dims.length}`);
   t('ทุกมิติมองเห็นได้จริงบนหน้าแรก', dims.every((d) => d.visible));
-  t('ทุกมิติมีไอคอนกำกับ', dims.every((d) => d.icon.length > 0));
+  // สีเดียวทั้งแถว — ห้าสีเรียงกันแย่งสายตากับปุ่มเริ่มที่อยู่ถัดลงไป
+  t('ชิปทั้งห้าใช้สีเดียวกันหมด',
+    new Set(dims.map((d) => `${d.bg}|${d.border}|${d.color}`)).size === 1,
+    JSON.stringify([...new Set(dims.map((d) => `${d.bg}|${d.border}|${d.color}`))]));
 
   // ชื่อบนหน้าแรกต้องตรงกับชื่อจริงใน DIMS เป๊ะ ถ้าวันหนึ่งมีคนแก้ชื่อมิติในโค้ด
   // แล้วลืมแก้หน้าแรก คนจะอ่านเจอชื่อหนึ่งตอนกดเริ่ม แล้วเจออีกชื่อในรายงาน
-  const real = await page.evaluate(() => DIMS.map((d) => ({ th: d.th, c: d.c })));
+  const real = await page.evaluate(() => DIMS.map((d) => ({ th: d.th })));
   t('ชื่อมิติบนหน้าแรกตรงกับชื่อจริงในระบบ',
     dims.map((d) => d.name).join('|') === real.map((d) => d.th).join('|'),
     `หน้าแรก: ${dims.map((d) => d.name).join(', ')}`);
-  t('สีประจำมิติตรงกับที่ใช้ในรายงาน',
-    dims.every((d, i) => d.color.toLowerCase() === real[i].c.toLowerCase()),
-    JSON.stringify(dims.map((d, i) => `${d.color} vs ${real[i].c}`)));
-
   t('มีหัวข้อบอกว่านี่คือสิ่งที่วัด',
     await page.$eval('.lp-what', (el) => /วัดอะไรบ้าง/.test(el.textContent)));
   // หน้าแรกต้องกระชับ: ไม่มีบล็อกอธิบายสิ่งที่จะได้รับ (01-03) มาถ่วงอีก
