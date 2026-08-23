@@ -188,6 +188,94 @@ t('ตัวนับ % ไม่ค้างอยู่บนหน้าร�
 // puppeteer รับเฉพาะ path แบบสตริง ส่ง URL object เข้าไปไม่ได้
 await page.screenshot({ path: fileURLToPath(new URL(`./screenshot-${process.argv[2] || 'desktop'}.png`, import.meta.url)) });
 
+console.log('\n— บันทึกรายงานเป็น PDF —');
+{
+  // ดักปุ่มพิมพ์ไว้ก่อน เบราว์เซอร์ headless เปิดกล่องพิมพ์จริงไม่ได้
+  // เก็บ document.title ตอนที่ window.print() ถูกเรียก เพราะชื่อนั้นแหละ
+  // คือชื่อไฟล์ PDF ที่ผู้ใช้จะได้
+  await page.evaluate(() => {
+    window.__printedTitle = null;
+    window.print = () => { window.__printedTitle = document.title; };
+  });
+  const before = await page.evaluate(() => document.title);
+  await clickByOnclick('saveReport()');
+  await page.waitForFunction(() => window.__printedTitle !== null, { timeout: 5000 });
+  const printed = await page.evaluate(() => window.__printedTitle);
+  t('ชื่อไฟล์ PDF มีชื่อร้านอยู่ด้วย', printed.includes(SHOP), printed);
+  t('ชื่อไฟล์ PDF มีวันที่กำกับ', /\d{4}-\d{2}-\d{2}/.test(printed), printed);
+  t('ชื่อไฟล์ PDF ไม่มีอักขระต้องห้ามของระบบไฟล์', !/[\/\\:*?"<>|]/.test(printed), printed);
+
+  // พิมพ์เสร็จแล้วต้องคืนชื่อหน้าเดิม ไม่งั้นแท็บจะค้างเป็นชื่อไฟล์
+  await page.evaluate(() => window.dispatchEvent(new Event('afterprint')));
+  t('พิมพ์เสร็จแล้วคืนชื่อหน้าเว็บเดิม', await page.evaluate(() => document.title) === before);
+
+  // สองร้านคนละชื่อต้องได้คนละชื่อไฟล์ — เดิมทุกคนได้ชื่อไฟล์เดียวกันหมด
+  const other = await page.evaluate(() => {
+    const keep = state.reg.shop;
+    state.reg.shop = 'ร้านอื่นที่ไม่ซ้ำ';
+    const n = reportFileName();
+    state.reg.shop = keep;
+    return n;
+  });
+  t('คนละร้านได้คนละชื่อไฟล์', other !== printed && other.includes('ร้านอื่นที่ไม่ซ้ำ'), other);
+}
+
+console.log('\n— หน้ากระดาษตอนพิมพ์ —');
+{
+  await page.emulateMediaType('print');
+  // A4 แนวตั้ง 210mm ลบขอบกระดาษ @page 12mm สองข้าง = พื้นที่พิมพ์จริง 186mm
+  const A4 = 794, PRINTABLE = Math.round(186 / 25.4 * 96);
+  const saved = page.viewport();
+  await page.setViewport({ width: PRINTABLE, height: 1123 });
+  await new Promise((r) => setTimeout(r, 300));
+  const fit = await page.evaluate(() => ({
+    over: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    bodyW: getComputedStyle(document.body).width,
+    widest: [...document.querySelectorAll('#reportDoc *')]
+      .map((e) => Math.round(e.getBoundingClientRect().right))
+      .reduce((a, b) => Math.max(a, b), 0),
+    docRight: Math.round(document.getElementById('reportDoc').getBoundingClientRect().right),
+  }));
+  // เดิมสั่ง html,body{width:210mm} ไว้ ทั้งที่พิมพ์ได้แค่ 186mm เนื้อหาเลยถูก
+  // ตัดหายที่ขอบขวาทุกหน้า ตารางเทียบเกณฑ์ต้นทุนโดนตัดคำว่า "เริ่มสูง" ขาดครึ่ง
+  t('เนื้อหาไม่ล้นออกนอกพื้นที่พิมพ์', fit.over <= 1, `ล้นไป ${fit.over}px (body=${fit.bodyW})`);
+  t('ไม่บังคับความกว้างเป็นขนาดกระดาษเต็มแผ่น', Math.round(parseFloat(fit.bodyW)) <= PRINTABLE + 1,
+    `body กว้าง ${fit.bodyW} แต่พิมพ์ได้ ${PRINTABLE}px`);
+  t('ไม่มีอะไรในรายงานยื่นเลยขอบกระดาษ', fit.widest <= PRINTABLE + 1, `กว้างสุด ${fit.widest}px`);
+
+  const look = await page.evaluate(() => {
+    const cs = getComputedStyle(document.getElementById('reportDoc'));
+    return { border: cs.borderTopWidth, radius: cs.borderTopLeftRadius, bg: cs.backgroundColor,
+      cols: getComputedStyle(document.querySelector('.rep-2col')).gridTemplateColumns.split(' ').length };
+  });
+  // กล่องรายงานกินหลายหน้ากระดาษ ถ้ายังมีเส้นขอบกับมุมโค้งจะได้กรอบครึ่ง ๆ กลาง ๆ
+  t('ตัดเส้นขอบการ์ดออกตอนพิมพ์', look.border === '0px', look.border);
+  t('ตัดมุมโค้งออกตอนพิมพ์', look.radius === '0px', look.radius);
+  t('พื้นหลังรายงานยังเป็นสีขาว', look.bg === 'rgb(255, 255, 255)', look.bg);
+  // บนจอ "สุขภาพ 5 มิติ" กับ "เทียบมาตรฐานต้นทุน" อยู่คู่กันสองคอลัมน์
+  // บนกระดาษก็ต้องอยู่คู่กันเหมือนกัน ไม่ใช่ยืดเต็มความกว้างทีละอัน
+  t('ยังเรียงสองคอลัมน์เหมือนบนจอ', look.cols === 2, `${look.cols} คอลัมน์`);
+
+  const breaks = await page.evaluate(() => {
+    const need = ['.dim-deep', '.phase-block', '.syn-item', '.rep-plan-item', '.rep-h'];
+    return need.filter((sel) => {
+      const el = document.querySelector(sel);
+      if (!el) return false;
+      const cs = getComputedStyle(el);
+      return cs.breakInside !== 'avoid' && cs.pageBreakInside !== 'avoid';
+    });
+  });
+  t('การ์ดย่อยไม่ถูกหั่นคาหน้ากระดาษ', breaks.length === 0, breaks.join(', '));
+  // หัวข้อใหญ่ทั้งก้อนต้องแตกหน้าได้ ไม่งั้นหัวข้อที่ยาวเกินหนึ่งหน้าจะดันตัวเอง
+  // ไปขึ้นหน้าใหม่แล้วก็ยังล้นอยู่ดี เหลือหน้าเปล่าครึ่งหน้าเป็นพืด
+  t('หัวข้อใหญ่ยังแตกหน้าได้', await page.evaluate(() =>
+    getComputedStyle(document.querySelector('.rep-section')).breakInside !== 'avoid'));
+
+  await page.emulateMediaType(null);
+  await page.setViewport(saved);
+  await new Promise((r) => setTimeout(r, 200));
+}
+
 console.log('\n— ข้อมูลถึงหลังบ้านจริงไหม —');
 await new Promise((r) => setTimeout(r, 1200));
 const cookie = (await (await fetch(BASE + '/api/admin/login', {

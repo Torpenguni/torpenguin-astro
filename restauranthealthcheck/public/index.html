@@ -360,18 +360,40 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='12
 .radar-svg .rval{font-family:var(--mono);font-size:9px;fill:#b45309;font-weight:700}
 @media(max-width:600px){.rep-2col{grid-template-columns:1fr;gap:0}.report-doc{padding:26px 16px}}
 
+/* ── ตอนสั่งพิมพ์ / บันทึกเป็น PDF ──────────────────────────────
+   เป้าหมาย: หน้ากระดาษต้องออกมาเหมือนรายงานที่เห็นบนจอ
+
+   เดิมเขียน html,body{width:210mm} ไว้ ซึ่งเป็นความกว้างของ "แผ่นกระดาษ"
+   ทั้งแผ่น แต่พื้นที่ที่พิมพ์ได้จริงคือ 210mm ลบขอบ @page ทั้งสองข้าง = 186mm
+   เนื้อหาจึงกว้างเกินพื้นที่พิมพ์ไป 24mm และถูกตัดหายที่ขอบขวาทุกหน้า
+   (ตารางเทียบเกณฑ์ต้นทุนโดนตัดคำว่า "เริ่มสูง" ขาดครึ่ง) แก้โดยไม่บังคับ
+   ความกว้าง ปล่อยให้เนื้อหาพอดีกับพื้นที่พิมพ์เอง
+
+   เรื่องที่สอง: เดิมสั่ง break-inside:avoid ให้ .rep-section ทั้งก้อน แต่
+   บางหัวข้อ (แผน 90 วัน, เจาะลึก 5 มิติ) สูงเกินหนึ่งหน้ากระดาษอยู่แล้ว
+   เบราว์เซอร์จึงดันทั้งก้อนไปขึ้นหน้าใหม่แล้วก็ยังล้นอยู่ดี ผลคือเหลือที่ว่าง
+   ครึ่งหน้าเปล่า ๆ หลายจุดและได้ 5 หน้าทั้งที่เนื้อหาพอลง 3 หน้า
+   ตอนนี้ย้ายไปกันแตกเฉพาะ "การ์ดย่อย" ที่ควรอยู่ด้วยกันจริง ๆ */
 @media print{
   @page{size:A4 portrait;margin:12mm}
   *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-  html,body{width:210mm}
+  html,body{width:auto;max-width:none;margin:0}
   body{background:#fff!important;background-image:none!important}
   header,.report-actions,.method,.cta-card,.axes-vis,.result-hero .gauge,.btn{display:none!important}
   .screen{display:none!important}
   #s-result{display:block!important}
   #s-result .card,#s-result .result-hero{display:none!important}
-  .report-doc{display:block!important;padding:0;border-radius:0}
+  .wrap{max-width:none;padding:0}
   .pad{padding:0}
-  .rep-section,.rep-plan-item,.rep-dim{break-inside:avoid}
+  /* คงหน้าตาการ์ดบนจอไว้ แต่ตัดเส้นขอบกับมุมโค้งออก เพราะกล่องที่กินหลายหน้า
+     กระดาษจะได้เส้นขอบครึ่ง ๆ กลาง ๆ ไม่สวย ระยะห่างจากขอบกระดาษปล่อยให้
+     @page เป็นคนคุมแทน padding ของการ์ด */
+  .report-doc{display:block!important;padding:0;border:0!important;border-radius:0!important;box-shadow:none!important;background:#fff!important}
+  #s-result .card,#s-result .result-hero,.report-doc{animation:none!important}
+  .rep-h{break-inside:avoid;break-after:avoid;page-break-inside:avoid;page-break-after:avoid}
+  .rep-dim,.rep-plan-item,.rep-note-item,.syn-item,.root-block,
+  .dim-deep,.phase-block,.bench-row,.rep-next,.rep-head,.prime-box{break-inside:avoid;page-break-inside:avoid}
+  .rep-foot{break-before:avoid;page-break-before:avoid}
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -1484,9 +1506,28 @@ function openGate(){
 }
 // รายงานฉบับเต็มมาถึงได้เฉพาะทางโหมดละเอียด ซึ่งกั้นด้วยบัญชีอยู่แล้ว ตรงนี้
 // กันอีกชั้นเผื่อวันหนึ่งมีทางลัดใหม่มาถึงหน้านี้โดยไม่ผ่านประตู
+//
+// เบราว์เซอร์ตั้งชื่อไฟล์ PDF จาก document.title ซึ่งเป็นข้อความเดียวกันทุกหน้า
+// โหลดรายงานกี่ร้านก็ได้ชื่อไฟล์เดิม แล้วทับกันเองในโฟลเดอร์ดาวน์โหลด ใส่ชื่อ
+// ร้านกับวันที่ลงไปตอนสั่งพิมพ์ แล้วคืนค่าเดิมหลังพิมพ์เสร็จ
+function reportFileName(){
+  const shop=(state.reg&&state.reg.shop||'').trim();
+  const d=new Date();
+  const stamp=`${d.getFullYear()+543}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  // ตัวที่ระบบไฟล์ไม่ชอบ — โดยเฉพาะ / กับ : ที่ macOS ใช้เป็นตัวคั่นเส้นทาง
+  const safe=shop.replace(/[\/\\:*?"<>|]/g,' ').replace(/\s+/g,' ').trim().slice(0,60);
+  return ['รายงานตรวจสุขภาพร้านอาหาร',safe,stamp].filter(Boolean).join(' · ');
+}
 async function saveReport(){
   if(await needsAccount()){track('gate_shown','print');openGate();return;}
+  const original=document.title;
+  document.title=reportFileName();
+  const restore=()=>{document.title=original;window.removeEventListener('afterprint',restore);};
+  window.addEventListener('afterprint',restore);
+  track('report_print');
   window.print();
+  // บางเบราว์เซอร์ไม่ยิง afterprint ตั้งเวลาคืนค่าไว้อีกทางกันชื่อค้าง
+  setTimeout(restore,60000);
 }
 async function needsAccount(){
   // ถ้าคำตอบยังไม่มา ให้รอก่อน ไม่งั้นจะกั้นคนที่ล็อกอินอยู่แล้วผิด ๆ
