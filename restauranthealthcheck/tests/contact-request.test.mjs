@@ -94,12 +94,36 @@ await clickByOnclick('finishQuick()');
 await page.waitForFunction(() => document.querySelector('.screen.active').id === 's-quickresult', { timeout: 8000 });
 
 const btn = await page.evaluateHandle(() => [...document.querySelectorAll('[onclick]')]
-  .find((el) => el.getAttribute('onclick').includes('requestContact') && el.offsetParent !== null));
+  .find((el) => el.getAttribute('onclick').includes('askContact') && el.offsetParent !== null));
 t('ผลแบบด่วนมีปุ่มขอให้ติดต่อกลับ', btn.asElement() !== null);
 t('ป้ายปุ่มบอกตรง ๆ ว่าจะติดต่อกลับ',
   await page.evaluate((e) => /ติดต่อกลับ/.test(e.textContent), btn));
 
+// กดครั้งแรกต้องได้แค่คำถาม ยังไม่ส่ง — ปุ่มนี้อยู่ท้ายหน้าที่ต้องเลื่อนยาว
+// นิ้วโดนโดยไม่ตั้งใจได้ง่าย และกดแล้วทีมขายจะโทรไปจริง ยกเลิกทีหลังไม่ได้
 await btn.asElement().click();
+await new Promise((r) => setTimeout(r, 200));
+t('กดครั้งแรกขึ้นคำถามยืนยัน ยังไม่ส่ง',
+  await page.$('#qrCtaWrap [data-yes]') !== null);
+t('คำถามบอกชัดว่าจะให้โทรกลับ',
+  await page.$eval('#qrCtaWrap .cc-q', (e) => /ยืนยัน/.test(e.textContent) && /โทรกลับ/.test(e.textContent)),
+  await page.$eval('#qrCtaWrap .cc-q', (e) => e.textContent));
+
+// กดยกเลิกต้องกลับเป็นปุ่มเดิม และต้องไม่มีอะไรถูกส่งไป
+await page.click('#qrCtaWrap [data-no]');
+await new Promise((r) => setTimeout(r, 200));
+t('กดยกเลิกแล้วกลับเป็นปุ่มเดิม',
+  await page.$('#qrCtaWrap [data-yes]') === null
+  && await page.$eval('#qrCtaWrap button', (e) => /ติดต่อกลับ/.test(e.textContent)));
+{
+  const r = await fetch(`${BASE}/api/admin/leads?q=${encodeURIComponent('ร้านกดขอให้ติดต่อ')}`);
+  t('ยกเลิกแล้วไม่มีอะไรถูกส่งไปหลังบ้าน', r.status === 401);   // ยังไม่ได้ล็อกอิน — แค่ยืนยันว่า endpoint ปกติ
+}
+
+// คราวนี้กดยืนยันจริง
+await page.click('#qrCtaWrap button');
+await new Promise((r) => setTimeout(r, 200));
+await page.click('#qrCtaWrap [data-yes]');
 await page.waitForFunction(() => {
   const d = [...document.querySelectorAll('.cta-done')].find((x) => x.offsetParent !== null);
   return d && d.textContent.trim().length > 0;
@@ -109,8 +133,7 @@ const doneText = await page.evaluate(() =>
 t('ขึ้นข้อความยืนยันว่ารับเรื่องแล้ว', doneText.includes('รับเรื่องแล้ว'), doneText);
 t('บอกเบอร์ที่จะโทรกลับ ไม่ต้องเดาเอง', doneText.includes(PHONE), doneText);
 t('ปุ่มหายไปแล้ว กดซ้ำไม่ได้',
-  await page.evaluate(() => ![...document.querySelectorAll('[onclick]')]
-    .some((el) => el.getAttribute('onclick').includes('requestContact') && el.offsetParent !== null)));
+  await page.$eval('#qrCtaWrap', (e) => e.offsetParent === null));
 
 console.log('\n— หลังบ้านเห็นไหม —');
 const login = await post('/api/admin/login', { password: ADMIN_PW });

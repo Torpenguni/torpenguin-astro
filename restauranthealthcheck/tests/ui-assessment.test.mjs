@@ -184,6 +184,43 @@ t('ปุ่มขอให้ติดต่อกลับแสดงอย�
   await page.$eval('#ctaBtn', (el) => getComputedStyle(el).display !== 'none'));
 t('ป้ายปุ่มบอกว่าจะติดต่อกลับ',
   await page.$eval('#ctaBtn', (el) => /ติดต่อกลับ/.test(el.textContent)));
+
+// ลำดับบนหน้า: ปุ่มโหลดรายงานต้องมาก่อนตัวรายงาน และคำชวนคุยกับ CP อยู่ท้ายสุด
+// ของที่เขาตอบ 48 ข้อมาเพื่อจะได้ ต้องเห็นก่อนคำชวนขาย
+{
+  const order = await page.evaluate(() => {
+    const pos = (sel) => {
+      const el = document.querySelector(sel);
+      return el ? el.getBoundingClientRect().top + window.scrollY : -1;
+    };
+    return { save: pos('.report-actions'), report: pos('#reportDoc'), cta: pos('#ctaCard') };
+  });
+  t('ปุ่มโหลดรายงานอยู่เหนือตัวรายงาน', order.save > 0 && order.save < order.report,
+    JSON.stringify(order));
+  t('คำชวนคุยกับ CP อยู่ท้ายสุด ใต้รายงาน', order.cta > order.report, JSON.stringify(order));
+  t('ปุ่มโหลดรายงานเป็นปุ่มหลัก ไม่ใช่ปุ่มโครงจาง ๆ',
+    await page.$eval('.report-actions .btn-save', (el) => el.classList.contains('btn-primary')));
+  t('ป้ายปุ่มบอกตรง ๆ ว่าดาวน์โหลด',
+    await page.$eval('.report-actions .btn-save', (el) => /ดาวน์โหลด/.test(el.textContent)));
+}
+
+console.log('\n— ถามยืนยันก่อนให้ทีม CP โทรกลับ —');
+{
+  // ปุ่มนี้อยู่ท้ายหน้าที่ต้องเลื่อนยาวมาก นิ้วโดนตอนเลื่อนได้ง่าย และกดแล้ว
+  // ทีมขายจะโทรไปจริง ยกเลิกทีหลังไม่ได้
+  await page.$eval('#ctaBtn', (el) => el.click());
+  await new Promise((r) => setTimeout(r, 250));
+  t('กดครั้งแรกได้แค่คำถาม ยังไม่ส่ง', await page.$('#ctaWrap [data-yes], #ctaYes') !== null);
+  t('คำถามอ่านแล้วรู้ว่าจะเกิดอะไร',
+    await page.$eval('#ctaWrap .cc-q', (el) => /ยืนยัน/.test(el.textContent) && /โทรกลับ/.test(el.textContent)),
+    await page.$eval('#ctaWrap .cc-q', (el) => el.textContent));
+  await page.$eval('#ctaNo, #ctaWrap [data-no]', (el) => el.click());
+  await new Promise((r) => setTimeout(r, 250));
+  t('กดยกเลิกแล้วกลับเป็นปุ่มเดิม',
+    await page.$('#ctaWrap [data-yes], #ctaYes') === null
+    && await page.$eval('#ctaBtn', (el) => /ติดต่อกลับ/.test(el.textContent)));
+  t('ยกเลิกแล้วยังกดใหม่ได้', await page.$eval('#ctaBtn', (el) => !el.disabled));
+}
 t('ตัวนับ % ไม่ค้างอยู่บนหน้ารายงาน',
   await page.$eval('#progMini', (el) => el.textContent.trim() === ''),
   await page.$eval('#progMini', (el) => `ค้างอยู่ที่ "${el.textContent.trim()}"`));

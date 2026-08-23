@@ -302,7 +302,15 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='12
 .fin-screen-card .fs{font-size:13px;color:var(--ink-dim);margin-top:6px}
 
 /* ===== CONSULTANT REPORT ===== */
-.report-actions{display:flex;justify-content:center;margin:8px 0 24px}
+/* ปุ่มโหลดรายงาน — ของหลักที่เขาตอบ 48 ข้อมาเพื่อจะได้ ต้องเห็นชัดกว่าอย่างอื่น */
+.report-actions{display:flex;flex-direction:column;align-items:center;gap:8px;margin:8px 0 26px}
+.report-actions .btn-save{font-size:16px;padding:16px 30px}
+.report-actions .ra-note{font-size:12.5px;color:var(--ink-faint)}
+@media(max-width:600px){.report-actions .btn-save{width:100%}}
+/* ถามยืนยันก่อนให้ทีมโทรกลับ — ยกเลิกทีหลังไม่ได้ */
+.cta-confirm{display:flex;flex-direction:column;gap:12px;align-items:center}
+.cta-confirm .cc-q{font-size:16px;font-weight:700;color:#fff;line-height:1.5}
+.cta-confirm .cc-btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
 .report-doc{background:#fff;color:#1a1a1a;border-radius:18px;padding:38px 40px;font-family:var(--thai);line-height:1.6}
 .rep-head{border-bottom:2px solid #1a1a1a;padding-bottom:18px;margin-bottom:24px}
 .rep-brand{display:flex;align-items:center;gap:13px;flex-wrap:wrap}
@@ -849,7 +857,10 @@ h1 .accent{font-weight:600;color:var(--accent)}
     <h3>อยากรู้ลึกกว่านี้?</h3>
     <p>ทำแบบละเอียดต่อ (อีก ~20 นาที) เพื่อรับ <b>วิเคราะห์การเงินเป็นบาท · เจาะลึกราย 5 มิติ · แผนปฏิบัติ 90 วัน</b> เฉพาะร้านคุณ — คำตอบที่ตอบไปแล้วจะถูกเก็บไว้ ไม่ต้องเริ่มใหม่</p>
     <button class="btn btn-primary en" onclick="continueToDeep()">ทำแบบละเอียดต่อ · รับแผน 90 วัน →</button>
-    <button class="btn btn-ghost en" style="margin-top:10px" onclick="requestContact(this)">ให้ทีม CP ติดต่อกลับ</button>
+    <!-- ถามยืนยันเหมือนหน้ารายงานเต็ม เพราะกดแล้วทีมขายจะโทรไปจริง ยกเลิกทีหลังไม่ได้ -->
+    <div id="qrCtaWrap" style="margin-top:10px">
+      <button class="btn btn-ghost en" onclick="askContactQuick()">ให้ทีม CP ติดต่อกลับ</button>
+    </div>
 <div class="cta-done" style="display:none"></div>
   </div>
 </div></section>
@@ -910,14 +921,12 @@ h1 .accent{font-weight:600;color:var(--accent)}
     <div class="sub" style="margin-top:14px;margin-bottom:0">ดัชนีสุขภาพร้านโดยรวม</div>
   </div>
   <div class="card"><h3>สุขภาพราย 5 มิติ</h3><div class="sub">เทียบกับค่าเฉลี่ยร้านในระบบ PenguinX</div><div id="barDims"></div></div>
-  <div class="cta-card" id="ctaCard">
-    <h3 id="ctaTitle"></h3><p id="ctaText"></p>
-    <button class="btn btn-dark en" id="ctaBtn" onclick="requestContact(this)"></button>
-    <div id="ctaDone" class="cta-done" style="display:none"></div></div>
-
   <!-- CONSULTANT REPORT -->
+  <!-- ปุ่มโหลดรายงานคือของที่เขาอุตส่าห์ตอบ 48 ข้อมาเพื่อจะได้ ให้มันเด่นและอยู่
+       เหนือรายงาน ส่วนคำชวนคุยกับ CP ย้ายไปท้ายสุด — ค่อยชวนตอนเขาอ่านจบแล้ว -->
   <div class="report-actions">
-    <button class="btn btn-ghost en" onclick="saveReport()">🖨️ พิมพ์ / บันทึกรายงาน PDF</button>
+    <button class="btn btn-primary en btn-save" onclick="saveReport()">🖨️ ดาวน์โหลดรายงานฉบับเต็ม (PDF)</button>
+    <div class="ra-note">บันทึกเก็บไว้ หรือพิมพ์ออกมาแปะที่ร้านได้</div>
   </div>
   <div id="reportDoc" class="report-doc">
     <div class="rep-head">
@@ -944,6 +953,13 @@ h1 .accent{font-weight:600;color:var(--accent)}
     <div class="rep-section" id="repNotesWrap"><div class="rep-h">เจาะลึกตามสาเหตุที่คุณระบุ · ต้องแก้ตรงไหน</div><div id="repNotes"></div></div>
     <div class="rep-foot">รายงานนี้สร้างจาก Restaurant Health Check · เกณฑ์อ้างอิงจากองค์ความรู้ในตำราร้านอาหารของ PenguinX</div>
   </div>
+
+  <div class="cta-card" id="ctaCard">
+    <h3 id="ctaTitle"></h3><p id="ctaText"></p>
+    <div id="ctaWrap">
+      <button class="btn btn-dark en" id="ctaBtn" onclick="askContact()"></button>
+    </div>
+    <div id="ctaDone" class="cta-done" style="display:none"></div></div>
 
   <div class="method"><h4 class="en">Methodology</h4>
     <p>Restaurant Health Check ประเมิน 5 มิติ (เจ้าของ · การเงิน · แบรนด์&การตลาด · ระบบ&ทีม · ความพร้อมขยาย) ผ่าน 4 แกนวิเคราะห์
@@ -1440,11 +1456,61 @@ function finishQuick(){showQuickResult();}
 //
 // รับ element ของปุ่มที่ถูกกดเข้ามา เพราะปุ่มนี้มีสองที่ — ท้ายผลแบบด่วน ซึ่ง
 // เป็นทางที่คนส่วนใหญ่ใช้ และท้ายรายงานฉบับเต็ม
+// หน้าผลแบบด่วนก็ต้องถามยืนยันเหมือนกัน ใช้ตัวเดียวกันแต่คนละกล่อง
+function askContactQuick(){ askIn('qrCtaWrap','ให้ทีม CP ติดต่อกลับ','btn-ghost'); }
+function askIn(wrapId,label,cls){
+  const wrap=document.getElementById(wrapId);
+  if(!wrap||wrap.dataset.asking==='1')return;
+  wrap.dataset.asking='1';
+  track('contact_confirm_shown');
+  wrap.innerHTML=`<div class="cta-confirm">
+    <div class="cc-q">ยืนยันให้ทีม CP โทรกลับหาคุณ?</div>
+    <div class="cc-btns">
+      <button type="button" class="btn btn-dark en" data-yes>ยืนยัน · ให้ติดต่อกลับ</button>
+      <button type="button" class="btn btn-ghost en" data-no>ยกเลิก</button>
+    </div></div>`;
+  wrap.querySelector('[data-no]').addEventListener('click',()=>{
+    wrap.dataset.asking='';
+    track('contact_cancelled');
+    wrap.innerHTML=`<button class="btn ${cls} en" onclick="${wrapId==='qrCtaWrap'?'askContactQuick()':'askContact()'}">${label}</button>`;
+  });
+  wrap.querySelector('[data-yes]').addEventListener('click',function(){requestContact(this);});
+  wrap.querySelector('[data-yes]').focus();
+}
+
+// กดปุ่มเดียวแล้วส่งเลยเสี่ยงเกินไป — ปุ่มนี้อยู่ท้ายหน้าที่ต้องเลื่อนยาว
+// คนเลื่อนอ่านบนมือถือแล้วนิ้วโดนโดยไม่ตั้งใจได้ง่าย และเมื่อส่งแล้วทีมขายจะโทร
+// ไปหาเขาจริง ๆ ยกเลิกทีหลังไม่ได้ จึงถามยืนยันก่อนหนึ่งจังหวะเสมอ
+function askContact(){
+  const wrap=document.getElementById('ctaWrap');
+  if(!wrap||wrap.dataset.asking==='1')return;
+  wrap.dataset.asking='1';
+  track('contact_confirm_shown');
+  wrap.innerHTML=`<div class="cta-confirm">
+    <div class="cc-q">ยืนยันให้ทีม CP โทรกลับหาคุณ?</div>
+    <div class="cc-btns">
+      <button type="button" class="btn btn-dark en" id="ctaYes">ยืนยัน · ให้ติดต่อกลับ</button>
+      <button type="button" class="btn btn-ghost en" id="ctaNo">ยกเลิก</button>
+    </div></div>`;
+  document.getElementById('ctaNo').addEventListener('click',cancelContact);
+  document.getElementById('ctaYes').addEventListener('click',function(){requestContact(this);});
+  document.getElementById('ctaYes').focus();
+}
+function cancelContact(){
+  const wrap=document.getElementById('ctaWrap');
+  if(!wrap)return;
+  wrap.dataset.asking='';
+  track('contact_cancelled');
+  wrap.innerHTML='<button class="btn btn-dark en" id="ctaBtn" onclick="askContact()"></button>';
+  const b=document.getElementById('ctaBtn');
+  if(b)b.textContent=state.ctaLabel||'ให้ทีม CP ติดต่อกลับ →';
+}
+
 async function requestContact(btn){
   if(!btn||btn.disabled)return;
-  const box=btn.parentElement;
-  let done=box.querySelector('.cta-done');
-  if(!done){done=document.createElement('div');done.className='cta-done';box.appendChild(done);}
+  const card=btn.closest('.cta-card')||btn.parentElement;
+  let done=card.querySelector('.cta-done');
+  if(!done){done=document.createElement('div');done.className='cta-done';card.appendChild(done);}
   const label=btn.textContent;
   btn.disabled=true;btn.textContent='กำลังส่ง…';
   done.style.display='none';
@@ -1463,7 +1529,8 @@ async function requestContact(btn){
   }catch(e){ res=null; }
 
   if(res&&res.ok){
-    btn.style.display='none';
+    const wrap=btn.closest('#ctaWrap,#qrCtaWrap');
+    if(wrap)wrap.style.display='none'; else btn.style.display='none';
     const phone=(state.reg&&state.reg.contact)||'';
     done.className='cta-done';
     done.textContent=phone?'รับเรื่องแล้ว · ทีมงานจะติดต่อกลับที่ '+phone:'รับเรื่องแล้ว · ทีมงานจะติดต่อกลับ';
@@ -1472,7 +1539,7 @@ async function requestContact(btn){
   }
   // ล้มเหลวจริง ๆ — ต้องบอกช่องทางสำรอง ไม่ใช่ปล่อยให้เข้าใจว่าส่งไปแล้ว
   btn.disabled=false;btn.textContent=label;
-  done.className='cta-done err';
+  done.className='cta-done err';   // ปุ่มยืนยันยังอยู่ กดใหม่ได้เลย
   done.textContent='ส่งไม่สำเร็จ กรุณาลองใหม่ หรือติดต่อทีมงานที่ tor@penguinx.co';
   done.style.display='';
 }
@@ -1928,7 +1995,13 @@ function showResult(){
   const cta={HOT:['🚀 ร้านคุณพร้อมโต — คุยกับทีมขยายธุรกิจ CP','ร้านลักษณะนี้มักได้ประโยชน์จากดีล supply ราคาพิเศษและแผนขยายแบบมีพาร์ทเนอร์ — ให้ทีมงานโทรกลับไปคุยรายละเอียด','ให้ทีม CP ติดต่อกลับ →'],
     WARM:['💬 รับคำปรึกษาฟรีจากทีม CP','ทีมที่ปรึกษาช่วยวางแผนเสริมจุดที่ร้านคุณยังขาด พร้อมแนะนำโซลูชันที่เหมาะกับร้านคุณ','ให้ทีม CP ติดต่อกลับ →'],
     NURTURE:['💬 รับคำแนะนำเริ่มต้นจากทีม CP','ร้านคุณมีหลายจุดที่ต้องเสริมก่อนโต — ให้ทีม CP แนะนำแนวทางตั้งต้นที่เหมาะกับร้านคุณ','ให้ทีม CP ติดต่อกลับ →']}[type.tier];
-  document.getElementById('ctaTitle').textContent=cta[0];document.getElementById('ctaText').textContent=cta[1];const _cb=document.getElementById('ctaBtn');_cb.textContent=cta[2];_cb.style.display='';_cb.disabled=false;const _cd=document.getElementById('ctaDone');_cd.style.display='none';_cd.className='cta-done';
+  document.getElementById('ctaTitle').textContent=cta[0];document.getElementById('ctaText').textContent=cta[1];
+  // จำป้ายปุ่มไว้ เผื่อคนกดยืนยันแล้วกดยกเลิก ต้องคืนข้อความเดิมให้ถูก
+  state.ctaLabel=cta[2];
+  const _cw=document.getElementById('ctaWrap');
+  if(_cw){_cw.style.display='';_cw.dataset.asking='';_cw.innerHTML='<button class="btn btn-dark en" id="ctaBtn" onclick="askContact()"></button>';}
+  const _cb=document.getElementById('ctaBtn');_cb.textContent=cta[2];_cb.style.display='';_cb.disabled=false;
+  const _cd=document.getElementById('ctaDone');_cd.style.display='none';_cd.className='cta-done';
 
   // วาดรายงานก่อน แล้วค่อยส่งเข้าระบบ เพราะสรุปที่จะไปอยู่ในอีเมลถูกอ่านมาจาก
   // รายงานที่วาดเสร็จแล้วโดยตรง ถ้าการวาดพังด้วยเหตุใดก็ตาม ลีดกับคะแนนต้องยัง
