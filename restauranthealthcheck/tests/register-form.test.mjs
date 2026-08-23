@@ -85,6 +85,76 @@ t('เบอร์สั้นเกินไปถูกปฏิเสธ', !r
 r = await submit('081-234-5678');
 t('เบอร์ที่ถูกต้องผ่านได้', r.moved, r.err);
 
+console.log('\n— ประเภทร้าน & ช่วงยอดขาย —');
+// คำถาม "ร้านคุณเป็นประเภทไหน?" ถูกตัดออกเพราะซ้ำกับฟอร์ม แต่คำถามนั้นเคยเป็น
+// ตัวเลือกเกณฑ์ต้นทุนของทั้งรายงาน ถ้าตัวเลือกในฟอร์มครอบคลุมไม่ครบ ร้านชาบูจะ
+// ถูกวินิจฉัยด้วยเกณฑ์ร้านตามสั่ง (food cost 30-35% แทนที่จะเป็น 40-55%) แบบ
+// เงียบ ๆ ไม่มีใครรู้ ชุดนี้กันไม่ให้เกิด
+const cover = await page.evaluate(() => {
+  const opts = [...document.querySelectorAll('#r_type option')].map((o) => o.textContent);
+  const reached = new Set(opts.map((o) => profileFromRegType(o)));
+  return { keys: Object.keys(COST_PROFILE), reached: [...reached], opts: opts.length };
+});
+t(`ตัวเลือกประเภทร้านในฟอร์มพาไปได้ครบทุกเกณฑ์ต้นทุน (${cover.opts} ตัวเลือก)`,
+  cover.keys.every((k) => cover.reached.includes(k)),
+  `ไปไม่ถึง: ${cover.keys.filter((k) => !cover.reached.includes(k)).join(', ')}`);
+
+const buffet = await page.evaluate(() => profileFromRegType('บุฟเฟต์ / ชาบู / ปิ้งย่าง'));
+t('ร้านชาบูได้เกณฑ์บุฟเฟต์ ไม่ใช่ร้านตามสั่ง', buffet === 'buffet', buffet);
+const bakery = await page.evaluate(() => profileFromRegType('เบเกอรี่ / ของหวาน'));
+t('ร้านเบเกอรี่ได้เกณฑ์ของตัวเอง', bakery === 'bakery', bakery);
+
+// ช่วงยอดขายแต่ละช่วงส่งค่ากลางของช่วงไปคำนวณ ค่าต้องอยู่ในช่วงจริง ไม่งั้น
+// ตัวเลขที่ระบบเดาให้จะเพี้ยนตั้งแต่ต้นทาง
+const bands = await page.evaluate(() => [...document.querySelectorAll('#f_rev option')]
+  .filter((o) => o.value)
+  .map((o) => ({ label: o.textContent.trim(), v: Number(o.value) })));
+t('มีช่วง 100,000 – 250,000', bands.some((b) => b.label.includes('100,000 – 250,000')));
+t('มีช่วง 250,000 – 500,000', bands.some((b) => b.label.includes('250,000 – 500,000')));
+const bad = bands.filter((b) => {
+  const n = (b.label.match(/[\d,]+/g) || []).map((x) => Number(x.replace(/,/g, '')));
+  if (b.label.includes('ล้าน') || n.length < 2) return false;
+  return b.v < n[0] || b.v > n[1];
+});
+t('ค่ากลางของทุกช่วงอยู่ในช่วงจริง', bad.length === 0, JSON.stringify(bad));
+
+console.log('\n— ข้อความและสีบนการ์ดสีแดง —');
+const html = await (await fetch(BASE + '/')).text();
+// "ออกบูธ" เป็นตัวอย่างช่องทางรายได้ คนละเรื่องกับบูธงานอีเวนต์
+const boothHits = (html.match(/บูธ/g) || []).length - (html.match(/ออกบูธ/g) || []).length;
+t('ไม่เหลือข้อความชวนให้แวะมาที่บูธ', boothHits === 0, `เหลือ ${boothHits} จุด`);
+t('เครดิตผู้ดำเนินการเหลือเฉพาะ PenguinX', !/ดำเนินการ[^<]*CP/.test(html));
+
+const contrast = await page.evaluate(() => {
+  const lin = (c) => { c /= 255; return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); };
+  const L = (rgb) => { const [r, g, b] = rgb.match(/\d+/g).map(Number); return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b); };
+  const d = document.createElement('div');
+  d.className = 'cta-card';
+  d.innerHTML = '<h3>x</h3><p>y</p>';
+  document.body.appendChild(d);
+  const bg = 'rgb(200,16,46)';
+  const r = (c) => { const x = L(c), y = L(bg); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); };
+  const out = { h: r(getComputedStyle(d.querySelector('h3')).color), p: r(getComputedStyle(d.querySelector('p')).color) };
+  d.remove();
+  return out;
+});
+t(`หัวข้อบนพื้นแดงอ่านออก (${contrast.h.toFixed(2)}:1)`, contrast.h >= 4.5);
+t(`คำอธิบายบนพื้นแดงอ่านออก (${contrast.p.toFixed(2)}:1)`, contrast.p >= 4.5);
+
+const btnContrast = await page.evaluate(() => {
+  const lin = (c) => { c /= 255; return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); };
+  const L = (rgb) => { const [r, g, b] = rgb.match(/\d+/g).map(Number); return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b); };
+  const d = document.createElement('div');
+  d.className = 'cta-card';
+  d.innerHTML = '<button class="btn btn-ghost">x</button>';
+  document.body.appendChild(d);
+  const c = getComputedStyle(d.querySelector('button')).color;
+  d.remove();
+  const x = L(c), y = L('rgb(200,16,46)');
+  return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05);
+});
+t(`ปุ่มเส้นขอบบนพื้นแดงอ่านออก (${btnContrast.toFixed(2)}:1)`, btnContrast >= 4.5);
+
 console.log(`\n${pass} passed, ${failn} failed`);
 await browser.close();
 process.exit(failn ? 1 : 0);

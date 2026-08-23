@@ -52,7 +52,7 @@ function layout(bodyHtml) {
 ${bodyHtml}
 </td></tr>
 <tr><td style="padding:0 28px 26px;font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:12px;line-height:1.6;color:#8a8077">
-อีเมลนี้ส่งจาก restauranthealthcheck.com · ดำเนินการโดย บริษัท เพนกวินเอ็กซ์ จำกัด ร่วมกับ CP<br>สอบถามเรื่องข้อมูลส่วนบุคคล: <a href="mailto:tor@penguinx.co" style="color:#8a8077">tor@penguinx.co</a>
+อีเมลนี้ส่งจาก restauranthealthcheck.com · ดำเนินการโดย บริษัท เพนกวินเอ็กซ์ จำกัด<br>สอบถามเรื่องข้อมูลส่วนบุคคล: <a href="mailto:tor@penguinx.co" style="color:#8a8077">tor@penguinx.co</a>
 </td></tr>
 </table></td></tr></table></body></html>`;
 }
