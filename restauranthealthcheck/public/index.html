@@ -60,7 +60,7 @@ header{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);background:rg
 .progress-mini{font-family:var(--mono);font-size:12px;color:var(--ink-faint)}
 .screen{display:none;animation:fade .45s ease}.screen.active{display:block}
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.pad{padding:46px 0 90px}
+.pad{padding-top:46px;padding-bottom:90px}   /* ระยะขอบข้างเป็นของ .wrap อย่าใช้คำสั่งย่อทับ */
 .eyebrow{font-family:var(--disp);font-weight:600;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:18px;display:flex;align-items:center;gap:10px}
 .eyebrow::before{content:"";width:26px;height:1px;background:var(--amber)}
 h1{font-weight:700;font-size:38px;line-height:1.18;letter-spacing:-.01em;margin-bottom:18px}
@@ -179,7 +179,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='12
 .method p{font-size:12.5px;color:var(--ink-faint);line-height:1.7}
 .brandbar{height:5px;display:flex;margin-top:30px;border-radius:99px;overflow:hidden}
 .brandbar i{flex:1}.brandbar i:nth-child(1){background:var(--amber-lo)}.brandbar i:nth-child(2){background:var(--amber)}.brandbar i:nth-child(3){background:#0a0a0a;border:1px solid var(--line)}
-@media(max-width:600px){h1{font-size:29px}.vitals{flex-wrap:wrap}.vital{min-width:50%;flex:none}.field-row{grid-template-columns:1fr}.q-text{font-size:20px}.axes-vis{grid-template-columns:1fr}.levels{flex-wrap:wrap}.lvl{min-width:30%}.pad{padding:32px 0 70px}}
+@media(max-width:600px){h1{font-size:29px}.vitals{flex-wrap:wrap}.vital{min-width:50%;flex:none}.field-row{grid-template-columns:1fr}.q-text{font-size:20px}.axes-vis{grid-template-columns:1fr}.levels{flex-wrap:wrap}.lvl{min-width:30%}.pad{padding-top:32px;padding-bottom:70px}}
 /* ===== FINANCIAL FALLBACK CALCULATOR ===== */
 .calc-fallback{margin-top:6px}
 .calc-toggle{font-family:var(--disp);font-size:13px;color:var(--amber);cursor:pointer;display:inline-flex;align-items:center;gap:7px;padding:8px 2px;user-select:none}
@@ -433,6 +433,11 @@ header{background:rgba(252,251,248,.82);backdrop-filter:blur(16px) saturate(1.4)
 .cobrand .acct.in::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;
   background:var(--green);margin-right:7px;vertical-align:middle}
 .cobrand .acct .who-short{display:none}
+
+/* แทนที่ช่องอีเมลเมื่อรู้อยู่แล้วว่าจะส่งไปที่ไหน */
+.acct-mail{font-size:13px;color:var(--ink-dim);background:var(--surface-2);border:1px solid var(--line);
+  border-radius:10px;padding:11px 14px;line-height:1.5;word-break:break-all}
+.acct-mail b{color:var(--ink);font-weight:600}
 @media(max-width:600px){
   /* จอแคบโชว์แค่ชื่อหน้า @ เต็ม ๆ แล้วแถวจะแตก */
   .cobrand .acct .who-full{display:none}
@@ -442,7 +447,7 @@ header{background:rgba(252,251,248,.82);backdrop-filter:blur(16px) saturate(1.4)
 
 /* rhythm — let it breathe */
 .wrap{max-width:760px}
-.pad{padding:64px 0 110px}
+.pad{padding-top:64px;padding-bottom:110px}
 
 /* eyebrow — editorial micro-label */
 .eyebrow{font-family:var(--disp);font-weight:600;font-size:11px;letter-spacing:.22em;text-transform:uppercase;
@@ -661,7 +666,7 @@ h1 .accent{font-weight:600;color:var(--accent)}
   <div class="field"><label>ชื่อ-นามสกุล <span class="req">*</span></label><input id="r_name" placeholder="ชื่อเจ้าของร้าน"></div>
   <div class="field"><label>ชื่อร้าน <span class="req">*</span></label><input id="r_shop" placeholder="ชื่อร้านของคุณ"></div>
   <div class="field-row">
-    <div class="field"><label>เบอร์ / LINE <span class="req">*</span></label><input id="r_contact" placeholder="08x-xxx-xxxx"></div>
+    <div class="field"><label>เบอร์มือถือ <span class="req">*</span></label><input id="r_contact" type="tel" inputmode="tel" autocomplete="tel" placeholder="08x-xxx-xxxx"></div>
     <div class="field"><label>อีเมล <span style="color:var(--amber-lo);font-weight:600">· รับสรุปผลทางอีเมล</span></label><input id="r_email" placeholder="you@email.com"></div></div>
   <div class="field-row">
     <div class="field"><label>ประเภทร้าน</label><select id="r_type"><option>ร้านอาหาร à la carte</option><option>คาเฟ่ / เครื่องดื่ม</option><option>Quick Service / Grab&Go</option><option>Fine Dining</option><option>Street Food / รถเข็น</option><option>Cloud Kitchen / เดลิเวอรี่</option><option>อื่นๆ</option></select></div>
@@ -1290,6 +1295,9 @@ function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remo
 track('landing_view');
 flushLeads();
 
+/* อีเมลของบัญชีที่ล็อกอินอยู่ ใช้แทนช่องอีเมลในฟอร์ม จะได้ไม่ต้องถามซ้ำ */
+let acctEmail='';
+
 /* แถบบน: ถ้าล็อกอินอยู่ ให้ปุ่มมุมขวาบอกว่าเป็นบัญชีใคร แทนคำว่า "เข้าสู่ระบบ"
    ถามเซิร์ฟเวอร์ทีหลังแบบเงียบ ๆ หน้าเว็บวาดเสร็จไปแล้วก่อนคำตอบจะมา ถ้าถาม
    ไม่สำเร็จ (เน็ตหลุด เซิร์ฟเวอร์ล่ม) ก็ปล่อยปุ่มเดิมไว้เฉย ๆ — คนที่มาทำแบบ
@@ -1303,6 +1311,23 @@ flushLeads();
     if(r.ok)me=(await r.json()).user;
   }catch(e){return;}
   if(!me||!me.email)return;
+  acctEmail=me.email;
+
+  // คนที่ล็อกอินอยู่กรอกอีเมลไปแล้วตอนสมัคร ไม่ต้องถามซ้ำ ซ่อนช่องทิ้งแล้วบอก
+  // ไปเลยว่าจะส่งสรุปผลไปที่ไหน — ซ่อนเฉย ๆ โดยไม่บอกจะกลายเป็นว่าเขาไม่รู้ว่า
+  // ผลจะไปโผล่ที่กล่องจดหมายไหน
+  const fld=document.getElementById('r_email');
+  const box=fld&&fld.closest('.field');
+  if(box){
+    box.innerHTML='';
+    const note=document.createElement('div');
+    note.className='acct-mail';
+    note.append('สรุปผลจะส่งไปที่ ');
+    const em=document.createElement('b');em.textContent=me.email;
+    note.append(em);
+    box.append(note);
+  }
+
   a.classList.add('in');
   a.title=me.email;
   a.setAttribute('aria-label','บัญชีของ '+me.email);
@@ -1325,17 +1350,17 @@ function quickOrder(){return QUICK_KW.map(kw=>QUESTIONS.findIndex(q=>q.q.include
 function chooseMode(m){state.mode=m;track('mode_select',m);go('s-register');}
 
 function startQuiz(){
-  const name=v('r_name'),shop=v('r_shop'),contact=v('r_contact'),email=v('r_email');
+  const name=v('r_name'),shop=v('r_shop'),contact=v('r_contact'),email=v('r_email')||acctEmail;
   const regErr=document.getElementById('regErr');
   const showReg=m=>{regErr.textContent=m;regErr.style.display='block';};
   if(!name||!shop||!contact){showReg('กรุณากรอกชื่อ ชื่อร้าน และช่องทางติดต่อ');return;}
-  const dg=contact.replace(/[\s-]/g,'');
-  if(/^[+\d]+$/.test(dg)&&!/^0\d{8,9}$/.test(dg.replace(/^\+66/,'0'))){showReg('เบอร์โทรไม่ถูกต้อง — ใส่เลข 9-10 หลักขึ้นต้น 0 (หรือกรอก LINE ID เป็นตัวอักษร)');return;}
+  const dg=contact.replace(/[\s-()]/g,'').replace(/^\+66/,'0');
+  if(!/^0\d{8,9}$/.test(dg)){showReg('เบอร์โทรไม่ถูกต้อง — ใส่เลข 9-10 หลักขึ้นต้นด้วย 0');return;}
   if(email&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showReg('อีเมลไม่ถูกต้อง เช่น you@email.com (เว้นว่างได้ถ้าไม่มีอีเมล)');return;}
   regErr.style.display='none';
   if(!document.getElementById('r_consent').checked){document.getElementById('consentErr').style.display='block';return;}
   document.getElementById('consentErr').style.display='none';
-  state.reg={name,shop,contact,email:v('r_email'),type:v('r_type'),branch:v('r_branch'),age:v('r_age'),ts:new Date().toISOString(),consent:true,consentTs:new Date().toISOString()};
+  state.reg={name,shop,contact,email,type:v('r_type'),branch:v('r_branch'),age:v('r_age'),ts:new Date().toISOString(),consent:true,consentTs:new Date().toISOString()};
   state.costProfile=profileFromRegType(state.reg.type);
   const pi=QUESTIONS.findIndex(q=>q.type==='profile');
   if(pi>=0){const oi=QUESTIONS[pi].o.findIndex(o=>o.pk===state.costProfile);if(oi>=0)state.answers[pi]={oi,profile:state.costProfile};}
@@ -1344,7 +1369,9 @@ function startQuiz(){
   submitLead({...state.reg});
   state.idx=0;go('s-quiz');renderQ();
 }
-function v(id){return document.getElementById(id).value.trim();}
+// ช่องบางช่องถูกถอดออกตอนรันได้ เช่นช่องอีเมลที่ซ่อนไปเมื่อล็อกอินอยู่แล้ว
+// อ่านค่าจากช่องที่ไม่มีอยู่ต้องได้ค่าว่าง ไม่ใช่พังทั้งฟอร์ม
+function v(id){const el=document.getElementById(id);return el?el.value.trim():'';}
 
 let infoOpen=false;
 function toggleInfo(){infoOpen=!infoOpen;document.getElementById('qInfo').classList.toggle('open',infoOpen);}

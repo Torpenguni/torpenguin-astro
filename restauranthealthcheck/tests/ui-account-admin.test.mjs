@@ -196,6 +196,37 @@ await page.type('#password', PW);
 await page.click('#go');
 await page.waitForSelector('#logout', { timeout: 8000 });
 
+// คนที่ล็อกอินอยู่กรอกอีเมลไปตอนสมัครแล้ว ไม่ต้องถามซ้ำในฟอร์มเล่าเรื่องร้าน
+// แต่ต้องบอกให้รู้ว่าสรุปผลจะไปโผล่ที่กล่องจดหมายไหน และอีเมลนั้นต้องติดไปกับ
+// ลีดด้วย ไม่งั้นทีมขายจะได้ลีดที่ไม่มีอีเมลเลย
+console.log('\n— ฟอร์มเล่าเรื่องร้านตอนล็อกอินอยู่ —');
+const posted = [];
+page.on('request', (r) => {
+  if (r.url().includes('/api/assessments') && r.method() === 'POST') {
+    try { posted.push(JSON.parse(r.postData() || '{}')); } catch (e) { /* ไม่ใช่ JSON ก็ข้าม */ }
+  }
+});
+await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
+await page.waitForFunction(() => document.querySelector('.cobrand .acct')?.classList.contains('in'), { timeout: 8000 });
+await page.evaluate(() => chooseMode('quick'));
+await new Promise((r) => setTimeout(r, 300));
+t('ไม่ถามอีเมลซ้ำเมื่อล็อกอินอยู่แล้ว', await page.$('#r_email') === null);
+t('บอกว่าจะส่งสรุปผลไปที่อีเมลไหน',
+  (await page.$eval('.acct-mail', (el) => el.textContent)).includes(EMAIL));
+
+await page.evaluate(() => {
+  document.getElementById('r_name').value = 'เจ้าของร้านล็อกอิน';
+  document.getElementById('r_shop').value = 'ร้านของคนล็อกอิน';
+  document.getElementById('r_contact').value = '089-999-1234';
+  document.getElementById('r_consent').checked = true;
+  startQuiz();
+});
+await new Promise((r) => setTimeout(r, 900));
+t('ฟอร์มยังส่งได้ ไม่พังเพราะช่องอีเมลหายไป',
+  await page.evaluate(() => document.getElementById('s-quiz').classList.contains('active')));
+t('อีเมลของบัญชีติดไปกับลีดด้วย',
+  posted.some((x) => x.email === EMAIL), JSON.stringify(posted.map((x) => x.email)));
+
 console.log('\n— ลืมรหัสผ่านผ่านหน้าเว็บ —');
 await page.goto(BASE + '/account?mode=forgot', { waitUntil: 'networkidle0' });
 await page.type('#email', EMAIL);
