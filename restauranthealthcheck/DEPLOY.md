@@ -137,7 +137,16 @@ npx wrangler pages deploy
 
 ## 7. ต่อโดเมน (โดเมนอยู่ที่ GoDaddy)
 
-> ⏱ **ขั้นนี้กินเวลารอนานสุด เริ่มทำคู่ขนานไปกับเฟส 2–3 ได้เลย ไม่ต้องรอให้เว็บเสร็จก่อน**
+> ✅ **ข้อ 7.1–7.4 ทำเสร็จแล้ว** (ตรวจเมื่อ 22 ส.ค. 2569)
+> nameserver ของ `restauranthealthcheck.com` ชี้มาที่ Cloudflare แล้ว:
+> `galilea.ns.cloudflare.com` · `wilson.ns.cloudflare.com`
+> **ข้ามไปทำ 7.5 ได้เลย** (หลังจากมีโปรเจกต์ Pages แล้ว)
+>
+> ผลตรวจอื่นที่ควรรู้:
+> - **ไม่มี MX record** → โดเมนนี้ไม่ได้ใช้รับอีเมล การย้ายจึงไม่ทำให้เมลพัง
+> - **มี DMARC ค้างจาก GoDaddy** `p=quarantine` → ตอนตั้ง Resend (ข้อ 4)
+>   ต้องใส่ SPF + DKIM ให้ครบและผ่าน Verified ไม่งั้นเมลเข้าสแปมทั้งหมด
+> - **ยังไม่มี SPF/DKIM ของ Resend** → ข้อ 4 ยังไม่ได้ทำ
 
 ### 7.1 ทำไมต้องย้าย nameserver มา Cloudflare
 
@@ -206,6 +215,9 @@ Cloudflare → **Rules** → **Redirect Rules** → **Create rule**
 **ย้าย nameserver ให้เสร็จก่อนทำเฟส 4 (Resend)** — ไม่งั้นจะต้องใส่ DNS record
 ของ Resend ที่ GoDaddy ก่อน แล้วพอย้าย nameserver ต้องมาใส่ซ้ำที่ Cloudflare อีกรอบ
 เสียเวลาสองเที่ยวโดยไม่จำเป็น
+
+✅ ข้อนี้ผ่านไปแล้ว — DNS อยู่บน Cloudflare เรียบร้อย ทำข้อ 4 (Resend) ได้ทันที
+โดยใส่ record ที่ **Cloudflare → DNS → Records**
 
 ---
 
