@@ -51,6 +51,29 @@ for (const width of [320, 360, 390, 430]) {
   await page.close();
 }
 
+// หัวข้อหน้านี้เคยถูกบังคับตัดสองบรรทัดด้วย <br> ตอนนี้ปล่อยให้อยู่บรรทัดเดียว
+// แล้วย่อขนาดตามความกว้างที่มี ต้องไม่ตัดบรรทัดและต้องไม่ล้นจอทุกขนาด
+console.log('\n— หัวข้อบรรทัดเดียว —');
+for (const width of [320, 360, 390, 430]) {
+  const pg = await browser.newPage();
+  await pg.setViewport({ width, height: 900, deviceScaleFactor: 2 });
+  await pg.goto(BASE + '/', { waitUntil: 'networkidle0' });
+  await pg.evaluate(() => document.fonts.ready);
+  await pg.evaluate(() => chooseMode('quick'));
+  await new Promise((r) => setTimeout(r, 250));
+  const h = await pg.evaluate(() => {
+    const el = document.querySelector('.lp-onenl');
+    const cs = getComputedStyle(el);
+    return {
+      lines: Math.round(el.getBoundingClientRect().height / parseFloat(cs.lineHeight)),
+      overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+    };
+  });
+  t(`${width}px หัวข้ออยู่บรรทัดเดียว`, h.lines === 1, `${h.lines} บรรทัด`);
+  t(`${width}px หัวข้อไม่ดันจอให้เลื่อนข้าง`, !h.overflow);
+  await pg.close();
+}
+
 console.log('\n— ช่องเบอร์มือถือ —');
 const page = await browser.newPage();
 await page.setViewport({ width: 390, height: 900, deviceScaleFactor: 2 });

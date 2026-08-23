@@ -284,6 +284,16 @@ function wire(mode) {
     el.addEventListener('keydown', (ev) => { if (ev.key === 'Enter') handlers[mode](); }));
 }
 
+// ถ้าถูกส่งมาจากประตูโหมดละเอียด พอมีเซสชันแล้วให้พากลับไปทำต่อทันที
+// ไม่ปล่อยให้เขาต้องเดินกลับไปหาปุ่มเอง — โดยเฉพาะคนที่เพิ่งกดลิงก์ยืนยัน
+// จากในเมลซึ่งกลับมาถึงหน้านี้พอดี
+function resumePending() {
+  let next = null;
+  try { next = localStorage.getItem('rhc_next'); localStorage.removeItem('rhc_next'); } catch (e) {}
+  if (next === 'deep') { location.href = '/?start=deep'; return true; }
+  return false;
+}
+
 async function boot() {
   const verified = params.get('verified');
   if (verified === '1') say('ยืนยันอีเมลเรียบร้อยแล้ว ยินดีต้อนรับครับ', 'ok');
@@ -318,6 +328,9 @@ async function boot() {
     wire('login');
     return;
   }
+
+  // มีเซสชันแล้ว — ถ้ามีงานค้างจากประตูโหมดละเอียด พากลับไปทำต่อเลย
+  if (resumePending()) return;
 
   let list = [];
   try { list = (await api('/api/assessments')).assessments || []; } catch (e) { /* show empty */ }

@@ -214,6 +214,33 @@ t('ไม่ถามอีเมลซ้ำเมื่อล็อกอิ�
 t('บอกว่าจะส่งสรุปผลไปที่อีเมลไหน',
   (await page.$eval('.acct-mail', (el) => el.textContent)).includes(EMAIL));
 
+// กล่องบอกอีเมลมาแทนที่ช่องกรอก จึงต้องอยู่ในแนวเดียวกับช่องเบอร์ที่อยู่ข้าง ๆ
+// ถ้าไปล้างทั้งกล่องรวมป้ายหัวช่องทิ้ง สองช่องจะเหลื่อมกันทันที
+const align = await page.evaluate(() => {
+  const c = document.getElementById('r_contact').getBoundingClientRect();
+  const n = document.querySelector('.acct-mail').getBoundingClientRect();
+  const labels = [...document.querySelectorAll('#s-register label')].filter((x) => x.offsetParent);
+  const l1 = labels.find((x) => x.textContent.includes('เบอร์'));
+  const l2 = labels.find((x) => x.textContent.trim() === 'อีเมล');
+  // จอแคบ แถวนี้กลายเป็นคอลัมน์เดียว สองช่องจะเรียงบนล่างโดยตั้งใจ การวัด
+  // ว่า "อยู่แนวเดียวกัน" จึงมีความหมายเฉพาะตอนที่มันอยู่ข้างกันจริง ๆ
+  const cols = getComputedStyle(document.getElementById('r_contact').closest('.field-row'))
+    .gridTemplateColumns.split(' ').length;
+  return {
+    sideBySide: cols >= 2,
+    hasLabel: !!l2,
+    box: Math.abs(c.top - n.top),
+    label: l1 && l2 ? Math.abs(l1.getBoundingClientRect().top - l2.getBoundingClientRect().top) : -1,
+  };
+});
+t('ป้ายหัวช่องอีเมลยังอยู่ ไม่ถูกล้างทิ้งไปด้วย', align.hasLabel);
+if (align.sideBySide) {
+  t('ป้ายหัวช่องตรงแนวกัน', align.label === 0, `ต่างกัน ${align.label}px`);
+  t('กล่องบอกอีเมลตรงแนวกับช่องเบอร์', align.box <= 1, `ต่างกัน ${align.box}px`);
+} else {
+  t('จอแคบ สองช่องเรียงบนล่างตามที่ออกแบบไว้', align.box > 1, `ต่างกัน ${align.box}px`);
+}
+
 await page.evaluate(() => {
   document.getElementById('r_name').value = 'เจ้าของร้านล็อกอิน';
   document.getElementById('r_shop').value = 'ร้านของคนล็อกอิน';

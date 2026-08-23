@@ -49,7 +49,22 @@ const clickByOnclick = async (fragment) => {
   await el.click();
 };
 
+// โหมดละเอียดต้องมีบัญชีแล้ว (แบบ 10 ข้อยังทำได้เลย) ชุดนี้เดินทางโหมดละเอียด
+// จึงต้องมีบัญชีจริงก่อน สมัคร + กดลิงก์ยืนยันจากกล่องจดหมายจำลอง
 console.log(`\n=== ${DEVICE.name} ===`);
+console.log('\n— เตรียมบัญชีสำหรับโหมดละเอียด —');
+{
+  await page.goto(BASE + '/account?mode=signup', { waitUntil: 'networkidle0' });
+  await page.type('#email', EMAIL);
+  await page.type('#password', 'ui-suite-password-2026');
+  await page.type('#password2', 'ui-suite-password-2026');
+  await page.click('#go');
+  await page.waitForFunction(() => document.getElementById('msg').className.includes('ok'), { timeout: 15000 });
+  const link = ([...mail()].reverse().find((x) => x.to === EMAIL)?.text || '')
+    .match(/http:\/\/\S*\/api\/auth\/verify\?token=\S+/)?.[0];
+  t('สมัครและได้ลิงก์ยืนยัน', !!link);
+  await page.goto(link, { waitUntil: 'networkidle0' });
+}
 
 console.log('\n— หน้าแรก —');
 await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
@@ -57,7 +72,12 @@ t('หน้าแรกโหลดได้', await visible() === 's-landing')
 t('ไม่มีแถบเลื่อนแนวนอน', await page.evaluate(() =>
   document.documentElement.scrollWidth <= document.documentElement.clientWidth + 1),
   await page.evaluate(() => `scrollWidth=${document.documentElement.scrollWidth} clientWidth=${document.documentElement.clientWidth}`));
-t('ฟอนต์ไทยโหลดจริง', await page.evaluate(() => document.fonts.check('600 16px Anuphan')));
+// เช็คว่าไฟล์ฟอนต์ถูกโหลดจริง ไม่ใช่แค่ประกาศชื่อไว้ — document.fonts จะมีสมาชิก
+// เฉพาะตัวที่โหลดสำเร็จเท่านั้น (เทียบกับ .check() ที่คืน true ให้ชื่อมั่ว ๆ ด้วย)
+t('ฟอนต์ไทยโหลดจริง', await page.evaluate(async () => {
+  await document.fonts.ready;
+  return [...document.fonts].some((f) => f.family === 'IBM Plex Sans Thai' && f.status === 'loaded');
+}));
 
 console.log('\n— ลงทะเบียน —');
 await clickByOnclick("chooseMode('deep')");
@@ -71,7 +91,10 @@ t('ขึ้นข้อความเตือน', await page.$eval('#regErr'
 await page.type('#r_name', 'ธนพงศ์');
 await page.type('#r_shop', SHOP);
 await page.type('#r_contact', '0812345678');
-await page.type('#r_email', EMAIL);
+// ล็อกอินอยู่แล้ว ช่องอีเมลถูกแทนด้วยข้อความบอกว่าจะส่งไปที่ไหน จึงไม่ต้องกรอก
+t('ไม่ถามอีเมลซ้ำเพราะล็อกอินอยู่', await page.$('#r_email') === null);
+t('บอกปลายทางที่จะส่งสรุปผล',
+  (await page.$eval('.acct-mail', (el) => el.textContent)).includes(EMAIL));
 await page.select('#r_type', await page.$eval('#r_type option:nth-child(2)', (o) => o.value));
 await clickByOnclick('startQuiz()');
 t('กันไม่ให้ข้ามช่องยินยอม PDPA', await visible() === 's-register');

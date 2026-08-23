@@ -14,6 +14,7 @@ const SUITES = [
   ['ใช้งานจริงบนเว็บ · มือถือ',    'ui-assessment.test.mjs', 'mobile'],
   ['ฟอร์มเล่าเรื่องร้าน',         'register-form.test.mjs'],
   ['ปุ่มขอให้ติดต่อกลับ',        'contact-request.test.mjs'],
+  ['ประตูโหมดละเอียด',           'deep-gate.test.mjs'],
   ['โหมดด่วน · บัญชี · หลังบ้าน',  'ui-account-admin.test.mjs'],
   ['แผงรายละเอียดใน UI',          'ui-lead-detail.test.mjs'],
 ];

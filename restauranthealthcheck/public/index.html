@@ -440,9 +440,31 @@ header{background:rgba(252,251,248,.82);backdrop-filter:blur(16px) saturate(1.4)
 .cobrand .acct .who-short{display:none}
 
 /* แทนที่ช่องอีเมลเมื่อรู้อยู่แล้วว่าจะส่งไปที่ไหน */
-.acct-mail{font-size:13px;color:var(--ink-dim);background:var(--surface-2);border:1px solid var(--line);
-  border-radius:10px;padding:11px 14px;line-height:1.5;word-break:break-all}
+/* ระยะในกล่องตั้งให้เท่ากับช่องกรอกข้าง ๆ (13px บน-ล่าง สูง 15px) กล่องนี้จะได้
+   สูงเท่ากันและวางอยู่ในแนวเดียวกันพอดี ไม่เหลื่อมขึ้นลง */
+.acct-mail{font-size:13.5px;color:var(--ink-dim);background:var(--surface-2);border:1px solid var(--line);
+  border-radius:10px;padding:13px 15px;line-height:1.5;word-break:break-all;min-height:49px;
+  display:flex;align-items:center;flex-wrap:wrap;gap:0 4px}
 .acct-mail b{color:var(--ink);font-weight:600}
+
+/* ประตูก่อนเข้าโหมดละเอียด */
+.gate{position:fixed;inset:0;background:rgba(23,20,15,.55);display:flex;align-items:center;
+  justify-content:center;padding:22px;z-index:60;animation:fade .2s ease}
+.gate-card{background:var(--surface);border-radius:18px;padding:30px 26px 26px;max-width:430px;width:100%;
+  position:relative;box-shadow:0 24px 60px rgba(0,0,0,.22)}
+.gate-card h3{font-family:var(--disp);font-weight:700;font-size:21px;margin:0 0 10px;color:var(--ink)}
+.gate-card p{font-size:14.5px;line-height:1.65;color:var(--ink-dim);margin:0 0 22px}
+.gate-card p b{color:var(--ink);font-weight:600}
+.gate-card .btn{width:100%;margin-bottom:10px;text-decoration:none;display:block;text-align:center}
+.gate-alt{width:100%;background:none;border:0;color:var(--ink-faint);font-family:var(--thai);
+  font-size:13.5px;padding:10px 4px 0;cursor:pointer;text-decoration:underline}
+.gate-alt:hover{color:var(--ink-dim)}
+.gate-x{position:absolute;top:12px;right:12px;background:none;border:0;font-size:17px;
+  color:var(--ink-faint);cursor:pointer;line-height:1;padding:6px}
+.gate-x:hover{color:var(--ink)}
+
+/* หัวข้อหน้าเล่าเรื่องร้าน — ให้อยู่บรรทัดเดียว ย่อขนาดลงตามความกว้างที่มี */
+.lp-onenl{font-size:clamp(21px,5.9vw,30px);white-space:nowrap}
 
 /* ข้อความหลังกดปุ่มขอให้ติดต่อกลับ */
 /* ปุ่มนี้อยู่บนการ์ดสองแบบ — การ์ดพื้นสว่างท้ายรายงานเต็ม และการ์ดพื้นแดงท้าย
@@ -640,6 +662,21 @@ h1 .accent{font-weight:600;color:var(--accent)}
 </div></header>
 
 <!-- LANDING -->
+<!-- ประตูก่อนเข้าโหมดละเอียด — อธิบายเหตุผล ไม่ใช่กำแพงเปล่า ๆ และมีทางออก
+     ให้เสมอ (ทำ 10 ข้อก่อนก็ได้) คนที่ยังไม่เห็นค่าของเครื่องมือจะได้ไม่ถูก
+     ไล่กลับมือเปล่า -->
+<div id="gate" class="gate" style="display:none" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+  <div class="gate-card">
+    <button class="gate-x" onclick="closeGate()" aria-label="ปิด">✕</button>
+    <h3 id="gateTitle">แบบละเอียดต้องมีบัญชีก่อน</h3>
+    <p>48 ข้อ ใช้เวลาราว 25 นาที — บัญชีช่วยให้คุณ<b>ทำค้างไว้แล้วกลับมาต่อได้</b>
+       <b>เปิดดูย้อนหลัง</b>เทียบกับเดือนก่อน และ<b>ดาวน์โหลดรายงานเก็บไว้</b></p>
+    <a class="btn btn-primary en" href="/account?mode=signup" onclick="rememberDeep()">สมัครฟรี · ใช้เวลา 30 วินาที</a>
+    <a class="btn btn-ghost en" href="/account?mode=login" onclick="rememberDeep()">มีบัญชีแล้ว · เข้าสู่ระบบ</a>
+    <button class="gate-alt" onclick="closeGate();chooseMode('quick')">หรือลองแบบ 10 ข้อก่อน · ไม่ต้องสมัคร</button>
+  </div>
+</div>
+
 <section class="screen active" id="s-landing"><div class="wrap pad lp">
   <div class="lp-hero">
     <div class="lp-copy">
@@ -674,7 +711,7 @@ h1 .accent{font-weight:600;color:var(--accent)}
 <!-- REGISTER -->
 <section class="screen" id="s-register"><div class="wrap pad">
   <div class="eyebrow en">Step 1 · ข้อมูลร้าน</div>
-  <h1 style="font-size:30px">เล่าเรื่องร้าน<br>ให้เรารู้จักก่อน</h1>
+  <h1 class="lp-onenl">เล่าเรื่องร้านให้เรารู้จักก่อน</h1>
   <p class="lede" style="margin-bottom:30px">ช่วยให้ผลประเมินเทียบกับร้านประเภทเดียวกันได้แม่นขึ้น</p>
   <div class="field"><label>ชื่อ-นามสกุล <span class="req">*</span></label><input id="r_name" placeholder="ชื่อเจ้าของร้าน"></div>
   <div class="field"><label>ชื่อร้าน <span class="req">*</span></label><input id="r_shop" placeholder="ชื่อร้านของคุณ"></div>
@@ -814,7 +851,7 @@ h1 .accent{font-weight:600;color:var(--accent)}
 
   <!-- CONSULTANT REPORT -->
   <div class="report-actions">
-    <button class="btn btn-ghost en" onclick="window.print()">🖨️ พิมพ์ / บันทึกรายงาน PDF</button>
+    <button class="btn btn-ghost en" onclick="saveReport()">🖨️ พิมพ์ / บันทึกรายงาน PDF</button>
   </div>
   <div id="reportDoc" class="report-doc">
     <div class="rep-head">
@@ -1377,22 +1414,27 @@ function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remo
 track('landing_view');
 flushLeads();
 
+
 /* อีเมลของบัญชีที่ล็อกอินอยู่ ใช้แทนช่องอีเมลในฟอร์ม จะได้ไม่ต้องถามซ้ำ */
 let acctEmail='';
+/* คำตอบจากเซิร์ฟเวอร์ว่าใครล็อกอินอยู่ มาทีหลังหน้าเว็บวาดเสร็จ ถ้าคนกดปุ่ม
+   โหมดละเอียดก่อนคำตอบจะมาถึง แล้วเราตัดสินใจทันที จะกั้นคนที่ล็อกอินอยู่แล้ว
+   ผิด ๆ ตัวนี้เลยเก็บ promise ไว้ให้รอได้ */
+let meReady=null;
 
 /* แถบบน: ถ้าล็อกอินอยู่ ให้ปุ่มมุมขวาบอกว่าเป็นบัญชีใคร แทนคำว่า "เข้าสู่ระบบ"
    ถามเซิร์ฟเวอร์ทีหลังแบบเงียบ ๆ หน้าเว็บวาดเสร็จไปแล้วก่อนคำตอบจะมา ถ้าถาม
    ไม่สำเร็จ (เน็ตหลุด เซิร์ฟเวอร์ล่ม) ก็ปล่อยปุ่มเดิมไว้เฉย ๆ — คนที่มาทำแบบ
    ประเมินไม่ต้องล็อกอินอยู่แล้ว เรื่องนี้จึงห้ามขวางการใช้งานไม่ว่ากรณีใด */
-(async()=>{
+meReady=(async()=>{
   const a=document.querySelector('.cobrand .acct');
-  if(!a)return;
   let me=null;
   try{
     const r=await fetch('/api/auth/me',{headers:{Accept:'application/json'}});
     if(r.ok)me=(await r.json()).user;
-  }catch(e){return;}
-  if(!me||!me.email)return;
+  }catch(e){return null;}
+  if(!me||!me.email)return null;
+  if(!a)return me;
   acctEmail=me.email;
 
   // คนที่ล็อกอินอยู่กรอกอีเมลไปแล้วตอนสมัคร ไม่ต้องถามซ้ำ ซ่อนช่องทิ้งแล้วบอก
@@ -1401,13 +1443,16 @@ let acctEmail='';
   const fld=document.getElementById('r_email');
   const box=fld&&fld.closest('.field');
   if(box){
-    box.innerHTML='';
+    // เปลี่ยนเฉพาะตัวช่องกรอก ไม่ล้างทั้งกล่อง ป้ายหัวช่องต้องอยู่ที่เดิม
+    // ไม่งั้นกล่องนี้จะสูงไม่เท่าช่องเบอร์ที่อยู่ข้าง ๆ แล้วแถวจะเหลื่อมกัน
+    const lb=box.querySelector('label');
+    if(lb)lb.textContent='อีเมล';
     const note=document.createElement('div');
     note.className='acct-mail';
     note.append('สรุปผลจะส่งไปที่ ');
     const em=document.createElement('b');em.textContent=me.email;
     note.append(em);
-    box.append(note);
+    fld.replaceWith(note);
   }
 
   a.classList.add('in');
@@ -1418,7 +1463,39 @@ let acctEmail='';
   const full=document.createElement('span');full.className='who-full';full.textContent=me.email;
   const short=document.createElement('span');short.className='who-short';short.textContent=me.email.split('@')[0];
   a.append(full,short);
+  return me;
 })();
+
+/* ── ประตูก่อนเข้าโหมดละเอียด ────────────────────────────────────────────
+   แบบ 10 ข้อทำได้เลยไม่ต้องสมัคร ส่วนแบบ 48 ข้อกับการดาวน์โหลดรายงานต้องมี
+   บัญชี เพราะสองอย่างนั้นคือสิ่งที่บัญชีมีไว้ให้จริง ๆ (ทำค้างแล้วกลับมาต่อ
+   เปิดดูย้อนหลัง เก็บไฟล์ไว้) ไม่ใช่กั้นไว้เฉย ๆ */
+function rememberDeep(){try{localStorage.setItem('rhc_next','deep');}catch(e){}}
+function closeGate(){document.getElementById('gate').style.display='none';}
+function openGate(){
+  const g=document.getElementById('gate');
+  g.style.display='flex';
+  const b=g.querySelector('.btn');if(b)b.focus();
+}
+// รายงานฉบับเต็มมาถึงได้เฉพาะทางโหมดละเอียด ซึ่งกั้นด้วยบัญชีอยู่แล้ว ตรงนี้
+// กันอีกชั้นเผื่อวันหนึ่งมีทางลัดใหม่มาถึงหน้านี้โดยไม่ผ่านประตู
+async function saveReport(){
+  if(await needsAccount()){track('gate_shown','print');openGate();return;}
+  window.print();
+}
+async function needsAccount(){
+  // ถ้าคำตอบยังไม่มา ให้รอก่อน ไม่งั้นจะกั้นคนที่ล็อกอินอยู่แล้วผิด ๆ
+  if(!acctEmail&&meReady){try{await meReady;}catch(e){}}
+  return !acctEmail;
+}
+
+/* คนที่ถูกประตูส่งไปสมัคร แล้วสมัครหรือล็อกอินเสร็จ จะถูกส่งกลับมาที่
+   /?start=deep พาเขาเข้าโหมดละเอียดต่อทันที ไม่ต้องกดหาปุ่มเอง
+   ต้องอยู่หลังจุดที่ meReady ถูกประกาศแล้ว ไม่งั้นจะอ่านตัวแปรก่อนเกิด */
+if(new URLSearchParams(location.search).get('start')==='deep'){
+  history.replaceState(null,'',location.pathname);
+  (async()=>{ if(await needsAccount()) openGate(); else chooseMode('deep'); })();
+}
 /* landing axes list (ถ้ามี element) */
 const _axl=document.getElementById('axesList');
 if(_axl){AXES.forEach(a=>{
@@ -1429,7 +1506,10 @@ if(_axl){AXES.forEach(a=>{
 
 const QUICK_KW=['หายไป 1 เดือน','ตัดสินใจเรื่องสำคัญ','กำไรสุทธิเฉลี่ยต่อเดือน','จุดคุ้มทุน','ต่าง/ดีกว่า','ลูกค้าใหม่ส่วนใหญ่มาจากช่องทาง','หายไป 2 สัปดาห์','พนักงานใหม่ใช้เวลานาน','ลอกไม่ได้','Payback'];
 function quickOrder(){return QUICK_KW.map(kw=>QUESTIONS.findIndex(q=>q.q.includes(kw))).filter(i=>i>=0);}
-function chooseMode(m){state.mode=m;track('mode_select',m);go('s-register');}
+async function chooseMode(m){
+  if(m==='deep'&&await needsAccount()){track('gate_shown','deep');openGate();return;}
+  state.mode=m;track('mode_select',m);go('s-register');
+}
 
 function startQuiz(){
   const name=v('r_name'),shop=v('r_shop'),contact=v('r_contact'),email=v('r_email')||acctEmail;
@@ -1893,9 +1973,13 @@ function showQuickResult(){
   qs.innerHTML=(state.reg.email&&CONFIG.endpoint)?`<span>📧 ส่งสรุปผลไปที่ <b>${esc(state.reg.email)}</b> แล้ว</span> — เก็บไว้ดูย้อนหลังได้`:`<span>✅ เก็บผลของคุณไว้แล้ว</span> — ทำแบบละเอียดต่อเพื่อรับรายงานฉบับเต็ม`;
   track('complete_quick',pct);
 }
-function continueToDeep(){
+async function continueToDeep(){
+  if(await needsAccount()){track('gate_shown','upsell');openGate();return;}
   track('upsell_deep');state.mode='deep';
-  state.order=QUESTIONS.map((_,i)=>i);
+  // ตัดคำถามประเภทร้านออกเหมือนตอนเริ่มใหม่ ไม่งั้นคนที่ทำ 10 ข้อแล้วต่อยอด
+  // จะเจอคำถามที่ตอบไปแล้วตอนกรอกข้อมูลร้านซ้ำอีกรอบ
+  const pi=QUESTIONS.findIndex(q=>q.type==='profile');
+  state.order=QUESTIONS.map((_,i)=>i).filter(i=>i!==pi);
   state.idx=0;go('s-quiz');renderQ();
 }
 
