@@ -161,6 +161,41 @@ await page.click('#go');
 await page.waitForSelector('#logout', { timeout: 8000 });
 t('รหัสถูกเข้าได้', await page.$('#logout') !== null);
 
+// แถบบนของหน้าแรกต้องบอกได้ว่ากำลังล็อกอินอยู่ในชื่อใคร ไม่ใช่ขึ้นคำว่า
+// "เข้าสู่ระบบ" ค้างไว้เหมือนยังไม่ได้ล็อกอิน
+console.log('\n— แถบบนหน้าแรกตอนล็อกอินอยู่ —');
+await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
+await page.waitForFunction(() => document.querySelector('.cobrand .acct')?.classList.contains('in'), { timeout: 8000 })
+  .catch(() => {});
+const acct = await page.$('.cobrand .acct');
+t('ปุ่มมุมขวาเปลี่ยนเป็นโหมดล็อกอินแล้ว',
+  await page.$eval('.cobrand .acct', (el) => el.classList.contains('in')));
+t('บอกอีเมลของคนที่ล็อกอินอยู่',
+  (await page.$eval('.cobrand .acct', (el) => el.textContent)).includes(EMAIL));
+t('กดแล้วไปหน้าบัญชี', await page.$eval('.cobrand .acct', (el) => el.getAttribute('href')) === '/account');
+t('ไม่ขึ้นคำว่า "เข้าสู่ระบบ" ค้างไว้',
+  !(await page.$eval('.cobrand .acct', (el) => el.textContent)).includes('เข้าสู่ระบบ'));
+t('แถบบนไม่ล้นจอ', !(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth)));
+
+// ออกจากระบบแล้วต้องกลับไปเป็นปุ่มชวนเข้าสู่ระบบเหมือนเดิม
+await page.goto(BASE + '/account', { waitUntil: 'networkidle0' });
+await page.waitForSelector('#logout', { timeout: 8000 });
+await page.click('#logout');
+await page.waitForFunction(() => location.pathname === '/', { timeout: 8000 });
+await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
+await new Promise((r) => setTimeout(r, 600));
+t('ออกจากระบบแล้วกลับเป็นปุ่ม "เข้าสู่ระบบ"',
+  (await page.$eval('.cobrand .acct', (el) => el.textContent)).includes('เข้าสู่ระบบ')
+  && !(await page.$eval('.cobrand .acct', (el) => el.classList.contains('in'))));
+
+// ล็อกอินกลับเข้ามาเพื่อให้ชุดทดสอบที่เหลือทำงานต่อได้เหมือนเดิม
+await page.goto(BASE + '/account', { waitUntil: 'networkidle0' });
+await page.waitForSelector('#go');
+await page.type('#email', EMAIL);
+await page.type('#password', PW);
+await page.click('#go');
+await page.waitForSelector('#logout', { timeout: 8000 });
+
 console.log('\n— ลืมรหัสผ่านผ่านหน้าเว็บ —');
 await page.goto(BASE + '/account?mode=forgot', { waitUntil: 'networkidle0' });
 await page.type('#email', EMAIL);

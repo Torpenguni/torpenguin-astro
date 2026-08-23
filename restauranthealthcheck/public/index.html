@@ -424,6 +424,20 @@ header{background:rgba(252,251,248,.82);backdrop-filter:blur(16px) saturate(1.4)
 @media(max-width:600px){
   .cobrand .acct{font-size:12px;padding:6px 12px}
 }
+
+/* ตอนล็อกอินแล้ว ปุ่มนี้ไม่ใช่ปุ่มชวนกดอีกต่อไป เป็นแค่ป้ายบอกว่าเป็นบัญชีใคร
+   เลยถอดสีเหลืองออก เหลือจุดเขียวเล็ก ๆ ให้กวาดตาแล้วรู้ทันทีว่าล็อกอินอยู่ */
+.cobrand .acct.in{background:var(--surface);color:var(--ink-dim);border:1px solid var(--line);
+  max-width:min(46vw,300px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cobrand .acct.in:hover{background:var(--surface-2);color:var(--ink);transform:none}
+.cobrand .acct.in::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--green);margin-right:7px;vertical-align:middle}
+.cobrand .acct .who-short{display:none}
+@media(max-width:600px){
+  /* จอแคบโชว์แค่ชื่อหน้า @ เต็ม ๆ แล้วแถวจะแตก */
+  .cobrand .acct .who-full{display:none}
+  .cobrand .acct .who-short{display:inline}
+}
 .progress-mini{font-variant-numeric:tabular-nums}
 
 /* rhythm — let it breathe */
@@ -1275,6 +1289,29 @@ function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remo
 
 track('landing_view');
 flushLeads();
+
+/* แถบบน: ถ้าล็อกอินอยู่ ให้ปุ่มมุมขวาบอกว่าเป็นบัญชีใคร แทนคำว่า "เข้าสู่ระบบ"
+   ถามเซิร์ฟเวอร์ทีหลังแบบเงียบ ๆ หน้าเว็บวาดเสร็จไปแล้วก่อนคำตอบจะมา ถ้าถาม
+   ไม่สำเร็จ (เน็ตหลุด เซิร์ฟเวอร์ล่ม) ก็ปล่อยปุ่มเดิมไว้เฉย ๆ — คนที่มาทำแบบ
+   ประเมินไม่ต้องล็อกอินอยู่แล้ว เรื่องนี้จึงห้ามขวางการใช้งานไม่ว่ากรณีใด */
+(async()=>{
+  const a=document.querySelector('.cobrand .acct');
+  if(!a)return;
+  let me=null;
+  try{
+    const r=await fetch('/api/auth/me',{headers:{Accept:'application/json'}});
+    if(r.ok)me=(await r.json()).user;
+  }catch(e){return;}
+  if(!me||!me.email)return;
+  a.classList.add('in');
+  a.title=me.email;
+  a.setAttribute('aria-label','บัญชีของ '+me.email);
+  // textContent ไม่ใช่ innerHTML — อีเมลเป็นข้อความที่คนกรอกเอง ห้ามเอาไปแปะเป็น HTML
+  a.textContent='';
+  const full=document.createElement('span');full.className='who-full';full.textContent=me.email;
+  const short=document.createElement('span');short.className='who-short';short.textContent=me.email.split('@')[0];
+  a.append(full,short);
+})();
 /* landing axes list (ถ้ามี element) */
 const _axl=document.getElementById('axesList');
 if(_axl){AXES.forEach(a=>{
