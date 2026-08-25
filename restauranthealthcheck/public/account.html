@@ -28,13 +28,22 @@ body{margin:0;background:var(--paper);color:var(--ink);
   -webkit-font-smoothing:antialiased}
 h1,h2,.en,.brandbar,button{font-family:'IBM Plex Sans Thai',-apple-system,BlinkMacSystemFont,sans-serif}
 
-.brandbar{display:flex;align-items:center;gap:12px;padding:18px 22px;
+.brandbar{display:flex;align-items:center;gap:13px;padding:14px 22px;
   border-bottom:1px solid var(--line);background:var(--surface);font-weight:600;font-size:15px}
-.brandbar .x{color:var(--amber)}
 .brandbar .sep{width:1px;height:18px;background:var(--line)}
-.brandbar .cp{color:var(--faint);font-size:13px}
-.brandbar a{margin-left:auto;color:var(--faint);text-decoration:none;font-size:14px}
+/* โลโก้ชุดเดียวกับหน้าแรกเป๊ะ ๆ คนกดไปมาระหว่างสองหน้าจะได้รู้สึกว่าเป็นที่เดียวกัน
+   ความสูงสองอันไม่เท่ากันโดยตั้งใจ ตราวงกลมสายตาคนเห็นเล็กกว่าคำที่สูงเท่ากัน */
+.brandbar .lg-px{height:22px;width:auto;display:block}
+.brandbar .lg-cp{height:36px;width:auto;display:block}
+.brandbar .cp{display:inline-flex;align-items:center;gap:7px;color:var(--faint);font-size:12px;font-weight:500}
+.brandbar a{margin-left:auto;color:var(--faint);text-decoration:none;font-size:14px;white-space:nowrap}
 .brandbar a:hover{color:var(--brand)}
+@media(max-width:600px){
+  .brandbar{gap:9px}
+  .brandbar .lg-px{height:18px}
+  .brandbar .lg-cp{height:30px}
+  .brandbar .cp{font-size:11px;gap:6px}
+}
 
 .wrap{max-width:430px;margin:0 auto;padding:38px 20px 70px}
 h1{font-size:27px;line-height:1.3;margin:0 0 8px;font-weight:600;letter-spacing:-.2px}
@@ -84,9 +93,9 @@ a.row.link:focus-visible{outline:2px solid var(--brand);outline-offset:-2px}
 <body>
 
 <div class="brandbar">
-  <span class="en">Penguin<span class="x">X</span></span>
+  <img class="lg-px" src="/logos/penguinx.png" alt="PenguinX" width="655" height="128">
   <span class="sep"></span>
-  <span class="cp">Restaurant Health Check</span>
+  <span class="cp">Sponsored by<img class="lg-cp" src="/logos/cp.png" alt="CP" width="128" height="128"></span>
   <a href="/">← กลับหน้าแรก</a>
 </div>
 
