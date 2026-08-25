@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { ACCESS_CODE } from './access.mjs';
 const BASE = 'http://127.0.0.1:8788';
 const ORIGIN = { Origin: BASE };
 let pass = 0, failed = 0;
@@ -9,6 +10,8 @@ const lastMailTo = (to) => [...mail()].reverse().find(m => m.to === to);
 const linkIn = (m, re) => (m && (m.text.match(re) || [])[0]) || null;
 
 async function call(path, { method='GET', body, cookie, redirect='manual' } = {}) {
+  // การบันทึกผลต้องมีรหัสเข้าใช้งานเสมอ
+  if (body && path.startsWith('/api/assessments')) body = { accessCode: ACCESS_CODE, ...body };
   const res = await fetch(BASE + path, {
     method, redirect,
     headers: { ...ORIGIN, ...(body ? {'Content-Type':'application/json'} : {}), ...(cookie ? {Cookie: cookie} : {}) },

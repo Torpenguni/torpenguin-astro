@@ -15,6 +15,7 @@ const SUITES = [
   ['ฟอร์มเล่าเรื่องร้าน',         'register-form.test.mjs'],
   ['ปุ่มขอให้ติดต่อกลับ',        'contact-request.test.mjs'],
   ['ประตูโหมดละเอียด',           'deep-gate.test.mjs'],
+  ['ประตูรหัสเข้าใช้งาน',        'access-code.test.mjs'],
   ['แผน 90 วันเฉพาะร้าน',        'plan-specificity.test.mjs'],
   ['ทำค้างไว้แล้วกลับมาต่อ',      'resume-progress.test.mjs'],
   ['รองรับคนเข้าพร้อมกัน',        'capacity.test.mjs'],

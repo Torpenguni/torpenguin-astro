@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { ACCESS_CODE } from './access.mjs';
 const BASE='http://127.0.0.1:8788';
 let pass=0, failed=0;
 const t=(n,c,x='')=>{c?(pass++,console.log('  ok   '+n)):(failed++,console.log('  FAIL '+n+(x?' — '+x:'')));};
@@ -6,6 +7,8 @@ const mail=()=>{try{return JSON.parse(fs.readFileSync(new URL('./mailbox.json', 
 const lastTo=(to)=>[...mail()].reverse().find(m=>m.to===to);
 
 async function call(p,{method='GET',body,cookie,raw=false}={}){
+  // ทุกครั้งที่บันทึกผลต้องมีรหัสเข้าใช้งาน ไม่งั้นเซิร์ฟเวอร์ปฏิเสธ
+  if(body&&p.startsWith('/api/assessments'))body={accessCode:ACCESS_CODE,...body};
   const res=await fetch(BASE+p,{method,redirect:'manual',
     headers:{Origin:BASE,...(body?{'Content-Type':'application/json'}:{}),...(cookie?{Cookie:cookie}:{})},
     body:body?JSON.stringify(body):undefined});

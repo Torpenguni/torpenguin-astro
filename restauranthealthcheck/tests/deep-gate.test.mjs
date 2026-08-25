@@ -5,6 +5,7 @@
 // เพราะสองอย่างนั้นคือสิ่งที่บัญชีมีไว้ให้จริง ๆ
 import puppeteer from 'puppeteer-core';
 import fs from 'node:fs';
+import { ACCESS_CODE, seedAccess } from './access.mjs';
 
 const BASE = process.env.BASE || 'http://127.0.0.1:8788';
 const EMAIL = `deepgate${Date.now()}@example.com`;
@@ -18,6 +19,7 @@ const browser = await puppeteer.launch({
   executablePath: process.env.CHROME_PATH || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
 });
 const page = await browser.newPage();
+await seedAccess(page);
 const jsErrors = [];
 page.on('pageerror', (e) => jsErrors.push(String(e)));
 await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 2 });

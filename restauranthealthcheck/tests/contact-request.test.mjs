@@ -5,6 +5,7 @@
 // ฝั่ง API และการกดจริงบนหน้าเว็บ รวมถึงว่าหลังบ้านเห็นและกรองได้จริง
 import puppeteer from 'puppeteer-core';
 import fs from 'node:fs';
+import { ACCESS_CODE, seedAccess } from './access.mjs';
 
 const BASE = process.env.BASE || 'http://127.0.0.1:8788';
 const ADMIN_PW = process.env.ADMIN_PASSWORD || 'local-admin-pass';   // ตรงกับ .dev.vars ที่ใช้รันในเครื่อง
@@ -18,7 +19,7 @@ const t = (n, c, x) => { c ? (pass++, console.log('  ok  ', n)) : (failn++, cons
 
 const post = (path, body, origin = BASE) => fetch(BASE + path, {
   method: 'POST', headers: { 'Content-Type': 'application/json', Origin: origin },
-  body: JSON.stringify(body),
+  body: JSON.stringify(path.startsWith('/api/assessments') ? { accessCode: ACCESS_CODE, ...body } : body),
 });
 
 console.log('\n— ฝั่ง API —');
@@ -51,6 +52,7 @@ const browser = await puppeteer.launch({
   executablePath: process.env.CHROME_PATH || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
 });
 const page = await browser.newPage();
+await seedAccess(page);
 await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true });
 const visible = () => page.$eval('.screen.active', (el) => el.id);
 const clickByOnclick = async (frag) => {

@@ -7,6 +7,7 @@
 // const ของมันเอง ทำให้ชน temporal dead zone แล้วโดน try/catch กลืนเป็น "ไม่มี
 // ของค้าง" โดยไม่มี error ให้เห็นเลย — เทสนี้จับเคสนั้นได้
 import puppeteer from 'puppeteer-core';
+import { ACCESS_CODE, seedAccess } from './access.mjs';
 
 const BASE = process.env.BASE || 'http://127.0.0.1:8788';
 let pass = 0, failed = 0;
@@ -17,6 +18,7 @@ const browser = await puppeteer.launch({
   args: ['--no-sandbox', '--disable-gpu'],
 });
 const page = await browser.newPage();
+await seedAccess(page);
 await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true });
 const errs = [];
 page.on('pageerror', (e) => errs.push(String(e)));

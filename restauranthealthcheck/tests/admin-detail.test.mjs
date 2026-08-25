@@ -1,10 +1,11 @@
+import { ACCESS_CODE } from './access.mjs';
 const BASE='http://127.0.0.1:8788';
 let ok=0,bad=0; const t=(n,c,x='')=>{c?(ok++,console.log('  ok   '+n)):(bad++,console.log('  FAIL '+n+(x?' — '+x:'')));};
 
 // ชุดนี้สร้างข้อมูลของตัวเอง ไม่พึ่งว่าชุดก่อนหน้าทิ้งอะไรไว้
 // (ถ้าพึ่ง พอสลับลำดับชุดทดสอบก็พังทันที)
 const save=(body)=>fetch(BASE+'/api/assessments',{method:'POST',
-  headers:{'Content-Type':'application/json',Origin:BASE},body:JSON.stringify(body)});
+  headers:{'Content-Type':'application/json',Origin:BASE},body:JSON.stringify({accessCode:ACCESS_CODE,...body})});
 const SID='detail-'+Date.now();
 await save({sessionKey:SID,name:'ต่อ ทดสอบ',shop:'ร้านทดสอบรายละเอียด',contact:'081-234-5678',
   email:`detail${Date.now()}@example.com`,shopType:'buffet',branches:'2',age:'2-5 ปี',

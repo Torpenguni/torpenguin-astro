@@ -41,6 +41,7 @@ export async function onRequestGet({ request, env }) {
       email: r.email,
       shopType: r.shop_type,
       province: r.province,
+      accessCode: r.access_code,
       branches: r.branches,
       age: r.age,
       mode: r.mode,

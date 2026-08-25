@@ -408,6 +408,7 @@ function leadSheet(l) {
       ${row('อายุร้าน', esc(l.age))}
       ${row('ทำแบบ', l.mode === 'quick' ? 'ด่วน (10 ข้อ)' : 'ละเอียด (47 ข้อ)')}
       ${row('สถานะ', l.completed ? 'ทำจบแล้ว' : 'ทำไม่จบ')}
+      ${row('รหัสเข้าใช้งาน', esc(l.accessCode))}
     </dl>
   </div>
 

@@ -1,3 +1,4 @@
+import { ACCESS_CODE } from './access.mjs';
 // รองรับคนเข้าพร้อมกันได้จริงไหม
 //
 // เน็ตมือถือไทย (AIS/True/dtac) ใช้ CGNAT — ผู้ใช้หลายร้อยคนออกเน็ตด้วย IP
@@ -30,7 +31,7 @@ const pool = async (items, size, fn) => {
 const post = (path, body, ip) => fetch(BASE + path, {
   method: 'POST',
   headers: { 'Content-Type': 'application/json', Origin: BASE, 'CF-Connecting-IP': ip },
-  body: JSON.stringify(body),
+  body: JSON.stringify(path.startsWith('/api/assessments') ? { accessCode: ACCESS_CODE, ...body } : body),
 });
 // ทุกบล็อกใช้ IP ของตัวเอง จะได้ไม่กินโควตากันเอง
 const ip = (tag) => `198.51.100.${tag}`;

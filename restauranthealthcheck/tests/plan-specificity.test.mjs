@@ -10,6 +10,7 @@
 // ชุดนี้ยิงเข้าไปที่ตัวคิดแผนโดยตรงด้วยคำตอบสังเคราะห์ จึงเร็วและได้ผลเดิมทุกครั้ง
 // ไม่ต้องเดินตอบทุกข้อผ่านหน้าจอเหมือนชุด ui-assessment
 import puppeteer from 'puppeteer-core';
+import { ACCESS_CODE, seedAccess } from './access.mjs';
 
 const BASE = process.env.BASE || 'http://127.0.0.1:8788';
 let pass = 0, failed = 0;
@@ -20,6 +21,7 @@ const browser = await puppeteer.launch({
   args: ['--no-sandbox', '--disable-gpu'],
 });
 const page = await browser.newPage();
+await seedAccess(page);
 const errs = [];
 page.on('pageerror', (e) => errs.push(String(e)));
 await page.goto(BASE + '/', { waitUntil: 'networkidle0' });

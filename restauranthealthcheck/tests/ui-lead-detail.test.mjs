@@ -1,10 +1,11 @@
 import puppeteer from 'puppeteer-core';
+import { ACCESS_CODE } from './access.mjs';
 const BASE='http://127.0.0.1:8788';
 let ok=0,bad=0; const tap=async sel=>{await p.$eval(sel,e=>e.scrollIntoView({block:'center'}));await new Promise(r=>setTimeout(r,120));await p.$eval(sel,e=>e.click());};
 const t=(n,c,x='')=>{c?(ok++,console.log('  ok   '+n)):(bad++,console.log('  FAIL '+n+(x?' — '+x:'')));};
 // สร้างข้อมูลของตัวเอง: หนึ่งรายทำจบพร้อมตัวเลขการเงิน อีกหนึ่งรายทำไม่จบ
 const save=(body)=>fetch(BASE+'/api/assessments',{method:'POST',
-  headers:{'Content-Type':'application/json',Origin:BASE},body:JSON.stringify(body)});
+  headers:{'Content-Type':'application/json',Origin:BASE},body:JSON.stringify({accessCode:ACCESS_CODE,...body})});
 const SID='uidetail-'+Date.now();
 await save({sessionKey:SID,name:'ต่อ ทดสอบ',shop:'ร้านมีตัวเลขครบ',contact:'081-234-5678',
   email:`uid${Date.now()}@example.com`,shopType:'buffet',branches:'2',age:'2-5 ปี',province:'นครราชสีมา',mode:'deep',consent:true});

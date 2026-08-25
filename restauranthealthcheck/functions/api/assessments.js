@@ -3,6 +3,7 @@ import { fail, json, normalizeEmail, now, readJson, sameOrigin, siteUrl, validEm
 import { sendResultEmail } from '../../lib/email.js';
 import { guard } from '../../lib/ratelimit.js';
 import { getUser } from '../../lib/session.js';
+import { gateEnabled, matchCode } from '../../lib/accesscode.js';
 
 const str = (v, max = 300) => (v == null ? null : String(v).slice(0, max));
 // Truncating JSON mid-string would store a fragment that no longer parses, and
@@ -34,6 +35,14 @@ export async function onRequestPost({ request, env }) {
   const sessionKey = str(body.sessionKey, 80);
   if (!sessionKey) return fail('ข้อมูลไม่ครบ', 400);
 
+  // ประตูจริงอยู่ตรงนี้ ไม่ใช่ที่ช่องกรอกในหน้าเว็บ ถ้าไม่มีโค้ดที่ใช้ได้ ผลจะ
+  // ไม่ถูกบันทึก ไม่มีเมล ไม่มีลีดถึงทีม CP
+  const codeRequired = gateEnabled(env);
+  const accessCode = codeRequired ? matchCode(env, body.accessCode) : null;
+  if (codeRequired && !accessCode) {
+    return fail('ต้องใช้รหัสเข้าใช้งานก่อนเริ่มทำแบบประเมิน', 403, 'access_code');
+  }
+
   const email = normalizeEmail(body.email);
   const user = await getUser(db, request);
   const ts = now();
@@ -48,6 +57,7 @@ export async function onRequestPost({ request, env }) {
     branches: str(body.branches, 40),
     age: str(body.age, 40),
     province: str(body.province, 60),
+    access_code: accessCode,
     mode: str(body.mode, 20),
     completed: body.completed ? 1 : 0,
     total_score: Number.isFinite(body.total) ? Math.round(body.total) : null,
@@ -68,11 +78,11 @@ export async function onRequestPost({ request, env }) {
   await db
     .prepare(
       `INSERT INTO assessments (
-         id, session_key, user_id, email, name, shop, contact, shop_type, branches, age, province, mode,
+         id, session_key, user_id, email, name, shop, contact, shop_type, branches, age, province, access_code, mode,
          completed, total_score, type_code, type_name, tier,
          scores_json, answers_json, intent_json, financial_json, report_json, state_json,
          consent_at, user_agent, referrer, created_at, updated_at
-       ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+       ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
        ON CONFLICT(session_key) DO UPDATE SET
          user_id        = COALESCE(excluded.user_id, assessments.user_id),
          email          = COALESCE(excluded.email, assessments.email),
@@ -83,6 +93,7 @@ export async function onRequestPost({ request, env }) {
          branches       = COALESCE(excluded.branches, assessments.branches),
          age            = COALESCE(excluded.age, assessments.age),
          province       = COALESCE(excluded.province, assessments.province),
+         access_code    = COALESCE(assessments.access_code, excluded.access_code),
          mode           = COALESCE(excluded.mode, assessments.mode),
          completed      = MAX(excluded.completed, assessments.completed),
          total_score    = COALESCE(excluded.total_score, assessments.total_score),
@@ -100,7 +111,7 @@ export async function onRequestPost({ request, env }) {
     )
     .bind(
       newId(), sessionKey, row.user_id, row.email, row.name, row.shop, row.contact, row.shop_type,
-      row.branches, row.age, row.province, row.mode, row.completed, row.total_score, row.type_code, row.type_name,
+      row.branches, row.age, row.province, row.access_code, row.mode, row.completed, row.total_score, row.type_code, row.type_name,
       row.tier, row.scores_json, row.answers_json, row.intent_json, row.financial_json, row.report_json, row.state_json,
       row.consent_at, row.user_agent, row.referrer, ts, ts,
     )

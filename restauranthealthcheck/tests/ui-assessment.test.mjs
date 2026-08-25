@@ -4,6 +4,7 @@
 import puppeteer from 'puppeteer-core';
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
+import { ACCESS_CODE, seedAccess } from './access.mjs';
 
 const BASE = 'http://127.0.0.1:8788';
 let pass = 0, failed = 0;
@@ -26,6 +27,7 @@ const browser = await puppeteer.launch({
   args: ['--no-sandbox', '--disable-gpu'],
 });
 const page = await browser.newPage();
+await seedAccess(page);
 await page.setViewport(DEVICE.viewport);
 if (DEVICE.viewport.isMobile) {
   await page.setUserAgent('Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1');
@@ -485,7 +487,7 @@ console.log('\n— ผลเก่าที่ไม่มีคำตอบเ�
   const legacy = 'legacy-' + Date.now();
   await fetch(BASE + '/api/assessments', {
     method: 'POST', headers: { 'Content-Type': 'application/json', Origin: BASE },
-    body: JSON.stringify({ sessionKey: legacy, email: EMAIL, shop: 'ร้านยุคก่อน', completed: true,
+    body: JSON.stringify({ accessCode: ACCESS_CODE, sessionKey: legacy, email: EMAIL, shop: 'ร้านยุคก่อน', completed: true,
       total: 55, mode: 'deep', scores: { D1: 55, D2: 55, D3: 55, D4: 55, D5: 55 } }),
   });
   // ยิงจากในหน้าเว็บ คุกกี้เซสชันเป็น HttpOnly จึงอ่านจาก document.cookie ไม่ได้

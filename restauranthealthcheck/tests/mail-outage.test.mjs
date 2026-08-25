@@ -1,3 +1,4 @@
+import { ACCESS_CODE } from './access.mjs';
 // Regression: when the mail provider is unreachable, the user's work must
 // still be saved, and the account flows must still answer normally.
 const BASE='http://127.0.0.1:8788';
@@ -7,7 +8,8 @@ const mailUp=await fetch('http://127.0.0.1:8025/emails',{method:'POST',body:'{}'
 console.log(mailUp?'(mail catcher กำลังทำงาน — ข้ามข้อที่ต้องให้เมลล่ม)':'(mail catcher ปิดอยู่ — ทดสอบกรณีเมลล่มได้เต็ม)');
 let pass=0,failed=0;
 const t=(n,c,x='')=>{c?(pass++,console.log('  ok   '+n)):(failed++,console.log('  FAIL '+n+(x?' — '+x:'')));};
-const call=async(p,b)=>{const r=await fetch(BASE+p,{method:b?'POST':'GET',
+const call=async(p,b)=>{if(b&&p.startsWith('/api/assessments'))b={accessCode:ACCESS_CODE,...b};
+  const r=await fetch(BASE+p,{method:b?'POST':'GET',
   headers:{Origin:BASE,...(b?{'Content-Type':'application/json'}:{})},body:b?JSON.stringify(b):undefined});
   let d=null;try{d=await r.json()}catch{} return {status:r.status,data:d};};
 

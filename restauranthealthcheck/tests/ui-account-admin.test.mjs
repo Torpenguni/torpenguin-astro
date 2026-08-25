@@ -2,6 +2,7 @@
 // the account pages a returning owner uses, and the back office.
 import puppeteer from 'puppeteer-core';
 import fs from 'node:fs';
+import { ACCESS_CODE, seedAccess } from './access.mjs';
 
 const BASE = 'http://127.0.0.1:8788';
 let pass = 0, failed = 0;
@@ -16,6 +17,7 @@ const browser = await puppeteer.launch({
   args: ['--no-sandbox', '--disable-gpu'],
 });
 const page = await browser.newPage();
+await seedAccess(page);
 await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true });
 
 const jsErrors = [];

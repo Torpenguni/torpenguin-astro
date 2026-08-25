@@ -17,7 +17,7 @@ export async function onRequestGet({ request, env }) {
 
   const { results } = await db
     .prepare(
-      `SELECT id, created_at, name, shop, contact, email, shop_type, branches, age, province, mode,
+      `SELECT id, created_at, name, shop, contact, email, shop_type, branches, age, province, access_code, mode,
               completed, total_score, type_code, type_name, tier, scores_json, financial_json,
               user_id, result_email_sent_at, contact_requested_at
        FROM assessments ${sql}
@@ -79,6 +79,7 @@ export async function onRequestGet({ request, env }) {
       email: r.email,
       shopType: r.shop_type,
       province: r.province,
+      accessCode: r.access_code,
       branches: r.branches,
       age: r.age,
       mode: r.mode,

@@ -7,6 +7,7 @@
 //    อยู่แล้ว แต่บนมือถือตัวหนังสือชนขอบจอ
 // 2. ช่องกรอกที่ถูกถอดออกตอนรัน — ตัวอ่านค่าเดิมพังทันทีถ้าช่องนั้นไม่มีอยู่
 import puppeteer from 'puppeteer-core';
+import { ACCESS_CODE, seedAccess } from './access.mjs';
 
 const BASE = process.env.BASE || 'http://127.0.0.1:8788';
 const MIN_GUTTER = 16;   // ต่ำกว่านี้ถือว่าชิดขอบเกินไปสำหรับมือถือ
@@ -26,6 +27,7 @@ const browser = await puppeteer.launch({
 console.log('\n— ระยะขอบบนมือถือ —');
 for (const width of [320, 360, 390, 430]) {
   const page = await browser.newPage();
+  await seedAccess(page);
   await page.setViewport({ width, height: 900, deviceScaleFactor: 2 });
   await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
   await page.evaluate(() => document.fonts.ready);
@@ -56,6 +58,7 @@ for (const width of [320, 360, 390, 430]) {
 console.log('\n— หัวข้อบรรทัดเดียว —');
 for (const width of [320, 360, 390, 430]) {
   const pg = await browser.newPage();
+  await seedAccess(pg);
   await pg.setViewport({ width, height: 900, deviceScaleFactor: 2 });
   await pg.goto(BASE + '/', { waitUntil: 'networkidle0' });
   await pg.evaluate(() => document.fonts.ready);
@@ -76,6 +79,7 @@ for (const width of [320, 360, 390, 430]) {
 
 console.log('\n— ช่องเบอร์มือถือ —');
 const page = await browser.newPage();
+await seedAccess(page);
 await page.setViewport({ width: 390, height: 900, deviceScaleFactor: 2 });
 await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
 await page.evaluate(() => chooseMode('quick'));

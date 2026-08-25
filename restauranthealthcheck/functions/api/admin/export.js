@@ -10,6 +10,7 @@ const COLUMNS = [
   ['ช่องทางติดต่อ', (r) => r.contact],
   ['อีเมล', (r) => r.email],
   ['จังหวัด', (r) => r.province],
+  ['รหัสเข้าใช้งาน', (r) => r.access_code],
   ['ประเภทร้าน', (r) => r.shop_type],
   ['จำนวนสาขา', (r) => r.branches],
   ['อายุร้าน', (r) => r.age],
@@ -63,7 +64,7 @@ export async function onRequestGet({ request, env }) {
 
   const { results } = await db
     .prepare(
-      `SELECT created_at, name, shop, contact, email, shop_type, branches, age, province, mode, completed,
+      `SELECT created_at, name, shop, contact, email, shop_type, branches, age, province, access_code, mode, completed,
               total_score, type_name, tier, scores_json, user_id, result_email_sent_at,
               contact_requested_at
        FROM assessments ${sql}

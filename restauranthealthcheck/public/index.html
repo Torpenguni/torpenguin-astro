@@ -505,6 +505,11 @@ header{background:rgba(252,251,248,.82);backdrop-filter:blur(16px) saturate(1.4)
 .gate-x{position:absolute;top:12px;right:12px;background:none;border:0;font-size:17px;
   color:var(--ink-faint);cursor:pointer;line-height:1;padding:6px}
 .gate-x:hover{color:var(--ink)}
+.gate-input{width:100%;padding:13px 14px;font-family:var(--mono);font-size:16px;letter-spacing:.09em;
+  text-transform:uppercase;border:1px solid var(--line-2);border-radius:11px;background:var(--bg);
+  color:var(--ink);margin-bottom:12px}
+.gate-input:focus{outline:none;border-color:var(--red)}
+.gate-err{font-size:13.5px;color:var(--red);margin:-4px 0 12px;line-height:1.55;font-weight:600}
 
 /* หัวข้อหน้าเล่าเรื่องร้าน — ให้อยู่บรรทัดเดียว ย่อขนาดลงตามความกว้างที่มี */
 .lp-onenl{font-size:clamp(21px,5.9vw,30px);white-space:nowrap}
@@ -733,6 +738,23 @@ h1 .accent{font-weight:600;color:var(--accent)}
     <a class="btn btn-primary en" href="/account?mode=signup" onclick="rememberDeep()">สมัครฟรี · ใช้เวลา 30 วินาที</a>
     <a class="btn btn-ghost en" href="/account?mode=login" onclick="rememberDeep()">มีบัญชีแล้ว · เข้าสู่ระบบ</a>
     <button class="gate-alt" onclick="closeGate();chooseMode('quick')">หรือลองแบบ 10 ข้อก่อน · ไม่ต้องสมัคร</button>
+  </div>
+</div>
+
+<!-- ประตูรหัสเข้าใช้งาน — CP แจกรหัสให้เฉพาะร้านที่เชิญมา หน้าแรกยังเปิดให้ทุกคน
+     อ่านได้ว่าเครื่องมือนี้คืออะไร แต่จะเริ่มทำต้องมีรหัสก่อน ตัวกันจริงอยู่ที่
+     เซิร์ฟเวอร์ตอนบันทึกผล ช่องนี้มีไว้บอกล่วงหน้าไม่ให้เสียเวลาทำฟรี -->
+<div id="codeGate" class="gate" style="display:none" role="dialog" aria-modal="true" aria-labelledby="codeGateTitle">
+  <div class="gate-card">
+    <button class="gate-x" onclick="closeCodeGate()" aria-label="ปิด">✕</button>
+    <h3 id="codeGateTitle">ใส่รหัสเข้าใช้งาน</h3>
+    <p>เครื่องมือนี้เปิดให้เฉพาะร้านที่ได้รับเชิญจาก <b>CP</b> — ใส่รหัสที่ทีมงานส่งให้ แล้วเครื่องนี้จะจำไว้ ไม่ต้องกรอกซ้ำ</p>
+    <input id="codeInput" class="gate-input" type="text" autocomplete="off" autocapitalize="characters"
+      spellcheck="false" placeholder="รหัสเข้าใช้งาน" aria-label="รหัสเข้าใช้งาน"
+      onkeydown="if(event.key==='Enter'){event.preventDefault();submitCode();}">
+    <p class="gate-err" id="codeErr" style="display:none"></p>
+    <button class="btn btn-primary en" id="codeGo" onclick="submitCode()">ยืนยันรหัส →</button>
+    <button class="gate-alt" onclick="closeCodeGate()">ยังไม่มีรหัส · กลับไปก่อน</button>
   </div>
 </div>
 
@@ -1524,6 +1546,71 @@ function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remo
   const pm=document.getElementById('progMini');if(pm&&id!=='s-quiz')pm.textContent='';
   window.scrollTo({top:0,behavior:'smooth'});}
 
+/* ── ประตูรหัสเข้าใช้งาน ──────────────────────────────────────────────────
+   CP แจกรหัสเดียวให้ร้านที่เชิญมา หน้าแรกเปิดให้ทุกคนอ่านว่าเครื่องมือนี้คือ
+   อะไร แต่กดเริ่มต้องมีรหัสก่อน ช่องกรอกนี้เป็นแค่ด่านบอกล่วงหน้า ตัวกันจริง
+   อยู่ที่เซิร์ฟเวอร์ตอนบันทึกผล ถ้าเช็คแค่ในเบราว์เซอร์ ใครเปิดเครื่องมือนัก
+   พัฒนาก็ข้ามได้ */
+const ACCESS_KEY='rhc_access';
+let codePending=null;          // สิ่งที่เขากดค้างไว้ตอนเจอประตู จะทำต่อให้หลังใส่รหัสถูก
+function storedCode(){
+  try{
+    const a=JSON.parse(localStorage.getItem(ACCESS_KEY)||'null');
+    if(!a||!a.code||!a.exp||Date.now()>a.exp)return '';
+    return a.code;
+  }catch(e){return '';}
+}
+function rememberCode(code,days){
+  try{localStorage.setItem(ACCESS_KEY,JSON.stringify({code,exp:Date.now()+(days||30)*864e5}));}catch(e){}
+}
+function forgetCode(){try{localStorage.removeItem(ACCESS_KEY);}catch(e){}}
+
+// ถามเซิร์ฟเวอร์ครั้งเดียวว่าตอนนี้ยังเปิดประตูอยู่ไหม (ทีมปิดได้จากหน้า
+// Cloudflare โดยไม่ต้องแก้โค้ด) ถ้าถามไม่ได้เพราะเน็ตสะดุด ให้ผ่านไปก่อน —
+// เซิร์ฟเวอร์ยังกันตอนบันทึกอยู่ดี ดีกว่าขึ้นช่องกรอกค้างให้คนที่ไม่มีรหัสงง
+let accessAsk=null;
+function codeRequired(){
+  if(storedCode())return Promise.resolve(false);
+  if(!accessAsk){
+    accessAsk=fetch('/api/access-code',{credentials:'same-origin'})
+      .then(r=>r.json()).then(d=>!!(d&&d.required)).catch(()=>false);
+  }
+  return accessAsk;
+}
+function openCodeGate(pending,msg){
+  codePending=pending||null;
+  const g=document.getElementById('codeGate'),err=document.getElementById('codeErr');
+  err.textContent=msg||'';err.style.display=msg?'block':'none';
+  g.style.display='flex';
+  const i=document.getElementById('codeInput');
+  i.value='';setTimeout(()=>{try{i.focus();}catch(e){}},50);
+}
+function closeCodeGate(){document.getElementById('codeGate').style.display='none';codePending=null;}
+async function submitCode(){
+  const i=document.getElementById('codeInput'),err=document.getElementById('codeErr'),btn=document.getElementById('codeGo');
+  const show=m=>{err.textContent=m;err.style.display='block';};
+  const val=(i.value||'').trim();
+  if(!val){show('กรุณาใส่รหัสที่ได้รับ');return;}
+  btn.disabled=true;err.style.display='none';
+  let d=null;
+  try{
+    const r=await fetch('/api/access-code',{method:'POST',headers:{'Content-Type':'application/json'},
+      credentials:'same-origin',body:JSON.stringify({code:val})});
+    d=await r.json().catch(()=>null);
+    if(!r.ok){btn.disabled=false;show((d&&d.error)||'ยืนยันรหัสไม่สำเร็จ กรุณาลองใหม่');track('access_code_bad');return;}
+  }catch(e){
+    btn.disabled=false;show('เชื่อมต่อไม่ได้ กรุณาตรวจสอบอินเทอร์เน็ตแล้วลองใหม่');return;
+  }
+  btn.disabled=false;
+  rememberCode((d&&d.code)||val.toUpperCase(),d&&d.days);
+  track('access_code_ok');
+  const p=codePending;
+  closeCodeGate();
+  flushLeads();   // ของที่ค้างไว้เพราะยังไม่มีรหัส ส่งใหม่ได้แล้ว
+  if(p&&p.mode)chooseMode(p.mode);
+  else if(p&&p.resume)resumeProgress();
+}
+
 track('landing_view');
 flushLeads();
 
@@ -1681,6 +1768,7 @@ const QUICK_KEYS=['key_person_gone','decide_process','net_margin','breakeven','u
   'new_customer_source','owner_away','onboarding_speed','not_copyable','payback'];
 function quickOrder(){return QUICK_KEYS.map(qIndex).filter(i=>i>=0);}
 async function chooseMode(m){
+  if(await codeRequired()){track('code_gate_shown',m);openCodeGate({mode:m});return;}
   if(m==='deep'&&await needsAccount()){track('gate_shown','deep');openGate();return;}
   state.mode=m;track('mode_select',m);go('s-register');
 }
@@ -1864,6 +1952,7 @@ function progressDone(p){return p.answers.filter(Boolean).length;}
 async function resumeProgress(){
   const p=loadProgress();
   if(!p)return;
+  if(await codeRequired()){track('code_gate_shown','resume');openCodeGate({resume:true});return;}
   // โหมดละเอียดต้องมีบัญชี ถ้าเขาออกจากระบบไปแล้วต้องผ่านประตูก่อนเหมือนเดิม
   if(p.mode==='deep'&&await needsAccount()){rememberDeep();openGate();return;}
   state.sid=p.sid||state.sid;
@@ -2283,9 +2372,25 @@ function submitLead(payload){
 // and on the next visit.
 const LEAD_QUEUE='rhc_pending_leads';
 function postLead(body){
+  // ใส่รหัสตอนจะส่งจริง ไม่ใช่ตอนสร้างข้อมูล ของที่ค้างคิวไว้จะได้ส่งด้วยรหัส
+  // ล่าสุดเสมอ ไม่ใช่รหัสเก่าที่หมดอายุไปแล้ว
+  const payload={...body,accessCode:storedCode()};
   return fetch(CONFIG.endpoint,{method:'POST',headers:{'Content-Type':'application/json'},
-    credentials:'same-origin',body:JSON.stringify(body)})
-    .then(r=>{ if(!r.ok) throw new Error('http '+r.status); return true; })
+    credentials:'same-origin',body:JSON.stringify(payload)})
+    .then(async r=>{
+      // รหัสถูกเปลี่ยนหรือหมดอายุระหว่างที่เขากำลังทำอยู่ ถ้าปล่อยเงียบ ๆ เขาจะ
+      // ทำจนจบแล้วผลหายไปเฉย ๆ เก็บเข้าคิวแล้วขอรหัสใหม่ทันที
+      if(r.status===403){
+        const d=await r.json().catch(()=>null);
+        if(d&&d.code==='access_code'){
+          forgetCode();queueLead(body);
+          openCodeGate(null,'รหัสเข้าใช้งานหมดอายุหรือถูกเปลี่ยน กรุณาใส่รหัสใหม่เพื่อบันทึกผล');
+          return false;
+        }
+      }
+      if(!r.ok) throw new Error('http '+r.status);
+      return true;
+    })
     .catch(e=>{ console.warn('save failed, queued for retry:',e); queueLead(body); return false; });
 }
 function queueLead(body){
