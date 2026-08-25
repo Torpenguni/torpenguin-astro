@@ -10,7 +10,7 @@ const VERIFY_TTL = 24 * 3600;
 // check whether someone is a customer.
 const GENERIC = {
   ok: true,
-  message: 'ถ้าอีเมลนี้มีบัญชีอยู่ เราได้ส่งลิงก์ตั้งรหัสผ่านใหม่ไปให้แล้ว กรุณาเช็คกล่องจดหมาย (รวมถึงโฟลเดอร์สแปม)',
+  message: 'ถ้าอีเมลนี้มีบัญชีอยู่ เราได้ส่งลิงก์ตั้งรหัสผ่านใหม่ไปให้แล้ว — ถ้าไม่เห็นภายใน 1-2 นาที ให้เปิดดูในกล่องสแปม/Junk แล้วกด "ไม่ใช่สแปม" ด้วย',
 };
 
 export async function onRequestPost({ request, env }) {

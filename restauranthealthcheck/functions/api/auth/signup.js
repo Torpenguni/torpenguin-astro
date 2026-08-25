@@ -10,7 +10,7 @@ const VERIFY_TTL = 24 * 3600;
 // Telling a stranger "this email is registered" hands them a list of customers.
 const GENERIC = {
   ok: true,
-  message: 'ถ้าอีเมลนี้ใช้งานได้ เราได้ส่งลิงก์ยืนยันไปให้แล้ว กรุณาเช็คกล่องจดหมาย (รวมถึงโฟลเดอร์สแปม)',
+  message: 'ถ้าอีเมลนี้ใช้งานได้ เราได้ส่งลิงก์ยืนยันไปให้แล้ว — ถ้าไม่เห็นภายใน 1-2 นาที ให้เปิดดูในกล่องสแปม/Junk แล้วกด "ไม่ใช่สแปม" ด้วย อีเมลฉบับต่อไปจะได้เข้ากล่องหลักตามปกติ',
 };
 
 export async function onRequestPost({ request, env }) {
