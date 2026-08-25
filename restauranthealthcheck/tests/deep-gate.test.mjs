@@ -139,8 +139,6 @@ for (let g = 0; g < 40 && (await screen()) === 's-quiz'; g++) {
   await page.click('#qNext');
   await settle(30);
 }
-await page.evaluate(() => document.querySelectorAll('#intentChips button')[0].click());
-await page.evaluate(() => finishQuick());
 await page.waitForFunction(() => document.querySelector('.screen.active').id === 's-quickresult', { timeout: 8000 });
 
 const before = await page.evaluate(() => state.answers.filter((_, i) => answered(i) && QUESTIONS[i].type !== 'profile').length);

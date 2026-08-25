@@ -832,17 +832,6 @@ h1 .accent{font-weight:600;color:var(--accent)}
 </div></section>
 
 <!-- QUICK RESULT -->
-<!-- INTENT (quick only) -->
-<section class="screen" id="s-intent"><div class="wrap pad">
-  <div class="eyebrow en">เกือบเสร็จแล้ว · อีกขั้นเดียว</div>
-  <h1 style="font-size:28px">อยากให้ CP ช่วย<br><span class="accent">ด้านไหนมากที่สุด?</span></h1>
-  <p class="lede" style="margin-bottom:24px">เลือกได้หลายข้อ เพื่อให้ทีมเตรียมสิ่งที่ตรงกับร้านคุณ (ข้ามได้)</p>
-  <div id="intentChips"></div>
-  <div class="btn-row" style="margin-top:22px">
-    <button class="btn btn-ghost en" onclick="finishQuick()">ข้าม</button>
-    <button class="btn btn-primary en" onclick="finishQuick()">ดูผล →</button></div>
-</div></section>
-
 <section class="screen" id="s-quickresult"><div class="wrap pad">
   <div class="result-hero">
     <div class="eyebrow en" style="justify-content:center">⚡ ผลเช็กเร็ว · <span id="qrShop"></span></div>
@@ -1430,18 +1419,11 @@ const ROOT_ACTION={
 
 /* ============================================================ STATE ============================================================ */
 const state={reg:{},answers:Array(QUESTIONS.length).fill(null),idx:0,mode:'deep',order:[],intent:[],sid:Math.random().toString(36).slice(2)+Date.now().toString(36)};
-const INTENT_OPTS=[
-  {tag:'need_supplier',t:'🥩 Supplier / วัตถุดิบต้นทุนดี'},
-  {tag:'need_capital',t:'💵 แหล่งทุน / นักลงทุน'},
-  {tag:'need_franchise',t:'🏪 แฟรนไชส์ / ขยายสาขา'},
-  {tag:'need_marketing',t:'📣 การตลาด / สร้างแบรนด์'},
-  {tag:'need_system',t:'⚙️ ระบบหลังบ้าน / POS / สต็อก'},
-];
-function styleChip(b,sel){b.style.cssText='display:block;width:100%;text-align:left;padding:15px 16px;margin-bottom:11px;border-radius:13px;font-size:15px;cursor:pointer;transition:all .15s;'+(sel?'background:#C8102E;color:#fff;border:1.5px solid #C8102E;font-weight:600;':'background:var(--surface,#fff);color:var(--ink,#17140F);border:1.5px solid #e5ded2;');}
-function renderIntent(){const w=document.getElementById('intentChips');w.innerHTML='';state.intent=[];
-  INTENT_OPTS.forEach(o=>{const b=document.createElement('button');b.type='button';styleChip(b,false);b.textContent=o.t;
-    b.onclick=()=>{const k=state.intent.indexOf(o.tag);const sel=k<0;if(sel)state.intent.push(o.tag);else state.intent.splice(k,1);styleChip(b,sel);};
-    w.appendChild(b);});}
+// ทีม CP ยังไม่พร้อมเข้าไปช่วยเรื่องที่หน้าจอนี้เคยถาม (ซัพพลายเออร์ ทุน
+// แฟรนไชส์ การตลาด) จึงตัดทั้งหน้าทิ้ง — ถามในสิ่งที่ตอบไปแล้วไม่มีใครทำอะไรต่อ
+// ได้ คือการสร้างความคาดหวังลอย ๆ และคั่นเวลาก่อนเขาจะได้เห็นผลของตัวเอง
+// state.intent ยังอยู่ในโครงสร้างข้อมูล เพราะลีดเก่าที่เคยตอบไว้ยังมีค่านั้น
+// อยู่และหลังบ้านยังแสดงให้ดูได้ แค่ไม่มีการเก็บใหม่แล้ว
 function finishQuick(){showQuickResult();}
 // ปุ่ม "ให้ทีม CP ติดต่อกลับ" — ไม่เปิดฟอร์มให้กรอกอะไรอีก เพราะตอนนี้เรามีชื่อ
 // เบอร์ อีเมล และผลประเมินของเขาครบแล้ว การให้กรอกซ้ำคือวิธีที่ดีที่สุดที่จะ
@@ -1916,7 +1898,7 @@ showResumeBar();
 function nextQ(){
   if(!answered(state.order[state.idx]))return;
   if(state.idx===state.order.length-1){
-    if(state.mode==='quick'){renderIntent();go('s-intent');return;}
+    if(state.mode==='quick'){finishQuick();return;}   // ตอบครบแล้วเห็นผลเลย ไม่มีหน้าคั่น
     saveProgress('s-financial');go('s-financial');return;  // ตัดหน้า review — quiz มีปุ่ม "ก่อนหน้า" ให้ย้อนแก้อยู่แล้ว
   }
   state.idx++;renderQ();

@@ -140,7 +140,6 @@ for (let g = 0; g < 40 && (await screen()) === 's-quiz'; g++) {
   await page.click('#qNext');
   await new Promise((r) => setTimeout(r, 50));
 }
-if ((await screen()) === 's-intent') { await clickByOnclick('finishQuick()'); await new Promise((r) => setTimeout(r, 600)); }
 t('ทำแบบด่วนจนจบ', (await screen()) === 's-quickresult', await screen());
 t('ทำจบแล้วของค้างถูกล้างทิ้ง',
   await page.evaluate(() => localStorage.getItem('rhc_progress') === null));

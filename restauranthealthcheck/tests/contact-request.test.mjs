@@ -89,8 +89,6 @@ for (let g = 0; g < 60 && (await visible()) === 's-quiz'; g++) {
   await page.click('#qNext');
   await new Promise((r) => setTimeout(r, 50));
 }
-await page.evaluate(() => document.querySelectorAll('#intentChips button')[0].click());
-await clickByOnclick('finishQuick()');
 await page.waitForFunction(() => document.querySelector('.screen.active').id === 's-quickresult', { timeout: 8000 });
 
 const btn = await page.evaluateHandle(() => [...document.querySelectorAll('[onclick]')]

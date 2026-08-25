@@ -74,13 +74,10 @@ for (let g = 0; g < 60 && (await visible()) === 's-quiz'; g++) {
   await new Promise((r) => setTimeout(r, 50));
 }
 t(`โหมดด่วนสั้นกว่าโหมดเต็มจริง (${n} ข้อ)`, n > 0 && n < 30, `ตอบ ${n} ข้อ`);
-t('ไปหน้าเลือกสิ่งที่สนใจ', await visible() === 's-intent', await visible());
-
-const chips = await page.$$eval('#intentChips button', (b) => b.length);
-t('มีตัวเลือกความสนใจให้เลือก', chips > 0, `${chips} ตัวเลือก`);
-await page.evaluate(() => document.querySelectorAll('#intentChips button')[0].click());
-await clickByOnclick('finishQuick()');
+// ตอบข้อสุดท้ายแล้วต้องเห็นผลเลย ไม่มีหน้าคั่นถามว่าอยากให้ช่วยเรื่องอะไร
+// (ตัดทิ้งเพราะทีม CP ยังไม่พร้อมเข้าไปช่วยเรื่องที่หน้านั้นถาม)
 await page.waitForFunction(() => document.querySelector('.screen.active').id === 's-quickresult', { timeout: 8000 });
+t('ไม่มีหน้าคั่นถามความสนใจอีกแล้ว', await page.$('#s-intent') === null);
 t('ได้ผลความพร้อมเบื้องต้น', await visible() === 's-quickresult');
 t('มีคะแนนแสดง', await page.$eval('#qrPct', (el) => /\d/.test(el.textContent)));
 t('ตัวนับ % ไม่ค้าง', await page.$eval('#progMini', (el) => el.textContent.trim() === ''));
