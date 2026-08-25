@@ -1,7 +1,7 @@
 // ประตูก่อนเข้าโหมดละเอียด
 //
 // แบบ 10 ข้อทำได้เลยไม่ต้องสมัคร — คนหน้าบูธส่วนใหญ่ใช้ทางนี้ ถ้ากั้นตรงนี้จะ
-// เสียลีดที่ยังไม่ทันได้เบอร์ ส่วนแบบ 48 ข้อกับการดาวน์โหลดรายงานต้องมีบัญชี
+// เสียลีดที่ยังไม่ทันได้เบอร์ ส่วนแบบละเอียดกับการดาวน์โหลดรายงานต้องมีบัญชี
 // เพราะสองอย่างนั้นคือสิ่งที่บัญชีมีไว้ให้จริง ๆ
 import puppeteer from 'puppeteer-core';
 import fs from 'node:fs';
@@ -157,7 +157,10 @@ const after = await page.evaluate(() => ({
   noticeShown: getComputedStyle(document.getElementById('qCarried')).display !== 'none',
 }));
 t('คำตอบเดิมไม่หาย', after.kept === before, `${after.kept} vs ${before}`);
-t('ถามเฉพาะข้อที่ยังไม่ได้ตอบ', after.remaining === 47 - before, `${after.remaining} ข้อ`);
+// อย่าเขียนจำนวนข้อตายตัว — พอเพิ่ม/ตัดคำถามทีไรเทสจะพังโดยที่ของไม่ได้พัง
+const totalAsked = await page.evaluate(() => QUESTIONS.filter((q) => q.type !== 'profile').length);
+t('ถามเฉพาะข้อที่ยังไม่ได้ตอบ', after.remaining === totalAsked - before,
+  `เหลือ ${after.remaining} · ควรเหลือ ${totalAsked - before}`);
 t('ไม่มีข้อไหนในลำดับที่ตอบไปแล้ว', after.allFresh);
 t('ตัวนับเริ่มจากจำนวนที่เหลือจริง', after.counter === `1 / ${after.remaining}`, after.counter);
 t('บอกว่าเก็บคำตอบเดิมไว้ให้แล้ว',
